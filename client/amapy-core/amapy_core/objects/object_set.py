@@ -2,12 +2,12 @@ import os.path
 from collections.abc import Callable
 from typing import Iterable
 
-from asset_core.objects.asset_object import AssetObject
-from asset_core.objects.object_factory import ObjectFactory
-from asset_utils.common import BetterSet, exceptions
-from asset_utils.utils import update_dict
-from asset_utils.utils.file_utils import FileUtils
-from asset_utils.utils.log_utils import LoggingMixin
+from amapy_core.objects.asset_object import AssetObject
+from amapy_core.objects.object_factory import ObjectFactory
+from amapy_utils.common import BetterSet, exceptions
+from amapy_utils.utils import update_dict
+from amapy_utils.utils.file_utils import FileUtils
+from amapy_utils.utils.log_utils import LoggingMixin
 
 
 class ObjectSet(BetterSet, LoggingMixin):

@@ -1,7 +1,7 @@
 from typing import Callable
 
-from asset_contents import Content
-from asset_pluggy.storage import StorageData
+from amapy_contents import Content
+from amapy_pluggy.storage import StorageData
 
 
 class ObjectSource:
