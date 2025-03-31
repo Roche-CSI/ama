@@ -3,8 +3,8 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
-from asset_contents import BlobStoreContent
-from asset_pluggy.storage import StorageData
+from amapy_contents import BlobStoreContent
+from amapy_pluggy.storage import StorageData
 
 
 @pytest.fixture

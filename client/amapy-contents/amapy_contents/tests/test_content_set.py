@@ -2,8 +2,8 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
-from asset_contents.content import Content
-from asset_contents.content_set import ContentSet
+from amapy_contents.content import Content
+from amapy_contents.content_set import ContentSet
 
 
 @pytest.fixture

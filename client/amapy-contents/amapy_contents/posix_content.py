@@ -2,8 +2,7 @@ from __future__ import annotations
 
 import os
 
-from asset_pluggy.storage.blob import StorageData
-
+from amapy_pluggy.storage.blob import StorageData
 from amapy_utils.common import exceptions
 from amapy_utils.utils.file_utils import FileUtils
 from .content import Content

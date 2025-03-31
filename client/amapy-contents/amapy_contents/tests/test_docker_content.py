@@ -2,8 +2,8 @@ from unittest.mock import MagicMock
 
 import pytest
 
-from asset_contents import DockerContent
-from asset_pluggy.storage import StorageData
+from amapy_contents import DockerContent
+from amapy_pluggy.storage import StorageData
 
 
 @pytest.fixture

@@ -2,7 +2,7 @@ import os
 
 import pytest
 
-from asset_contents.file_stat import FileStat
+from amapy_contents.file_stat import FileStat
 
 
 @pytest.fixture
