@@ -20,7 +20,7 @@ import psutil
 import yaml
 from ruamel.yaml import YAML
 
-from asset_utils.common.exceptions import AssetException
+from amapy_utils.common.exceptions import AssetException
 from .file_html_diff import FileHtmlDiff
 from .file_tree import TreeNode
 from .log_utils import LoggingMixin

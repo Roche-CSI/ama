@@ -5,8 +5,8 @@ import subprocess
 import requests
 import speedtest
 
-from asset_utils.common import exceptions
-from asset_utils.utils import utils
+from amapy_utils.common import exceptions
+from amapy_utils.utils import utils
 
 logger = logging.getLogger(__name__)
 

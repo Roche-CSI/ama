@@ -15,8 +15,8 @@ from typing import Iterable, Union, List, Dict, Callable
 
 from pytz import utc, timezone
 
-from asset_utils.common import DEBUG, PROFILE, PRINT_ARGS
-from asset_utils.utils.log_utils import UserLog
+from amapy_utils.common import DEBUG, PROFILE, PRINT_ARGS
+from amapy_utils.utils.log_utils import UserLog
 
 # can't use timezone name here because datetime.strptime doesn't support it on
 # linux (works on Mac though)

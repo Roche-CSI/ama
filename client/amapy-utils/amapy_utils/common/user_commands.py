@@ -1,4 +1,4 @@
-from asset_utils.utils.log_utils import colored_string, LogColors
+from amapy_utils.utils.log_utils import colored_string, LogColors
 
 COMMAND_TEMPLATE = "{start}use: {cmd} --> {desc}{end}"
 HELP_DESC = "for more details"

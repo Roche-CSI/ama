@@ -2,7 +2,7 @@ import sys
 
 from tqdm import tqdm, utils
 
-from asset_utils.utils.log_utils import LoggingMixin, LogColors, colored_string
+from .log_utils import LoggingMixin, LogColors, colored_string
 
 
 class Progress(tqdm, LoggingMixin):

@@ -2,8 +2,8 @@ from unittest.mock import patch
 
 import pytest
 
-from asset_utils.common.exceptions import InsufficientCredentialError, InvalidObjectSourceError
-from asset_utils.utils.cloud_utils import parse_gcr_sha_url, parse_gcr_tag_url
+from amapy_utils.common.exceptions import InsufficientCredentialError, InvalidObjectSourceError
+from amapy_utils.utils.cloud_utils import parse_gcr_sha_url, parse_gcr_tag_url
 
 
 @pytest.fixture(scope="session")
