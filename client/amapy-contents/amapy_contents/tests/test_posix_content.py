@@ -5,7 +5,7 @@ import pytest
 
 from asset_contents.posix_content import PosixContent
 from asset_pluggy.storage.blob import StorageData
-from asset_utils.common import exceptions
+from amapy_utils.common import exceptions
 
 
 @pytest.fixture

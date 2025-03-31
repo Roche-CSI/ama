@@ -3,7 +3,7 @@ from __future__ import annotations
 import os
 
 from asset_pluggy.storage.blob import StorageData
-from asset_utils.common import exceptions
+from amapy_utils.common import exceptions
 from asset_utils.utils.file_utils import FileUtils
 from .posix_content import Content
 
