@@ -1,7 +1,7 @@
 import logging
 import os
 
-from asset_db.db import Database
+from amapy_db.db import Database
 
 logger = logging.getLogger(__name__)
 

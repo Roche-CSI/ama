@@ -2,7 +2,7 @@ import os
 
 import pytest
 
-from asset_db import StatesDB
+from amapy_db import StatesDB
 
 DATA = {
     "test_data/2.txt": "pending",
