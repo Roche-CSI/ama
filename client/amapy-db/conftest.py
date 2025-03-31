@@ -4,10 +4,6 @@ import tempfile
 
 import pytest
 
-from asset_core.configs import Configs
-from asset_core.configs.app_settings import AppSettings
-from asset_manager.app import register_plugins
-
 logger = logging.getLogger(__name__)
 
 
@@ -19,9 +15,6 @@ def pytest_sessionstart(session):
     Do teardown in `pytest_sessionfinish()`
     """
     logger.info("Pre-Session Setup..")
-    Configs.de_init()  # cleanup existing settings if any
-    Configs.shared(mode=Configs.modes.UNIT_TEST)  # all tests to use test_settings only
-    register_plugins()
 
 
 def pytest_sessionfinish(session, exitstatus):
@@ -32,8 +25,6 @@ def pytest_sessionfinish(session, exitstatus):
     Performs teardown for `pytest_sessionstart()`
     """
     logger.info("\nPost-session Teardown..")
-    Configs.de_init()  # cleanup
-    AppSettings.shared().unset_project_environment()
 
 
 @pytest.fixture(scope="session")
