@@ -1,6 +1,6 @@
 import os
 
-from asset_utils.utils import utils
+from amapy_utils.utils import utils
 
 
 class SettingsConfig:

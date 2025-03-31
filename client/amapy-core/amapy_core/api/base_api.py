@@ -1,7 +1,7 @@
 import abc
 import contextlib
 
-from asset_core.store import AssetStore
+from amapy_core.store import AssetStore
 from amapy_utils.utils.log_utils import LoggingMixin
 
 

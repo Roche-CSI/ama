@@ -1,6 +1,6 @@
 import os
 
-from asset_core.api.store_api import ContentHashAPI
+from amapy_core.api.store_api import ContentHashAPI
 
 
 def test_content_hash(store, project_root, capfd):

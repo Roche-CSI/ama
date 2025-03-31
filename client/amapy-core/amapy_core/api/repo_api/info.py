@@ -1,15 +1,15 @@
 import json
 import os
 
-from asset_core.asset.asset_version import ROOT_VERSION_NUMBER
-from asset_core.asset.refs import AssetRef
-from asset_core.configs import AppSettings, Configs
-from asset_utils.common import exceptions
-from asset_utils.common.user_commands import UserCommands
-from asset_utils.utils import comma_formatted, kilo_byte
-from asset_utils.utils.cloud_utils import internet_on
-from asset_utils.utils.file_utils import FileUtils
-from asset_utils.utils.log_utils import colored_string, LogColors
+from amapy_core.asset.asset_version import ROOT_VERSION_NUMBER
+from amapy_core.asset.refs import AssetRef
+from amapy_core.configs import AppSettings, Configs
+from amapy_utils.common import exceptions
+from amapy_utils.common.user_commands import UserCommands
+from amapy_utils.utils import comma_formatted, kilo_byte
+from amapy_utils.utils.cloud_utils import internet_on
+from amapy_utils.utils.file_utils import FileUtils
+from amapy_utils.utils.log_utils import colored_string, LogColors
 from .repo import RepoAPI
 
 

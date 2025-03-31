@@ -1,8 +1,8 @@
 import os
 
-from asset_core.configs.config_modes import ConfigModes
-from asset_utils.common import exceptions
-from asset_utils.common.user_commands import UserCommands
+from amapy_core.configs.config_modes import ConfigModes
+from amapy_utils.common import exceptions
+from amapy_utils.common.user_commands import UserCommands
 
 DEV_DASHBOARD = "http://localhost:3000"
 PROD_DASHBOARD = None

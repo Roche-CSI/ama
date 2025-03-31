@@ -1,4 +1,4 @@
-from asset_utils.utils.web_utils import open_in_browser
+from amapy_utils.utils.web_utils import open_in_browser
 from .repo import RepoAPI
 
 

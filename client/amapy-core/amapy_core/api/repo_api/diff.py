@@ -4,14 +4,14 @@ import enum
 import os
 import tempfile
 
-from asset_core.api.repo_api.repo import RepoAPI
-from asset_core.asset.asset_diff import AssetDiff
-from asset_core.asset.fetchers.asset_fetcher import AssetFetcher
-from asset_core.objects.asset_object import AssetObject
-from asset_utils.utils import web_utils
-from asset_utils.utils.file_utils import FileUtils
-from asset_utils.utils.log_utils import LogColors, colored_string
-from asset_utils.utils.progress import Progress
+from amapy_core.api.repo_api.repo import RepoAPI
+from amapy_core.asset.asset_diff import AssetDiff
+from amapy_core.asset.fetchers.asset_fetcher import AssetFetcher
+from amapy_core.objects.asset_object import AssetObject
+from amapy_utils.utils import web_utils
+from amapy_utils.utils.file_utils import FileUtils
+from amapy_utils.utils.log_utils import LogColors, colored_string
+from amapy_utils.utils.progress import Progress
 
 
 class DiffSymbols(enum.Enum):

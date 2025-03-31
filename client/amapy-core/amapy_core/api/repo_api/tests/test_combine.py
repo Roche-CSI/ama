@@ -1,6 +1,6 @@
 import json
 
-from asset_core.api.repo_api.union import UnionApi
+from amapy_core.api.repo_api.union import UnionApi
 
 
 def test_union_id(empty_asset):

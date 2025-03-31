@@ -1,7 +1,7 @@
 import os
 import subprocess
 
-from asset_core.api.tests.e2e_tests.base_e2e import BaseE2ETest
+from amapy_core.api.tests.e2e_tests.base_e2e import BaseE2ETest
 
 
 # don't add test prefix here, we don't want pytest to run this

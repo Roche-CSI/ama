@@ -4,13 +4,13 @@ import os
 
 from cached_property import cached_property
 
-from asset_core.configs import Configs, AppSettings
-from asset_db import AssetsDB, StoreDB
-from asset_utils.common import exceptions
-from asset_utils.common.user_commands import UserCommands
-from asset_utils.utils import list_files
-from asset_utils.utils.file_utils import FileUtils
-from asset_utils.utils.log_utils import LoggingMixin, LogColors
+from amapy_core.configs import Configs, AppSettings
+from amapy_db import AssetsDB, StoreDB
+from amapy_utils.common import exceptions
+from amapy_utils.common.user_commands import UserCommands
+from amapy_utils.utils import list_files
+from amapy_utils.utils.file_utils import FileUtils
+from amapy_utils.utils.log_utils import LoggingMixin, LogColors
 
 # this will eventually be the group_id / project_id
 STORE_ID = '.be34edd1-844a-4f16-972f-b2a32a5bf63d'

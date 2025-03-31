@@ -1,11 +1,11 @@
 import copy
 import os
 
-from asset_core.asset.asset_class import AssetClass
-from asset_core.store import Repo
-from asset_utils.common import exceptions
-from asset_utils.common.user_commands import UserCommands
-from asset_utils.utils.log_utils import colored_string, LogColors
+from amapy_core.asset.asset_class import AssetClass
+from amapy_core.store import Repo
+from amapy_utils.common import exceptions
+from amapy_utils.common.user_commands import UserCommands
+from amapy_utils.utils.log_utils import colored_string, LogColors
 from .store import StoreAPI
 
 

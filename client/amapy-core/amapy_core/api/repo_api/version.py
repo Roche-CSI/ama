@@ -1,6 +1,6 @@
-from asset_core.asset.asset_diff import AssetDiff
-from asset_utils.common.user_commands import UserCommands
-from asset_utils.utils.log_utils import LogColors, colored_string
+from amapy_core.asset.asset_diff import AssetDiff
+from amapy_utils.common.user_commands import UserCommands
+from amapy_utils.utils.log_utils import LogColors, colored_string
 from .repo import RepoAPI
 
 DEFAULT_VERSION_LIST_WINDOW_SIZE = 10

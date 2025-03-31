@@ -1,7 +1,7 @@
 import os
 
-from asset_core.configs.config_modes import ConfigModes
-from asset_core.configs.server_config import DEV_URL, PROD_URL, UNIT_TEST_URL, USER_TEST_URL
+from amapy_core.configs.config_modes import ConfigModes
+from amapy_core.configs.server_config import DEV_URL, PROD_URL, UNIT_TEST_URL, USER_TEST_URL
 
 
 class AuthConfig:

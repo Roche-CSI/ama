@@ -1,8 +1,8 @@
 import os
 
-from asset_core.configs.settings_prop import SettingsProp
-from asset_utils.common import exceptions
-from asset_utils.utils import update_dict
+from amapy_core.configs.settings_prop import SettingsProp
+from amapy_utils.common import exceptions
+from amapy_utils.utils import update_dict
 
 INACTIVE_KEYS = ["asset_credentials"]
 

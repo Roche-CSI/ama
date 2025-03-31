@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from asset_utils.utils.log_utils import LoggingMixin
+from amapy_utils.utils.log_utils import LoggingMixin
 from .auth_config import AuthConfig
 from .client_configs import SettingsConfig, AssetConfig, AssetsHomeConfig
 from .config_modes import ConfigModes

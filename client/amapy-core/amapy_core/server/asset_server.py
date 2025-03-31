@@ -5,9 +5,9 @@ from urllib import parse
 
 import requests
 
-from asset_core.configs import Configs, AppSettings
-from asset_utils.common import exceptions
-from asset_utils.utils import UserLog
+from amapy_core.configs import Configs, AppSettings
+from amapy_utils.common import exceptions
+from amapy_utils.utils import UserLog
 
 
 class AssetServer:

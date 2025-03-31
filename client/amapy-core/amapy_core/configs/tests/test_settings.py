@@ -1,7 +1,7 @@
 import json
 import os
 
-from asset_core.configs import AppSettings
+from amapy_core.configs import AppSettings
 
 
 def test_settings_environment(test_environment):

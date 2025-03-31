@@ -1,9 +1,9 @@
 import os
 
-from asset_utils.common import exceptions
-from asset_utils.common.user_commands import UserCommands
-from asset_utils.utils import LogColors
-from asset_utils.utils.log_utils import colored_string
+from amapy_utils.common import exceptions
+from amapy_utils.common.user_commands import UserCommands
+from amapy_utils.utils import LogColors
+from amapy_utils.utils.log_utils import colored_string
 from .add import AddAPI
 from .repo import RepoAPI
 

@@ -4,7 +4,7 @@ import tempfile
 
 import pytest
 
-from asset_core.store import Repo
+from amapy_core.store import Repo
 
 
 @pytest.fixture(scope="module")

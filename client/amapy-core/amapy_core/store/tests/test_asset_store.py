@@ -2,7 +2,7 @@ import os
 
 import pytest
 
-from asset_core.store import AssetStore
+from amapy_core.store import AssetStore
 
 
 def test_remote_storage(store):

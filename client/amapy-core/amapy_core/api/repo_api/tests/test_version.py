@@ -1,4 +1,4 @@
-from asset_core.api.repo_api import VersionAPI
+from amapy_core.api.repo_api import VersionAPI
 
 
 def test_version_api(asset, repo, capfd):

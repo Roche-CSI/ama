@@ -1,6 +1,6 @@
-from asset_core.api.base_api import BaseAPI
-from asset_core.configs import AppSettings
-from asset_core.store import Repo
+from amapy_core.api.base_api import BaseAPI
+from amapy_core.configs import AppSettings
+from amapy_core.store import Repo
 
 
 class StoreAPI(BaseAPI):

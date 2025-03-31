@@ -28,14 +28,14 @@ The Repo class provides the following functionalities.
 import os
 import uuid
 
-from asset_core.configs import Configs
-from asset_core.store.asset_store import AssetStore
-from asset_db import RepoDB
-from asset_utils.common import exceptions
-from asset_utils.utils import list_files
-from asset_utils.utils.file_utils import FileUtils
-from asset_utils.utils.log_utils import LoggingMixin
-from asset_utils.utils.path_utils import PathUtils
+from amapy_core.configs import Configs
+from amapy_core.store.asset_store import AssetStore
+from amapy_db import RepoDB
+from amapy_utils.common import exceptions
+from amapy_utils.utils import list_files
+from amapy_utils.utils.file_utils import FileUtils
+from amapy_utils.utils.log_utils import LoggingMixin
+from amapy_utils.utils.path_utils import PathUtils
 
 
 class Repo(LoggingMixin):

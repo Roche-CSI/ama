@@ -1,14 +1,14 @@
 import os
 
-from asset_core.asset import Asset, AssetClass
-from asset_core.asset.fetchers.asset_fetcher import AssetFetcher
-from asset_core.configs import AppSettings, Configs
-from asset_core.store import AssetStore, Repo
-from asset_utils.common import exceptions
-from asset_utils.common.user_commands import UserCommands
-from asset_utils.utils import user_home_dir
-from asset_utils.utils.log_utils import colored_string, LogColors, asset_logo
-from asset_utils.utils.log_utils import format_link
+from amapy_core.asset import Asset, AssetClass
+from amapy_core.asset.fetchers.asset_fetcher import AssetFetcher
+from amapy_core.configs import AppSettings, Configs
+from amapy_core.store import AssetStore, Repo
+from amapy_utils.common import exceptions
+from amapy_utils.common.user_commands import UserCommands
+from amapy_utils.utils import user_home_dir
+from amapy_utils.utils.log_utils import colored_string, LogColors, asset_logo
+from amapy_utils.utils.log_utils import format_link
 from .repo import RepoAPI
 
 

@@ -1,6 +1,7 @@
-from .repo import RepoAPI
 from packaging.version import parse as parse_version
-from asset_core.asset.fetchers.asset_fetcher import AssetFetcher
+
+from amapy_core.asset.fetchers.asset_fetcher import AssetFetcher
+from .repo import RepoAPI
 
 
 class AssetPullAPI(RepoAPI):

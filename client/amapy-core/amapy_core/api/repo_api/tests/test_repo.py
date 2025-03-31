@@ -1,4 +1,4 @@
-from asset_core.api.repo_api.repo import RepoAPI
+from amapy_core.api.repo_api.repo import RepoAPI
 
 
 def test_asset(asset, repo):

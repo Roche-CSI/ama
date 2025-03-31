@@ -3,7 +3,7 @@ from unittest.mock import patch, MagicMock
 
 import pytest
 
-from asset_core.server.asset_server import AssetServer
+from amapy_core.server.asset_server import AssetServer
 
 
 @pytest.fixture

@@ -6,8 +6,8 @@ from wsgiref import simple_server
 
 from google_auth_oauthlib.flow import _RedirectWSGIApp
 
-from asset_core.configs import Configs
-from asset_core.server.base_server import BaseServer
+from amapy_core.configs import Configs
+from amapy_core.server.base_server import BaseServer
 
 
 class AuthServer(BaseServer):

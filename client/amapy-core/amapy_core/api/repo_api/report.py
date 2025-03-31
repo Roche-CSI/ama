@@ -2,11 +2,11 @@ import os
 
 from jinja2 import Environment, FileSystemLoader
 
-from asset_core.asset.refs import AssetRef
-from asset_core.configs import AppSettings
-from asset_utils.common import exceptions
-from asset_utils.utils import kilo_byte
-from asset_utils.utils.web_utils import open_in_browser
+from amapy_core.asset.refs import AssetRef
+from amapy_core.configs import AppSettings
+from amapy_utils.common import exceptions
+from amapy_utils.utils import kilo_byte
+from amapy_utils.utils.web_utils import open_in_browser
 from .repo import RepoAPI
 
 # template is located in asset-core/asset_core/api/repo_api/templates/

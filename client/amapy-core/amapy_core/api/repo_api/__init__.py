@@ -1,5 +1,5 @@
-from asset_utils.common.user_commands import UserCommands
-from asset_utils.utils.log_utils import LoggingMixin, LogColors, colored_string
+from amapy_utils.common.user_commands import UserCommands
+from amapy_utils.utils.log_utils import LoggingMixin, LogColors, colored_string
 from .add import AddAPI
 from .debug import DebugAPI
 from .diff import DiffApi
@@ -16,7 +16,6 @@ from .union import UnionApi
 from .update import UpdateAPI
 from .upload import UploadAPI
 from .version import VersionAPI
-from asset_core.asset import Asset
 
 
 class AssetAPI(LoggingMixin):

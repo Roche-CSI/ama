@@ -1,7 +1,7 @@
 import copy
 import os
 
-from asset_core.api.base_api import BaseAPI
+from amapy_core.api.base_api import BaseAPI
 
 
 class MockAPI(BaseAPI):

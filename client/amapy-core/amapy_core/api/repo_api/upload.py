@@ -1,11 +1,11 @@
 import os
 
-from asset_core.asset import Asset
-from asset_core.asset.asset_snapshot import AssetSnapshot
-from asset_core.asset.asset_uploader import AssetUploader
-from asset_core.objects.asset_object import ObjectViews
-from asset_utils.common import exceptions, user_commands
-from asset_utils.utils.cloud_utils import internet_on
+from amapy_core.asset import Asset
+from amapy_core.asset.asset_snapshot import AssetSnapshot
+from amapy_core.asset.asset_uploader import AssetUploader
+from amapy_core.objects.asset_object import ObjectViews
+from amapy_utils.common import exceptions, user_commands
+from amapy_utils.utils.cloud_utils import internet_on
 from .repo import RepoAPI
 
 

@@ -1,7 +1,7 @@
 import pytest
 
-from asset_core.api.repo_api import AddAPI
-from asset_utils.common import exceptions
+from amapy_core.api.repo_api import AddAPI
+from amapy_utils.common import exceptions
 
 
 def test_validate_alias(repo):
