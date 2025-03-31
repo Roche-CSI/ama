@@ -59,11 +59,11 @@ class Configs(LoggingMixin):
 
     @property
     def frontend_url(self):
-        return self.FRONTEND.get("BASE_URL")
+        return self.FRONTEND.get("BASE_URL") if self.FRONTEND else None
 
     @property
     def host_url(self):
-        return self.SERVER.get("BASE_URL")
+        return self.SERVER.get("BASE_URL") if self.SERVER else None
 
     def get_ssh_user(self):
         return self.SSH.get("user")

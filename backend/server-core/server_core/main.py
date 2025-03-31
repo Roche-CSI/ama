@@ -3,14 +3,19 @@ import os
 
 from server_core.app import create_app
 from server_core.configs import Configs
+from server_core.configs.configs import ConfigModes
 from server_core.run_gunicorn import StandaloneApplication
 
 PORT = 5000
 HOST = '0.0.0.0'
 
 
-def get_app(*args):
-    Configs.shared()  # default is DEV
+def get_app(mode: str = None):
+    try:
+        config_mode = ConfigModes[mode]
+    except KeyError:
+        config_mode = ConfigModes.DEV
+    Configs.shared(mode=config_mode)  # default is DEV
     return create_app()
 
 
@@ -27,7 +32,9 @@ def main():
     # Parse command line arguments
     args = parse_args()
 
-    app = get_app()
+    mode = os.getenv('ASSET_CONFIG_MODE')
+    app = get_app(mode=mode)
+
     options = {
         'bind': '%s:%s' % (HOST, PORT),
         'workers': 2,

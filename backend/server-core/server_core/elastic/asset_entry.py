@@ -1,5 +1,6 @@
 from __future__ import annotations
 import json
+import os
 from typing import List, Dict, Any, Optional
 from server_core.asset_client import versioning
 from datetime import datetime
@@ -166,14 +167,14 @@ class AssetEntry(ElasticMixin):
 
     @staticmethod
     def index_name():
-        cfg = Configs.shared()
-        if cfg.MODE == "DEV":
+        config_mode = os.getenv('ASSET_CONFIG_MODE') or Configs.shared().MODE
+        if config_mode == "DEV":
             return "asset_index_dev"
-        elif cfg.MODE == "USER_TEST":
+        elif config_mode == "USER_TEST":
             return "asset_index_user_test"
-        elif cfg.MODE == "PRODUCTION":
+        elif config_mode == "PRODUCTION":
             return "asset_index_prod"
-        elif cfg.MODE == "TEST":
+        elif config_mode == "TEST":
             return "asset_index_unit_test"
         else:
             raise ValueError("Invalid mode for asset index")
