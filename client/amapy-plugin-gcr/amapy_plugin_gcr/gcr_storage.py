@@ -1,14 +1,14 @@
 from typing import Type, Union
 
-from asset_contents import DockerContent
-from asset_pluggy.plugin import hook_impl
-from asset_pluggy.plugin.object_content import ObjectContent
-from asset_pluggy.storage import StorageData, StorageURL, Transporter
-from asset_pluggy.storage.asset_storage import AssetStorage
-from asset_plugin_gcr.gcr_blob import GcrBlob
-from asset_plugin_gcr.gcr_mixin import GcrMixin
-from asset_plugin_gcr.gcr_url import GcrURL
-from asset_plugin_gcr.transporter.gcr_transporter import GcrTransporter
+from amapy_contents import DockerContent
+from amapy_pluggy.plugin import hook_impl
+from amapy_pluggy.plugin.object_content import ObjectContent
+from amapy_pluggy.storage import StorageData, StorageURL, Transporter
+from amapy_pluggy.storage.asset_storage import AssetStorage
+from amapy_plugin_gcr.gcr_blob import GcrBlob
+from amapy_plugin_gcr.gcr_mixin import GcrMixin
+from amapy_plugin_gcr.gcr_url import GcrURL
+from amapy_plugin_gcr.transporter.gcr_transporter import GcrTransporter
 
 
 class GcrStorage(AssetStorage, GcrMixin):

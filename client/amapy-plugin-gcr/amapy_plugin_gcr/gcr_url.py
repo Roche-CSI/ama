@@ -1,4 +1,4 @@
-from asset_pluggy.storage import StorageURL
+from amapy_pluggy.storage import StorageURL
 
 HASH_SEPARATOR = "@"
 TAG_SEPARATOR = ":"

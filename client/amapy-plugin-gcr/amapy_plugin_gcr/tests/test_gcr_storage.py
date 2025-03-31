@@ -1,8 +1,8 @@
 import json
 from unittest.mock import patch
 
-from asset_plugin_gcr.gcr_blob import GcrBlob
-from asset_plugin_gcr.gcr_storage import GcrStorage
+from amapy_plugin_gcr.gcr_blob import GcrBlob
+from amapy_plugin_gcr.gcr_storage import GcrStorage
 
 
 def test_get_blob(fake_url_data):

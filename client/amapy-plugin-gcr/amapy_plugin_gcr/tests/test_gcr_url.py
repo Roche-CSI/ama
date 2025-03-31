@@ -1,4 +1,4 @@
-from asset_plugin_gcr.gcr_url import GcrURL
+from amapy_plugin_gcr.gcr_url import GcrURL
 
 
 def test_gcr_urls():
