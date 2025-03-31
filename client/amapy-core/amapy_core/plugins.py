@@ -1,12 +1,12 @@
 """collecting all plugin related functionalities in one file"""
-# asset-pluggy--
-from asset_pluggy.storage.storage_factory import StorageFactory, AssetStorage
-from asset_pluggy.storage.urls import StorageURL
-from asset_pluggy.storage.blob import StorageData
-from asset_pluggy.storage.transporter import Transporter, TransportResource
-from asset_pluggy.storage.storage_credentials import StorageCredentials
+# amapy-pluggy--
+from amapy_pluggy.storage.storage_factory import StorageFactory, AssetStorage
+from amapy_pluggy.storage.urls import StorageURL
+from amapy_pluggy.storage.blob import StorageData
+from amapy_pluggy.storage.transporter import Transporter, TransportResource
+from amapy_pluggy.storage.storage_credentials import StorageCredentials
 
-# asset-utils--
+# amapy-utils--
 from amapy_utils.utils.log_utils import LoggingMixin, LogColors
 from amapy_utils.utils.progress import Progress
 from amapy_utils.utils.file_utils import FileUtils
