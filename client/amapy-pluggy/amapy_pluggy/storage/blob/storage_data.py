@@ -4,9 +4,9 @@ import abc
 import os
 from typing import Any
 
-from asset_pluggy.storage.urls import StorageURL
-from asset_utils.common import exceptions
-from asset_utils.utils.log_utils import LoggingMixin
+from amapy_pluggy.storage.urls import StorageURL
+from amapy_utils.common import exceptions
+from amapy_utils.utils.log_utils import LoggingMixin
 
 PATH_SEPARATOR = "/"
 

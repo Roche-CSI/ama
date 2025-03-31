@@ -1,10 +1,10 @@
 from abc import ABC
 from typing import Type
 
-from asset_pluggy.plugin import hook_impl
-from asset_pluggy.plugin.plugin_manager import PluginManager
-from asset_pluggy.plugin.specs import AssetStorage
-from asset_pluggy.plugin.storage_manager import StorageManager
+from amapy_pluggy.plugin import hook_impl
+from amapy_pluggy.plugin.plugin_manager import PluginManager
+from amapy_pluggy.plugin.specs import AssetStorage
+from amapy_pluggy.plugin.storage_manager import StorageManager
 
 
 def test_storage_manager():

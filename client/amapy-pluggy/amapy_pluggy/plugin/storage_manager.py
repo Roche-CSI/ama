@@ -1,9 +1,9 @@
 from typing import Dict, Type
 
-from asset_pluggy.plugin.plugin_manager import PluginManager
-from asset_pluggy.storage.asset_storage import AssetStorage
-from asset_utils.common.exceptions import AssetException
-from asset_utils.common.singleton import Singleton
+from amapy_pluggy.plugin.plugin_manager import PluginManager
+from amapy_pluggy.storage.asset_storage import AssetStorage
+from amapy_utils.common.exceptions import AssetException
+from amapy_utils.common.singleton import Singleton
 
 
 class AssetStorageConflictException(AssetException):

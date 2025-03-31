@@ -3,8 +3,8 @@ from __future__ import annotations
 import os.path
 from typing import Callable
 
-from asset_utils.common import exceptions
-from asset_utils.utils.file_utils import FileUtils
+from amapy_utils.common import exceptions
+from amapy_utils.utils.file_utils import FileUtils
 
 
 class TransportResource:

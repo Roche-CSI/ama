@@ -1,4 +1,4 @@
-from asset_pluggy.storage.storage_credentials import StorageCredentials
+from amapy_pluggy.storage.storage_credentials import StorageCredentials
 
 
 def test_credentials_property():

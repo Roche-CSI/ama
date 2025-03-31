@@ -1,8 +1,8 @@
 from typing import Type
 
-from asset_pluggy.plugin import hook_spec
-from asset_pluggy.plugin.asset_object import AssetObject
-from asset_pluggy.storage.asset_storage import AssetStorage
+from amapy_pluggy.plugin import hook_spec
+from amapy_pluggy.plugin.asset_object import AssetObject
+from amapy_pluggy.storage.asset_storage import AssetStorage
 
 
 class StoragePlugin:

@@ -1,7 +1,7 @@
 import abc
 from typing import Callable
 
-from asset_utils.utils.log_utils import LoggingMixin
+from amapy_utils.utils.log_utils import LoggingMixin
 
 PATH_SEPARATOR = "/"
 

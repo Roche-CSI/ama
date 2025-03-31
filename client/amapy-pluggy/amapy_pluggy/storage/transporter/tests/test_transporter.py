@@ -2,7 +2,7 @@ import json
 
 import pytest
 
-from asset_pluggy.storage.transporter import Transporter
+from amapy_pluggy.storage.transporter import Transporter
 
 GCS_1 = {
     "credentials": {
