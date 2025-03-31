@@ -2,8 +2,8 @@ import os
 import shutil
 from datetime import datetime
 
-from asset_plugin_posix.transporter.async_posix_transporter import AsyncPosixTransporter
-from asset_plugin_posix.transporter.posix_transport_resource import PosixTransportResource
+from amapy_plugin_posix.transporter.async_posix_transporter import AsyncPosixTransporter
+from amapy_plugin_posix.transporter.posix_transport_resource import PosixTransportResource
 
 TEST_URLS = [
     "file_types/csvs/customers.csv",
