@@ -9,11 +9,12 @@ from asset_core.configs.app_settings import AppSettings, UserSettings
 from asset_core.server import AuthServer
 from asset_core.server import base_server
 from asset_core.store.asset_store import AssetStore
-from asset_utils.common import user_commands, exceptions
-from asset_utils.common.user_commands import UserCommands
-from asset_utils.utils.file_utils import FileUtils
-from asset_utils.utils.log_utils import LoggingMixin, colored_string, LogColors
-from asset_utils.utils.web_utils import open_in_browser
+
+from amapy_utils.common import user_commands, exceptions
+from amapy_utils.common.user_commands import UserCommands
+from amapy_utils.utils.file_utils import FileUtils
+from amapy_utils.utils.log_utils import LoggingMixin, colored_string, LogColors
+from amapy_utils.utils.web_utils import open_in_browser
 
 
 class SettingsAPI(LoggingMixin):
