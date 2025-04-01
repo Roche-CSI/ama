@@ -1,10 +1,10 @@
 import aiohttp
 
-from asset_pluggy.storage.transporter import Transporter, TransportResource
-from asset_plugin_gcs.transporter.async_gcs import async_upload, async_download, async_copy
-from asset_plugin_gcs.transporter.gcs_transport_resource import GcsUploadResource, GcsDownloadResource, GcsCopyResource
-from asset_utils.common import exceptions
-from asset_utils.utils import utils
+from amapy_pluggy.storage.transporter import Transporter, TransportResource
+from amapy_plugin_gcs.transporter.async_gcs import async_upload, async_download, async_copy
+from amapy_plugin_gcs.transporter.gcs_transport_resource import GcsUploadResource, GcsDownloadResource, GcsCopyResource
+from amapy_utils.common import exceptions
+from amapy_utils.utils import utils
 
 
 class AsyncGcsTransporter(Transporter):

@@ -5,9 +5,9 @@ import json
 import aiohttp
 import backoff
 
-from asset_pluggy.storage import BlobStoreURL
-from asset_plugin_gcs.transporter.async_gcs.async_storage import AsyncStorage
-from asset_utils.utils.log_utils import get_logger
+from amapy_pluggy.storage import BlobStoreURL
+from amapy_plugin_gcs.transporter.async_gcs.async_storage import AsyncStorage
+from amapy_utils.utils.log_utils import get_logger
 
 logger = get_logger(__name__)
 RETRIES = 5  # number of retries in the event of failure

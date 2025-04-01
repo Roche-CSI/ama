@@ -7,8 +7,8 @@ import google.cloud.storage  # type: ignore[import]
 from cloud_storage_mocker import Mount
 from cloud_storage_mocker import patch as gcs_patch
 
-from asset_plugin_gcs.transporter import AsyncGcsTransporter
-from asset_plugin_gcs.transporter.gcs_transport_resource import GcsDownloadResource, GcsUploadResource, GcsCopyResource
+from amapy_plugin_gcs.transporter import AsyncGcsTransporter
+from amapy_plugin_gcs.transporter.gcs_transport_resource import GcsDownloadResource, GcsUploadResource, GcsCopyResource
 
 
 class MockAsyncStorage:

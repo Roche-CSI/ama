@@ -2,10 +2,10 @@ import os.path
 
 from cached_property import cached_property
 
-from asset_pluggy.storage import BlobStoreURL
-from asset_pluggy.storage.transporter import TransportResource
-from asset_utils.common import exceptions
-from asset_utils.utils.file_utils import FileUtils
+from amapy_pluggy.storage import BlobStoreURL
+from amapy_pluggy.storage.transporter import TransportResource
+from amapy_utils.common import exceptions
+from amapy_utils.utils.file_utils import FileUtils
 
 
 class GcsTransportResource(TransportResource):
