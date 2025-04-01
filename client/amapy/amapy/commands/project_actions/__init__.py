@@ -1,7 +1,7 @@
-from .project_info import ProjectInfo
+from amapy.commands.cmd_group import CommandGroup
 from .project_activate import ProjectActivate
+from .project_info import ProjectInfo
 from .project_list import ProjectList
-from asset_manager.commands.cmd_group import CommandGroup
 
 
 def get_actions():

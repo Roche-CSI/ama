@@ -1,4 +1,4 @@
-from asset_manager.commands.cmd_group import CommandGroup
+from amapy.commands.cmd_group import CommandGroup
 from .ref_add import AddRef
 from .ref_info import RefsInfo
 from .ref_remove import RemoveRef
