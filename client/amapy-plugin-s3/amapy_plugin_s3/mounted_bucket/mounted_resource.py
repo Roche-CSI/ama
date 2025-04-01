@@ -1,5 +1,5 @@
-from asset_plugin_s3.mounted_bucket.mounted_url import MountedBlobStoreURL
-from asset_plugin_s3.transporter.aws_transport_resource import AwsDownloadResource
+from amapy_plugin_s3.mounted_bucket.mounted_url import MountedBlobStoreURL
+from amapy_plugin_s3.transporter.aws_transport_resource import AwsDownloadResource
 
 
 class AwsMountedResource(AwsDownloadResource):

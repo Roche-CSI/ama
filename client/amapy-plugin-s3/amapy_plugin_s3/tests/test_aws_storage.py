@@ -5,11 +5,11 @@ import boto3
 import moto
 import pytest
 
-from asset_pluggy.storage import BlobStoreURL
-from asset_pluggy.storage.storage_credentials import StorageCredentials
-from asset_plugin_s3.aws_blob import AwsBlob
-from asset_plugin_s3.aws_storage import AwsStorage
-from asset_utils.utils import time_it
+from amapy_pluggy.storage import BlobStoreURL
+from amapy_pluggy.storage.storage_credentials import StorageCredentials
+from amapy_plugin_s3.aws_blob import AwsBlob
+from amapy_plugin_s3.aws_storage import AwsStorage
+from amapy_utils.utils import time_it
 
 
 @pytest.fixture(scope='function')
