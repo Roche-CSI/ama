@@ -1,1 +1,1 @@
-asset-plugin-gcs
+amapy-plugin-gcs

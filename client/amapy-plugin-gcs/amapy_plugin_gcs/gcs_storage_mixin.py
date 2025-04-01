@@ -1,8 +1,8 @@
 from google.cloud import storage as gcs
 
-from asset_pluggy.storage import BlobStoreURL
-from asset_pluggy.storage import storage_utils
-from asset_plugin_gcs.transporter.async_gcs import async_delete
+from amapy_pluggy.storage import BlobStoreURL
+from amapy_pluggy.storage import storage_utils
+from amapy_plugin_gcs.transporter.async_gcs import async_delete
 
 
 class GcsStorageMixin:

@@ -1,18 +1,18 @@
 import os
 from typing import Type, Union
 
-from asset_contents import BlobStoreContent
-from asset_pluggy.plugin import hook_impl
-from asset_pluggy.plugin.object_content import ObjectContent
-from asset_pluggy.storage import BlobStoreURL, StorageURL, StorageData
-from asset_pluggy.storage.asset_storage import AssetStorage
-from asset_pluggy.storage.transporter import Transporter
-from asset_plugin_gcs.bucket_cors import get_bucket_cors, update_cors_configuration
-from asset_plugin_gcs.gcs_blob import GcsBlob
-from asset_plugin_gcs.gcs_storage_mixin import GcsStorageMixin
-from asset_plugin_gcs.signed_url import generate_signed_url
-from asset_plugin_gcs.transporter import AsyncGcsTransporter
-from asset_utils.common import exceptions
+from amapy_contents import BlobStoreContent
+from amapy_pluggy.plugin import hook_impl
+from amapy_pluggy.plugin.object_content import ObjectContent
+from amapy_pluggy.storage import BlobStoreURL, StorageURL, StorageData
+from amapy_pluggy.storage.asset_storage import AssetStorage
+from amapy_pluggy.storage.transporter import Transporter
+from amapy_plugin_gcs.bucket_cors import get_bucket_cors, update_cors_configuration
+from amapy_plugin_gcs.gcs_blob import GcsBlob
+from amapy_plugin_gcs.gcs_storage_mixin import GcsStorageMixin
+from amapy_plugin_gcs.signed_url import generate_signed_url
+from amapy_plugin_gcs.transporter import AsyncGcsTransporter
+from amapy_utils.common import exceptions
 
 
 class GcsStorage(AssetStorage, GcsStorageMixin):
