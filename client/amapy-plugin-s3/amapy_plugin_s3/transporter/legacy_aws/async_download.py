@@ -8,11 +8,9 @@ import aiohttp
 import backoff
 from aiobotocore.session import get_session
 
-# native
-from asset_plugin_s3.transporter.aws_transport_resource import AwsDownloadResource
-from asset_utils.utils.file_utils import FileUtils
-# plugins
-from asset_utils.utils.log_utils import get_logger
+from amapy_plugin_s3.transporter.aws_transport_resource import AwsDownloadResource
+from amapy_utils.utils.file_utils import FileUtils
+from amapy_utils.utils.log_utils import get_logger
 
 logger = get_logger(__name__)
 RETRIES = 5  # number of retries in the event of failure
