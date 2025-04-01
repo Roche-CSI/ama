@@ -6,12 +6,12 @@ import boto3
 import botocore
 from botocore.errorfactory import ClientError
 
-from asset_pluggy.storage import StorageData, StorageURL, BlobStoreURL
-from asset_pluggy.storage import storage_utils
-from asset_plugin_s3.aws_auth import AwsAuth, get_aws_id_k_date
-from asset_plugin_s3.aws_blob import AwsBlob
-from asset_plugin_s3.transporter import AsyncAwsTransporter
-from asset_utils.utils import utils
+from amapy_pluggy.storage import StorageData, StorageURL, BlobStoreURL
+from amapy_pluggy.storage import storage_utils
+from amapy_plugin_s3.aws_auth import AwsAuth, get_aws_id_k_date
+from amapy_plugin_s3.aws_blob import AwsBlob
+from amapy_plugin_s3.transporter import AsyncAwsTransporter
+from amapy_utils.utils import utils
 
 
 class AwsHttpHandler:
