@@ -1,4 +1,4 @@
-from asset_manager.commands import CliAction, CliOption
+from amapy.commands import CliAction, CliOption
 
 
 class DiscardAssetClass(CliAction):

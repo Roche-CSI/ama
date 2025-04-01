@@ -1,11 +1,11 @@
+from amapy.commands import CommandGroup
+from .discard import DiscardAssetClass
+from .fetch import FetchAssetClass
+from .info import AssetClassInfo
 from .init import InitAssetClass
 from .list import ListAssetClass
 from .rename import RenameAssetClass
-from .discard import DiscardAssetClass
 from .upload import UploadAssetClass
-from .fetch import FetchAssetClass
-from .info import AssetClassInfo
-from asset_manager.commands import CommandGroup
 
 
 def get_actions():

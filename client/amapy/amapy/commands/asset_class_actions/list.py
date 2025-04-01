@@ -1,7 +1,7 @@
 import cached_property
 
-from asset_core.api.store_api.list import ListAPI
-from asset_manager.commands import CliAction
+from amapy.commands import CliAction
+from amapy_core.api.store_api.list import ListAPI
 
 
 class ListAssetClass(CliAction):

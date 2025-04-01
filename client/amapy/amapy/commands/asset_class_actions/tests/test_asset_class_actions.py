@@ -1,5 +1,5 @@
-from asset_manager.commands.asset_class_actions import get_action_group
-from asset_manager.commands.parser import CommandParser
+from amapy.commands.asset_class_actions import get_action_group
+from amapy.commands.parser import CommandParser
 
 
 def test_parsing():
