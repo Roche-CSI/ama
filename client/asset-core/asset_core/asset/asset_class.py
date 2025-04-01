@@ -4,7 +4,7 @@ import os
 
 from asset_core.plugins import FileUtils, LoggingMixin, list_files, exceptions
 from asset_core.store.asset_store import AssetStore
-from asset_utils.common.user_commands import UserCommands
+from amapy_utils.common.user_commands import UserCommands
 from .serializable import Serializable
 from .status_enums import StatusEnums
 

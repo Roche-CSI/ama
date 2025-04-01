@@ -1,5 +1,5 @@
 from asset_core.configs import AppSettings
-from asset_utils.common import exceptions
+from amapy_utils.common import exceptions
 from .repo import RepoAPI
 
 

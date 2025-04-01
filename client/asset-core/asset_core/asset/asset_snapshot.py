@@ -5,10 +5,10 @@ from packaging.version import Version
 from asset_core.store import AssetStore
 from asset_pluggy.storage import StorageData
 from asset_pluggy.storage.storage_factory import StorageFactory
-from asset_utils.common import exceptions
-from asset_utils.utils import files_at_location
-from asset_utils.utils.file_utils import FileUtils
-from asset_utils.utils.log_utils import LoggingMixin
+from amapy_utils.common import exceptions
+from amapy_utils.utils import files_at_location
+from amapy_utils.utils.file_utils import FileUtils
+from amapy_utils.utils.log_utils import LoggingMixin
 
 SNAPSHOT_FILE = "{version}.json"
 SNAPSHOTS_DIR = "objects_snapshots"

@@ -1,7 +1,7 @@
 import os
 
 from asset_core.objects import Object
-from asset_utils.utils.file_utils import FileUtils
+from amapy_utils.utils.file_utils import FileUtils
 
 
 def test_file_delete(asset):

@@ -6,7 +6,7 @@ import pytest
 from asset_core.asset.fetchers.asset_fetcher import AssetFetcher
 from asset_plugin_gcs.gcs_blob import GcsBlob
 from asset_plugin_gcs.gcs_storage import GcsStorage
-from asset_utils.utils.file_utils import FileUtils
+from amapy_utils.utils.file_utils import FileUtils
 
 
 def mock_download_file(self, file_url, dst, force=False):

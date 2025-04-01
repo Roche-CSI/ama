@@ -1,7 +1,7 @@
 import pytest
 
 from asset_manager.python_api.artifact import Artifact, File
-from asset_utils.common import exceptions
+from amapy_utils.common import exceptions
 
 
 @pytest.fixture(scope='module')

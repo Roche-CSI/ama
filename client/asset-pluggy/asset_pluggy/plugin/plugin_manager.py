@@ -2,7 +2,7 @@ import pluggy
 
 from asset_pluggy.plugin import APP_NAME
 from asset_pluggy.plugin import specs as plugin_specs
-from asset_utils.common.singleton import Singleton
+from amapy_utils.common.singleton import Singleton
 
 
 class PluginManager(Singleton):

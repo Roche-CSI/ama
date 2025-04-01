@@ -5,7 +5,7 @@ import os
 
 from asset_core.configs.config_modes import ConfigModes
 from asset_manager.app import run, get_parser
-from asset_utils import common
+from amapy_utils import common
 
 
 def main():

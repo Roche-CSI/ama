@@ -1,8 +1,8 @@
 import sys
 from io import StringIO
 
-from asset_utils.utils import LogColors
-from asset_utils.utils.progress import Progress
+from amapy_utils.utils import LogColors
+from amapy_utils.utils.progress import Progress
 
 
 def test_progress_bar():

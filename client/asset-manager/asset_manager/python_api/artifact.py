@@ -17,8 +17,8 @@ from asset_core.store import Repo, AssetStore
 from asset_manager.app import ACTIVE_CONFIG_MODE
 from asset_manager.plugins import register_plugins
 from asset_manager.python_api.file import File
-from asset_utils.common import exceptions
-from asset_utils.utils import ch_dir
+from amapy_utils.common import exceptions
+from amapy_utils.utils import ch_dir
 
 if TYPE_CHECKING:
     from asset_manager import ArtifactInputs

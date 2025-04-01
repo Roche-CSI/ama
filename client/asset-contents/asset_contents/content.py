@@ -5,9 +5,9 @@ import os
 
 from asset_db import FileDB
 from asset_pluggy.storage.blob import StorageData
-from asset_utils.common import exceptions
-from asset_utils.utils.file_utils import FileUtils
-from asset_utils.utils.log_utils import LoggingMixin
+from amapy_utils.common import exceptions
+from amapy_utils.utils.file_utils import FileUtils
+from amapy_utils.utils.log_utils import LoggingMixin
 from .content_stat import ContentStat
 from .content_state import ContentState
 

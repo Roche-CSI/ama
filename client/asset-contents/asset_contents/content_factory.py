@@ -2,7 +2,7 @@ from typing import TYPE_CHECKING
 from typing import Type
 
 from asset_pluggy.storage.storage_factory import StorageFactory, AssetStorage
-from asset_utils.utils import cast2list
+from amapy_utils.utils import cast2list
 from .blobstore_content import BlobStoreContent
 from .content import Content
 from .db_content import DbContent

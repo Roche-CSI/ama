@@ -1,7 +1,7 @@
 from asset_pluggy.storage.transporter import Transporter, TransportResource
 from asset_plugin_s3.transporter.aws_transport_resource import AwsUploadResource, AwsDownloadResource
 from asset_plugin_s3.transporter.legacy_aws import async_upload, async_download
-from asset_utils.utils import utils
+from amapy_utils.utils import utils
 
 
 class LegacyAwsTransporter(Transporter):

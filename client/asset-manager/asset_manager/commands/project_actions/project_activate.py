@@ -1,5 +1,5 @@
 from asset_manager.commands import CliAction, CliOption
-from asset_utils.utils.log_utils import LogColors
+from amapy_utils.utils.log_utils import LogColors
 from asset_core.api.settings_api import SettingsAPI
 
 

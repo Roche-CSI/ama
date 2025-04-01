@@ -2,8 +2,8 @@ from typing import Any
 
 from asset_pluggy.storage import BlobData
 from asset_pluggy.storage import BlobStoreURL
-from asset_utils.common.exceptions import AssetException
-from asset_utils.utils.file_utils import FileUtils
+from amapy_utils.common.exceptions import AssetException
+from amapy_utils.utils.file_utils import FileUtils
 
 
 class AwsBlob(BlobData):

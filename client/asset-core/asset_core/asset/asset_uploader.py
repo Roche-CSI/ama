@@ -11,12 +11,12 @@ from asset_core.server import AssetServer
 from asset_pluggy.storage.storage_credentials import StorageCredentials
 from asset_pluggy.storage.storage_factory import StorageFactory, AssetStorage
 from asset_pluggy.storage.transporter import TransportResource
-from asset_utils.common import exceptions
-from asset_utils.utils.cloud_utils import internet_on
-from asset_utils.utils.file_utils import FileUtils
-from asset_utils.utils.log_utils import LogColors
-from asset_utils.utils.log_utils import LoggingMixin
-from asset_utils.utils.progress import Progress
+from amapy_utils.common import exceptions
+from amapy_utils.utils.cloud_utils import internet_on
+from amapy_utils.utils.file_utils import FileUtils
+from amapy_utils.utils.log_utils import LogColors
+from amapy_utils.utils.log_utils import LoggingMixin
+from amapy_utils.utils.progress import Progress
 
 
 class AssetUploader(LoggingMixin):

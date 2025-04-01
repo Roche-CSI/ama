@@ -9,7 +9,7 @@ from asset_core.objects import Object
 from asset_core.plugins import exceptions, FileUtils
 from asset_core.store import Repo
 from asset_db.db import Database
-from asset_utils.utils import files_at_location, relative_path
+from amapy_utils.utils import files_at_location, relative_path
 
 
 class AssetDiff:

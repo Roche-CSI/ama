@@ -8,8 +8,8 @@ import boto3
 from yarl import URL
 
 from asset_plugin_s3.transporter.aws_transport_resource import AwsDownloadResource
-from asset_utils.utils.file_utils import FileUtils
-from asset_utils.utils.log_utils import get_logger
+from amapy_utils.utils.file_utils import FileUtils
+from amapy_utils.utils.log_utils import get_logger
 
 RETRIES = 5  # number of retries in the event of failure
 DEFAULT_DOWNLOAD_TIMEOUT = 3600  # 1 hr per file

@@ -4,8 +4,8 @@ import aiohttp
 import backoff
 
 from asset_pluggy.storage.blob import StorageData
-from asset_utils.common import exceptions
-from asset_utils.utils import cloud_utils
+from amapy_utils.common import exceptions
+from amapy_utils.utils import cloud_utils
 from .content import Content
 
 

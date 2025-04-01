@@ -11,7 +11,7 @@ from asset_plugin_posix.posix_blob import PosixBlob
 from asset_plugin_posix.posix_mixin import PosixStorageMixin
 from asset_plugin_posix.posix_url import PosixURL, StorageURL
 from asset_plugin_posix.transporter.async_posix_transporter import AsyncPosixTransporter
-from asset_utils.common import exceptions
+from amapy_utils.common import exceptions
 
 
 class PosixStorage(AssetStorage, PosixStorageMixin):

@@ -3,8 +3,8 @@ import os
 
 from ruamel.yaml import YAML
 
-from asset_utils.utils.file_utils import FileUtils
-from asset_utils.utils.in_memory_file import InMemoryFile
+from amapy_utils.utils.file_utils import FileUtils
+from amapy_utils.utils.in_memory_file import InMemoryFile
 
 
 def data_file(data, file_ext: str) -> InMemoryFile:

@@ -2,7 +2,7 @@ import os
 
 from asset_core.api.store_api import CloneAssetAPI
 from asset_manager.commands import CliAction, CliOption
-from asset_utils.common.user_commands import UserCommands
+from amapy_utils.common.user_commands import UserCommands
 
 
 class CloneAsset(CliAction):

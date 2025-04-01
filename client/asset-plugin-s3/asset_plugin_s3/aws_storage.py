@@ -9,7 +9,7 @@ from asset_pluggy.storage.asset_storage import AssetStorage
 from asset_plugin_s3.aws_storage_mixin import AwsStorageMixin
 from asset_plugin_s3.bucket_cors import get_bucket_cors, set_bucket_cors
 from asset_plugin_s3.signed_url import create_presigned_url
-from asset_utils.common import exceptions
+from amapy_utils.common import exceptions
 
 
 class AwsStorage(AwsStorageMixin, AssetStorage):

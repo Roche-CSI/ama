@@ -1,6 +1,6 @@
 import os
 
-from asset_utils.utils import aws_hash
+from amapy_utils.utils import aws_hash
 
 
 def test_md5_checksum(project_root):

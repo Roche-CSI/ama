@@ -8,7 +8,7 @@ import backoff
 
 from asset_plugin_gcs.transporter.async_gcs.async_storage import AsyncStorage
 from asset_plugin_gcs.transporter.gcs_transport_resource import GcsUploadResource
-from asset_utils.utils.log_utils import get_logger
+from amapy_utils.utils.log_utils import get_logger
 
 logger = get_logger(__name__)
 RETRIES = 5  # number of retries in the event of failure

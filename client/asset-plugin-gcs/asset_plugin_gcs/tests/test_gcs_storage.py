@@ -4,8 +4,8 @@ from unittest.mock import patch
 
 from asset_plugin_gcs.gcs_blob import GcsBlob
 from asset_plugin_gcs.gcs_storage import GcsStorage
-from asset_utils.utils import list_files
-from asset_utils.utils.file_utils import FileUtils
+from amapy_utils.utils import list_files
+from amapy_utils.utils.file_utils import FileUtils
 
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 

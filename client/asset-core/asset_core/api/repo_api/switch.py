@@ -4,11 +4,11 @@ from asset_core.asset.asset import Asset
 from asset_core.asset.asset_diff import AssetDiff
 from asset_core.asset.asset_snapshot import AssetSnapshot
 from asset_core.asset.fetchers.asset_fetcher import AssetFetcher
-from asset_utils.common import exceptions
-from asset_utils.common.user_commands import UserCommands
-from asset_utils.utils.file_utils import FileUtils
-from asset_utils.utils.log_utils import colored_string, LogColors
-from asset_utils.utils.progress import Progress
+from amapy_utils.common import exceptions
+from amapy_utils.common.user_commands import UserCommands
+from amapy_utils.utils.file_utils import FileUtils
+from amapy_utils.utils.log_utils import colored_string, LogColors
+from amapy_utils.utils.progress import Progress
 from .repo import RepoAPI
 
 VERSION_YAML_FILE_NAME_FORMAT = "version_{ver_number}.yaml"

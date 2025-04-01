@@ -1,5 +1,5 @@
 from asset_manager.commands import CliAction, CliOption
-from asset_utils.common.user_commands import UserCommands
+from amapy_utils.common.user_commands import UserCommands
 
 
 class AliasHelp(CliAction):
