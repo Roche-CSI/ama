@@ -1,14 +1,14 @@
-from asset_manager.commands.asset_actions.add import AddToAsset
-from asset_manager.commands.asset_actions.clone import CloneAsset
-from asset_manager.commands.asset_actions.download import DownloadAsset
-from asset_manager.commands.asset_actions.fetch import FetchAsset
-from asset_manager.commands.asset_actions.info import AssetInfo
-from asset_manager.commands.asset_actions.init import InitAsset
-from asset_manager.commands.asset_actions.list import ListAssets
-from asset_manager.commands.asset_actions.remove import RemoveFromAsset
-from asset_manager.commands.asset_actions.switch import AssetSwitch
-from asset_manager.commands.asset_actions.upload import UploadAsset
-from asset_manager.commands.parser import CommandParser
+from amapy.commands.asset_actions.add import AddToAsset
+from amapy.commands.asset_actions.clone import CloneAsset
+from amapy.commands.asset_actions.download import DownloadAsset
+from amapy.commands.asset_actions.fetch import FetchAsset
+from amapy.commands.asset_actions.info import AssetInfo
+from amapy.commands.asset_actions.init import InitAsset
+from amapy.commands.asset_actions.list import ListAssets
+from amapy.commands.asset_actions.remove import RemoveFromAsset
+from amapy.commands.asset_actions.switch import AssetSwitch
+from amapy.commands.asset_actions.upload import UploadAsset
+from amapy.commands.parser import CommandParser
 
 
 def test_asset_actions():
