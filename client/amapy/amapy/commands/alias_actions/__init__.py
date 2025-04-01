@@ -1,4 +1,4 @@
-from asset_manager.commands.cmd_group import CommandGroup
+from amapy.commands.cmd_group import CommandGroup
 from .alias_add import AddAlias
 from .alias_help import AliasHelp
 from .alias_info import AliasInfo
