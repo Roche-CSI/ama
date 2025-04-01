@@ -2,13 +2,13 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from asset_core.api.repo_api import AddAPI, InfoAPI
-from asset_core.configs import AppSettings
-from asset_core.configs import configs
-from asset_manager.app import ACTIVE_CONFIG_MODE
+from amapy.app import ACTIVE_CONFIG_MODE
+from amapy_core.api.repo_api import AddAPI, InfoAPI
+from amapy_core.configs import AppSettings
+from amapy_core.configs import configs
 
 if TYPE_CHECKING:
-    from asset_manager.python_api.artifact import Artifact
+    from amapy.python_api.artifact import Artifact
 
 # make sure config mode is set properly
 configs.Configs.shared(mode=ACTIVE_CONFIG_MODE)

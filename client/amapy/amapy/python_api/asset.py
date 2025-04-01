@@ -1,13 +1,13 @@
-from asset_core.configs import configs
-from asset_manager.app import ACTIVE_CONFIG_MODE
-from asset_manager.plugins import register_plugins
-from asset_manager.python_api.artifact import Artifact
-from asset_manager.python_api.auth import Auth
-from asset_manager.python_api.config import Config
-from asset_manager.python_api.klass import Klass
-from asset_manager.python_api.project import Project
-from asset_manager.python_api.store import Store
-from asset_utils.utils.log_utils import disable_user_log
+from amapy.app import ACTIVE_CONFIG_MODE
+from amapy.plugins import register_plugins
+from amapy.python_api.artifact import Artifact
+from amapy.python_api.auth import Auth
+from amapy.python_api.config import Config
+from amapy.python_api.klass import Klass
+from amapy.python_api.project import Project
+from amapy.python_api.store import Store
+from amapy_core.configs import configs
+from amapy_utils.utils.log_utils import disable_user_log
 
 # make sure config mode is set properly
 configs.Configs.shared(mode=ACTIVE_CONFIG_MODE)
