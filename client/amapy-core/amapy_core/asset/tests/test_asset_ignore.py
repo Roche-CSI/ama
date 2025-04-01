@@ -3,7 +3,7 @@ from tempfile import TemporaryDirectory
 
 import pytest
 
-from asset_core.asset.asset_ignore import AssetIgnore
+from amapy_core.asset.asset_ignore import AssetIgnore
 
 
 @pytest.fixture

@@ -3,10 +3,10 @@ import os
 
 import pytest
 
-from asset_core.asset import Asset
-from asset_core.objects import Object
-from asset_core.objects.object_factory import ObjectFactory
-from asset_core.plugins import list_files, exceptions
+from amapy_core.asset import Asset
+from amapy_core.objects import Object
+from amapy_core.objects.object_factory import ObjectFactory
+from amapy_core.plugins import list_files, exceptions
 
 
 def test_cached_objects_v2(project_root):

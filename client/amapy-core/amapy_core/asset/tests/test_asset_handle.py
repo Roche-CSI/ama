@@ -1,6 +1,6 @@
 import pytest
 
-from asset_core.asset.asset_handle import AssetHandle
+from amapy_core.asset.asset_handle import AssetHandle
 
 
 def test_is_temp(store):

@@ -1,7 +1,7 @@
 import pytest
 
-from asset_core.asset.status_enums import StatusEnums
-from asset_utils.common.exceptions import AssetException
+from amapy_core.asset.status_enums import StatusEnums
+from amapy_utils.common.exceptions import AssetException
 
 
 def test_from_string_with_numeric_string():

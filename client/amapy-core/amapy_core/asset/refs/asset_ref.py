@@ -2,10 +2,10 @@ from __future__ import annotations
 
 import requests
 
-from asset_core.asset.asset_version import AssetVersion
-from asset_core.asset.state import InputState
-from asset_core.plugins import exceptions, LoggingMixin
-from asset_core.server import AssetServer
+from amapy_core.asset.asset_version import AssetVersion
+from amapy_core.asset.state import InputState
+from amapy_core.plugins import exceptions, LoggingMixin
+from amapy_core.server import AssetServer
 
 
 class AssetRef(LoggingMixin):

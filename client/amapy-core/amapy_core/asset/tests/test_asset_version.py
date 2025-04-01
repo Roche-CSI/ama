@@ -1,7 +1,7 @@
 import pytest
 
-from asset_core.asset.asset_version import AssetVersion
-from asset_utils.common import exceptions
+from amapy_core.asset.asset_version import AssetVersion
+from amapy_utils.common import exceptions
 
 
 def test_parse_name():

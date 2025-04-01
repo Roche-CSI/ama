@@ -1,4 +1,4 @@
-from asset_core.asset.refs import AssetRef
+from amapy_core.asset.refs import AssetRef
 
 
 def test_create(empty_asset):

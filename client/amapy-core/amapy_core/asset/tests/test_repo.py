@@ -1,8 +1,9 @@
+import logging
 import os
 import shutil
-import logging
 import tempfile
-from asset_core.store.repo import Repo
+
+from amapy_core.store.repo import Repo
 
 logger = logging.getLogger(__file__)
 
