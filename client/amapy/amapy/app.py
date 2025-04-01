@@ -1,8 +1,8 @@
 import sys
 
-from asset_core.configs.config_modes import ConfigModes
-from asset_manager.arg_parse import get_parser
-from asset_manager.plugins import register_plugins
+from amapy.arg_parse import get_parser
+from amapy.plugins import register_plugins
+from amapy_core.configs.config_modes import ConfigModes
 
 # change to ConfigModes.PRODUCTION for asset-manager
 # change to ConfigModes.USER_TEST for asset-sandbox

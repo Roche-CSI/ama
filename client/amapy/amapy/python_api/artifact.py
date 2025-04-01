@@ -5,23 +5,23 @@ import shutil
 from functools import cached_property
 from typing import TYPE_CHECKING
 
-from asset_core.api.repo_api import AssetAPI
-from asset_core.api.store_api.clone_asset import CloneAssetAPI
-from asset_core.api.store_api.copy import CopyAPI
-from asset_core.api.store_api.fetch import FetchAPI
-from asset_core.api.store_api.find import FindAPI
-from asset_core.asset.asset_handle import AssetHandle
-from asset_core.asset.fetchers.asset_fetcher import AssetFetcher
-from asset_core.configs import configs
-from asset_core.store import Repo, AssetStore
-from asset_manager.app import ACTIVE_CONFIG_MODE
-from asset_manager.plugins import register_plugins
-from asset_manager.python_api.file import File
-from asset_utils.common import exceptions
-from asset_utils.utils import ch_dir
+from amapy.app import ACTIVE_CONFIG_MODE
+from amapy.plugins import register_plugins
+from amapy.python_api.file import File
+from amapy_core.api.repo_api import AssetAPI
+from amapy_core.api.store_api.clone_asset import CloneAssetAPI
+from amapy_core.api.store_api.copy import CopyAPI
+from amapy_core.api.store_api.fetch import FetchAPI
+from amapy_core.api.store_api.find import FindAPI
+from amapy_core.asset.asset_handle import AssetHandle
+from amapy_core.asset.fetchers.asset_fetcher import AssetFetcher
+from amapy_core.configs import configs
+from amapy_core.store import Repo, AssetStore
+from amapy_utils.common import exceptions
+from amapy_utils.utils import ch_dir
 
 if TYPE_CHECKING:
-    from asset_manager import ArtifactInputs
+    from amapy import ArtifactInputs
 
 # make sure config mode is set properly
 configs.Configs.shared(mode=ACTIVE_CONFIG_MODE)
@@ -191,7 +191,7 @@ class Artifact:
 
     @cached_property
     def inputs(self) -> ArtifactInputs:
-        from asset_manager import ArtifactInputs
+        from amapy import ArtifactInputs
         return ArtifactInputs(artifact=self)
 
     def sanitize_targets(self, targets: [str], copy_to_asset: bool = False) -> [str]:

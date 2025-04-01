@@ -1,4 +1,4 @@
-from asset_manager.python_api.project import Project
+from amapy.python_api.project import Project
 
 
 def test_list():

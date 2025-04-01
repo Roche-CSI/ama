@@ -1,4 +1,4 @@
-from asset_manager.python_api.auth import Auth
+from amapy.python_api.auth import Auth
 
 
 def test_auth_login():

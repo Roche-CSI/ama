@@ -1,4 +1,4 @@
-from asset_manager.python_api.klass import Klass
+from amapy.python_api.klass import Klass
 
 
 def test_list():
