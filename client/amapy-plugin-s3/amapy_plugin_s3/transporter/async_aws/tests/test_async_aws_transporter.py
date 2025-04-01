@@ -3,10 +3,10 @@ import shutil
 from datetime import datetime
 from unittest.mock import MagicMock, patch
 
-from asset_plugin_s3.aws_storage import AwsStorage
-from asset_plugin_s3.transporter import AsyncAwsTransporter
-from asset_plugin_s3.transporter.aws_transport_resource import AwsUploadResource, AwsDownloadResource, AwsCopyResource
-from asset_utils.utils import utils
+from amapy_plugin_s3.aws_storage import AwsStorage
+from amapy_plugin_s3.transporter import AsyncAwsTransporter
+from amapy_plugin_s3.transporter.aws_transport_resource import AwsUploadResource, AwsDownloadResource, AwsCopyResource
+from amapy_utils.utils import utils
 
 
 def datetime_string(date: datetime):

@@ -7,9 +7,9 @@ import backoff
 from botocore.awsrequest import AWSRequest
 from botocore.credentials import Credentials
 
-from asset_plugin_s3.aws_auth import AwsAuth
-from asset_plugin_s3.transporter.aws_transport_resource import AwsCopyResource
-from asset_utils.utils.log_utils import get_logger
+from amapy_plugin_s3.aws_auth import AwsAuth
+from amapy_plugin_s3.transporter.aws_transport_resource import AwsCopyResource
+from amapy_utils.utils.log_utils import get_logger
 
 logger = get_logger(__name__)
 RETRIES = 5  # number of retries in the event of failure
