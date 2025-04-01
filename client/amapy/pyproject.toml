@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "amapy"
-version = "1.0.0"
+version = "1.0.1"
 description = "The client side tool for asset-manager. It provides a command-line interface and a Python API for programmatic access to manage and distribute digital assets."
 readme = "README.md"
 authors = [
@@ -33,5 +33,5 @@ include = ["*"]
 namespaces = false
 
 [project.scripts]
-asset = "asset_manager.app:run"
-ama = "asset_manager.app:run"
+asset = "amapy.app:run"
+ama = "amapy.app:run"
