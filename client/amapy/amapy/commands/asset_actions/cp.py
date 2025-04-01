@@ -1,7 +1,7 @@
 import os
 
-from asset_core.api.store_api import CopyAPI
-from asset_manager.commands import CliAction, CliOption
+from amapy.commands import CliAction, CliOption
+from amapy_core.api.store_api import CopyAPI
 
 
 class CopyObject(CliAction):

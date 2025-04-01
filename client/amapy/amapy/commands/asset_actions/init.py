@@ -1,6 +1,6 @@
-from asset_core.api.repo_api import AssetAPI
-from asset_manager.commands import CliAction, CliOption
-from asset_utils.common.user_commands import UserCommands
+from amapy.commands import CliAction, CliOption
+from amapy_core.api.repo_api import AssetAPI
+from amapy_utils.common.user_commands import UserCommands
 
 
 class InitAsset(CliAction):

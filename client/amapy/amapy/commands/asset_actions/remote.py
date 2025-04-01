@@ -1,5 +1,5 @@
-from asset_core.api.repo_api import AssetAPI
-from asset_manager.commands import CliAction
+from amapy.commands import CliAction
+from amapy_core.api.repo_api import AssetAPI
 
 
 class RemoteInfo(CliAction):
