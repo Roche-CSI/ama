@@ -1,5 +1,5 @@
-from asset_core.api.settings_api import SettingsAPI
-from asset_manager.commands import CliAction, CliOption
+from amapy.commands import CliAction, CliOption
+from amapy_core.api.settings_api import SettingsAPI
 
 
 class ResetConfigs(CliAction):

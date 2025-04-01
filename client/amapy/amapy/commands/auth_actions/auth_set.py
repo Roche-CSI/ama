@@ -1,7 +1,8 @@
 import os
-from asset_core.configs.app_settings import AppSettings
-from asset_utils.utils.log_utils import colored_string, LogColors
-from asset_manager.commands import CliAction, CliOption
+
+from amapy.commands import CliAction, CliOption
+from amapy_core.configs.app_settings import AppSettings
+from amapy_utils.utils.log_utils import colored_string, LogColors
 
 
 class AuthSet(CliAction):

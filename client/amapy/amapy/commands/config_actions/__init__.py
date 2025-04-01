@@ -1,7 +1,7 @@
+from amapy.commands.cmd_group import CommandGroup
 from .config_info import ConfigInfo
-from .set_configs import SetConfigs
 from .reset_configs import ResetConfigs
-from asset_manager.commands.cmd_group import CommandGroup
+from .set_configs import SetConfigs
 
 
 def get_actions():
