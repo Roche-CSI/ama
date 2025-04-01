@@ -8,8 +8,8 @@ from importlib.metadata import version, PackageNotFoundError
 
 from asset_core.configs.configs import Configs
 from asset_core.configs.user_settings import UserSettings
-from asset_pluggy.storage.storage_credentials import StorageCredentials
-from asset_pluggy.storage.storage_factory import StorageFactory
+from amapy_pluggy.storage.storage_credentials import StorageCredentials
+from amapy_pluggy.storage.storage_factory import StorageFactory
 from amapy_utils.common import exceptions
 from amapy_utils.utils import utils
 from amapy_utils.utils.file_utils import FileUtils

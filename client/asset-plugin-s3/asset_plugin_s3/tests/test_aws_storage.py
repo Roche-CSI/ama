@@ -5,8 +5,8 @@ import boto3
 import moto
 import pytest
 
-from asset_pluggy.storage import BlobStoreURL
-from asset_pluggy.storage.storage_credentials import StorageCredentials
+from amapy_pluggy.storage import BlobStoreURL
+from amapy_pluggy.storage.storage_credentials import StorageCredentials
 from asset_plugin_s3.aws_blob import AwsBlob
 from asset_plugin_s3.aws_storage import AwsStorage
 from amapy_utils.utils import time_it
@@ -37,7 +37,7 @@ def mock_s3():
 
 
 def test_get_blob(mock_s3, aws_test_credentials):
-    with patch('asset_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage:
+    with patch('amapy_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage:
         # Mock AwsStorage credentials
         mock_shared_storage.return_value.credentials = aws_test_credentials
 
@@ -86,7 +86,7 @@ def test_get_blob(mock_s3, aws_test_credentials):
 
 
 def test_list_blobs(mock_s3, aws_test_credentials):
-    with patch('asset_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage:
+    with patch('amapy_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage:
         # Mock AwsStorage credentials
         mock_shared_storage.return_value.credentials = aws_test_credentials
 
@@ -116,7 +116,7 @@ def test_list_blobs(mock_s3, aws_test_credentials):
 
 
 def test_profile_list_blobs(mock_s3, aws_test_credentials):
-    with patch('asset_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage:
+    with patch('amapy_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage:
         # Mock AwsStorage credentials
         mock_shared_storage.return_value.credentials = aws_test_credentials
         TIME_IT = True
@@ -128,7 +128,7 @@ def test_profile_list_blobs(mock_s3, aws_test_credentials):
 
 
 def test_blob_exists(mock_s3, aws_test_credentials):
-    with patch('asset_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage:
+    with patch('amapy_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage:
         # Mock AwsStorage credentials
         mock_shared_storage.return_value.credentials = aws_test_credentials
         urls = [
@@ -148,7 +148,7 @@ def test_blob_exists(mock_s3, aws_test_credentials):
 
 
 def test_delete_blobs(mock_s3, aws_test_credentials):
-    with patch('asset_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage:
+    with patch('amapy_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage:
         # Mock AwsStorage credentials
         mock_shared_storage.return_value.credentials = aws_test_credentials
         urls = [
@@ -165,7 +165,7 @@ def test_delete_blobs(mock_s3, aws_test_credentials):
 
 
 def test_signed_url(mock_s3, aws_test_credentials):
-    with patch('asset_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage:
+    with patch('amapy_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage:
         # Mock AwsStorage credentials
         mock_shared_storage.return_value.credentials = aws_test_credentials
 
@@ -176,7 +176,7 @@ def test_signed_url(mock_s3, aws_test_credentials):
 
 
 def test_get_bucket_cors(mock_s3, aws_test_credentials):
-    with patch('asset_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage:
+    with patch('amapy_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage:
         # Mock AwsStorage credentials
         mock_shared_storage.return_value.credentials = aws_test_credentials
 

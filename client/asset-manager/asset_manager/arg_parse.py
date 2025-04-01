@@ -11,7 +11,7 @@ from asset_manager.commands.parser import CommandParser
 from asset_manager.commands.project_actions import get_action_group as projects_group
 from asset_manager.commands.refs_actions import get_action_group as refs_group
 from asset_manager.commands.store_actions import get_action_group as home_group
-from asset_pluggy.storage.storage_factory import StorageFactory
+from amapy_pluggy.storage.storage_factory import StorageFactory
 
 
 def get_parser(mode: configs.ConfigModes = None) -> CommandParser:

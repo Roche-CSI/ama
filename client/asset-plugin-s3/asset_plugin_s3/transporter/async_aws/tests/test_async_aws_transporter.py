@@ -21,7 +21,7 @@ def mock_upload_file_response():
 
 
 def test_upload(project_root: str, upload_test_url, aws_test_credentials):
-    with patch('asset_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage, \
+    with patch('amapy_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage, \
             patch('asset_plugin_s3.aws_storage.AwsStorage.shared') as mock_Aws_Storage, \
             patch('aioboto3.Session.client') as mock_client:
         mock_s3_client = MagicMock()
@@ -53,7 +53,7 @@ def test_upload(project_root: str, upload_test_url, aws_test_credentials):
 
 
 def test_upload_dir(project_root: str, upload_test_url: str, aws_test_credentials: dict):
-    with patch('asset_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage, \
+    with patch('amapy_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage, \
             patch('asset_plugin_s3.aws_storage.AwsStorage.shared') as mock_Aws_Storage, \
             patch('aioboto3.Session.client') as mock_client:
         mock_s3_client = MagicMock()
@@ -78,7 +78,7 @@ def test_upload_dir(project_root: str, upload_test_url: str, aws_test_credential
 
 
 def test_download(project_root, aws_test_credentials):
-    with patch('asset_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage, \
+    with patch('amapy_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage, \
             patch('asset_plugin_s3.aws_storage.AwsStorage.shared') as mock_Aws_Storage:
         # Mock AwsStorage credentials
         mock_Aws_Storage.return_value.credentials = aws_test_credentials
@@ -110,7 +110,7 @@ def test_download(project_root, aws_test_credentials):
 
 
 def test_copy(aws_test_credentials, copy_test_url):
-    with patch('asset_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage, \
+    with patch('amapy_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage, \
             patch('asset_plugin_s3.aws_storage.AwsStorage.shared') as mock_Aws_Storage, \
             patch('aioboto3.Session.client') as mock_client, \
             patch('asset_plugin_s3.transporter.async_aws.async_copy.__multi_part_copy') as mock_multi_part_copy:
@@ -151,7 +151,7 @@ def test_copy(aws_test_credentials, copy_test_url):
 
 
 def test_update_multipart_blobs(aws_test_credentials):
-    with patch('asset_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage, \
+    with patch('amapy_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage, \
             patch('asset_plugin_s3.aws_storage.AwsStorage.shared') as mock_Aws_Storage:
         # Mock AwsStorage credentials
         mock_Aws_Storage.return_value.credentials = aws_test_credentials

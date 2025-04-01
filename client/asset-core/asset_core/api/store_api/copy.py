@@ -3,7 +3,7 @@ import os
 from asset_core.asset.asset_uploader import AssetUploader
 from asset_core.asset.fetchers.asset_fetcher import AssetFetcher
 from asset_core.asset.fetchers.fetcher import Fetcher
-from asset_pluggy.storage.storage_factory import StorageFactory, AssetStorage
+from amapy_pluggy.storage.storage_factory import StorageFactory, AssetStorage
 from .store import StoreAPI
 
 PATH_SEPARATOR = "/"

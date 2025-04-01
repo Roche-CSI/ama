@@ -10,9 +10,9 @@ from asset_core.asset.asset_class import AssetClass
 from asset_core.asset.asset_snapshot import AssetSnapshot
 from asset_core.asset.fetchers.fetcher import Fetcher
 from asset_core.objects.asset_object import AssetObject
-from asset_pluggy.storage import TransportResource, StorageData
-from asset_pluggy.storage.storage_credentials import StorageCredentials
-from asset_pluggy.storage.storage_factory import StorageFactory, AssetStorage
+from amapy_pluggy.storage import TransportResource, StorageData
+from amapy_pluggy.storage.storage_credentials import StorageCredentials
+from amapy_pluggy.storage.storage_factory import StorageFactory, AssetStorage
 from amapy_utils.common import exceptions
 from amapy_utils.utils import list_files, LogColors
 from amapy_utils.utils.file_utils import FileUtils

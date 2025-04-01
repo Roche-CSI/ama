@@ -3,10 +3,10 @@ from unittest.mock import patch
 
 import pytest
 
-from asset_pluggy.plugin.storage_manager import StorageManager
-from asset_pluggy.storage.asset_storage import AssetStorage
-from asset_pluggy.storage.mount_config import MountConfig
-from asset_pluggy.storage.storage_factory import StorageFactory
+from amapy_pluggy.plugin.storage_manager import StorageManager
+from amapy_pluggy.storage.asset_storage import AssetStorage
+from amapy_pluggy.storage.mount_config import MountConfig
+from amapy_pluggy.storage.storage_factory import StorageFactory
 from amapy_utils.common import exceptions
 
 
@@ -56,7 +56,7 @@ class MockStorageManager(StorageManager):
 
 @pytest.fixture(scope="module")
 def mock_storage_manager():
-    with patch('asset_pluggy.storage.storage_factory.StorageManager') as mock_manager:
+    with patch('amapy_pluggy.storage.storage_factory.StorageManager') as mock_manager:
         mock_manager.shared.return_value = MockStorageManager.shared()
         yield mock_manager
 

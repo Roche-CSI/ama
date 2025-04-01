@@ -1,9 +1,9 @@
 from abc import ABC
 from typing import Type
 
-from asset_pluggy.plugin import hook_impl
-from asset_pluggy.plugin.plugin_manager import PluginManager
-from asset_pluggy.plugin.specs import AssetStorage
+from amapy_pluggy.plugin import hook_impl
+from amapy_pluggy.plugin.plugin_manager import PluginManager
+from amapy_pluggy.plugin.specs import AssetStorage
 
 
 def test_plugin_manager():

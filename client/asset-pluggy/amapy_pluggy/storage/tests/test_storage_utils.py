@@ -1,4 +1,4 @@
-from asset_pluggy.storage.storage_utils import filter_blobs
+from amapy_pluggy.storage.storage_utils import filter_blobs
 
 
 class MockBlob:
