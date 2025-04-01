@@ -1,7 +1,7 @@
 import sys
 from argparse import ArgumentParser, RawTextHelpFormatter
 
-from asset_utils.utils.log_utils import LoggingMixin
+from amapy_utils.utils.log_utils import LoggingMixin
 
 
 class DefaultHelpParser(ArgumentParser):

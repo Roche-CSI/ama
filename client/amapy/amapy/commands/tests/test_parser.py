@@ -1,6 +1,6 @@
-from asset_manager.commands.asset_actions import get_actions as asset_actions
-from asset_manager.commands.cmd_group import CommandGroup
-from asset_manager.commands.parser import CommandParser
+from amapy.commands.asset_actions import get_actions as asset_actions
+from amapy.commands.cmd_group import CommandGroup
+from amapy.commands.parser import CommandParser
 
 
 def test_asset_actions():

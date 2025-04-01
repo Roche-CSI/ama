@@ -1,10 +1,10 @@
 import abc
 
-from asset_core.configs import AppSettings
-from asset_core.store import Repo, AssetStore
-from asset_utils.common import exceptions
-from asset_utils.common.user_commands import UserCommands
-from asset_utils.utils.log_utils import LoggingMixin, colored_string, LogColors
+from amapy_core.configs import AppSettings
+from amapy_core.store import Repo, AssetStore
+from amapy_utils.common import exceptions
+from amapy_utils.common.user_commands import UserCommands
+from amapy_utils.utils.log_utils import LoggingMixin, colored_string, LogColors
 
 
 class BaseAction(LoggingMixin):

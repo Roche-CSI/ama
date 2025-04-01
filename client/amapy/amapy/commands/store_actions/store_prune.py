@@ -1,5 +1,5 @@
-from asset_core.api.settings_api import SettingsAPI
-from asset_manager.commands.cli_action import CliAction
+from amapy.commands.cli_action import CliAction
+from amapy_core.api.settings_api import SettingsAPI
 
 
 class StorePrune(CliAction):

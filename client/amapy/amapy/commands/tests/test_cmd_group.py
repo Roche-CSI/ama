@@ -1,4 +1,4 @@
-from asset_manager.commands.cmd_group import CommandGroup
+from amapy.commands.cmd_group import CommandGroup
 
 
 def test_create():

@@ -1,4 +1,4 @@
-from asset_manager.commands.cli_option import CliOption
+from amapy.commands.cli_option import CliOption
 
 
 def test_create():
