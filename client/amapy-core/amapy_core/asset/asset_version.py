@@ -5,7 +5,7 @@ from datetime import datetime
 
 from packaging import version
 
-from asset_core.plugins import utils, exceptions, LoggingMixin
+from amapy_core.plugins import utils, exceptions, LoggingMixin
 from .serializable import Serializable
 
 ROOT_VERSION_NUMBER = "0.0.0"

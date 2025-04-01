@@ -2,7 +2,7 @@ import abc
 import math
 import os
 
-from asset_core.plugins import utils, list_files, FileUtils, LoggingMixin
+from amapy_core.plugins import utils, list_files, FileUtils, LoggingMixin
 
 
 class BaseAsset(LoggingMixin):

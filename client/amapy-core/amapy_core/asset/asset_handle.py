@@ -3,17 +3,17 @@ from __future__ import annotations
 import os
 from typing import TYPE_CHECKING
 
-from asset_core.asset import AssetClass
-from asset_core.asset.asset import Asset
-from asset_core.asset.asset_version import AssetVersion
-from asset_core.asset.fetchers.asset_fetcher import AssetFetcher
-from asset_core.asset.status_enums import StatusEnums
-from asset_core.plugins import exceptions
-from asset_utils.utils.file_utils import FileUtils
-from asset_utils.utils.log_utils import LoggingMixin
+from amapy_core.asset import AssetClass
+from amapy_core.asset.asset import Asset
+from amapy_core.asset.asset_version import AssetVersion
+from amapy_core.asset.fetchers.asset_fetcher import AssetFetcher
+from amapy_core.asset.status_enums import StatusEnums
+from amapy_core.plugins import exceptions
+from amapy_utils.utils.file_utils import FileUtils
+from amapy_utils.utils.log_utils import LoggingMixin
 
 if TYPE_CHECKING:
-    from asset_core.api.store_api import FindAPI
+    from amapy_core.api.store_api import FindAPI
 
 
 class AssetHandle(LoggingMixin):

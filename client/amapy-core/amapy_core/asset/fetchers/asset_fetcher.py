@@ -4,19 +4,19 @@ from typing import Iterable, List
 
 from packaging.version import Version
 
-from asset_contents import Content
-from asset_core.asset import Asset
-from asset_core.asset.asset_class import AssetClass
-from asset_core.asset.asset_snapshot import AssetSnapshot
-from asset_core.asset.fetchers.fetcher import Fetcher
-from asset_core.objects.asset_object import AssetObject
-from asset_pluggy.storage import TransportResource, StorageData
-from asset_pluggy.storage.storage_credentials import StorageCredentials
-from asset_pluggy.storage.storage_factory import StorageFactory, AssetStorage
-from asset_utils.common import exceptions
-from asset_utils.utils import list_files, LogColors
-from asset_utils.utils.file_utils import FileUtils
-from asset_utils.utils.progress import Progress
+from amapy_contents import Content
+from amapy_core.asset import Asset
+from amapy_core.asset.asset_class import AssetClass
+from amapy_core.asset.asset_snapshot import AssetSnapshot
+from amapy_core.asset.fetchers.fetcher import Fetcher
+from amapy_core.objects.asset_object import AssetObject
+from amapy_pluggy.storage import TransportResource, StorageData
+from amapy_pluggy.storage.storage_credentials import StorageCredentials
+from amapy_pluggy.storage.storage_factory import StorageFactory, AssetStorage
+from amapy_utils.common import exceptions
+from amapy_utils.utils import list_files, LogColors
+from amapy_utils.utils.file_utils import FileUtils
+from amapy_utils.utils.progress import Progress
 
 ALIAS_YAML_FILE_NAME_FORMAT = "{id}__{seq_id}__{alias}.yaml"
 VERSION_YAML_FILE_NAME_FORMAT = "version_{ver_number}.yaml"

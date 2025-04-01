@@ -1,22 +1,22 @@
 import os
 
-from asset_contents.content_uploader import ContentUploader
-from asset_core.asset import AssetClass, Asset
-from asset_core.asset.asset_diff import AssetDiff
-from asset_core.asset.asset_snapshot import AssetSnapshot
-from asset_core.asset.fetchers.asset_fetcher import AssetFetcher
-from asset_core.asset.status_enums import StatusEnums
-from asset_core.configs import AppSettings
-from asset_core.server import AssetServer
-from asset_pluggy.storage.storage_credentials import StorageCredentials
-from asset_pluggy.storage.storage_factory import StorageFactory, AssetStorage
-from asset_pluggy.storage.transporter import TransportResource
-from asset_utils.common import exceptions
-from asset_utils.utils.cloud_utils import internet_on
-from asset_utils.utils.file_utils import FileUtils
-from asset_utils.utils.log_utils import LogColors
-from asset_utils.utils.log_utils import LoggingMixin
-from asset_utils.utils.progress import Progress
+from amapy_contents.content_uploader import ContentUploader
+from amapy_core.asset import AssetClass, Asset
+from amapy_core.asset.asset_diff import AssetDiff
+from amapy_core.asset.asset_snapshot import AssetSnapshot
+from amapy_core.asset.fetchers.asset_fetcher import AssetFetcher
+from amapy_core.asset.status_enums import StatusEnums
+from amapy_core.configs import AppSettings
+from amapy_core.server import AssetServer
+from amapy_pluggy.storage.storage_credentials import StorageCredentials
+from amapy_pluggy.storage.storage_factory import StorageFactory, AssetStorage
+from amapy_pluggy.storage.transporter import TransportResource
+from amapy_utils.common import exceptions
+from amapy_utils.utils.cloud_utils import internet_on
+from amapy_utils.utils.file_utils import FileUtils
+from amapy_utils.utils.log_utils import LogColors
+from amapy_utils.utils.log_utils import LoggingMixin
+from amapy_utils.utils.progress import Progress
 
 
 class AssetUploader(LoggingMixin):

@@ -8,11 +8,11 @@ from typing import Optional
 
 from cached_property import cached_property
 
-from asset_core.objects.asset_object import AssetObject, ObjectViews
-from asset_core.objects.object_factory import ObjectFactory
-from asset_core.plugins import utils, FileUtils, Progress, exceptions
-from asset_db import ManifestDB, FileDB, StatesDB, StoreFileDB
-from asset_utils.utils.path_utils import PathUtils
+from amapy_core.objects.asset_object import AssetObject, ObjectViews
+from amapy_core.objects.object_factory import ObjectFactory
+from amapy_core.plugins import utils, FileUtils, Progress, exceptions
+from amapy_db import ManifestDB, FileDB, StatesDB, StoreFileDB
+from amapy_utils.utils.path_utils import PathUtils
 from .asset_class import AssetClass
 from .asset_version import AssetVersion
 from .refs.asset_ref import AssetRef

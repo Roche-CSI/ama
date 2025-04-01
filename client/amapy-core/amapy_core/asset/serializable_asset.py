@@ -1,7 +1,7 @@
 from collections import OrderedDict
 
-from asset_contents.content_set import ContentSet
-from asset_core.objects import ObjectSet
+from amapy_contents.content_set import ContentSet
+from amapy_core.objects import ObjectSet
 from .asset_class import AssetClass
 from .asset_version import AssetVersion
 from .base_asset import BaseAsset
