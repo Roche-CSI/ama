@@ -1,6 +1,5 @@
+from amapy_pluggy.storage.storage_factory import StorageFactory, AssetStorage
 from server_core import models
-# pluggy--
-from asset_pluggy.storage.storage_factory import StorageFactory, AssetStorage
 
 
 def signed_url_for_content(content: models.Content, class_id: str):
