@@ -1,5 +1,5 @@
 """collecting all plugin related functionalities in one file"""
-# asset-pluggy--
+# amapy-pluggy--
 from amapy_pluggy.storage.storage_factory import StorageFactory, AssetStorage
 from amapy_pluggy.storage.urls import StorageURL
 from amapy_pluggy.storage.blob import StorageData
