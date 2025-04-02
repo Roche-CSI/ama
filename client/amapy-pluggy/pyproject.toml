@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "amapy-pluggy"
-version = "1.0.0"
+version = "1.0.1"
 description = "A Plugin handler for asset-manager project.  It provides functionalities to manage and integrate various plugins within the asset management system."
 readme = "README.md"
 authors = [

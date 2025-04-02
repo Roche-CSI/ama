@@ -1,1 +1,1 @@
-asset-pluggy
+amapy-pluggy
