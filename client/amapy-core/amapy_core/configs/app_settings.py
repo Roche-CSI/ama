@@ -53,18 +53,16 @@ class AppSettings:
 
     @property
     def cli_version(self):
-        # needed by server to validate breaking changes for new releases
-        try:
-            # check for asset-manager first then asset-sandbox
-            ver = version('asset-manager')
-        except PackageNotFoundError:
-            try:
-                ver = version('asset-sandbox')
-            except PackageNotFoundError as e:
-                # if neither is found, then raise an exception
-                raise exceptions.AssetException(f"cli version not found: {e}")
+        """Returns the CLI version.
 
-        return self.extract_version(ver)
+        Needed by server to validate breaking changes for new releases.
+        """
+        try:
+            package_version = version('amapy')
+        except PackageNotFoundError as e:
+            raise exceptions.AssetException(f"cli version not found: {e}")
+
+        return self.extract_version(package_version)
 
     def extract_version(self, string):
         # Get rid of .dev from the version string
