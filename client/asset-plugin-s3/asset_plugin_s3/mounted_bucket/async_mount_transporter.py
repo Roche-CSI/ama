@@ -3,8 +3,8 @@ from botocore.exceptions import ClientError
 from asset_pluggy.storage.transporter import Transporter, TransportResource
 from asset_plugin_s3.mounted_bucket import async_mount_copy
 from asset_plugin_s3.mounted_bucket.mounted_resource import AwsMountedResource
-from asset_utils.common import exceptions
-from asset_utils.utils import utils
+from amapy_utils.common import exceptions
+from amapy_utils.utils import utils
 
 
 class AsyncMountTransporter(Transporter):

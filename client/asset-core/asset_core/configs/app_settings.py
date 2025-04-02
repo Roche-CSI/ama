@@ -10,9 +10,9 @@ from asset_core.configs.configs import Configs
 from asset_core.configs.user_settings import UserSettings
 from asset_pluggy.storage.storage_credentials import StorageCredentials
 from asset_pluggy.storage.storage_factory import StorageFactory
-from asset_utils.common import exceptions
-from asset_utils.utils import utils
-from asset_utils.utils.file_utils import FileUtils
+from amapy_utils.common import exceptions
+from amapy_utils.utils import utils
+from amapy_utils.utils.file_utils import FileUtils
 
 SETTINGS_DIR = ".asset-manager"  # asset manager metadata
 SETTINGS_FILE = "globals.json"  # i.e. user, project etc

@@ -1,9 +1,9 @@
 import os
 
 from asset_plugin_posix.posix_url import PosixURL
-from asset_utils.common import exceptions
-from asset_utils.utils import utils
-from asset_utils.utils.file_utils import FileUtils
+from amapy_utils.common import exceptions
+from amapy_utils.utils import utils
+from amapy_utils.utils.file_utils import FileUtils
 
 MUST_IGNORE = "*.asset*"
 

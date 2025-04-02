@@ -1,4 +1,4 @@
-from asset_utils.utils import rgetattr
+from amapy_utils.utils import rgetattr
 
 
 def asset_desc(asset):

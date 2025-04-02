@@ -8,8 +8,8 @@ from asset_pluggy.storage.mount_config import MountConfig
 from asset_pluggy.storage.storage_credentials import StorageCredentials
 from asset_pluggy.storage.transporter import Transporter
 from asset_pluggy.storage.urls import StorageURL
-from asset_utils.common import Singleton, exceptions
-from asset_utils.utils.log_utils import LoggingMixin
+from amapy_utils.common import Singleton, exceptions
+from amapy_utils.utils.log_utils import LoggingMixin
 
 
 class AssetStorage(Singleton, LoggingMixin):

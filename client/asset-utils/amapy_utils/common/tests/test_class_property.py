@@ -1,4 +1,4 @@
-from asset_utils.common.class_property import classproperty
+from amapy_utils.common.class_property import classproperty
 
 
 def test_class_property():

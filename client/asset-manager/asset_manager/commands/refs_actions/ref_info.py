@@ -1,8 +1,8 @@
 from asset_core.api.repo_api import AssetAPI, InfoAPI
 from asset_core.configs import AppSettings
 from asset_manager.commands import CliAction, CliOption
-from asset_utils.common.user_commands import UserCommands
-from asset_utils.utils.log_utils import colored_string, LogColors
+from amapy_utils.common.user_commands import UserCommands
+from amapy_utils.utils.log_utils import colored_string, LogColors
 
 
 class RefsInfo(CliAction):

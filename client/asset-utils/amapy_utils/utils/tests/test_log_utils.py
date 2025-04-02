@@ -1,6 +1,6 @@
 import colorama
 
-from asset_utils.utils.log_utils import LogData, colored_string, colorize, UserLog, LogColors, \
+from amapy_utils.utils.log_utils import LogData, colored_string, colorize, UserLog, LogColors, \
     kilo_byte, comma_formatted
 
 

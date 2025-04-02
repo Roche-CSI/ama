@@ -1,4 +1,4 @@
-from asset_utils.common.singleton import Singleton
+from amapy_utils.common.singleton import Singleton
 
 
 class SingletonChild(Singleton):

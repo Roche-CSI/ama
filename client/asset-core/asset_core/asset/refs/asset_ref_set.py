@@ -1,4 +1,4 @@
-from asset_utils.common import BetterSet
+from amapy_utils.common import BetterSet
 from typing import Callable
 from asset_core.plugins import utils, exceptions
 from asset_core.server import AssetServer

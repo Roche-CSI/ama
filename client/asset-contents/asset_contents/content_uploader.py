@@ -2,8 +2,8 @@ import os
 from typing import List
 
 from asset_pluggy.storage.storage_factory import StorageFactory, AssetStorage
-from asset_utils.utils.log_utils import LoggingMixin
-from asset_utils.utils.progress import Progress
+from amapy_utils.utils.log_utils import LoggingMixin
+from amapy_utils.utils.progress import Progress
 from .content import Content
 from .content_set import ContentSet
 

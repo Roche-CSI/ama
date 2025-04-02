@@ -2,7 +2,7 @@ import abc
 import contextlib
 
 from asset_core.store import AssetStore
-from asset_utils.utils.log_utils import LoggingMixin
+from amapy_utils.utils.log_utils import LoggingMixin
 
 
 class BaseAPI(LoggingMixin):

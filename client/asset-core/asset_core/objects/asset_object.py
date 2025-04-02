@@ -11,10 +11,10 @@ from asset_core.objects.object_source import ObjectSource
 from asset_core.objects.object_stat import ObjectStat
 from asset_core.objects.state import ObjectState, ObjectEditStatus
 from asset_db.file_db import FileDB
-from asset_utils.common import exceptions
-from asset_utils.utils import time_now, date_to_string
-from asset_utils.utils.file_utils import FileUtils
-from asset_utils.utils.log_utils import LoggingMixin
+from amapy_utils.common import exceptions
+from amapy_utils.utils import time_now, date_to_string
+from amapy_utils.utils.file_utils import FileUtils
+from amapy_utils.utils.log_utils import LoggingMixin
 
 
 class ObjectViews(enum.Enum):

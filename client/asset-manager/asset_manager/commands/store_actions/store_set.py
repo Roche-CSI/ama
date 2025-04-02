@@ -1,6 +1,6 @@
 from asset_core.api.settings_api import SettingsAPI
-from asset_utils.utils.log_utils import LogColors
-from asset_utils.common.user_commands import UserCommands
+from amapy_utils.utils.log_utils import LogColors
+from amapy_utils.common.user_commands import UserCommands
 from asset_manager.commands import CliAction, CliOption
 
 

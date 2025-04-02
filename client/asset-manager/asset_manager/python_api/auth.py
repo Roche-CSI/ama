@@ -1,7 +1,7 @@
 from functools import cached_property
 
 from asset_core.api.settings_api import SettingsAPI
-from asset_utils.common import exceptions
+from amapy_utils.common import exceptions
 
 
 class Auth(object):

@@ -1,8 +1,8 @@
 import os
 import subprocess
 
-from asset_utils.utils import ch_dir
-from asset_utils.utils.log_utils import LoggingMixin
+from amapy_utils.utils import ch_dir
+from amapy_utils.utils.log_utils import LoggingMixin
 
 
 # don't add test prefix here, we don't want pytest to run this

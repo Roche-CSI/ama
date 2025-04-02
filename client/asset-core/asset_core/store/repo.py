@@ -31,11 +31,11 @@ import uuid
 from asset_core.configs import Configs
 from asset_core.store.asset_store import AssetStore
 from asset_db import RepoDB
-from asset_utils.common import exceptions
-from asset_utils.utils import list_files
-from asset_utils.utils.file_utils import FileUtils
-from asset_utils.utils.log_utils import LoggingMixin
-from asset_utils.utils.path_utils import PathUtils
+from amapy_utils.common import exceptions
+from amapy_utils.utils import list_files
+from amapy_utils.utils.file_utils import FileUtils
+from amapy_utils.utils.log_utils import LoggingMixin
+from amapy_utils.utils.path_utils import PathUtils
 
 
 class Repo(LoggingMixin):
@@ -140,7 +140,7 @@ class Repo(LoggingMixin):
 
         TODO: No need to get all the matching files/directories.
             Just getting the first matching directory is enough.
-            use asset_utils.utils.first_matching_dir for that
+            use amapy_utils.utils.first_matching_dir for that
         """
         files = list_files(self.fs_path, pattern="*/.asset/*")
         if files:

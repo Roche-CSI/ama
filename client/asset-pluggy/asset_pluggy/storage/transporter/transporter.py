@@ -3,7 +3,7 @@ import json
 import os
 import tempfile
 
-from asset_utils.common import exceptions, Singleton
+from amapy_utils.common import exceptions, Singleton
 from .transport_resource import TransportResource
 
 DEFAULT_TIMEOUT = 86400  # in seconds i.e. 24 hours (60 * 60 * 24)

@@ -5,7 +5,7 @@ from typing import Union
 
 from google.cloud import storage
 
-from asset_utils.utils import cloud_utils
+from amapy_utils.utils import cloud_utils
 
 logger = logging.getLogger(__name__)
 

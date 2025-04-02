@@ -1,6 +1,6 @@
 import pytest
 
-from asset_utils.common.better_set import BetterSet
+from amapy_utils.common.better_set import BetterSet
 
 
 def test_initialization():

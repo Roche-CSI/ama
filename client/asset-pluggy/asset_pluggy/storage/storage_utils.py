@@ -2,8 +2,8 @@ import copy
 import fnmatch
 import os
 
-from asset_utils.utils.file_utils import FileUtils
-from asset_utils.utils.in_memory_zip import InMemoryZip
+from amapy_utils.utils.file_utils import FileUtils
+from amapy_utils.utils.in_memory_zip import InMemoryZip
 
 
 def filter_blobs(blobs: list,

@@ -1,8 +1,8 @@
 import os
 from typing import Iterable, Callable
 
-from asset_utils import common
-from asset_utils.utils import utils
+from amapy_utils import common
+from amapy_utils.utils import utils
 from .content import Content
 
 

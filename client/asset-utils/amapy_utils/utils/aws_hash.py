@@ -1,7 +1,7 @@
 import hashlib
 import os
 
-from asset_utils.utils.file_utils import FileUtils
+from amapy_utils.utils.file_utils import FileUtils
 
 """
 https://teppen.io/2018/10/23/aws_s3_verify_etags/

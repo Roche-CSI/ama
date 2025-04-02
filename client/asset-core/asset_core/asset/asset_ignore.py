@@ -3,8 +3,8 @@ import os
 import pathspec
 
 from asset_core.asset import Asset
-from asset_utils.common import exceptions
-from asset_utils.utils.log_utils import LoggingMixin
+from amapy_utils.common import exceptions
+from amapy_utils.utils.log_utils import LoggingMixin
 
 ASSET_IGNORE_FILE_NAME = ".assetignore"
 

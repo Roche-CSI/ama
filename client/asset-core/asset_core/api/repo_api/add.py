@@ -8,11 +8,11 @@ from asset_core.objects.group.group_object import GroupObject
 from asset_core.objects.object_factory import ObjectFactory
 from asset_core.store import AssetStore
 from asset_pluggy.storage.storage_credentials import StorageCredentials
-from asset_utils.common import exceptions
-from asset_utils.common.user_commands import UserCommands
-from asset_utils.utils import is_integer, contains_special_chars
-from asset_utils.utils.log_utils import colored_string, LogColors
-from asset_utils.utils.progress import Progress
+from amapy_utils.common import exceptions
+from amapy_utils.common.user_commands import UserCommands
+from amapy_utils.utils import is_integer, contains_special_chars
+from amapy_utils.utils.log_utils import colored_string, LogColors
+from amapy_utils.utils.progress import Progress
 from .info import InfoAPI
 from .repo import RepoAPI
 

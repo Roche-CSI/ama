@@ -3,7 +3,7 @@ from typing import Dict, Type
 
 from asset_pluggy.plugin.asset_object import AssetObject
 from asset_pluggy.plugin.plugin_manager import PluginManager
-from asset_utils.common import exceptions, Singleton
+from amapy_utils.common import exceptions, Singleton
 
 
 class ObjectManager(Singleton):

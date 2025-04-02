@@ -12,7 +12,7 @@ from asset_plugin_gcs.gcs_blob import GcsBlob
 from asset_plugin_gcs.gcs_storage_mixin import GcsStorageMixin
 from asset_plugin_gcs.signed_url import generate_signed_url
 from asset_plugin_gcs.transporter import AsyncGcsTransporter
-from asset_utils.common import exceptions
+from amapy_utils.common import exceptions
 
 
 class GcsStorage(AssetStorage, GcsStorageMixin):

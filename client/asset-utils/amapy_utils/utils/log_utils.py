@@ -8,7 +8,7 @@ import colorama
 import tqdm
 from tabulate import tabulate
 
-from asset_utils.utils.pager import Pager
+from amapy_utils.utils.pager import Pager
 
 INDENT = 70
 BOLD = '\033[1m'

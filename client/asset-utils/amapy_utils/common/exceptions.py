@@ -1,6 +1,6 @@
 from functools import cached_property
 
-from asset_utils.utils.log_utils import LogData, colored_string, LogColors
+from amapy_utils.utils.log_utils import LogData, colored_string, LogColors
 
 
 class AssetException(Exception):
