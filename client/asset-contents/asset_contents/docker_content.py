@@ -3,7 +3,7 @@ from __future__ import annotations
 import aiohttp
 import backoff
 
-from amapy_pluggy.storage.blob import StorageData
+from asset_pluggy.storage.blob import StorageData
 from amapy_utils.common import exceptions
 from amapy_utils.utils import cloud_utils
 from .content import Content

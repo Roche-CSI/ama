@@ -1,7 +1,7 @@
 import pytest
 
-from amapy_pluggy.storage import BlobStoreURL
-from amapy_pluggy.storage.mount_config import MountConfig
+from asset_pluggy.storage import BlobStoreURL
+from asset_pluggy.storage.mount_config import MountConfig
 from asset_plugin_s3.mounted_bucket.mounted_url import MountedBlobStoreURL
 from amapy_utils.common import exceptions
 

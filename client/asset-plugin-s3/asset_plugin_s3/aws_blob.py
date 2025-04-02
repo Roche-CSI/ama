@@ -1,7 +1,7 @@
 from typing import Any
 
-from amapy_pluggy.storage import BlobData
-from amapy_pluggy.storage import BlobStoreURL
+from asset_pluggy.storage import BlobData
+from asset_pluggy.storage import BlobStoreURL
 from amapy_utils.common.exceptions import AssetException
 from amapy_utils.utils.file_utils import FileUtils
 

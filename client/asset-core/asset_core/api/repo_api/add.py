@@ -7,7 +7,7 @@ from asset_core.asset.refs.asset_ref import AssetRef
 from asset_core.objects.group.group_object import GroupObject
 from asset_core.objects.object_factory import ObjectFactory
 from asset_core.store import AssetStore
-from amapy_pluggy.storage.storage_credentials import StorageCredentials
+from asset_pluggy.storage.storage_credentials import StorageCredentials
 from amapy_utils.common import exceptions
 from amapy_utils.common.user_commands import UserCommands
 from amapy_utils.utils import is_integer, contains_special_chars

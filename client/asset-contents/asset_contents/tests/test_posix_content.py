@@ -4,7 +4,7 @@ from unittest.mock import MagicMock, patch
 import pytest
 
 from asset_contents.posix_content import PosixContent
-from amapy_pluggy.storage.blob import StorageData
+from asset_pluggy.storage.blob import StorageData
 from amapy_utils.common import exceptions
 
 

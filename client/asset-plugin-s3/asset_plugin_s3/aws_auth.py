@@ -5,7 +5,7 @@ from hashlib import sha256
 
 from botocore.auth import S3SigV4Auth
 
-from amapy_pluggy.storage.storage_credentials import StorageCredentials
+from asset_pluggy.storage.storage_credentials import StorageCredentials
 from amapy_utils.common import exceptions
 
 

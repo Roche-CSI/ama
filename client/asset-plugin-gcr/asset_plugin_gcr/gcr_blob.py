@@ -1,4 +1,4 @@
-from amapy_pluggy.storage import StorageData
+from asset_pluggy.storage import StorageData
 from asset_plugin_gcr.gcr_url import GcrURL
 
 

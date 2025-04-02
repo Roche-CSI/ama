@@ -1,6 +1,6 @@
 from cached_property import cached_property
 
-from amapy_pluggy.storage.transporter import TransportResource
+from asset_pluggy.storage.transporter import TransportResource
 from asset_plugin_posix.posix_url import PosixURL
 
 

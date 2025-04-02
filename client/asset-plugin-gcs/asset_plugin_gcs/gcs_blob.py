@@ -1,7 +1,7 @@
 from google.cloud.storage.blob import Blob
 
-from amapy_pluggy.storage import BlobData
-from amapy_pluggy.storage.urls import BlobStoreURL
+from asset_pluggy.storage import BlobData
+from asset_pluggy.storage.urls import BlobStoreURL
 
 
 class GcsBlob(BlobData):

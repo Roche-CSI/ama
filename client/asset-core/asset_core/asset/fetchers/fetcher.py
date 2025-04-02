@@ -3,10 +3,10 @@ from time import time
 
 from asset_contents import Content
 from asset_core.store.asset_store import AssetStore
-from amapy_pluggy.storage.blob import StorageData
-from amapy_pluggy.storage.storage_factory import StorageFactory, AssetStorage
-from amapy_pluggy.storage.transporter import TransportResource
-from amapy_pluggy.storage.urls import StorageURL
+from asset_pluggy.storage.blob import StorageData
+from asset_pluggy.storage.storage_factory import StorageFactory, AssetStorage
+from asset_pluggy.storage.transporter import TransportResource
+from asset_pluggy.storage.urls import StorageURL
 from amapy_utils.utils.log_utils import LoggingMixin, LogColors
 from amapy_utils.utils.progress import Progress
 

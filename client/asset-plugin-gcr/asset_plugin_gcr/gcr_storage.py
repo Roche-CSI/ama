@@ -1,10 +1,10 @@
 from typing import Type, Union
 
 from asset_contents import DockerContent
-from amapy_pluggy.plugin import hook_impl
-from amapy_pluggy.plugin.object_content import ObjectContent
-from amapy_pluggy.storage import StorageData, StorageURL, Transporter
-from amapy_pluggy.storage.asset_storage import AssetStorage
+from asset_pluggy.plugin import hook_impl
+from asset_pluggy.plugin.object_content import ObjectContent
+from asset_pluggy.storage import StorageData, StorageURL, Transporter
+from asset_pluggy.storage.asset_storage import AssetStorage
 from asset_plugin_gcr.gcr_blob import GcrBlob
 from asset_plugin_gcr.gcr_mixin import GcrMixin
 from asset_plugin_gcr.gcr_url import GcrURL
