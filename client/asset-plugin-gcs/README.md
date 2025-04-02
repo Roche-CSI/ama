@@ -1,1 +1,0 @@
-asset-plugin-gcs
