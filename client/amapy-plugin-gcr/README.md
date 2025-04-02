@@ -1,1 +1,0 @@
-amapy-plugin-gcr
