@@ -1,1 +1,1 @@
-asset-db
+amapy-db
