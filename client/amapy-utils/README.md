@@ -1,1 +1,1 @@
-asset-utils
+amapy-utils
