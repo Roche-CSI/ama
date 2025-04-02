@@ -1,2 +1,0 @@
-from amapy_plugin_s3.transporter.async_aws.async_aws_transporter import AsyncAwsTransporter
-from amapy_plugin_s3.transporter.legacy_aws.legacy_aws_transporter import LegacyAwsTransporter
