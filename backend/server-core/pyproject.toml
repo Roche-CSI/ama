@@ -17,7 +17,7 @@ license = { text = "Copyright (c) 2024 Roche Diagnostics Computation Science & I
 requires-python = "==3.10.*"
 dependencies = [
     "Flask-Admin==1.6.0",
-    "Flask-Cors==3.0.10",
+    "Flask-Cors==4.0.2",
     "Flask-Dance==7.0.0",
     "Flask-Login==0.6.3",
     "Flask==2.1.1",
