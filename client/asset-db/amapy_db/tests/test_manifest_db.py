@@ -2,7 +2,7 @@ import os
 
 import pytest
 
-from asset_db import ManifestDB
+from amapy_db import ManifestDB
 
 
 @pytest.fixture(scope="module")

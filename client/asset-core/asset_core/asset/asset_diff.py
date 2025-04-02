@@ -8,7 +8,7 @@ from asset_core.asset.asset_snapshot import AssetSnapshot
 from asset_core.objects import Object
 from asset_core.plugins import exceptions, FileUtils
 from asset_core.store import Repo
-from asset_db.db import Database
+from amapy_db.db import Database
 from amapy_utils.utils import files_at_location, relative_path
 
 

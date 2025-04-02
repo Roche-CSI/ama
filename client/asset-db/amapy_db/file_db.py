@@ -1,22 +1,20 @@
 import logging
 import os
 
-from asset_db.db import Database
+from amapy_db.db import Database
 
 logger = logging.getLogger(__name__)
 
 
-class StoreFileDB(Database):
+class FileDB(Database):
     """Stats db that holds file information to manage
-
     Important: Stats db is a global db across the entire repo for all assets
     whereas other dbs are asset specific
     """
-
-    type = "store-file-stats"
+    type = "file-stats"
 
     def add_stats(self, **kwargs):
-        """Adds to existing list of stats"""
+        """adds to existing list of stats"""
         self.update(**{"stats": kwargs})
 
     def get_stats(self) -> dict:
