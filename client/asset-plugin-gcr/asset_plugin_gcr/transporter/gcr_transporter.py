@@ -1,4 +1,4 @@
-from asset_pluggy.storage.transporter import Transporter, TransportResource
+from amapy_pluggy.storage.transporter import Transporter, TransportResource
 
 
 class GcrTransporter(Transporter):

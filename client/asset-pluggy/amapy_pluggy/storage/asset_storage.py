@@ -2,12 +2,12 @@ import abc
 import os
 from typing import Type, Union
 
-from asset_pluggy.plugin.object_content import ObjectContent
-from asset_pluggy.storage.blob import StorageData
-from asset_pluggy.storage.mount_config import MountConfig
-from asset_pluggy.storage.storage_credentials import StorageCredentials
-from asset_pluggy.storage.transporter import Transporter
-from asset_pluggy.storage.urls import StorageURL
+from amapy_pluggy.plugin.object_content import ObjectContent
+from amapy_pluggy.storage.blob import StorageData
+from amapy_pluggy.storage.mount_config import MountConfig
+from amapy_pluggy.storage.storage_credentials import StorageCredentials
+from amapy_pluggy.storage.transporter import Transporter
+from amapy_pluggy.storage.urls import StorageURL
 from amapy_utils.common import Singleton, exceptions
 from amapy_utils.utils.log_utils import LoggingMixin
 

@@ -2,9 +2,9 @@ import json
 import os
 from typing import Type
 
-from asset_pluggy.plugin.storage_manager import StorageManager
-from asset_pluggy.storage.asset_storage import AssetStorage
-from asset_pluggy.storage.mount_config import MountConfig
+from amapy_pluggy.plugin.storage_manager import StorageManager
+from amapy_pluggy.storage.asset_storage import AssetStorage
+from amapy_pluggy.storage.mount_config import MountConfig
 from amapy_utils.common import exceptions
 
 

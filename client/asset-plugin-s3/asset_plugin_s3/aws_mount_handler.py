@@ -2,8 +2,8 @@ import os
 from functools import cached_property
 from typing import Union
 
-from asset_pluggy.storage import StorageData, StorageURL, BlobStoreURL, storage_utils
-from asset_pluggy.storage.mount_config import MountConfig
+from amapy_pluggy.storage import StorageData, StorageURL, BlobStoreURL, storage_utils
+from amapy_pluggy.storage.mount_config import MountConfig
 from asset_plugin_s3.aws_blob import AwsBlob
 from asset_plugin_s3.mounted_bucket.async_mount_transporter import AsyncMountTransporter
 from asset_plugin_s3.mounted_bucket.mounted_url import MountedBlobStoreURL

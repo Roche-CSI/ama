@@ -1,7 +1,7 @@
 import pluggy
 
-from asset_pluggy.plugin import APP_NAME
-from asset_pluggy.plugin import specs as plugin_specs
+from amapy_pluggy.plugin import APP_NAME
+from amapy_pluggy.plugin import specs as plugin_specs
 from amapy_utils.common.singleton import Singleton
 
 

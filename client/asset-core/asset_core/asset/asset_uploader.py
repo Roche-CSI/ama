@@ -8,9 +8,9 @@ from asset_core.asset.fetchers.asset_fetcher import AssetFetcher
 from asset_core.asset.status_enums import StatusEnums
 from asset_core.configs import AppSettings
 from asset_core.server import AssetServer
-from asset_pluggy.storage.storage_credentials import StorageCredentials
-from asset_pluggy.storage.storage_factory import StorageFactory, AssetStorage
-from asset_pluggy.storage.transporter import TransportResource
+from amapy_pluggy.storage.storage_credentials import StorageCredentials
+from amapy_pluggy.storage.storage_factory import StorageFactory, AssetStorage
+from amapy_pluggy.storage.transporter import TransportResource
 from amapy_utils.common import exceptions
 from amapy_utils.utils.cloud_utils import internet_on
 from amapy_utils.utils.file_utils import FileUtils

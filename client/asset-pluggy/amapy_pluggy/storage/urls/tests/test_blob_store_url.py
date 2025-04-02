@@ -1,4 +1,4 @@
-from asset_pluggy.storage.urls import BlobStoreURL
+from amapy_pluggy.storage.urls import BlobStoreURL
 
 
 def test_blob_store_url():

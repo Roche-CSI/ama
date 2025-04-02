@@ -13,7 +13,7 @@ from asset_core.objects.object_factory import ObjectFactory
 from asset_core.plugins import list_files
 from asset_core.store import Repo, AssetStore
 from asset_manager.app import register_plugins
-from asset_pluggy.storage import StorageData
+from amapy_pluggy.storage import StorageData
 
 logger = logging.getLogger(__name__)
 

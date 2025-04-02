@@ -1,4 +1,4 @@
-from asset_pluggy.plugin.plugin_manager import PluginManager
+from amapy_pluggy.plugin.plugin_manager import PluginManager
 
 
 def register_plugins(*args):
