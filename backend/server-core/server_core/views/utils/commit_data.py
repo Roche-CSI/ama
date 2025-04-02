@@ -1,6 +1,6 @@
+from amapy_pluggy.storage.storage_factory import StorageFactory
+from amapy_pluggy.storage.transporter import Transporter
 from amapy_utils.utils.in_memory_file import InMemoryFile
-from asset_pluggy.storage.storage_factory import StorageFactory
-from asset_pluggy.storage.transporter import Transporter
 from server_core import models
 from server_core.utils import time_it
 

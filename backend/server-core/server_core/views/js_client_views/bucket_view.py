@@ -1,12 +1,12 @@
 import json
 import logging
 
-from asset_pluggy.storage import BlobStoreURL
-from asset_plugin_gcs.bucket_cors import update_cors_configuration as gcs_update_cors
-from asset_plugin_s3.bucket_cors import set_bucket_cors as s3_update_cors
 from flask import Blueprint, Response, request
 from peewee import DoesNotExist
 
+from amapy_pluggy.storage import BlobStoreURL
+from asset_plugin_gcs.bucket_cors import update_cors_configuration as gcs_update_cors
+from asset_plugin_s3.bucket_cors import set_bucket_cors as s3_update_cors
 from server_core.configs import Configs
 from server_core.models.bucket import Bucket
 from server_core.utils import json_encoder

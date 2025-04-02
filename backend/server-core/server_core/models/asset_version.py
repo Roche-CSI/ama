@@ -5,9 +5,9 @@ import os
 from peewee import *
 from playhouse.postgres_ext import JSONField
 
+from amapy_pluggy.storage import Transporter
+from amapy_pluggy.storage.storage_factory import StorageFactory
 from amapy_utils.utils.in_memory_file import InMemoryFile
-from asset_pluggy.storage import Transporter
-from asset_pluggy.storage.storage_factory import StorageFactory
 from server_core.asset_client import exceptions
 from server_core.asset_client import versioning
 from server_core.models import asset as asset_model

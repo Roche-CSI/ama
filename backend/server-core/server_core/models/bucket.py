@@ -1,12 +1,12 @@
 import contextlib
 import json
 
-from asset_pluggy.storage.storage_credentials import StorageCredentials
-from asset_pluggy.storage.storage_factory import StorageFactory
 from cryptography.fernet import Fernet
 from peewee import *
 from playhouse.postgres_ext import JSONField
 
+from amapy_pluggy.storage.storage_credentials import StorageCredentials
+from amapy_pluggy.storage.storage_factory import StorageFactory
 from server_core.models.app_secret import AppSecret
 from server_core.models.base.read_write import ReadWriteModel
 
