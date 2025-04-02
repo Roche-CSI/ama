@@ -3,33 +3,38 @@ requires = ["setuptools>=68.0.0,<69.0.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "asset-server-core"
-version = "1.0.0"
-description = "Asset Server Core"
+name = "amapy-server"
+version = "1.0.1"
+description = "The server-side component of the Asset Manager system that provides backend services for managing digital assets. It functions as a centralized server that handles asset storage, retrieval, and management across different storage backends."
 readme = "README.md"
 authors = [
-    "swarup.mahanti@roche.com"
+    { name = "Swarup Mahanti", email = "swarup.mahanti@roche.com" }
 ]
 maintainers = [
-    "swarup.mahanti@roche.com"
+    { name = "Swarup Mahanti", email = "swarup.mahanti@roche.com" }
 ]
-license = { text = "@2025 Roche Sequencing Solution" }
+license = { text = "Copyright (c) 2024 Roche Diagnostics Computation Science & Informatics" }
 requires-python = "==3.10.*"
 dependencies = [
-    "aioshutil==1.3",
-    "elasticsearch==8.15.1",
-    "Flask==2.1.1",
     "Flask-Admin==1.6.0",
     "Flask-Cors==3.0.10",
     "Flask-Dance==7.0.0",
     "Flask-Login==0.6.3",
-    "google-auth-oauthlib==0.5.2",
-    "Jinja2==3.0.1",
-    "packaging==23.1",
-    "peewee==3.14.8",
+    "Flask==2.1.1",
+    "Jinja2==3.0.*",
+    "Werkzeug==2.0.1",
+    "aioshutil==1.3",
+    "amapy-pluggy==1.0.*",
+    "amapy-plugin-gcs==1.0.*",
+    "amapy-plugin-s3==1.0.*",
+    "amapy-utils==1.0.*",
+    "elasticsearch==8.15.1",
+    "google-auth-oauthlib==0.5.*",
+    "gunicorn==20.1.*",
+    "packaging==23.1.*",
+    "peewee==3.14.*",
     "psycopg2==2.9.2",
     "sentence-transformers==3.2.1",
-    "Werkzeug==2.0.1",
     "wtf-peewee==3.0.3",
 ]
 
@@ -45,3 +50,6 @@ find = { }
     "templates/**",
     "static/**"
 ]
+
+[project.scripts]
+ama-server = "server_core.main:main"
