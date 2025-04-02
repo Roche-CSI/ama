@@ -1,10 +1,9 @@
-from server_core.models.asset_class import AssetClass
-from server_core.models.utils import delete_records
-from asset_pluggy.storage.storage_factory import StorageFactory, AssetStorage
-from server_core.gcp.sync_gcp import get_blob_from_url, get_blob_contents
-from server_core.configs import Configs
 import pytest
 import yaml
+
+from amapy_pluggy.storage.storage_factory import StorageFactory
+from server_core.models.asset_class import AssetClass
+from server_core.models.utils import delete_records
 
 
 @pytest.fixture(scope="module")
@@ -84,5 +83,3 @@ def test_write_classes_yaml(test_user, classes_data, test_project):
 
     # clean up
     delete_records(records, AssetClass, test_user)
-
-

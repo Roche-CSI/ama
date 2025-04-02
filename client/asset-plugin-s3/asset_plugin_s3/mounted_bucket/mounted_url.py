@@ -1,4 +1,4 @@
-from asset_pluggy.storage import BlobStoreURL
+from amapy_pluggy.storage import BlobStoreURL
 
 
 class MountedBlobStoreURL(BlobStoreURL):

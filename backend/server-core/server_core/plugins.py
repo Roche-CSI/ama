@@ -1,4 +1,4 @@
-from asset_pluggy.plugin.plugin_manager import PluginManager
+from amapy_pluggy.plugin.plugin_manager import PluginManager
 
 from asset_plugin_gcs import GcsStoragePlugin
 from asset_plugin_s3 import AwsStoragePlugin

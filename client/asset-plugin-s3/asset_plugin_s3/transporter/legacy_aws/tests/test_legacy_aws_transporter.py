@@ -26,7 +26,7 @@ def mock_async_upload_resource(mock_upload):
 
 
 def test_upload(project_root: str, upload_test_url: str, aws_test_credentials: dict):
-    with patch('asset_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage, \
+    with patch('amapy_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage, \
             patch('asset_plugin_s3.aws_storage.AwsStorage.shared') as mock_Aws_Storage, \
             patch('aioboto3.Session.client') as mock_client, \
             patch('asset_plugin_s3.transporter.legacy_aws.async_upload.async_upload_resource') as mock_upload:
@@ -60,7 +60,7 @@ def test_upload(project_root: str, upload_test_url: str, aws_test_credentials: d
 
 
 def test_upload_dir(project_root: str, upload_test_url: str, aws_test_credentials: dict):
-    with patch('asset_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage, \
+    with patch('amapy_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage, \
             patch('asset_plugin_s3.aws_storage.AwsStorage.shared') as mock_Aws_Storage, \
             patch('aioboto3.Session.client') as mock_client, \
             patch('asset_plugin_s3.transporter.legacy_aws.async_upload.async_upload_resource') as mock_upload:
@@ -98,7 +98,7 @@ def mock_download_resource(mock_async_download):
 
 
 def test_download(project_root, aws_test_credentials):
-    with patch('asset_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage, \
+    with patch('amapy_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage, \
             patch('asset_plugin_s3.aws_storage.AwsStorage.shared') as mock_Aws_Storage, \
             patch('aioboto3.Session.client') as mock_client, \
             patch(
