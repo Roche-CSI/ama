@@ -1,9 +1,9 @@
 import json
 import logging
 
-from asset_utils.common import exceptions
 from flask import Blueprint, Response, request, make_response, current_app
 
+from amapy_utils.common import exceptions
 from server_core.elastic.asset_entry import AssetEntry
 from server_core.elastic.vector_search import ElasticVectorSearch
 from server_core.models.asset import Asset

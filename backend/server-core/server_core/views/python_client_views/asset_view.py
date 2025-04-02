@@ -1,8 +1,8 @@
 import logging
 
-from asset_utils.common import exceptions
 from flask import Blueprint, Response, request
 
+from amapy_utils.common import exceptions
 from server_core.models.asset import Asset
 from server_core.models.asset_class import AssetClass
 from server_core.utils.json_encoder import to_json

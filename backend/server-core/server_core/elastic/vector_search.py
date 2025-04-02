@@ -3,10 +3,10 @@ import os
 import time
 from typing import List, Dict, Optional
 
-from asset_utils.common.singleton import Singleton
 from elasticsearch import Elasticsearch
 from sentence_transformers import SentenceTransformer
 
+from amapy_utils.common.singleton import Singleton
 from server_core.configs.configs import ConfigModes
 from server_core.utils.file_utils import FileUtils
 
