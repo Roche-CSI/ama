@@ -1,9 +1,9 @@
-from asset_pluggy.storage.storage_factory import StorageFactory
-from asset_pluggy.storage.transporter import Transporter
-from asset_utils.utils.in_memory_file import InMemoryFile
 from peewee import *
 from playhouse.postgres_ext import JSONField
 
+from amapy_utils.utils.in_memory_file import InMemoryFile
+from asset_pluggy.storage.storage_factory import StorageFactory
+from asset_pluggy.storage.transporter import Transporter
 from server_core.configs import Configs
 from .base.read_write import ReadWriteModel
 from .project import Project

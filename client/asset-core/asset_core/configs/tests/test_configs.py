@@ -2,7 +2,7 @@ import logging
 import os
 
 from asset_core.configs.configs import Configs
-from asset_utils.utils import utils
+from amapy_utils.utils import utils
 
 logger = logging.getLogger(__file__)
 

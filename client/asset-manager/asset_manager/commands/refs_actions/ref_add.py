@@ -1,7 +1,7 @@
 from asset_core.api.repo_api import AssetAPI, AddAPI
 from asset_core.configs import AppSettings
 from asset_manager.commands import CliAction, CliOption
-from asset_utils.common.user_commands import UserCommands
+from amapy_utils.common.user_commands import UserCommands
 
 
 class AddRef(CliAction):

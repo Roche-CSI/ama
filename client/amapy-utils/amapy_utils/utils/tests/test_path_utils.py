@@ -1,7 +1,7 @@
 import os
 from tempfile import TemporaryDirectory, NamedTemporaryFile
 
-from asset_utils.utils.path_utils import PathUtils
+from amapy_utils.utils.path_utils import PathUtils
 
 
 def test_abs_path():

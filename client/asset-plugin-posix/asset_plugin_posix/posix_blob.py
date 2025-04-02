@@ -1,7 +1,7 @@
 from asset_pluggy.storage import StorageData
 from asset_plugin_posix.posix_url import PosixURL
-from asset_utils.utils import aws_hash
-from asset_utils.utils.file_utils import FileUtils
+from amapy_utils.utils import aws_hash
+from amapy_utils.utils.file_utils import FileUtils
 
 
 class PosixBlob(StorageData):

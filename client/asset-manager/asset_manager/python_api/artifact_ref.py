@@ -3,7 +3,7 @@ from functools import cached_property
 from asset_core.configs import configs
 from asset_manager import ArtifactInputs, Artifact
 from asset_manager.app import ACTIVE_CONFIG_MODE
-from asset_utils.common import exceptions
+from amapy_utils.common import exceptions
 
 # make sure config mode is set properly
 configs.Configs.shared(mode=ACTIVE_CONFIG_MODE)

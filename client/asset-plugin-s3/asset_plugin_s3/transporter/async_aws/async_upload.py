@@ -7,7 +7,7 @@ import backoff
 from aiobotocore.config import AioConfig
 
 from asset_plugin_s3.transporter.aws_transport_resource import AwsUploadResource
-from asset_utils.utils.log_utils import get_logger
+from amapy_utils.utils.log_utils import get_logger
 
 logger = get_logger(__name__)
 RETRIES = 5  # number of retries in the event of failure

@@ -1,4 +1,4 @@
-from asset_utils.utils.file_tree import TreeNode
+from amapy_utils.utils.file_tree import TreeNode
 
 
 def test_parse():

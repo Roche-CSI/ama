@@ -5,7 +5,7 @@ import aiofiles
 import backoff
 
 from asset_plugin_s3.mounted_bucket.mounted_resource import AwsMountedResource
-from asset_utils.utils.log_utils import get_logger
+from amapy_utils.utils.log_utils import get_logger
 
 logger = get_logger(__name__)
 RETRIES = 5  # number of retries in the event of failure

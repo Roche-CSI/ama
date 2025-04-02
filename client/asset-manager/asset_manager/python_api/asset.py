@@ -7,7 +7,7 @@ from asset_manager.python_api.config import Config
 from asset_manager.python_api.klass import Klass
 from asset_manager.python_api.project import Project
 from asset_manager.python_api.store import Store
-from asset_utils.utils.log_utils import disable_user_log
+from amapy_utils.utils.log_utils import disable_user_log
 
 # make sure config mode is set properly
 configs.Configs.shared(mode=ACTIVE_CONFIG_MODE)

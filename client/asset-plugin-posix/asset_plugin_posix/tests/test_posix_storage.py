@@ -1,7 +1,7 @@
 import os
 
 from asset_plugin_posix.posix_storage import PosixStorage
-from asset_utils.utils.file_utils import FileUtils
+from amapy_utils.utils.file_utils import FileUtils
 
 
 def test_get_blob(test_data):

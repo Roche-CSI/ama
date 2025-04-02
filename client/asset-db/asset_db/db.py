@@ -2,8 +2,8 @@ import logging
 import os
 from typing import List, AnyStr, Union
 
-from asset_utils.utils import utils
-from asset_utils.utils.file_utils import FileUtils
+from amapy_utils.utils import utils
+from amapy_utils.utils.file_utils import FileUtils
 
 logger = logging.getLogger(__name__)
 

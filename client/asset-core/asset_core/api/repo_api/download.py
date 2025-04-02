@@ -3,9 +3,9 @@ import os
 from time import time
 
 from asset_core.asset.fetchers.asset_fetcher import AssetFetcher
-from asset_utils.common.exceptions import AssetException
-from asset_utils.common.user_commands import UserCommands
-from asset_utils.utils.progress import Progress
+from amapy_utils.common.exceptions import AssetException
+from amapy_utils.common.user_commands import UserCommands
+from amapy_utils.utils.progress import Progress
 from .repo import RepoAPI
 
 

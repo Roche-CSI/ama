@@ -8,7 +8,7 @@ from asset_plugin_s3.aws_blob import AwsBlob
 from asset_plugin_s3.mounted_bucket.async_mount_transporter import AsyncMountTransporter
 from asset_plugin_s3.mounted_bucket.mounted_url import MountedBlobStoreURL
 from asset_plugin_s3.s3_proxy import S3Proxy
-from asset_utils.common import exceptions
+from amapy_utils.common import exceptions
 
 
 class AwsMountHandler:

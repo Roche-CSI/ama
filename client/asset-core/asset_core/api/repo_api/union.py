@@ -8,11 +8,11 @@ import tempfile
 from asset_core.api.repo_api.diff import DiffSymbols, DiffApi
 from asset_core.api.repo_api.repo import RepoAPI
 from asset_core.objects.asset_object import AssetObject
-from asset_utils.common import exceptions
-from asset_utils.common.user_commands import UserCommands
-from asset_utils.utils import web_utils
-from asset_utils.utils.file_utils import FileUtils
-from asset_utils.utils.log_utils import LogColors, colored_string
+from amapy_utils.common import exceptions
+from amapy_utils.common.user_commands import UserCommands
+from amapy_utils.utils import web_utils
+from amapy_utils.utils.file_utils import FileUtils
+from amapy_utils.utils.log_utils import LogColors, colored_string
 
 
 class UnionApi(RepoAPI):

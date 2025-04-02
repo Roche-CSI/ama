@@ -13,10 +13,10 @@ from asset_core.objects.asset_object import AssetObject
 from asset_pluggy.storage import TransportResource, StorageData
 from asset_pluggy.storage.storage_credentials import StorageCredentials
 from asset_pluggy.storage.storage_factory import StorageFactory, AssetStorage
-from asset_utils.common import exceptions
-from asset_utils.utils import list_files, LogColors
-from asset_utils.utils.file_utils import FileUtils
-from asset_utils.utils.progress import Progress
+from amapy_utils.common import exceptions
+from amapy_utils.utils import list_files, LogColors
+from amapy_utils.utils.file_utils import FileUtils
+from amapy_utils.utils.progress import Progress
 
 ALIAS_YAML_FILE_NAME_FORMAT = "{id}__{seq_id}__{alias}.yaml"
 VERSION_YAML_FILE_NAME_FORMAT = "version_{ver_number}.yaml"

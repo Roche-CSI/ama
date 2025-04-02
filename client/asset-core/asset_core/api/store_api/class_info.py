@@ -3,10 +3,10 @@ import os.path
 from asset_core.asset.asset_class import AssetClass
 from asset_core.configs import AppSettings, Configs
 from asset_core.store import AssetStore
-from asset_utils.common import exceptions
-from asset_utils.common.user_commands import UserCommands
-from asset_utils.utils.log_utils import LogColors
-from asset_utils.utils.web_utils import open_in_browser
+from amapy_utils.common import exceptions
+from amapy_utils.common.user_commands import UserCommands
+from amapy_utils.utils.log_utils import LogColors
+from amapy_utils.utils.web_utils import open_in_browser
 from .store import StoreAPI
 
 

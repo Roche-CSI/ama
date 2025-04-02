@@ -4,8 +4,8 @@ from asset_core.asset.asset_class import AssetClass
 from asset_core.asset.asset_version import AssetVersion
 from asset_core.asset.fetchers.asset_fetcher import AssetFetcher
 from asset_core.server import AssetServer
-from asset_utils.common import exceptions
-from asset_utils.utils.log_utils import comma_formatted, kilo_byte
+from amapy_utils.common import exceptions
+from amapy_utils.utils.log_utils import comma_formatted, kilo_byte
 from .store import StoreAPI
 
 

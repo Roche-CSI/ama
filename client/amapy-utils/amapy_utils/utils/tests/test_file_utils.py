@@ -1,9 +1,9 @@
 import os
 import tempfile
 
-from asset_utils.utils import list_files, time_it
-from asset_utils.utils.file_utils import FileUtils
-from asset_utils.utils.stat_utils import FIELDS
+from amapy_utils.utils import list_files, time_it
+from amapy_utils.utils.file_utils import FileUtils
+from amapy_utils.utils.stat_utils import FIELDS
 
 
 def test_read_json_zip_dir(project_root):

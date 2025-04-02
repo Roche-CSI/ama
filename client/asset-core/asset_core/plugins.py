@@ -6,12 +6,12 @@ from asset_pluggy.storage.blob import StorageData
 from asset_pluggy.storage.transporter import Transporter, TransportResource
 from asset_pluggy.storage.storage_credentials import StorageCredentials
 
-# asset-utils--
-from asset_utils.utils.log_utils import LoggingMixin, LogColors
-from asset_utils.utils.progress import Progress
-from asset_utils.utils.file_utils import FileUtils
-from asset_utils.common import exceptions
-from asset_utils import common
-from asset_utils.utils import list_files
-from asset_utils.utils import utils, log_utils
-from asset_utils.utils import cloud_utils
+# amapy-utils--
+from amapy_utils.utils.log_utils import LoggingMixin, LogColors
+from amapy_utils.utils.progress import Progress
+from amapy_utils.utils.file_utils import FileUtils
+from amapy_utils.common import exceptions
+from amapy_utils import common
+from amapy_utils.utils import list_files
+from amapy_utils.utils import utils, log_utils
+from amapy_utils.utils import cloud_utils

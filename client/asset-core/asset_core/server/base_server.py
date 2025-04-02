@@ -4,7 +4,7 @@ from urllib import parse
 
 import requests
 
-from asset_utils.common import exceptions
+from amapy_utils.common import exceptions
 
 
 class BaseServer:

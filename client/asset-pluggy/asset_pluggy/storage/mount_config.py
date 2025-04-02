@@ -1,6 +1,6 @@
 import re
 
-from asset_utils.common import exceptions
+from amapy_utils.common import exceptions
 
 
 class MountConfig:

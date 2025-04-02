@@ -5,13 +5,13 @@ import os
 from functools import reduce
 from typing import Dict, Any, Optional
 
-from asset_pluggy.storage.storage_factory import StorageFactory
-from asset_pluggy.storage.transporter import Transporter
-from asset_utils.utils.in_memory_file import InMemoryFile
 from peewee import *
 from peewee import operator
 from playhouse.postgres_ext import JSONField
 
+from amapy_utils.utils.in_memory_file import InMemoryFile
+from asset_pluggy.storage.storage_factory import StorageFactory
+from asset_pluggy.storage.transporter import Transporter
 from server_core.asset_client.exceptions import AssetException
 from server_core.utils.query_paginator import Paginator
 from .asset_class import AssetClass

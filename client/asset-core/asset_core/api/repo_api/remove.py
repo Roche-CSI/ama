@@ -1,9 +1,9 @@
 import os
 
-from asset_utils.common import exceptions
-from asset_utils.common.user_commands import UserCommands
-from asset_utils.utils import cast2list, list_files, relative_path
-from asset_utils.utils.log_utils import colored_string, LogColors
+from amapy_utils.common import exceptions
+from amapy_utils.common.user_commands import UserCommands
+from amapy_utils.utils import cast2list, list_files, relative_path
+from amapy_utils.utils.log_utils import colored_string, LogColors
 from .info import InfoAPI
 from .repo import RepoAPI
 

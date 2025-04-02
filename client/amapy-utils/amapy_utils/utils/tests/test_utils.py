@@ -3,7 +3,7 @@ from datetime import datetime
 
 from pytz import timezone
 
-from asset_utils.utils.utils import contains_special_chars, is_integer, convert_to_pst, date_to_string, time_now, \
+from amapy_utils.utils.utils import contains_special_chars, is_integer, convert_to_pst, date_to_string, time_now, \
     string_to_timestamp, relative_path, remove_prefix, remove_suffix, list_files, find_pattern
 
 

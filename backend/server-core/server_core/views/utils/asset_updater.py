@@ -1,9 +1,9 @@
 import copy
 
-from asset_utils.common import exceptions
-from asset_utils.utils import is_integer, contains_special_chars
 from flask import current_app
 
+from amapy_utils.common import exceptions
+from amapy_utils.utils import is_integer, contains_special_chars
 from server_core.elastic.asset_entry import AssetEntry
 from server_core.elastic.vector_search import ElasticVectorSearch
 from server_core.models.asset import Asset

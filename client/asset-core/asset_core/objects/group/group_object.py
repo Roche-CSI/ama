@@ -8,8 +8,8 @@ from asset_contents.content import Content
 from asset_core.objects.group.member_object import GroupMemberObject
 from asset_core.objects.object import Object
 from asset_core.objects.object_source import ObjectSource
-from asset_utils.common import exceptions
-from asset_utils.utils.file_utils import FileUtils
+from amapy_utils.common import exceptions
+from amapy_utils.utils.file_utils import FileUtils
 
 RAW_FILE_PATH = ".asset/.raw/{filename}.zip"  # this is where we store the raw form of the group-object
 

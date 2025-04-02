@@ -5,7 +5,7 @@ from google.auth.transport.requests import Request
 from google.oauth2.service_account import Credentials
 
 from asset_plugin_gcr.gcr_url import GcrURL
-from asset_utils.common import exceptions
+from amapy_utils.common import exceptions
 
 URL_FORMAT = "https://{host}/v2/{project}/{image}/tags/list"
 AUTH_FORMAT = "Bearer {token}"

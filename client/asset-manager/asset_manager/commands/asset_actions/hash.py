@@ -1,4 +1,4 @@
-from asset_utils.common.user_commands import UserCommands
+from amapy_utils.common.user_commands import UserCommands
 from asset_core.api.store_api import ContentHashAPI
 from asset_manager.commands import CliAction, CliOption
 

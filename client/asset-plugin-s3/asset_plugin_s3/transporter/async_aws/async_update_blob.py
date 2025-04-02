@@ -3,7 +3,7 @@ import asyncio
 import aioboto3
 
 from asset_plugin_s3.aws_blob import AwsBlob
-from asset_utils.common import exceptions
+from amapy_utils.common import exceptions
 
 
 def update_multipart_sizes(credentials: dict, blobs: [AwsBlob]):

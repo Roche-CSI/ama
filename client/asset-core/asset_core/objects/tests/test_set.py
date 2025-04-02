@@ -1,4 +1,4 @@
-from asset_utils.common import BetterSet
+from amapy_utils.common import BetterSet
 import pytest
 
 

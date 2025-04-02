@@ -16,12 +16,12 @@ from asset_core.asset.fetchers.asset_fetcher import AssetFetcher
 from asset_core.objects.asset_object import AssetObject, ObjectViews
 from asset_core.store.repo import Repo
 from asset_pluggy.storage.storage_factory import StorageFactory
-from asset_utils.common import exceptions
-from asset_utils.common.user_commands import UserCommands, ASSET_INFO
-from asset_utils.utils import ch_dir
-from asset_utils.utils.file_utils import FileUtils
-from asset_utils.utils.log_utils import colored_string, LogColors
-from asset_utils.utils.progress import Progress
+from amapy_utils.common import exceptions
+from amapy_utils.common.user_commands import UserCommands, ASSET_INFO
+from amapy_utils.utils import ch_dir
+from amapy_utils.utils.file_utils import FileUtils
+from amapy_utils.utils.log_utils import colored_string, LogColors
+from amapy_utils.utils.progress import Progress
 from .find import FindAPI
 from .store import StoreAPI
 

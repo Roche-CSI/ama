@@ -2,8 +2,8 @@ import json
 from dataclasses import dataclass
 from typing import Any, Type
 
-from asset_utils.common import exceptions
-from asset_utils.utils import is_integer
+from amapy_utils.common import exceptions
+from amapy_utils.utils import is_integer
 
 
 @dataclass
