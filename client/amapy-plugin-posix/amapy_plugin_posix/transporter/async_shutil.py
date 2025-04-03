@@ -1,7 +1,7 @@
 import os
 import shutil
 
-from asset_plugin_posix.transporter.posix_transport_resource import PosixTransportResource
+from amapy_plugin_posix.transporter.posix_transport_resource import PosixTransportResource
 
 
 def copy_resources(resources: [PosixTransportResource]):

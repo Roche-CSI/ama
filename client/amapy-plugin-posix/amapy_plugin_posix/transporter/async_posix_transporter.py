@@ -1,5 +1,5 @@
 from amapy_pluggy.storage import Transporter, TransportResource
-from asset_plugin_posix.transporter import async_shutil
+from amapy_plugin_posix.transporter import async_shutil
 
 
 class AsyncPosixTransporter(Transporter):

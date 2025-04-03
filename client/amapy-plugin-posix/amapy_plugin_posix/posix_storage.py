@@ -7,10 +7,10 @@ from amapy_pluggy.plugin.object_content import ObjectContent
 from amapy_pluggy.storage import StorageData
 from amapy_pluggy.storage.asset_storage import AssetStorage
 from amapy_pluggy.storage.transporter import Transporter
-from asset_plugin_posix.posix_blob import PosixBlob
-from asset_plugin_posix.posix_mixin import PosixStorageMixin
-from asset_plugin_posix.posix_url import PosixURL, StorageURL
-from asset_plugin_posix.transporter.async_posix_transporter import AsyncPosixTransporter
+from amapy_plugin_posix.posix_blob import PosixBlob
+from amapy_plugin_posix.posix_mixin import PosixStorageMixin
+from amapy_plugin_posix.posix_url import PosixURL, StorageURL
+from amapy_plugin_posix.transporter.async_posix_transporter import AsyncPosixTransporter
 from amapy_utils.common import exceptions
 
 

@@ -1,6 +1,6 @@
 import os
 
-from asset_plugin_posix.posix_storage import PosixStorage
+from amapy_plugin_posix.posix_storage import PosixStorage
 from amapy_utils.utils.file_utils import FileUtils
 
 

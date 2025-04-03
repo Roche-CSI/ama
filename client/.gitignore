@@ -23,8 +23,8 @@ asset-core/test_data/cloning/
 asset-core/test_data/dlt_data/
 asset-core/test_data/ml_models/
 asset-core/test_data/nlp_data/
-asset-plugin-posix/test_data/download_test/
-asset-plugin-posix/test_data/upload_test/
+amapy-plugin-posix/test_data/download_test/
+amapy-plugin-posix/test_data/upload_test/
 amapy-plugin-gcs/test_data/download_test/
 amapy-plugin-s3/test_data/download_test/
 amapy-plugin-s3/test_data/copy_tests/
