@@ -1,5 +1,5 @@
 from amapy_pluggy.storage import StorageData
-from asset_plugin_posix.posix_url import PosixURL
+from amapy_plugin_posix.posix_url import PosixURL
 from amapy_utils.utils import aws_hash
 from amapy_utils.utils.file_utils import FileUtils
 

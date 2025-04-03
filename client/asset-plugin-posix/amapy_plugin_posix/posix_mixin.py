@@ -1,6 +1,6 @@
 import os
 
-from asset_plugin_posix.posix_url import PosixURL
+from amapy_plugin_posix.posix_url import PosixURL
 from amapy_utils.common import exceptions
 from amapy_utils.utils import utils
 from amapy_utils.utils.file_utils import FileUtils
