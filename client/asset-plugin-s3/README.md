@@ -1,1 +1,1 @@
-asset-plugin-s3
+amapy-plugin-s3
