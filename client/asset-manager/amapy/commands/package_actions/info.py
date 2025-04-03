@@ -9,7 +9,7 @@ class PackageInfo(CliAction):
     requires_store = False
 
     def run(self, args):
-        self.user_log.message("asset-manager: 1.01.04")
+        self.user_log.message("asset-manager")
 
     def get_options(self):
         return []
