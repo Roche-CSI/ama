@@ -2,8 +2,8 @@ import os
 
 import pytest
 
-from asset_db import AssetsDB, FileDB
-from asset_db.db import Database
+from amapy_db import AssetsDB, FileDB
+from amapy_db.db import Database
 
 
 def test_path_singleton():

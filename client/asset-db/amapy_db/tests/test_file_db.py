@@ -2,7 +2,7 @@ import os
 
 import pytest
 
-from asset_db.file_db import FileDB
+from amapy_db.file_db import FileDB
 
 
 @pytest.fixture(scope="module")
