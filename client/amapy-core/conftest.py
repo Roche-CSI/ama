@@ -12,7 +12,6 @@ from amapy_core.configs.app_settings import AppSettings
 from amapy_core.objects.object_factory import ObjectFactory
 from amapy_core.plugins import list_files
 from amapy_core.store import Repo, AssetStore
-from asset_manager.app import register_plugins
 from amapy_pluggy.storage import StorageData
 
 logger = logging.getLogger(__name__)
@@ -31,7 +30,6 @@ def pytest_sessionstart(session):
     logger.info("Pre-Session Setup..")
     Configs.de_init()  # cleanup existing settings if any
     Configs.shared(mode=Configs.modes.UNIT_TEST)  # all tests to use test_settings only
-    register_plugins()
 
 
 def pytest_sessionfinish(session, exitstatus):
