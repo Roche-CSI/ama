@@ -1,1 +1,1 @@
-asset-plugin-gcr
+amapy-plugin-gcr
