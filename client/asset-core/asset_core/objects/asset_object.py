@@ -10,7 +10,7 @@ from asset_contents.content_factory import ContentFactory
 from asset_core.objects.object_source import ObjectSource
 from asset_core.objects.object_stat import ObjectStat
 from asset_core.objects.state import ObjectState, ObjectEditStatus
-from amapy_db.file_db import FileDB
+from asset_db.file_db import FileDB
 from amapy_utils.common import exceptions
 from amapy_utils.utils import time_now, date_to_string
 from amapy_utils.utils.file_utils import FileUtils

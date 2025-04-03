@@ -3,7 +3,7 @@ from __future__ import annotations
 import abc
 import os
 
-from amapy_db import FileDB
+from asset_db import FileDB
 from amapy_pluggy.storage.blob import StorageData
 from amapy_utils.common import exceptions
 from amapy_utils.utils.file_utils import FileUtils

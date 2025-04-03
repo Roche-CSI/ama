@@ -30,7 +30,7 @@ import uuid
 
 from asset_core.configs import Configs
 from asset_core.store.asset_store import AssetStore
-from amapy_db import RepoDB
+from asset_db import RepoDB
 from amapy_utils.common import exceptions
 from amapy_utils.utils import list_files
 from amapy_utils.utils.file_utils import FileUtils
