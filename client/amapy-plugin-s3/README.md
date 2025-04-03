@@ -1,0 +1,1 @@
+amapy-plugin-s3
