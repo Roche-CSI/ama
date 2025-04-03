@@ -1,1 +1,1 @@
-asset-plugin-posix
+amapy-plugin-posix
