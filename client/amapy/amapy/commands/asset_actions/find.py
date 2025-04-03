@@ -1,5 +1,5 @@
-from amapy_core.api.store_api import FindAPI
 from amapy.commands import CliAction, CliOption
+from amapy_core.api.store_api import FindAPI
 from amapy_utils.utils.log_utils import LogColors
 
 

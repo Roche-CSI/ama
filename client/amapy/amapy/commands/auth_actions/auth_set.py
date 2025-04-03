@@ -1,7 +1,8 @@
 import os
+
+from amapy.commands import CliAction, CliOption
 from amapy_core.configs.app_settings import AppSettings
 from amapy_utils.utils.log_utils import colored_string, LogColors
-from amapy.commands import CliAction, CliOption
 
 
 class AuthSet(CliAction):

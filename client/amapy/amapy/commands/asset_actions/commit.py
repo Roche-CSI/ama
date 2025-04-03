@@ -1,6 +1,7 @@
 import cached_property
-from amapy_core.api.repo_api import AssetAPI, AddAPI
+
 from amapy.commands import CliAction, CliOption
+from amapy_core.api.repo_api import AssetAPI, AddAPI
 
 
 class CommitMessage(CliAction):

@@ -1,5 +1,5 @@
-from amapy_core.api.repo_api import AssetAPI
 from amapy.commands import CliAction, CliOption
+from amapy_core.api.repo_api import AssetAPI
 from amapy_utils.common import exceptions
 from amapy_utils.utils import LogColors
 

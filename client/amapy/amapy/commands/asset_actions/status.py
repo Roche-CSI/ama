@@ -1,5 +1,5 @@
-from amapy_core.api.repo_api import AssetAPI
 from amapy.commands import CliAction
+from amapy_core.api.repo_api import AssetAPI
 
 
 class AssetStatus(CliAction):

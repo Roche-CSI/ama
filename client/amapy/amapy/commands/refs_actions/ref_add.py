@@ -1,6 +1,6 @@
+from amapy.commands import CliAction, CliOption
 from amapy_core.api.repo_api import AssetAPI, AddAPI
 from amapy_core.configs import AppSettings
-from amapy.commands import CliAction, CliOption
 from amapy_utils.common.user_commands import UserCommands
 
 

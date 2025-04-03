@@ -1,8 +1,8 @@
 from functools import cached_property
 
-from amapy_core.configs import configs
 from amapy import ArtifactInputs, Artifact
 from amapy.app import ACTIVE_CONFIG_MODE
+from amapy_core.configs import configs
 from amapy_utils.common import exceptions
 
 # make sure config mode is set properly

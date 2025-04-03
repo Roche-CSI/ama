@@ -1,7 +1,7 @@
 import os
 
-from amapy_core.api.repo_api import AssetAPI
 from amapy.commands import CliAction, CliOption
+from amapy_core.api.repo_api import AssetAPI
 
 
 class AddToAsset(CliAction):

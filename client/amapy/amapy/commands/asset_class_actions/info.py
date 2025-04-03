@@ -1,5 +1,5 @@
-from amapy_core.api.store_api import ClassInfoAPI
 from amapy.commands import CliAction, CliOption
+from amapy_core.api.store_api import ClassInfoAPI
 
 
 class AssetClassInfo(CliAction):

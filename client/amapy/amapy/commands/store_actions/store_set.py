@@ -1,7 +1,7 @@
-from amapy_core.api.settings_api import SettingsAPI
-from amapy_utils.utils.log_utils import LogColors
-from amapy_utils.common.user_commands import UserCommands
 from amapy.commands import CliAction, CliOption
+from amapy_core.api.settings_api import SettingsAPI
+from amapy_utils.common.user_commands import UserCommands
+from amapy_utils.utils.log_utils import LogColors
 
 
 class StoreSet(CliAction):

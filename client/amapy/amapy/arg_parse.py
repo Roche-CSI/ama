@@ -1,6 +1,5 @@
 import subprocess
 
-from amapy_core.configs import configs
 from amapy.commands.alias_actions import get_action_group as alias_group
 from amapy.commands.asset_actions import get_actions as asset_actions
 from amapy.commands.asset_class_actions import get_action_group as class_group
@@ -11,6 +10,7 @@ from amapy.commands.parser import CommandParser
 from amapy.commands.project_actions import get_action_group as projects_group
 from amapy.commands.refs_actions import get_action_group as refs_group
 from amapy.commands.store_actions import get_action_group as home_group
+from amapy_core.configs import configs
 from amapy_pluggy.storage.storage_factory import StorageFactory
 
 

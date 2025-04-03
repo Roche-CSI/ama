@@ -2,10 +2,10 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from amapy.app import ACTIVE_CONFIG_MODE
 from amapy_core.api.repo_api import AddAPI, InfoAPI
 from amapy_core.configs import AppSettings
 from amapy_core.configs import configs
-from amapy.app import ACTIVE_CONFIG_MODE
 
 if TYPE_CHECKING:
     from amapy.python_api.artifact import Artifact

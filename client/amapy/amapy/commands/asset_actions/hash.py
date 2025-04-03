@@ -1,6 +1,6 @@
-from amapy_utils.common.user_commands import UserCommands
-from amapy_core.api.store_api import ContentHashAPI
 from amapy.commands import CliAction, CliOption
+from amapy_core.api.store_api import ContentHashAPI
+from amapy_utils.common.user_commands import UserCommands
 
 
 class ComputeHashAction(CliAction):

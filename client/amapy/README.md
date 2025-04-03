@@ -1,1 +1,1 @@
-asset-manager
+amapy

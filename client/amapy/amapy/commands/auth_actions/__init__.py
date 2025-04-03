@@ -1,11 +1,11 @@
-from .auth_set import AuthSet
-from .auth_info import AuthInfo
-from .auth_remove import AuthRemove
-from .auth_login import AuthLogin
-from .auth_signup import AuthSignup
-from .auth_logout import AuthLogout
-from .auth_update import AuthUpdate
 from amapy.commands.cmd_group import CommandGroup
+from .auth_info import AuthInfo
+from .auth_login import AuthLogin
+from .auth_logout import AuthLogout
+from .auth_remove import AuthRemove
+from .auth_set import AuthSet
+from .auth_signup import AuthSignup
+from .auth_update import AuthUpdate
 
 
 def get_actions():

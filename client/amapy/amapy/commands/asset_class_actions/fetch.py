@@ -1,5 +1,5 @@
-from amapy_core.api.store_api.fetch import FetchAPI
 from amapy.commands import CliAction
+from amapy_core.api.store_api.fetch import FetchAPI
 
 
 class FetchAssetClass(CliAction):

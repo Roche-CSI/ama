@@ -1,5 +1,5 @@
-from amapy_core.api.store_api import ClassInfoAPI
 from amapy.commands import CliAction
+from amapy_core.api.store_api import ClassInfoAPI
 
 
 class InitAssetClass(CliAction):

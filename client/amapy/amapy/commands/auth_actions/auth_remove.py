@@ -1,5 +1,5 @@
-from amapy_core.configs.app_settings import AppSettings
 from amapy.commands import CliAction
+from amapy_core.configs.app_settings import AppSettings
 
 
 class AuthRemove(CliAction):

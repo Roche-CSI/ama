@@ -1,5 +1,5 @@
-from amapy_core.api.settings_api import SettingsAPI
 from amapy.commands.cli_action import CliAction
+from amapy_core.api.settings_api import SettingsAPI
 
 
 class StoreInfo(CliAction):

@@ -1,5 +1,5 @@
-from amapy_core.api.settings_api import SettingsAPI
 from amapy.commands import CliAction
+from amapy_core.api.settings_api import SettingsAPI
 
 
 class AuthLogout(CliAction):

@@ -1,4 +1,3 @@
-from amapy_core.configs import configs
 from amapy.app import ACTIVE_CONFIG_MODE
 from amapy.plugins import register_plugins
 from amapy.python_api.artifact import Artifact
@@ -7,6 +6,7 @@ from amapy.python_api.config import Config
 from amapy.python_api.klass import Klass
 from amapy.python_api.project import Project
 from amapy.python_api.store import Store
+from amapy_core.configs import configs
 from amapy_utils.utils.log_utils import disable_user_log
 
 # make sure config mode is set properly
