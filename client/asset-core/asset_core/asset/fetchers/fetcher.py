@@ -1,7 +1,7 @@
 import os
 from time import time
 
-from asset_contents import Content
+from amapy_contents import Content
 from asset_core.store.asset_store import AssetStore
 from amapy_pluggy.storage.blob import StorageData
 from amapy_pluggy.storage.storage_factory import StorageFactory, AssetStorage

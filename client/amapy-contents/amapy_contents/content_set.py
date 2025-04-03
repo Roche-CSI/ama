@@ -65,7 +65,7 @@ class ContentSet(common.BetterSet):
         self.asset.content_stats_db.update(**{"stats": self.get_file_stats()})
 
     def de_serialize(self, **kwargs):
-        from asset_contents.content_factory import ContentFactory
+        from amapy_contents.content_factory import ContentFactory
         content = ContentFactory().de_serialize(**kwargs)
         if content in self:
             content = self.get(content)  # get the stored content

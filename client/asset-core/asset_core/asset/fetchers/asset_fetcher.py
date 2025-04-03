@@ -4,7 +4,7 @@ from typing import Iterable, List
 
 from packaging.version import Version
 
-from asset_contents import Content
+from amapy_contents import Content
 from asset_core.asset import Asset
 from asset_core.asset.asset_class import AssetClass
 from asset_core.asset.asset_snapshot import AssetSnapshot

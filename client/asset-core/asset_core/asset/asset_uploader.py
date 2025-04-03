@@ -1,6 +1,6 @@
 import os
 
-from asset_contents.content_uploader import ContentUploader
+from amapy_contents.content_uploader import ContentUploader
 from asset_core.asset import AssetClass, Asset
 from asset_core.asset.asset_diff import AssetDiff
 from asset_core.asset.asset_snapshot import AssetSnapshot

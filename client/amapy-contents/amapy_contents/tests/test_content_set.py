@@ -2,8 +2,8 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
-from asset_contents.content import Content
-from asset_contents.content_set import ContentSet
+from amapy_contents.content import Content
+from amapy_contents.content_set import ContentSet
 
 
 @pytest.fixture
@@ -64,7 +64,7 @@ def test_save(content_set):
 
 
 def test_de_serialize(content_set, mock_content):
-    with patch('asset_contents.content_factory.ContentFactory.de_serialize', return_value=mock_content):
+    with patch('amapy_contents.content_factory.ContentFactory.de_serialize', return_value=mock_content):
         result = content_set.de_serialize()
         assert result == mock_content
 

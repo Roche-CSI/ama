@@ -1,7 +1,7 @@
 import os
 from typing import Type, Union
 
-from asset_contents import BlobStoreContent
+from amapy_contents import BlobStoreContent
 from amapy_pluggy.plugin import hook_impl
 from amapy_pluggy.plugin.object_content import ObjectContent
 from amapy_pluggy.storage import BlobStoreURL, StorageURL, StorageData

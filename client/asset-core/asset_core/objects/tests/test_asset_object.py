@@ -1,6 +1,6 @@
 import pytest
 
-from asset_contents import Content
+from amapy_contents import Content
 from asset_core.objects.asset_object import AssetObject
 from asset_core.objects.object_factory import ObjectFactory
 from asset_core.objects.object_source import ObjectSource

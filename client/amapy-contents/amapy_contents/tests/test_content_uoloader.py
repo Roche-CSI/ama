@@ -2,8 +2,8 @@ from unittest.mock import MagicMock
 
 import pytest
 
-from asset_contents import ContentSet, Content
-from asset_contents.content_uploader import ContentUploader
+from amapy_contents import ContentSet, Content
+from amapy_contents.content_uploader import ContentUploader
 from amapy_pluggy.storage import StorageData
 from amapy_pluggy.storage.storage_factory import AssetStorage
 

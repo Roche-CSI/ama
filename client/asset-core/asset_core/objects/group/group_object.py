@@ -4,7 +4,7 @@ import json
 import os
 from typing import Callable, List
 
-from asset_contents.content import Content
+from amapy_contents.content import Content
 from asset_core.objects.group.member_object import GroupMemberObject
 from asset_core.objects.object import Object
 from asset_core.objects.object_source import ObjectSource
