@@ -1,4 +1,4 @@
-/** client side asset-db for offline and responsive performance */
+/** client side amapy-db for offline and responsive performance */
 export const DBConfig = {
     name: 'AssetDB',
     version: 1, /* increment for any schema change */

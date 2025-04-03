@@ -5,7 +5,7 @@ import os
 from cached_property import cached_property
 
 from asset_core.configs import Configs, AppSettings
-from asset_db import AssetsDB, StoreDB
+from amapy_db import AssetsDB, StoreDB
 from amapy_utils.common import exceptions
 from amapy_utils.common.user_commands import UserCommands
 from amapy_utils.utils import list_files

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "amapy-db"
-version = "1.0.0"
+version = "1.0.1"
 description = "The Database plugin for asset-manager project. It provides functionalities to manage and store metadata related to digital assets, such as storing MD5 hashes of asset files and managing these records efficiently."
 readme = "README.md"
 license = { text = "Copyright (c) 2024 Roche Diagnostics Computation Science & Informatics" }
