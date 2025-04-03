@@ -8,7 +8,7 @@ def test_md5_checksum(project_root):
         ("test_data/file_types/flat/csvs/datagroup.csv", "68baf39a4d4df5dd75cca590f50859b7-1")
     ]
     for path, etag in paths:
-        file_path = os.path.join(os.path.dirname(project_root), "asset-plugin-s3", path)
+        file_path = os.path.join(os.path.dirname(project_root), "amapy-plugin-s3", path)
         assert etag == aws_hash.calculate_etag(filepath=file_path)
 
 

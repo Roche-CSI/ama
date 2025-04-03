@@ -26,8 +26,8 @@ asset-core/test_data/nlp_data/
 asset-plugin-posix/test_data/download_test/
 asset-plugin-posix/test_data/upload_test/
 amapy-plugin-gcs/test_data/download_test/
-asset-plugin-s3/test_data/download_test/
-asset-plugin-s3/test_data/copy_tests/
+amapy-plugin-s3/test_data/download_test/
+amapy-plugin-s3/test_data/copy_tests/
 
 asset-manager/cloning_test
 
