@@ -1,8 +1,9 @@
-from amapy_utils.common import BetterSet
 from typing import Callable
+
+from amapy_core.asset.asset_version import AssetVersion
 from amapy_core.plugins import utils, exceptions
 from amapy_core.server import AssetServer
-from amapy_core.asset.asset_version import AssetVersion
+from amapy_utils.common import BetterSet
 from .asset_ref import AssetRef
 
 
