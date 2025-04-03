@@ -1,4 +1,4 @@
-from asset_contents.content_factory import ContentFactory
+from amapy_contents.content_factory import ContentFactory
 from amapy_utils.common import exceptions
 from amapy_utils.utils.log_utils import LogColors
 from .store import StoreAPI

@@ -5,8 +5,8 @@ import enum
 import os
 from typing import Callable
 
-from asset_contents.content import Content, HASH_SEP
-from asset_contents.content_factory import ContentFactory
+from amapy_contents.content import Content, HASH_SEP
+from amapy_contents.content_factory import ContentFactory
 from asset_core.objects.object_source import ObjectSource
 from asset_core.objects.object_stat import ObjectStat
 from asset_core.objects.state import ObjectState, ObjectEditStatus

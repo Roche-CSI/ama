@@ -1,6 +1,6 @@
 from typing import Type, Callable
 
-from asset_contents.content_factory import StorageFactory
+from amapy_contents.content_factory import StorageFactory
 from asset_core.objects.asset_object import AssetObject
 from asset_core.objects.group.group_object import GroupObject
 from asset_core.objects.object import Object

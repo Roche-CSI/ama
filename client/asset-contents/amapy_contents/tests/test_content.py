@@ -1,6 +1,6 @@
 from unittest.mock import patch
 
-from asset_contents import Content
+from amapy_contents import Content
 
 
 def test_proxy_hash():

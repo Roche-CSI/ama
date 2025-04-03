@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from asset_contents.file_stat import FileStat
+from amapy_contents.file_stat import FileStat
 
 
 class ObjectStat(FileStat):

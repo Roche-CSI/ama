@@ -1,6 +1,6 @@
 from typing import Callable
 
-from asset_contents import Content
+from amapy_contents import Content
 from amapy_pluggy.storage import StorageData
 
 

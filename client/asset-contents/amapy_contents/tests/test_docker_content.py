@@ -2,7 +2,7 @@ from unittest.mock import MagicMock
 
 import pytest
 
-from asset_contents import DockerContent
+from amapy_contents import DockerContent
 from amapy_pluggy.storage import StorageData
 
 
