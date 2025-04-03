@@ -1,7 +1,7 @@
 import os
 
 from amapy_pluggy import register_plugins as pluggy
-from asset_plugin_gcr import GcrStoragePlugin
+from amapy_plugin_gcr import GcrStoragePlugin
 from asset_plugin_gcs import GcsStoragePlugin
 from asset_plugin_posix import PosixStoragePlugin
 from asset_plugin_s3 import AwsStoragePlugin
