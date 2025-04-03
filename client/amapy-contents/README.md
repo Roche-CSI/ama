@@ -1,1 +1,1 @@
-asset-contents
+amapy-contents
