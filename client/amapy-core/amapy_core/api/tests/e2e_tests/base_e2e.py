@@ -8,7 +8,7 @@ from amapy_utils.utils.log_utils import LoggingMixin
 # don't add test prefix here, we don't want pytest to run this
 
 def run(cmds, working_dir=None, code_dir=None):
-    script = "asset-manager/asset_manager/app.py"
+    script = "asset-manager/amapy/app.py"
     base_cmd = [
         "python3",
         os.path.join(code_dir, script)

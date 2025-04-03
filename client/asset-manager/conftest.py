@@ -5,13 +5,13 @@ import tempfile
 
 import pytest
 
+from amapy.plugins import register_plugins
 from amapy_core.asset import Asset
 from amapy_core.configs import Configs
 from amapy_core.configs.app_settings import AppSettings
 from amapy_core.objects.object_factory import ObjectFactory
 from amapy_core.plugins import list_files
 from amapy_core.store import Repo, AssetStore
-from asset_manager.plugins import register_plugins
 
 logger = logging.getLogger(__name__)
 
@@ -137,6 +137,7 @@ def asset(repo, test_data):
 @pytest.fixture(scope="session")
 def empty_asset(repo):
     asset = Asset.create_new(repo=repo, class_id="123e4567-e89b-12d3-a456-426614174000", class_name="myclass")
+    return asset
 
 
 def __setup_repo(store, dir):
@@ -151,6 +152,3 @@ def __setup_repo(store, dir):
 
 def test_globals_json(asset_home):
     raise NotImplementedError("add a test globals.json dictionary here")
-    return {
-        """return test globals.json"""
-    }
