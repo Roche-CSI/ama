@@ -32,9 +32,6 @@ dependencies = [
     "tqdm==4.62.*"
 ]
 
-[project.scripts]
-utils = "asset_utils.utils.pager:run"
-
 [tool.setuptools.packages.find]
 include = ["*"]
 namespaces = false
