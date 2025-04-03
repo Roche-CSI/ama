@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "amapy-core"
-version = "1.0.0"
+version = "1.0.1"
 description = "The Core package for asset-manager. It provides the core functionalities like creating, midifying, downloading and uploading of the digital assets."
 readme = "README.md"
 authors = [
@@ -26,8 +26,6 @@ dependencies = [
     "pathspec==0.12.*"
 ]
 
-# flat layout: https://setuptools.pypa.io/en/latest/userguide/package_discovery.html#flat-layout
-# disable implicit namespaces.
 [tool.setuptools.packages.find]
 include = ["*"]
 namespaces = false

@@ -1,1 +1,1 @@
-# gdm_asset_manager
+amapy-core
