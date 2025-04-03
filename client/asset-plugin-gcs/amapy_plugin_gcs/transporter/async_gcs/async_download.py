@@ -7,8 +7,8 @@ import os
 import aiohttp
 import backoff
 
-from asset_plugin_gcs.transporter.async_gcs.async_storage import AsyncStorage
-from asset_plugin_gcs.transporter.gcs_transport_resource import GcsDownloadResource
+from amapy_plugin_gcs.transporter.async_gcs.async_storage import AsyncStorage
+from amapy_plugin_gcs.transporter.gcs_transport_resource import GcsDownloadResource
 from amapy_utils.common import exceptions
 from amapy_utils.utils import UserLog
 from amapy_utils.utils.log_utils import get_logger

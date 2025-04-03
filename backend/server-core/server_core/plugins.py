@@ -1,6 +1,6 @@
 from amapy_pluggy.plugin.plugin_manager import PluginManager
 
-from asset_plugin_gcs import GcsStoragePlugin
+from amapy_plugin_gcs import GcsStoragePlugin
 from asset_plugin_s3 import AwsStoragePlugin
 
 BUNDLED_PLUGINS = [
