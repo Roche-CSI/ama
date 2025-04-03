@@ -2,9 +2,9 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from asset_core.api.repo_api import AddAPI, InfoAPI
-from asset_core.configs import AppSettings
-from asset_core.configs import configs
+from amapy_core.api.repo_api import AddAPI, InfoAPI
+from amapy_core.configs import AppSettings
+from amapy_core.configs import configs
 from asset_manager.app import ACTIVE_CONFIG_MODE
 
 if TYPE_CHECKING:

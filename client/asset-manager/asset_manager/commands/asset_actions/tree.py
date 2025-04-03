@@ -1,4 +1,4 @@
-from asset_core.api.repo_api import AssetAPI
+from amapy_core.api.repo_api import AssetAPI
 from asset_manager.commands import CliAction
 from amapy_utils.common import exceptions
 from amapy_utils.utils.log_utils import LogColors

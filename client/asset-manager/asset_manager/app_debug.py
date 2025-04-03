@@ -3,7 +3,7 @@ app wrapper for triggering from IDE run configuration
 """
 import os
 
-from asset_core.configs.config_modes import ConfigModes
+from amapy_core.configs.config_modes import ConfigModes
 from asset_manager.app import run, get_parser
 from amapy_utils import common
 

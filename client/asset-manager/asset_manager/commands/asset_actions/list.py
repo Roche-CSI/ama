@@ -1,4 +1,4 @@
-from asset_core.api.store_api import ListAPI
+from amapy_core.api.store_api import ListAPI
 from asset_manager.commands import CliAction, CliOption
 from amapy_utils.common.user_commands import UserCommands
 from amapy_utils.utils.log_utils import colored_string, LogColors

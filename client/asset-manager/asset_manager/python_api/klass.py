@@ -1,7 +1,7 @@
-from asset_core.api.store_api.class_info import ClassInfoAPI
-from asset_core.api.store_api.fetch import FetchAPI
-from asset_core.api.store_api.list import ListAPI
-from asset_core.store import AssetStore
+from amapy_core.api.store_api.class_info import ClassInfoAPI
+from amapy_core.api.store_api.fetch import FetchAPI
+from amapy_core.api.store_api.list import ListAPI
+from amapy_core.store import AssetStore
 
 
 class Klass(object):

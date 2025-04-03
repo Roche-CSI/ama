@@ -1,6 +1,6 @@
 import sys
 
-from asset_core.configs.config_modes import ConfigModes
+from amapy_core.configs.config_modes import ConfigModes
 from asset_manager.arg_parse import get_parser
 from asset_manager.plugins import register_plugins
 

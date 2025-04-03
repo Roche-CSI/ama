@@ -6,12 +6,12 @@ from unittest.mock import MagicMock
 
 import pytest
 
-from asset_core.asset import Asset
-from asset_core.configs import Configs
-from asset_core.configs.app_settings import AppSettings
-from asset_core.objects.object_factory import ObjectFactory
-from asset_core.plugins import list_files
-from asset_core.store import Repo, AssetStore
+from amapy_core.asset import Asset
+from amapy_core.configs import Configs
+from amapy_core.configs.app_settings import AppSettings
+from amapy_core.objects.object_factory import ObjectFactory
+from amapy_core.plugins import list_files
+from amapy_core.store import Repo, AssetStore
 from asset_manager.app import register_plugins
 from amapy_pluggy.storage import StorageData
 

@@ -1,6 +1,6 @@
 import subprocess
 
-from asset_core.configs import configs
+from amapy_core.configs import configs
 from asset_manager.commands.alias_actions import get_action_group as alias_group
 from asset_manager.commands.asset_actions import get_actions as asset_actions
 from asset_manager.commands.asset_class_actions import get_action_group as class_group

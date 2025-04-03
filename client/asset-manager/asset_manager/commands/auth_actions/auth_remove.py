@@ -1,4 +1,4 @@
-from asset_core.configs.app_settings import AppSettings
+from amapy_core.configs.app_settings import AppSettings
 from asset_manager.commands import CliAction
 
 

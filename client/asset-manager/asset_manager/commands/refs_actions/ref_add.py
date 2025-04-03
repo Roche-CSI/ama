@@ -1,5 +1,5 @@
-from asset_core.api.repo_api import AssetAPI, AddAPI
-from asset_core.configs import AppSettings
+from amapy_core.api.repo_api import AssetAPI, AddAPI
+from amapy_core.configs import AppSettings
 from asset_manager.commands import CliAction, CliOption
 from amapy_utils.common.user_commands import UserCommands
 
