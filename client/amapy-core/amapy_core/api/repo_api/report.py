@@ -9,7 +9,7 @@ from amapy_utils.utils import kilo_byte
 from amapy_utils.utils.web_utils import open_in_browser
 from .repo import RepoAPI
 
-# template is located in asset-core/amapy_core/api/repo_api/templates/
+# template is located in amapy-core/amapy_core/api/repo_api/templates/
 DEFAULT_TEMPLATE = "report_template.html"
 DEFAULT_REPORT = "asset_report.html"
 

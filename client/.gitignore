@@ -16,13 +16,13 @@ assets-manifest_new.yaml
 #test_data/ml_models
 #test_data/file_types
 
-asset-core/test_data/**
-asset-core/site/
-asset-core/test_data/acm_data/
-asset-core/test_data/cloning/
-asset-core/test_data/dlt_data/
-asset-core/test_data/ml_models/
-asset-core/test_data/nlp_data/
+amapy-core/test_data/**
+amapy-core/site/
+amapy-core/test_data/acm_data/
+amapy-core/test_data/cloning/
+amapy-core/test_data/dlt_data/
+amapy-core/test_data/ml_models/
+amapy-core/test_data/nlp_data/
 amapy-plugin-posix/test_data/download_test/
 amapy-plugin-posix/test_data/upload_test/
 amapy-plugin-gcs/test_data/download_test/
