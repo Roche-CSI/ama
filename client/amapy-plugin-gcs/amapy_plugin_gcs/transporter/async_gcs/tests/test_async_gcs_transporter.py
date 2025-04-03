@@ -7,8 +7,8 @@ import google.cloud.storage  # type: ignore[import]
 from cloud_storage_mocker import Mount
 from cloud_storage_mocker import patch as gcs_patch
 
-from asset_plugin_gcs.transporter import AsyncGcsTransporter
-from asset_plugin_gcs.transporter.gcs_transport_resource import GcsDownloadResource, GcsUploadResource, GcsCopyResource
+from amapy_plugin_gcs.transporter import AsyncGcsTransporter
+from amapy_plugin_gcs.transporter.gcs_transport_resource import GcsDownloadResource, GcsUploadResource, GcsCopyResource
 
 
 class MockAsyncStorage:
@@ -56,7 +56,7 @@ def test_download(project_root):
         res = GcsDownloadResource(src=url_string, dst=dst)
         targets.append(res)
     # download with mock storage
-    with patch("asset_plugin_gcs.transporter.async_gcs.async_download.AsyncStorage", new=MockAsyncStorage):
+    with patch("amapy_plugin_gcs.transporter.async_gcs.async_download.AsyncStorage", new=MockAsyncStorage):
         transport = AsyncGcsTransporter.shared()
         transport.download(resources=targets)
     # verify
@@ -82,7 +82,7 @@ def test_upload(project_root, mock_bucket):
         res = GcsUploadResource(src=os.path.join(project_root, file), dst=dst)
         targets.append(res)
     # upload with mock storage
-    with patch("asset_plugin_gcs.transporter.async_gcs.async_upload.AsyncStorage", new=MockAsyncStorage):
+    with patch("amapy_plugin_gcs.transporter.async_gcs.async_upload.AsyncStorage", new=MockAsyncStorage):
         transport = AsyncGcsTransporter.shared()
         transport.upload(resources=targets)
     # verify
@@ -109,7 +109,7 @@ def test_copy(mock_bucket):
         res = GcsCopyResource(src=url_string, dst=dst)
         targets.append(res)
     # copy with mock storage
-    with patch("asset_plugin_gcs.transporter.async_gcs.async_copy.AsyncStorage", new=MockAsyncStorage):
+    with patch("amapy_plugin_gcs.transporter.async_gcs.async_copy.AsyncStorage", new=MockAsyncStorage):
         transport = AsyncGcsTransporter.shared()
         transport.copy(resources=targets)
     # verify

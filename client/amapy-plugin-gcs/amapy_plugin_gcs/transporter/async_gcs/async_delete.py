@@ -6,7 +6,7 @@ import aiohttp
 import backoff
 
 from amapy_pluggy.storage import BlobStoreURL
-from asset_plugin_gcs.transporter.async_gcs.async_storage import AsyncStorage
+from amapy_plugin_gcs.transporter.async_gcs.async_storage import AsyncStorage
 from amapy_utils.utils.log_utils import get_logger
 
 logger = get_logger(__name__)

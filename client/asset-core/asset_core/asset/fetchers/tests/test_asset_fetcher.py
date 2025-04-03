@@ -4,8 +4,8 @@ from unittest.mock import patch, MagicMock
 import pytest
 
 from asset_core.asset.fetchers.asset_fetcher import AssetFetcher
-from asset_plugin_gcs.gcs_blob import GcsBlob
-from asset_plugin_gcs.gcs_storage import GcsStorage
+from amapy_plugin_gcs.gcs_blob import GcsBlob
+from amapy_plugin_gcs.gcs_storage import GcsStorage
 from amapy_utils.utils.file_utils import FileUtils
 
 

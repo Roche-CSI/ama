@@ -25,7 +25,7 @@ asset-core/test_data/ml_models/
 asset-core/test_data/nlp_data/
 asset-plugin-posix/test_data/download_test/
 asset-plugin-posix/test_data/upload_test/
-asset-plugin-gcs/test_data/download_test/
+amapy-plugin-gcs/test_data/download_test/
 asset-plugin-s3/test_data/download_test/
 asset-plugin-s3/test_data/copy_tests/
 

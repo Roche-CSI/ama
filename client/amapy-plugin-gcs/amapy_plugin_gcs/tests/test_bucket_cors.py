@@ -1,4 +1,4 @@
-from asset_plugin_gcs.bucket_cors import update_cors_configuration
+from amapy_plugin_gcs.bucket_cors import update_cors_configuration
 
 
 def test_add():

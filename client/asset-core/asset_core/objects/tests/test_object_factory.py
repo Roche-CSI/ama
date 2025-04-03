@@ -5,7 +5,7 @@ from asset_core.objects.group.group_object import GroupObject
 from asset_core.objects.object import Object
 from asset_core.objects.object_factory import ObjectFactory
 from amapy_plugin_gcr.gcr_storage import GcrStorage
-from asset_plugin_gcs.gcs_storage import GcsStorage
+from amapy_plugin_gcs.gcs_storage import GcsStorage
 from asset_plugin_s3.aws_storage import AwsStorage
 
 
