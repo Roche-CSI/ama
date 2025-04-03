@@ -1,6 +1,6 @@
 from asset_manager.commands import CliAction, CliOption
 from amapy_utils.utils.log_utils import LogColors
-from asset_core.api.settings_api import SettingsAPI
+from amapy_core.api.settings_api import SettingsAPI
 
 
 class ProjectActivate(CliAction):

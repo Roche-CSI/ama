@@ -1,6 +1,6 @@
 import os
 
-from asset_core.api.store_api import CloneAssetAPI
+from amapy_core.api.store_api import CloneAssetAPI
 from asset_manager.commands import CliAction, CliOption
 from amapy_utils.common.user_commands import UserCommands
 

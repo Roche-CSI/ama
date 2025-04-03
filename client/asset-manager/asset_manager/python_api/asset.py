@@ -1,4 +1,4 @@
-from asset_core.configs import configs
+from amapy_core.configs import configs
 from asset_manager.app import ACTIVE_CONFIG_MODE
 from asset_manager.plugins import register_plugins
 from asset_manager.python_api.artifact import Artifact

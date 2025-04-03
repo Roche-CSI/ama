@@ -1,5 +1,5 @@
 from asset_manager.commands import CliAction, CliOption
-from asset_core.api.repo_api import AssetAPI
+from amapy_core.api.repo_api import AssetAPI
 
 
 class AssetDiff(CliAction):

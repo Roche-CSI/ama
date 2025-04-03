@@ -7,5 +7,5 @@ hook_impl = pluggy.HookimplMarker(APP_NAME)
 """
 
 hook_spec = pluggy.HookspecMarker(APP_NAME)
-"""hook_spec is used to standardize the calling within asset-core and registering and discovering plugins
+"""hook_spec is used to standardize the calling within amapy-core and registering and discovering plugins
 """

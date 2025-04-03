@@ -1,4 +1,4 @@
-from asset_core.api.store_api.fetch import FetchAPI
+from amapy_core.api.store_api.fetch import FetchAPI
 from asset_manager.commands import CliAction
 
 

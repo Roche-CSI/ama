@@ -1,4 +1,4 @@
-from asset_core.api.settings_api import SettingsAPI
+from amapy_core.api.settings_api import SettingsAPI
 from asset_manager.commands.cli_action import CliAction
 
 
