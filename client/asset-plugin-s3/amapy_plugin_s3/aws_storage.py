@@ -6,9 +6,9 @@ from amapy_pluggy.plugin import hook_impl
 from amapy_pluggy.plugin.object_content import ObjectContent
 from amapy_pluggy.storage import StorageData, StorageURL, BlobStoreURL
 from amapy_pluggy.storage.asset_storage import AssetStorage
-from asset_plugin_s3.aws_storage_mixin import AwsStorageMixin
-from asset_plugin_s3.bucket_cors import get_bucket_cors, set_bucket_cors
-from asset_plugin_s3.signed_url import create_presigned_url
+from amapy_plugin_s3.aws_storage_mixin import AwsStorageMixin
+from amapy_plugin_s3.bucket_cors import get_bucket_cors, set_bucket_cors
+from amapy_plugin_s3.signed_url import create_presigned_url
 from amapy_utils.common import exceptions
 
 

@@ -4,10 +4,10 @@ from typing import Union
 
 from amapy_pluggy.storage import StorageData, StorageURL, BlobStoreURL, storage_utils
 from amapy_pluggy.storage.mount_config import MountConfig
-from asset_plugin_s3.aws_blob import AwsBlob
-from asset_plugin_s3.mounted_bucket.async_mount_transporter import AsyncMountTransporter
-from asset_plugin_s3.mounted_bucket.mounted_url import MountedBlobStoreURL
-from asset_plugin_s3.s3_proxy import S3Proxy
+from amapy_plugin_s3.aws_blob import AwsBlob
+from amapy_plugin_s3.mounted_bucket.async_mount_transporter import AsyncMountTransporter
+from amapy_plugin_s3.mounted_bucket.mounted_url import MountedBlobStoreURL
+from amapy_plugin_s3.s3_proxy import S3Proxy
 from amapy_utils.common import exceptions
 
 

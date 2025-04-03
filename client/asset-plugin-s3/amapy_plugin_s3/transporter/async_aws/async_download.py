@@ -7,7 +7,7 @@ import backoff
 import boto3
 from yarl import URL
 
-from asset_plugin_s3.transporter.aws_transport_resource import AwsDownloadResource
+from amapy_plugin_s3.transporter.aws_transport_resource import AwsDownloadResource
 from amapy_utils.utils.file_utils import FileUtils
 from amapy_utils.utils.log_utils import get_logger
 

@@ -6,7 +6,7 @@ from asset_core.objects.object import Object
 from asset_core.objects.object_factory import ObjectFactory
 from amapy_plugin_gcr.gcr_storage import GcrStorage
 from amapy_plugin_gcs.gcs_storage import GcsStorage
-from asset_plugin_s3.aws_storage import AwsStorage
+from amapy_plugin_s3.aws_storage import AwsStorage
 
 
 def test_bulk_create_posix(empty_asset, test_data):

@@ -8,7 +8,7 @@ import backoff
 from aiobotocore.session import get_session
 
 # native
-from asset_plugin_s3.transporter.aws_transport_resource import AwsUploadResource
+from amapy_plugin_s3.transporter.aws_transport_resource import AwsUploadResource
 # plugins
 from amapy_utils.utils.log_utils import get_logger
 

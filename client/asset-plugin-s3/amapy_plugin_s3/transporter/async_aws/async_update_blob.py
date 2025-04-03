@@ -2,7 +2,7 @@ import asyncio
 
 import aioboto3
 
-from asset_plugin_s3.aws_blob import AwsBlob
+from amapy_plugin_s3.aws_blob import AwsBlob
 from amapy_utils.common import exceptions
 
 
