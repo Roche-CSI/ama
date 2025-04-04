@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "amapy-server"
-version = "1.0.1"
+version = "1.0.2"
 description = "The server-side component of the Asset Manager system that provides backend services for managing digital assets. It functions as a centralized server that handles asset storage, retrieval, and management across different storage backends."
 readme = "README.md"
 authors = [
@@ -45,11 +45,11 @@ include-package-data = true
 find = { }
 
 [tool.setuptools.package-data]
-"server_core" = [
+"amapy_server" = [
     "configs/yamls/*.yaml",
     "templates/**",
     "static/**"
 ]
 
 [project.scripts]
-ama-server = "server_core.main:main"
+ama-server = "amapy_server.main:main"

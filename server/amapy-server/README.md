@@ -1,1 +1,1 @@
-asset-server
+amapy-server
