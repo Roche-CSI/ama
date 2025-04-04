@@ -1,7 +1,9 @@
 """temporary workaround before we implement a full ABAC"""
 
 from __future__ import annotations
+
 from peewee import *
+
 from .base.read_write import ReadWriteModel
 
 

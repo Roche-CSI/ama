@@ -9,13 +9,13 @@ The asset_class_content_relations table captures this relationship
 """
 
 from peewee import *
+
 from .asset_class import AssetClass
-from .content import Content
 from .base.read_only import ReadOnlyModel
+from .content import Content
 
 
 class AssetClassContentRelations(ReadOnlyModel):
-
     id = BigAutoField(primary_key=True)
     asset_class = ForeignKeyField(AssetClass, backref="content_joins", null=False, on_delete='CASCADE')
     content = ForeignKeyField(Content, backref="asset_class_joins", null=False, on_delete='CASCADE')

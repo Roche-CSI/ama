@@ -1,4 +1,5 @@
 from peewee import *
+
 from .base.read_write import ReadWriteModel
 from .tags import Tags
 
@@ -89,4 +90,3 @@ class TagRefs(ReadWriteModel):
 # Add a partial index on table_name and record_id where is_primary is true
 # Ref: https://docs.peewee-orm.com/en/latest/peewee/models.html?highlight=table%20generation#advanced-index-creation
 TagRefs.add_index(TagRefs.table_name, TagRefs.record_id, where=(TagRefs.is_primary == 1))
-

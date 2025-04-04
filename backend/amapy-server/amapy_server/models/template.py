@@ -1,5 +1,6 @@
 from peewee import *
 from playhouse.postgres_ext import JSONField
+
 from amapy_server.models.base.read_write import ReadWriteModel
 
 
@@ -18,4 +19,3 @@ class Template(ReadWriteModel):
         indexes = (
             (('name', 'version'), True),
         )
-

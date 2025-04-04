@@ -1,5 +1,7 @@
 from __future__ import annotations
+
 from peewee import *
+
 from .base.base import db_proxy as db
 from .base.read_write import ReadWriteModel
 
@@ -13,7 +15,7 @@ class AssetSettings(ReadWriteModel):
         indexes = ((('name',), True),)
 
     @classmethod
-    def create(cls, user: str =None, **query) -> AssetSettings:
+    def create(cls, user: str = None, **query) -> AssetSettings:
         with db.atomic() as txn:
             return super(AssetSettings, cls).create(user, **query)
 
@@ -43,4 +45,3 @@ class AssetSettings(ReadWriteModel):
     def server_available(cls):
         record = cls.get_if_exists(cls.name == 'server_available')
         return str(record.value).lower() == "true" if record else False
-

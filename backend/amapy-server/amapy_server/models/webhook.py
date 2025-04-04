@@ -1,7 +1,8 @@
 from peewee import *
+from playhouse.postgres_ext import JSONField
+
 from amapy_server.asset_client.exceptions import AssetException
 from amapy_server.models.base.read_write import ReadWriteModel
-from playhouse.postgres_ext import JSONField
 from amapy_server.models.utils.webhook import trigger_webhook
 
 EVENT_TYPES = ["update", "create", "delete", "deprecate", "obsolote"]
@@ -18,7 +19,8 @@ class Webhook(ReadWriteModel):
     description = TextField(null=True)
     webhook_url = CharField(null=False)
     event_type = CharField(null=False, default="n/a")  # update, create, delete, deprecate, obsolote etc.
-    event_source = CharField(null=False, choices=ENTITY_CHOICES)  # source of event, e.g. asset, asset_class, project etc.
+    event_source = CharField(null=False,
+                             choices=ENTITY_CHOICES)  # source of event, e.g. asset, asset_class, project etc.
     attributes = JSONField(null=False)  # scheduled, active, deprecated, obsolete etc.
 
     class Meta:

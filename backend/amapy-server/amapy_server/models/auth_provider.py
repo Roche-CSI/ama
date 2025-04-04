@@ -1,6 +1,8 @@
 from __future__ import annotations
+
 from peewee import *
 from playhouse.postgres_ext import JSONField
+
 from .base.read_write import ReadWriteModel
 
 
@@ -17,6 +19,3 @@ class AuthProvider(ReadWriteModel):
     @classmethod
     def yaml_fields(cls):
         raise NotImplementedError()
-
-
-

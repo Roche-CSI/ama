@@ -1,7 +1,8 @@
 from peewee import *
 from playhouse.postgres_ext import JSONField
-from amapy_server.models.webhook import Webhook
+
 from amapy_server.models.base.read_only import ReadOnlyModel
+from amapy_server.models.webhook import Webhook
 
 
 class WebhookStatus(ReadOnlyModel):
@@ -9,4 +10,3 @@ class WebhookStatus(ReadOnlyModel):
     status = CharField(null=True)  # success, failure, timeout etc
     payload = JSONField(null=True)  # request payload
     response = TextField(null=True)  # error message, etc.
-

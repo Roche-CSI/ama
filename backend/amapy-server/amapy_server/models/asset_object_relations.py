@@ -1,7 +1,9 @@
 from typing import Iterable
-from .base.read_only import ReadOnlyModel
+
 from peewee import ForeignKeyField, BigAutoField, BooleanField
+
 from .asset import Asset
+from .base.read_only import ReadOnlyModel
 from .object import Object, Content
 
 

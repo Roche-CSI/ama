@@ -7,12 +7,12 @@ from playhouse.postgres_ext import JSONField
 
 from amapy_pluggy.storage import Transporter
 from amapy_pluggy.storage.storage_factory import StorageFactory
-from amapy_utils.utils.in_memory_file import InMemoryFile
 from amapy_server.asset_client import exceptions
 from amapy_server.asset_client import versioning
 from amapy_server.models import asset as asset_model
 from amapy_server.models import asset_class
 from amapy_server.models.base import read_only
+from amapy_utils.utils.in_memory_file import InMemoryFile
 
 
 class AssetVersion(read_only.ReadOnlyModel):

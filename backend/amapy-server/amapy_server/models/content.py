@@ -1,10 +1,13 @@
 from __future__ import annotations
+
 import os
-from .base.read_only import ReadOnlyModel
+
 from peewee import *
 from playhouse.postgres_ext import JSONField
+
 from amapy_server.configs import Configs
 from amapy_server.utils.file_utils import FileUtils
+from .base.read_only import ReadOnlyModel
 
 HASH_SEP = "_"
 ID_SEP = ":"

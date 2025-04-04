@@ -8,8 +8,8 @@ from playhouse.postgres_ext import JSONField
 from amapy_pluggy.storage.storage_credentials import StorageCredentials
 from amapy_pluggy.storage.storage_factory import StorageFactory
 from amapy_pluggy.storage.transporter import Transporter
-from amapy_utils.utils.in_memory_file import InMemoryFile
 from amapy_server.configs import Configs
+from amapy_utils.utils.in_memory_file import InMemoryFile
 from .base.read_write import ReadWriteModel
 
 

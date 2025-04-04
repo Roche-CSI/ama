@@ -11,9 +11,9 @@ from playhouse.postgres_ext import JSONField
 
 from amapy_pluggy.storage.storage_factory import StorageFactory
 from amapy_pluggy.storage.transporter import Transporter
-from amapy_utils.utils.in_memory_file import InMemoryFile
 from amapy_server.asset_client.exceptions import AssetException
 from amapy_server.utils.query_paginator import Paginator
+from amapy_utils.utils.in_memory_file import InMemoryFile
 from .asset_class import AssetClass
 from .base.base import db_proxy as db
 from .base.read_write import ReadWriteModel

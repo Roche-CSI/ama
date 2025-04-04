@@ -1,5 +1,7 @@
 from __future__ import annotations
+
 from peewee import *
+
 from .base.read_write import ReadWriteModel
 
 
@@ -15,8 +17,3 @@ class AppSecret(ReadWriteModel):
     @classmethod
     def yaml_fields(cls):
         raise NotImplementedError()
-
-
-
-
-

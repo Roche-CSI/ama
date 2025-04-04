@@ -1,4 +1,5 @@
 from peewee import *
+
 from .base.read_only import ReadOnlyModel
 
 

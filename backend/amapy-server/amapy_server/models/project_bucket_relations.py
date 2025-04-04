@@ -1,9 +1,9 @@
-from .base.read_write import ReadWriteModel
 from peewee import ForeignKeyField, BooleanField
 from playhouse.postgres_ext import JSONField
 
-from .project import Project
+from .base.read_write import ReadWriteModel
 from .bucket import Bucket
+from .project import Project
 
 
 class ProjectBucketRelations(ReadWriteModel):
