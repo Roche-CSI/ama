@@ -1,7 +1,8 @@
-from amapy_server.utils.file_utils import FileUtils
 import os
-from .base_asset import BaseAsset
+
 from amapy_server.configs import Configs
+from amapy_server.utils.file_utils import FileUtils
+from .base_asset import BaseAsset
 from .contents import ContentUploader
 
 
@@ -51,4 +52,3 @@ class Asset(BaseAsset):
         """commit contents to bucket or their respective storage"""
         content_uploader = ContentUploader(self.contents)
         content_uploader.commit_contents()
-

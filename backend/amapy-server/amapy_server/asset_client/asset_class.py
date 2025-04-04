@@ -1,6 +1,7 @@
 from __future__ import annotations
-from .serializable import Serializable
+
 from amapy_server.utils.logging import LoggingMixin
+from .serializable import Serializable
 
 
 class AssetClass(LoggingMixin, Serializable):
@@ -29,9 +30,3 @@ class AssetClass(LoggingMixin, Serializable):
     @classmethod
     def serialize_fields(cls):
         return ["id", "name", "project"]
-
-
-
-
-
-

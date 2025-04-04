@@ -1,5 +1,5 @@
-import os
 import logging
+import os
 
 logger = logging.getLogger(__file__)
 HASH_SEP = "$"

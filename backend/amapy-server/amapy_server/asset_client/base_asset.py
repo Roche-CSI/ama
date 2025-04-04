@@ -1,11 +1,12 @@
 import abc
-from amapy_server.utils.logging import LoggingMixin
 from collections import OrderedDict
-from .objects import ObjectSet
-from .contents.content_set import ContentSet
-from .serializable import Serializable
+
+from amapy_server.utils.logging import LoggingMixin
 from .asset_class import AssetClass
 from .asset_version import AssetVersion
+from .contents.content_set import ContentSet
+from .objects import ObjectSet
+from .serializable import Serializable
 
 SERIALIZED_KEYS = OrderedDict(**{
     "id": str,
@@ -75,4 +76,3 @@ class BaseAsset(LoggingMixin, Serializable):
     def default(self):
         """json.dumps() calls this"""
         return self.serialize()
-

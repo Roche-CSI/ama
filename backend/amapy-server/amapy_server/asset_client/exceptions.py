@@ -1,5 +1,4 @@
 """Exceptions raised by the dvc."""
-from typing import List
 
 
 class AssetException(Exception):
@@ -123,6 +122,7 @@ class NotAssetRepoError(AssetException):
 
 class InvalidVersionError(AssetException):
     pass
+
 
 class AssetClassNotFoundError(AssetException):
     pass

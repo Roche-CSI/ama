@@ -1,9 +1,11 @@
-import pytest
 import os
-from asset_client.asset_class import AssetClass
+
+import pytest
 from asset_client.asset import Asset
-from asset_client.objects import ObjectSet
+from asset_client.asset_class import AssetClass
 from asset_client.contents import ContentSet
+from asset_client.objects import ObjectSet
+
 from utils.file_utils import FileUtils
 
 

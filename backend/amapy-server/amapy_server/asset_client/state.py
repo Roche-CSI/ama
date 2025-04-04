@@ -1,4 +1,3 @@
-
 class AssetState:
     """Upload states of an asset"""
     PENDING = "pending"

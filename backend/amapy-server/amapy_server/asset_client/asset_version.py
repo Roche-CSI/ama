@@ -1,7 +1,9 @@
 from __future__ import annotations
-from .serializable import Serializable
-from amapy_server.utils.logging import LoggingMixin
+
 import os
+
+from amapy_server.utils.logging import LoggingMixin
+from .serializable import Serializable
 
 
 class AssetVersion(LoggingMixin, Serializable):
@@ -48,9 +50,3 @@ class AssetVersion(LoggingMixin, Serializable):
             "created_by",
             "created_at"
         ]
-
-
-
-
-
-

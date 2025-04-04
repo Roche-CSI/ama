@@ -1,17 +1,19 @@
 import os
+import uuid
+
 import pytest
 from asset_client.asset import Asset
 from asset_client.asset_writer import AssetWriter
-from utils.file_utils import FileUtils
-from models.asset_class import AssetClass as AssetClassModel
 from models.asset import Asset as AssetModel
-from models.object import Object as ObjectModel
+from models.asset_class import AssetClass as AssetClassModel
+from models.asset_class_content_relations import AssetClassContentRelations
 from models.asset_object_relations import AssetObjectRelations
 from models.content import Content as ContentModel
-from models.asset_class_content_relations import AssetClassContentRelations
-from models.version_counter import VersionCounter
+from models.object import Object as ObjectModel
 from models.utils import delete_records
-import uuid
+from models.version_counter import VersionCounter
+
+from utils.file_utils import FileUtils
 
 
 @pytest.fixture(scope="module")
