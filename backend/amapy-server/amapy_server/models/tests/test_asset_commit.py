@@ -1,9 +1,9 @@
-import pytest
 import os
+
 from peewee import ModelTupleCursorWrapper
+
 from amapy_server import models
 from amapy_server.utils.file_utils import FileUtils
-from amapy_server.models.utils import delete_records
 
 
 def data():
@@ -109,7 +109,5 @@ def test_asset_commit(test_project, test_user):
     for obj_id in added:
         assert obj_id in object_ids
 
-
     # cleanup
     # asset-object-relations
-

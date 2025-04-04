@@ -1,5 +1,6 @@
-from amapy_server.models.asset_settings import AssetSettings
 import pytest
+
+from amapy_server.models.asset_settings import AssetSettings
 
 
 @pytest.fixture(scope="module")
@@ -19,7 +20,6 @@ def test_table_exists(test_server):
 def test_crud_operations(test_user, settings_data):
     # need the test_app fixture for db operations
     for key in settings_data:
-
         # create
         record = AssetSettings.create(user=test_user, name=key, value=settings_data.get(key))
         assert record.name == key

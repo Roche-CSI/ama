@@ -1,17 +1,18 @@
 from __future__ import annotations
-import warnings
+
+import uuid
+from datetime import datetime
+
 import peewee
+import pytz
 from peewee import *
 from playhouse.postgres_ext import JSONField
-import pytz
-from datetime import datetime
-import uuid
-# import logging
-from amapy_server.utils.logging import LoggingMixin
 from playhouse.shortcuts import model_to_dict
-from amapy_server.utils import convert_to_pst
+
 from amapy_server.configs import Configs
 from amapy_server.models import utils
+from amapy_server.utils import convert_to_pst
+from amapy_server.utils.logging import LoggingMixin
 from .status_enums import StatusEnums
 
 #: placeholder so that we can change database config in runtime
@@ -21,7 +22,6 @@ db_proxy = DatabaseProxy()
 KREATE_KEY = "__/called_from_create"
 PUBLICK_KEY = "__/called_from_public"
 USER_NOT_SET = "USER_NOT_SET"
-
 
 STATUS_CHOICES = (
     (StatusEnums.PUBLIC, 'Public'),

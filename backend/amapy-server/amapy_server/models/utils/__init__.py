@@ -1,5 +1,6 @@
 from amapy_server.models.utils.model_to_dict import model_to_dict
 
+
 def delete_records(records, model_class, user):
     if not type(records) is list:
         records = [records]
@@ -20,4 +21,3 @@ def delete_records_with_ids(record_ids, model_class, user):
             record.delete_instance(user=user, permanently=True)
             exists = model_class.get_if_exists(model_class.id == record.id, include_deleted_records=True)
             assert exists is None
-

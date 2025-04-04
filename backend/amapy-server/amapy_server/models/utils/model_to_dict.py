@@ -4,7 +4,6 @@ from peewee import CompoundSelectQuery
 from peewee import SENTINEL
 from peewee import callable_
 
-
 _clone_set = lambda s: set(s) if s else set()
 
 

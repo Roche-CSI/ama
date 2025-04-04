@@ -1,12 +1,14 @@
-import pytest
-import uuid
 import os
+import uuid
+
+import pytest
+
 from amapy_server.asset_client.asset import Asset
 from amapy_server.models.asset import Asset as AssetModel
 from amapy_server.models.asset_class import AssetClass
 from amapy_server.models.asset_version import AssetVersion
-from amapy_server.models.version_counter import VersionCounter
 from amapy_server.models.utils import delete_records
+from amapy_server.models.version_counter import VersionCounter
 from amapy_server.utils.file_utils import FileUtils
 
 
@@ -101,6 +103,7 @@ def create_version_records(asset_record, objects_data, non_committed, user):
                                 )
         )
     return records
+
 
 def test_compute_patch(asset_record, test_user, asset):
     """should be calculated added and removed correctly"""

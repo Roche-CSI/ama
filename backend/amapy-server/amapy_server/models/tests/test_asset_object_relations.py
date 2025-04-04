@@ -1,9 +1,10 @@
 import pytest
-from amapy_server.models.asset import Asset
-from amapy_server.models.object import Object
-from amapy_server.models.content import Content
-from amapy_server.models.asset_object_relations import AssetObjectRelations
+
 from amapy_server.asset_client.objects.object import Object as ClientObject
+from amapy_server.models.asset import Asset
+from amapy_server.models.asset_object_relations import AssetObjectRelations
+from amapy_server.models.content import Content
+from amapy_server.models.object import Object
 
 
 @pytest.fixture(scope="module")
@@ -28,7 +29,8 @@ def content_record(test_user, test_app):
 
 @pytest.fixture(scope="module")
 def object(test_user, content_record):
-    obj = Object.create(user=test_user, content=content_record, id=ClientObject.create_id(content_record.id, "mypath/ab.img"))
+    obj = Object.create(user=test_user, content=content_record,
+                        id=ClientObject.create_id(content_record.id, "mypath/ab.img"))
     yield obj
     obj.delete_instance(user=test_user, permanently=True)
     assert Object.get_if_exists(Object.id == obj.id, include_deleted_records=True) is None
@@ -50,7 +52,8 @@ def test_crud_operations(asset, object, test_user):
     assert relation.status == relation.statuses.PUBLIC
 
     # read and check
-    saved = AssetObjectRelations.get_if_exists(AssetObjectRelations.object == object, AssetObjectRelations.asset == asset)
+    saved = AssetObjectRelations.get_if_exists(AssetObjectRelations.object == object,
+                                               AssetObjectRelations.asset == asset)
     assert saved.asset == relation.asset and saved.object == relation.object
     saved.delete_instance(user=test_user)
 
@@ -73,9 +76,3 @@ def test_crud_operations(asset, object, test_user):
     soft_del.delete_instance(user=test_user, permanently=True)
     exists = AssetObjectRelations.get_if_exists(AssetObjectRelations.id == soft_del.id, include_deleted_records=True)
     assert exists is None
-
-
-
-
-
-

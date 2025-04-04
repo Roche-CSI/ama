@@ -1,7 +1,8 @@
-from amapy_server.models.asset_class_content_relations import AssetClassContentRelations
-from amapy_server.models.asset_class import AssetClass
-from amapy_server.models.content import Content
 import pytest
+
+from amapy_server.models.asset_class import AssetClass
+from amapy_server.models.asset_class_content_relations import AssetClassContentRelations
+from amapy_server.models.content import Content
 
 
 @pytest.fixture(scope="module")

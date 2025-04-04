@@ -1,7 +1,8 @@
 import asyncio
-import aiohttp
 import json
 from concurrent.futures import ThreadPoolExecutor
+
+import aiohttp
 
 DEFAULT_MAX_WORKERS = 10
 DEFAULT_TIMEOUT = 10
@@ -29,8 +30,7 @@ def run_async_task(url, payload, callback=None):
 
 
 def trigger_webhook(url, payload, callback=None):
-    webhook_url = url 
+    webhook_url = url
     payload = payload or {"message": "Hello from Asset Manager!"}
 
     executor.submit(run_async_task, webhook_url, payload, callback)
-

@@ -1,11 +1,12 @@
-import os
 import copy
+import os
+
 import pytest
+
 from amapy_server.models.content import Content
 from amapy_server.models.object import Object
-from amapy_server.utils.file_utils import FileUtils
 from amapy_server.utils import time_it
-from amapy_server.models.utils import delete_records_with_ids
+from amapy_server.utils.file_utils import FileUtils
 
 
 @pytest.fixture(scope="module")

@@ -35,6 +35,7 @@ class StatusEnums:
                 return False
         return value in cls.__dict__.values()
 
+
 # Usage examples
 if __name__ == "__main__":
     # Direct access to status values

@@ -13,4 +13,3 @@ class ReadOnlyModel(BaseModel):
     @classmethod
     def read_only_error(cls):
         return f"{cls.__name__} is readonly and can not be updated"
-

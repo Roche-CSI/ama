@@ -1,6 +1,8 @@
-from .base import BaseModel
-from peewee import DateTimeField, CharField
 from datetime import datetime
+
+from peewee import DateTimeField, CharField
+
+from .base import BaseModel
 
 
 class ReadWriteModel(BaseModel):

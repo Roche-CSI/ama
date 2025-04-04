@@ -1,10 +1,12 @@
-import pytest
-from amapy_server.models.version_counter import VersionCounter
-from amapy_server.models.asset_version import AssetVersion
-from amapy_server.models.asset_class import AssetClass
-from amapy_server.models.asset import Asset
-from amapy_server.models.utils import delete_records
 import uuid
+
+import pytest
+
+from amapy_server.models.asset import Asset
+from amapy_server.models.asset_class import AssetClass
+from amapy_server.models.asset_version import AssetVersion
+from amapy_server.models.utils import delete_records
+from amapy_server.models.version_counter import VersionCounter
 
 
 @pytest.fixture(scope="module")
@@ -65,4 +67,3 @@ def test_crud_operations(asset_record, test_user):
 
     # reverse the list to avoid foreign-key constraints in deletion
     delete_records(list(reversed(version_records)), AssetVersion, test_user)
-
