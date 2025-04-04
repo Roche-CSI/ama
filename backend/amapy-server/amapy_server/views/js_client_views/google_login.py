@@ -1,7 +1,7 @@
 import logging
 import os
 
-from flask import Blueprint, Response, request, redirect, url_for
+from flask import redirect, url_for
 from flask_dance.contrib.google import make_google_blueprint, google
 
 CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID")

@@ -2,7 +2,6 @@ import json
 
 import pytest
 from flask import Flask, g, request
-from werkzeug.test import EnvironBuilder
 
 from amapy_server.views.js_client_views.js_client_utils import data_from_request
 
