@@ -1,5 +1,6 @@
 import fnmatch
 import os
+
 from src.asset.objects import Object
 
 
@@ -17,4 +18,3 @@ def test_filter(asset):
         for obj in selected:
             path, ext = os.path.splitext(obj.path)
             assert ext == ext
-

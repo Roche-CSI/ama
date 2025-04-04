@@ -1,8 +1,9 @@
+import os
+from unittest.mock import patch
+
 from src.asset import Asset
 from src.asset.contents import GcsContent
 from src.cloud.utils import get_blob_from_url
-from unittest.mock import patch
-import os
 
 INPUT_MSG = "enter the local path where this url would be mapped to:"
 
