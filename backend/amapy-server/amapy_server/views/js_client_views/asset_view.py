@@ -3,7 +3,6 @@ import logging
 
 from flask import Blueprint, Response, request, make_response, current_app
 
-from amapy_utils.common import exceptions
 from amapy_server.elastic.asset_entry import AssetEntry
 from amapy_server.elastic.vector_search import ElasticVectorSearch
 from amapy_server.models.asset import Asset
@@ -12,6 +11,7 @@ from amapy_server.models.asset_version import AssetVersion
 from amapy_server.utils.json_encoder import to_json
 from amapy_server.views.utils.asset_updater import update_asset_record
 from amapy_server.views.utils.view_utils import compress_data, data_from_request
+from amapy_utils.common import exceptions
 
 logger = logging.getLogger(__file__)
 

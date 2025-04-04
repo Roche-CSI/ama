@@ -1,12 +1,11 @@
+import logging
 import os
 
 from flask import Blueprint, Response, request, redirect, url_for
-import logging
-from amapy_server.utils.json_encoder import to_json
 from flask_dance.contrib.google import make_google_blueprint, google
 
-CLIENT_ID=os.getenv("GOOGLE_CLIENT_ID")
-CLIENT_SECRET=os.getenv("GOOGLE_CLIENT_SECRET")
+CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID")
+CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET")
 
 logger = logging.getLogger(__file__)
 google_login_view = make_google_blueprint(
@@ -16,6 +15,8 @@ google_login_view = make_google_blueprint(
     offline=True,
     reprompt_consent=True
 )
+
+
 # google_login_view = Blueprint(name='google_login_view', import_name=__name__)
 
 

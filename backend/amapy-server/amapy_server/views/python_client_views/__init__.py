@@ -1,11 +1,11 @@
-from .asset_view import asset_view
 from .asset_class_view import asset_class_view
 from .asset_commit_view import asset_commit_view
-from .asset_version_view import asset_version_view
 from .asset_ref_view import asset_ref_view
+from .asset_version_view import asset_version_view
+from .asset_view import asset_view
+from .bucket_proxy_view import view as bucket_proxy_view
 from .project_view import view as project_view
 from .tag_view import view as tag_view
-from .bucket_proxy_view import view as bucket_proxy_view
 
 
 def register_blueprints(app):

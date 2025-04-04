@@ -1,7 +1,8 @@
 import json
 import os
-import jwt
 from urllib.parse import unquote
+
+import jwt
 from flask import Blueprint, Response, request, make_response, current_app
 from flask.globals import session
 from werkzeug.utils import redirect

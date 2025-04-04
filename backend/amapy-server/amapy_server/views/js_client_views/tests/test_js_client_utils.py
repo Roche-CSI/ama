@@ -1,19 +1,22 @@
+import json
+
 import pytest
 from flask import Flask, g, request
-import json
 from werkzeug.test import EnvironBuilder
-from typing import Dict, Any
 
 from amapy_server.views.js_client_views.js_client_utils import data_from_request
+
 
 @pytest.fixture
 def app():
     app = Flask(__name__)
     return app
 
+
 @pytest.fixture
 def mock_user():
     return {"id": 1, "email": "test@example.com"}
+
 
 class TestDataFromRequest:
     def test_get_request_empty(self, app):
@@ -39,9 +42,9 @@ class TestDataFromRequest:
         """Test POST request with single-part data"""
         test_data = {'key': 'value'}
         with app.test_request_context(
-            method='POST',
-            data=json.dumps(test_data),
-            content_type='application/json'
+                method='POST',
+                data=json.dumps(test_data),
+                content_type='application/json'
         ):
             data = data_from_request(request)
             assert data == test_data
@@ -50,8 +53,8 @@ class TestDataFromRequest:
         """Test POST request with multi-part form data"""
         test_data = {'key': 'value'}
         with app.test_request_context(
-            method='POST',
-            data={'data': json.dumps(test_data)},
+                method='POST',
+                data={'data': json.dumps(test_data)},
         ):
             data = data_from_request(request)
             assert data == test_data
@@ -60,9 +63,9 @@ class TestDataFromRequest:
         """Test POST request with user in g"""
         test_data = {'key': 'value'}
         with app.test_request_context(
-            method='POST',
-            data=json.dumps(test_data),
-            content_type='application/json'
+                method='POST',
+                data=json.dumps(test_data),
+                content_type='application/json'
         ):
             g.user = mock_user
             data = data_from_request(request)
@@ -72,9 +75,9 @@ class TestDataFromRequest:
     def test_invalid_json_data(self, app):
         """Test handling invalid JSON data"""
         with app.test_request_context(
-            method='POST',
-            data='invalid json',
-            content_type='application/json'
+                method='POST',
+                data='invalid json',
+                content_type='application/json'
         ):
             data = data_from_request(request)
             assert data == {}
@@ -82,9 +85,9 @@ class TestDataFromRequest:
     def test_invalid_json_with_user(self, app, mock_user):
         """Test handling invalid JSON data with user in g"""
         with app.test_request_context(
-            method='POST',
-            data='invalid json',
-            content_type='application/json'
+                method='POST',
+                data='invalid json',
+                content_type='application/json'
         ):
             g.user = mock_user
             data = data_from_request(request)
@@ -94,9 +97,9 @@ class TestDataFromRequest:
         """Test PUT request"""
         test_data = {'key': 'value'}
         with app.test_request_context(
-            method='PUT',
-            data=json.dumps(test_data),
-            content_type='application/json'
+                method='PUT',
+                data=json.dumps(test_data),
+                content_type='application/json'
         ):
             data = data_from_request(request)
             assert data == test_data
@@ -110,8 +113,8 @@ class TestDataFromRequest:
     def test_none_data_in_form(self, app):
         """Test POST request with None in form data"""
         with app.test_request_context(
-            method='POST',
-            data={'data': None}
+                method='POST',
+                data={'data': None}
         ):
             data = data_from_request(request)
             assert data == {}
@@ -121,9 +124,9 @@ class TestDataFromRequest:
         """Test different HTTP methods"""
         test_data = {'key': 'value'}
         with app.test_request_context(
-            method=method,
-            data=json.dumps(test_data),
-            content_type='application/json'
+                method=method,
+                data=json.dumps(test_data),
+                content_type='application/json'
         ):
             data = data_from_request(request)
             assert data == test_data

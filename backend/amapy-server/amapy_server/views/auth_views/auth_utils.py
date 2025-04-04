@@ -11,8 +11,8 @@ from google.oauth2 import id_token
 from google_auth_oauthlib.flow import Flow
 from werkzeug.exceptions import abort
 
-from amapy_server.configs.configs import Configs
 from amapy_server import models
+from amapy_server.configs.configs import Configs
 from amapy_server.models.base.base import db_proxy as db
 
 algorithm = "HS256"  # os.getenv("ALGORITHM")

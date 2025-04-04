@@ -1,11 +1,12 @@
 import os
 from datetime import datetime
+
 from amapy_server import models
-from amapy_server.utils.file_utils import FileUtils
 from amapy_server.models.utils import delete_records, delete_records_with_ids
+from amapy_server.utils import time_it
+from amapy_server.utils.file_utils import FileUtils
 from amapy_server.views.utils.asset_commit import AssetCommit
 from amapy_server.views.utils.commit_data import CommitData
-from amapy_server.utils import time_it
 
 
 def data():
@@ -115,6 +116,7 @@ def profile_large_asset(test_project, test_user):
             saved.serialize()
         with time_it("write to bucket"):
             saved.write_to_bucket(storage_url=test_project.remote_url)
+
 
 def cleanup_saved_records(username, saved: CommitData):
     # delete version

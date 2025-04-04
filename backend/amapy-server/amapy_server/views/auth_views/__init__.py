@@ -1,5 +1,5 @@
-from .web_login_view import view as web_login
 from .cli_login_view import view as cli_login
+from .web_login_view import view as web_login
 
 
 def register_blueprints(app):

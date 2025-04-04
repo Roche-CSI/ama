@@ -1,6 +1,7 @@
-import aiohttp
 import asyncio
 import logging
+
+import aiohttp
 import backoff
 
 logger = logging.getLogger(__name__)

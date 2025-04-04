@@ -2,12 +2,12 @@ import logging
 
 from flask import Blueprint, Response, request
 
-from amapy_utils.common import exceptions
 from amapy_server.models.asset import Asset
 from amapy_server.models.asset_class import AssetClass
 from amapy_server.utils.json_encoder import to_json
 from amapy_server.views.utils.asset_updater import update_asset_record
 from amapy_server.views.utils.view_utils import data_from_request
+from amapy_utils.common import exceptions
 
 logger = logging.getLogger(__file__)
 

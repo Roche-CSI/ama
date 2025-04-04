@@ -2,12 +2,12 @@ import copy
 
 from flask import current_app
 
-from amapy_utils.common import exceptions
-from amapy_utils.utils import is_integer, contains_special_chars
 from amapy_server.elastic.asset_entry import AssetEntry
 from amapy_server.elastic.vector_search import ElasticVectorSearch
 from amapy_server.models.asset import Asset
 from amapy_server.models.base.base import db_proxy as db
+from amapy_utils.common import exceptions
+from amapy_utils.utils import is_integer, contains_special_chars
 
 TEMP_SEQ_PREFIX = "temp_"
 MAX_ALLOWED_TAGS = 10

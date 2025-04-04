@@ -1,6 +1,7 @@
-import json
 import gzip
+import json
 from typing import Dict, Any
+
 from flask import Request, g
 
 

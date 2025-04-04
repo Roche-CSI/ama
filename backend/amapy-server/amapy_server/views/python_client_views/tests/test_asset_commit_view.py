@@ -1,8 +1,10 @@
 import json
 import os
+
 import pytest
-from amapy_server.utils.file_utils import FileUtils
+
 from amapy_server.utils import time_it
+from amapy_server.utils.file_utils import FileUtils
 
 
 @pytest.fixture(scope="module")
@@ -15,6 +17,7 @@ def asset_data(test_user, test_asset_class):
         "bucket_sync": True
     }
     return from_client
+
 
 @pytest.fixture(scope="module")
 def large_asset_data(test_user, asset_data):
