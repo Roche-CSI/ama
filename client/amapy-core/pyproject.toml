@@ -34,5 +34,5 @@ namespaces = false
 include-package-data = true
 
 [tool.setuptools.package-data]
-"asset_core.configs.yamls" = ["*.yaml"]
-"asset_core.api.templates" = ["*.html"]
+"amapy_core.configs.yamls" = ["*.yaml"]
+"amapy_core.api.templates" = ["*.html"]
