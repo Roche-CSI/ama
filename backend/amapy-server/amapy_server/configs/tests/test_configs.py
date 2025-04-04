@@ -13,5 +13,3 @@ def test_instance_creation(config: Configs):
     assert config.contents_url(staging=False) == "gs://placeholder_bukcet/tests/contents"
     assert config.contents_url(staging=True) == "gs://placeholder_bukcet/tests/contents_temp"
     assert config.assets_url == 'gs://placeholder_bukcet/tests/assets'
-
-

@@ -100,4 +100,3 @@ class DeepCompareDict(dict):
             return True
 
         return False
-

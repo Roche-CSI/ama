@@ -1,14 +1,17 @@
+import json
 import os
 import time
+from datetime import datetime
+
 from peewee import *
-from amapy_server.models.asset import Asset
+
+from amapy_server.app import create_app
 from amapy_server.configs import Configs
 from amapy_server.elastic.asset_entry import AssetEntry
-from amapy_server.app import create_app
-import json
-from amapy_server.utils.file_utils import FileUtils
 from amapy_server.elastic.vector_search import ElasticVectorSearch
-from datetime import datetime
+from amapy_server.models.asset import Asset
+from amapy_server.utils.file_utils import FileUtils
+
 
 def datetime_converter(obj):
     """
@@ -27,7 +30,7 @@ def export_to_json():
         # Fetch all records from the Asset table
         assets = Asset.select().where(
             (Asset.alias.is_null(False)) |
-            (Asset.tags.is_null(False)  & (fn.json_array_length(Asset.tags) > 0)) |
+            (Asset.tags.is_null(False) & (fn.json_array_length(Asset.tags) > 0)) |
             (Asset.metadata.is_null(False) & (fn.json_array_length(fn.json_extract_path(Asset.metadata, '{}')) > 0)) |
             (Asset.description.is_null(False)) |
             (Asset.title.is_null(False))
@@ -37,22 +40,22 @@ def export_to_json():
         for asset in assets:
             # Get the related AssetClass data
             asset_class = asset.asset_class
-            project = asset_class.project 
+            project = asset_class.project
             # Create a dictionary for the asset entry
             entry = AssetEntry.create(asset=asset,
-                                          class_name=asset_class.name,
-                                          class_id=str(asset_class.id),
-                                          class_title=asset_class.title,
-                                          class_status=asset_class.status,
-                                          class_type=asset_class.class_type,
-                                          project_name=project.name,
-                                          project_title=project.title,
-                                          project_id=str(project.id),
-                                          project_status=project.status,
-                                          es_score=None,
-                                          es_highlight=None,
-                                          )
-          
+                                      class_name=asset_class.name,
+                                      class_id=str(asset_class.id),
+                                      class_title=asset_class.title,
+                                      class_status=asset_class.status,
+                                      class_type=asset_class.class_type,
+                                      project_name=project.name,
+                                      project_title=project.title,
+                                      project_id=str(project.id),
+                                      project_status=project.status,
+                                      es_score=None,
+                                      es_highlight=None,
+                                      )
+
             assets_data.append(entry.to_dict())
 
         # Write the list to a JSON file, using the custom datetime converter
@@ -98,11 +101,11 @@ def run_test():
 
         indexing_time = time.time() - start
         print(f"Indexing {len(test_documents)} documents took: {indexing_time:.2f} seconds")
-    
+
     except Exception as e:
         raise e
 
 
 if __name__ == '__main__':
-    export_to_json()  
+    export_to_json()
     run_test()

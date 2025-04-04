@@ -1,10 +1,11 @@
 from flask import current_app
 from peewee import *
-from amapy_server.models.asset import Asset
-from amapy_server.elastic.asset_entry import AssetEntry
-from amapy_server.configs import Configs
+
 from amapy_server.app import create_app
-from amapy_server.elastic.vector_search import  ElasticVectorSearch
+from amapy_server.configs import Configs
+from amapy_server.elastic.asset_entry import AssetEntry
+from amapy_server.elastic.vector_search import ElasticVectorSearch
+from amapy_server.models.asset import Asset
 
 
 def update_elatic():
@@ -27,23 +28,24 @@ def update_elatic():
             asset_class = asset.asset_class
             project = asset_class.project
             entry = AssetEntry.create(asset=asset,
-                              class_name=asset_class.name,
-                              class_id=str(asset_class.id),
-                              class_title=asset_class.title,
-                              class_status=asset_class.status,
-                              class_type=asset_class.class_type,
-                              project_name=project.name,
-                              project_title=project.title,
-                              project_id=str(project.id),
-                              project_status=project.status,
-                              es_score=None,
-                              es_highlight=None,
-                              )
+                                      class_name=asset_class.name,
+                                      class_id=str(asset_class.id),
+                                      class_title=asset_class.title,
+                                      class_status=asset_class.status,
+                                      class_type=asset_class.class_type,
+                                      project_name=project.name,
+                                      project_title=project.title,
+                                      project_id=str(project.id),
+                                      project_status=project.status,
+                                      es_score=None,
+                                      es_highlight=None,
+                                      )
             updated = entry.upsert(es=search, user='user1')
 
     except Exception as e:
         print(f"Error occurred while exporting data: {e}")
         app.db.close()
 
+
 if __name__ == '__main__':
-    update_elatic()  
+    update_elatic()

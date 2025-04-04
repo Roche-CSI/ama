@@ -1,19 +1,21 @@
+import asyncio
+import io
 import json
+import logging
 import os
 import shutil
-import aiohttp
-from gcloud.aio.storage import Storage as aioStorage
+import tempfile
+from datetime import timedelta
+
 import aiofiles
-import asyncio
-import logging
+import aiohttp
 import backoff
+from gcloud.aio.storage import Storage as aioStorage
+
 from amapy_server.asset_client.asset_object import AssetObject
 from amapy_server.configs import Configs
 from amapy_server.gcp import parse_gcp_url
 from amapy_server.utils.file_utils import FileUtils
-import tempfile
-import io
-from datetime import timedelta
 
 logger = logging.getLogger(__name__)
 

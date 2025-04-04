@@ -1,10 +1,12 @@
 from __future__ import annotations
+
 import json
 import os
-from typing import List, Dict, Any, Optional
-from amapy_server.asset_client import versioning
 from datetime import datetime
-from amapy_server.configs.configs import Configs, ConfigModes
+from typing import List, Dict, Any, Optional
+
+from amapy_server.asset_client import versioning
+from amapy_server.configs.configs import Configs
 from amapy_server.elastic.elastic_mixin import ElasticMixin
 from amapy_server.elastic.stringify_dict import StringifyDict
 
@@ -413,7 +415,6 @@ class AssetEntry(ElasticMixin):
         document.setdefault('modified_at', current_time)
 
         return document
-
 
     @staticmethod
     def query_vector(model,

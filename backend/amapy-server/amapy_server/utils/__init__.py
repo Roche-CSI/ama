@@ -1,12 +1,13 @@
-from typing import Iterable, Union, List, Dict, Callable
 import collections.abc
-import datetime
-from pytz import utc, timezone
-from time import time
-import functools
 import contextlib
-import pwd
+import datetime
+import functools
 import os
+import pwd
+from time import time
+from typing import Iterable, Union, List
+
+from pytz import utc, timezone
 
 PROFILE, PRINT_ARGS = True, False
 
@@ -27,12 +28,13 @@ def time_it_wrapper(f):
             result = f(*args, **kw)
             te = time()
             if PRINT_ARGS:
-                print(f'func:{f.__name__} args:[{args}, {kw}] took: {te-ts:.2f} sec')
+                print(f'func:{f.__name__} args:[{args}, {kw}] took: {te - ts:.2f} sec')
             else:
                 print(f'func:{f.__name__} took: {te - ts:.2f} sec')
         else:
             result = f(*args, **kw)
         return result
+
     return wrap
 
 
@@ -60,6 +62,7 @@ def update_dict(d, u) -> dict:
             d[k] = v
     return d
 
+
 # can't use timezone name here because datetime.strptime doesn't support it on
 # linux (works on Mac though)
 # '%Y-%m-%dT%H-%M-%S %Z' doesn't work on Linux with python3.7 and 3.8
@@ -74,9 +77,11 @@ def time_now():
 def convert_to_pst(ts: datetime):
     return ts.astimezone(timezone(TIME_ZONE)).strftime(DATE_FORMAT)
 
+
 def get_user_id():
     """Returns the user_id of the system"""
     return pwd.getpwuid(os.getuid()).pw_name
+
 
 def string_to_timestamp(date_string):
     t = datetime.datetime.strptime(date_string, DATE_FORMAT)

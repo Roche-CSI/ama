@@ -1,11 +1,11 @@
-from typing import Dict, Optional, Any, List
 import time
-from datetime import datetime, timedelta
-import numpy as np
-from threading import Lock
-from functools import lru_cache
-from collections import OrderedDict
 import weakref
+from collections import OrderedDict
+from datetime import datetime, timedelta
+from threading import Lock
+from typing import Dict, Optional, Any, List
+
+import numpy as np
 
 
 class SimpleCache:

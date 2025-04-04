@@ -25,7 +25,7 @@ def pytest_sessionstart(session):
     """
     if not os.getenv("GOOGLE_APPLICATION_CREDENTIALS"):
         raise Exception("missing required environemnt variable: GOOGLE_APPLICATION_CREDENTIALS")
-    
+
     logger.info("Pre-Session Setup..")
     Configs.de_init()  # cleanup existing settings if any
     Configs.shared(mode=Configs.modes.TEST)  # all tests to use test_settings only

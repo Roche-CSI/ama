@@ -1,7 +1,9 @@
-from google.cloud import storage
+import logging
 import os
 from typing import Union
-import logging
+
+from google.cloud import storage
+
 from amapy_server.configs import Configs
 
 logger = logging.getLogger(__name__)

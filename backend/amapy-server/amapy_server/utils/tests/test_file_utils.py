@@ -1,5 +1,6 @@
 import json
 import os
+
 from amapy_server.utils.file_utils import FileUtils
 
 
@@ -8,7 +9,7 @@ def test_generate_zip():
     zip_path = os.path.join(cwd, "test.zip")
     if os.path.exists(zip_path):
         os.unlink(zip_path)  # cleanup
-    data ={
+    data = {
         "some": "value"
     }
     FileUtils.generate_zip([("objects.json", FileUtils.json_serialize(data))], zip_path)
@@ -26,7 +27,7 @@ def test_zip_in_memory_zip():
     zip_path = os.path.join(cwd, "test.zip")
     if os.path.exists(zip_path):
         os.unlink(zip_path)  # cleanup
-    data ={
+    data = {
         "some": "value"
     }
     zip: bytes = FileUtils.zip_in_memory([("objects.json", FileUtils.json_serialize(data))])
@@ -40,6 +41,3 @@ def test_zip_in_memory_zip():
     retrieved = json.loads(zip_contents["objects.json"])
     assert retrieved == data
     # os.unlink(zip_path)
-
-
-

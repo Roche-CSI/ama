@@ -1,9 +1,9 @@
 import time
-import json
-from typing import Any, Dict, Optional, List
 from datetime import datetime
-from amapy_server.elastic.vector_search import ElasticVectorSearch
+from typing import Any, Dict, Optional, List
+
 from amapy_server.elastic.deep_compare_dict import DeepCompareDict
+from amapy_server.elastic.vector_search import ElasticVectorSearch
 
 
 class ElasticMixin:

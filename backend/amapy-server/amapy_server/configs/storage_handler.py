@@ -17,6 +17,6 @@ class StorageHandler(LoggingMixin):
         Configs.shared().set_storage_urls(staging_url=self.staging_url,
                                           remote_url=self.remote_url)
 
-    def __exit__(self, exc_type,exc_value, exc_traceback):
+    def __exit__(self, exc_type, exc_value, exc_traceback):
         Configs.shared().storage_credentials = None
         Configs.shared().clear_storage_urls()

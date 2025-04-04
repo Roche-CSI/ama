@@ -6,9 +6,9 @@ from typing import List, Dict, Optional
 from elasticsearch import Elasticsearch
 from sentence_transformers import SentenceTransformer
 
-from amapy_utils.common.singleton import Singleton
 from amapy_server.configs.configs import ConfigModes
 from amapy_server.utils.file_utils import FileUtils
+from amapy_utils.common.singleton import Singleton
 
 logger = logging.getLogger(__file__)
 
