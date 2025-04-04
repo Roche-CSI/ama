@@ -1,4 +1,3 @@
-import os
 from asset_client.contents.file_content import FileContent
 
 DATA = {

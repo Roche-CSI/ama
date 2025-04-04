@@ -7,7 +7,7 @@ DATA = {
     "size": "2531814435",
     "meta": {
         "type": "gcr",
-        "src": "gcr.io/placeholder-project/placeholder-image@sha256:0000000000000000000000000000000000000000000000000000000000000000" ,
+        "src": "gcr.io/placeholder-project/placeholder-image@sha256:0000000000000000000000000000000000000000000000000000000000000000",
         "proxy": True
     },
     "created_by": None,

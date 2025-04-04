@@ -1,11 +1,13 @@
+import asyncio
+import os
+
+import aiohttp
+from gcloud.aio.storage import Storage as aioStorage
+
 from amapy_server.asset_client.contents.content import Content
 from amapy_server.gcp import list_url_blobs
 from amapy_server.utils.logging import LoggingMixin
-from gcloud.aio.storage import Storage as aioStorage
 from .content_set import ContentSet
-import asyncio
-import aiohttp
-import os
 
 
 class ContentUploader(LoggingMixin):
@@ -77,4 +79,3 @@ class ContentUploader(LoggingMixin):
                 staged.append(content)
 
         return staged
-

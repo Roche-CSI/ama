@@ -1,4 +1,3 @@
-import json
 from .object_set import ObjectSet
 
 
@@ -52,5 +51,3 @@ class ObjectsDiff:
     @classmethod
     def serialize_fields(cls):
         return ["removed", "added"]
-
-

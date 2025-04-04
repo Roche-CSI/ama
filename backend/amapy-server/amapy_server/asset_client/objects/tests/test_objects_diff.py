@@ -1,7 +1,9 @@
 import os
-from utils.file_utils import FileUtils
+
 from asset_client.asset import Asset
 from asset_client.objects.objects_diff import ObjectsDiff
+
+from utils.file_utils import FileUtils
 
 
 def assets_data():
@@ -44,6 +46,3 @@ def test_compute_dict_patch(test_user, test_app):
     ddiff.compute_diff(from_objects=asset1.objects, to_objects=asset2.objects)
     assert ddiff.removed == []
     assert ddiff.added == [added]
-
-
-

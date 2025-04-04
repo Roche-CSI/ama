@@ -1,8 +1,9 @@
-from amapy_server.utils.better_set import BetterSet
-from .content_factory import ContentFactory
-from .content import Content
-from collections.abc import Callable
 import os
+from collections.abc import Callable
+
+from amapy_server.utils.better_set import BetterSet
+from .content import Content
+from .content_factory import ContentFactory
 
 
 class ContentSet(BetterSet):
@@ -46,5 +47,3 @@ class ContentSet(BetterSet):
         else:
             self.add(content)
         return content
-
-

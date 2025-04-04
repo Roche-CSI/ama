@@ -1,4 +1,5 @@
 from __future__ import annotations
+
 from .content import Content, StorageSystems
 
 
@@ -18,4 +19,3 @@ class FileContent(Content):
     @classmethod
     def storage_system_id(cls):
         return StorageSystems.GCS
-

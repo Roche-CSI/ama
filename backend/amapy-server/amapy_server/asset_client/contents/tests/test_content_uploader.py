@@ -1,9 +1,10 @@
-from asset_client.contents import ContentUploader
-from asset_client.asset import Asset
-from asset_client.contents import Content
-import pytest
 import uuid
 from unittest.mock import patch
+
+import pytest
+from asset_client.asset import Asset
+from asset_client.contents import Content
+from asset_client.contents import ContentUploader
 
 
 @pytest.fixture(scope="module")
@@ -15,7 +16,6 @@ def uploadble_asset(client_asset) -> Asset:
 
 
 def test_not_uploaded(uploadble_asset: Asset):
-
     # 1. if no files are in remote bucket/path/to/test_asset
     # so local_contents should be []
     uploader = ContentUploader(contents=uploadble_asset.contents)

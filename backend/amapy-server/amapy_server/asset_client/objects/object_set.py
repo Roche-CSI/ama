@@ -1,9 +1,10 @@
-from amapy_server.asset_client.objects.object import Object
+import os
 from collections.abc import Callable
+
+from amapy_server.asset_client.objects.object import Object
 from amapy_server.utils import string_to_timestamp
 from amapy_server.utils.better_set import BetterSet
 from amapy_server.utils.file_utils import FileUtils
-import os
 
 
 class ObjectSet(BetterSet):

@@ -1,11 +1,12 @@
+from google.cloud.storage.blob import Blob
+
 from amapy_server.utils import cast2list
 from .content import Content
+from .db_content import DbContent
+from .docker_content import DockerContent
 from .file_content import FileContent
 from .gcs_content import GcsContent
 from .url_content import UrlContent
-from .db_content import DbContent
-from .docker_content import DockerContent
-from google.cloud.storage.blob import Blob
 
 OBJECT_CONTENTS = {
     "file": FileContent,

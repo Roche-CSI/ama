@@ -1,4 +1,5 @@
 from __future__ import annotations
+
 from amapy_server.asset_client.contents.content import Content
 from amapy_server.utils.logging import LoggingMixin
 
@@ -116,4 +117,3 @@ class Object(LoggingMixin):
     # @classmethod
     # def deserialize_hash(cls, hash) -> tuple:
     #     return hash.split(HASH_SEP)
-
