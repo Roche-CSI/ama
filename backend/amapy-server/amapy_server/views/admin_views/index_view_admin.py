@@ -1,7 +1,8 @@
-import flask_login as login
 import flask_admin as admin
-from flask_admin import helpers, expose
+import flask_login as login
 from flask import url_for, redirect, request
+from flask_admin import helpers, expose
+
 from .login_admin import LoginForm
 
 

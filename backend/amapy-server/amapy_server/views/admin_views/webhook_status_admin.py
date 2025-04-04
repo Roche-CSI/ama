@@ -1,7 +1,8 @@
-from amapy_server import models
-from .readonly_admin import ReadOnlyAdminView
 from flask import flash
 from flask_admin.babel import gettext
+
+from amapy_server import models
+from .readonly_admin import ReadOnlyAdminView
 
 
 class WebhookStatusAdmin(ReadOnlyAdminView):
@@ -32,4 +33,3 @@ class WebhookStatusAdmin(ReadOnlyAdminView):
             self.after_model_delete(model)
 
         return True
-

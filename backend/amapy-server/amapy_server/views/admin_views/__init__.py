@@ -1,26 +1,27 @@
 import flask_admin
 from flask_admin.menu import MenuLink
-from .index_view_admin import AdminIndexView
+
+from .app_secrets_admin import AppSecretsAdmin
 from .asset_admin import AssetAdmin
 from .asset_class_admin import AssetClassAdmin
-from .asset_ref_admin import AssetRefAdmin
-from .asset_version_admin import AssetVersionAdmin
-from .object_admin import ObjectAdmin
-from .content_admin import ContentAdmin
 from .asset_class_content_rel_admin import AssetClassContentRelationsAdmin
 from .asset_object_rel_admin import AssetObjectRelationsAdmin
-from .auth_provider_admin import AuthProviderAdmin
-from .project_admin import ProjectAdmin
-from .user_admin import UserAdmin
-from .role_admin import RoleAdmin
-from .user_role_admin import UserRoleAdmin
+from .asset_ref_admin import AssetRefAdmin
 from .asset_settings_admin import AssetSettingsAdmin
-from .tags_admin import TagsAdmin
-from .tag_refs_admin import TagRefsAdmin
-from .tag_queries_admin import TagQueriesAdmin
-from .app_secrets_admin import AppSecretsAdmin
+from .asset_version_admin import AssetVersionAdmin
+from .auth_provider_admin import AuthProviderAdmin
 from .bucket_admin import BucketAdmin
+from .content_admin import ContentAdmin
+from .index_view_admin import AdminIndexView
+from .object_admin import ObjectAdmin
+from .project_admin import ProjectAdmin
+from .role_admin import RoleAdmin
+from .tag_queries_admin import TagQueriesAdmin
+from .tag_refs_admin import TagRefsAdmin
+from .tags_admin import TagsAdmin
 from .template_admin import TemplateAdmin
+from .user_admin import UserAdmin
+from .user_role_admin import UserRoleAdmin
 from .webhook_admin import WebhookAdmin
 from .webhook_status_admin import WebhookStatusAdmin
 
@@ -56,4 +57,3 @@ def register_blueprints(app):
     admin.add_view(TemplateAdmin())
     admin.add_view(WebhookAdmin())
     admin.add_view(WebhookStatusAdmin())
-

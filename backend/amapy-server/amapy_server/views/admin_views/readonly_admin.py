@@ -1,10 +1,11 @@
-from flask import flash
-from flask_admin.contrib.peewee import ModelView
-from flask_admin.actions import action
-from jinja2 import Markup
-from flask_admin.model import typefmt
-import flask_login as login
 import json
+
+import flask_login as login
+from flask import flash
+from flask_admin.actions import action
+from flask_admin.contrib.peewee import ModelView
+from flask_admin.model import typefmt
+from jinja2 import Markup
 
 
 def json_formatter(view, value):
@@ -36,7 +37,7 @@ class ReadOnlyAdminView(ModelView):
 
     def is_accessible(self):
         return login.current_user.is_authenticated
-    
+
     @classmethod
     def get_username(cls):
         return login.current_user.username

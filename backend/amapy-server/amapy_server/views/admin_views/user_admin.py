@@ -1,7 +1,8 @@
-from amapy_server import models
-from .read_write_admin import ReadWriteAdminView
 from flask import flash
 from flask_admin.babel import gettext
+
+from amapy_server import models
+from .read_write_admin import ReadWriteAdminView
 
 
 class UserAdmin(ReadWriteAdminView):

@@ -1,7 +1,8 @@
-from amapy_server import models
-from .read_write_admin import ReadWriteAdminView
 from flask import flash
 from flask_admin.babel import gettext
+
+from amapy_server import models
+from .read_write_admin import ReadWriteAdminView
 
 
 class RoleAdmin(ReadWriteAdminView):
@@ -44,4 +45,3 @@ class RoleAdmin(ReadWriteAdminView):
             self.after_model_delete(model)
 
         return True
-

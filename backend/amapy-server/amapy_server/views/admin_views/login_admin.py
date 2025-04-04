@@ -1,6 +1,7 @@
 import flask_login as login
-from amapy_server import models
 from wtforms import form, fields, validators
+
+from amapy_server import models
 
 
 class LoginForm(form.Form):

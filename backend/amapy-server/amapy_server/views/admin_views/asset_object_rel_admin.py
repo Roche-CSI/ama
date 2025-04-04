@@ -1,5 +1,5 @@
-from .readonly_admin import ReadOnlyAdminView
 from amapy_server import models
+from .readonly_admin import ReadOnlyAdminView
 
 
 class AssetObjectRelationsAdmin(ReadOnlyAdminView):

@@ -1,7 +1,8 @@
+from flask import flash
+from flask_admin.babel import gettext
 from flask_admin.contrib.peewee.form import get_form, \
     CustomModelConverter, InlineModelConverter, save_inline
-from flask_admin.babel import gettext
-from flask import flash
+
 from .readonly_admin import ReadOnlyAdminView
 
 
@@ -48,4 +49,3 @@ class ReadWriteAdminView(ReadOnlyAdminView):
             self.after_model_change(form, model, False)
 
         return True
-

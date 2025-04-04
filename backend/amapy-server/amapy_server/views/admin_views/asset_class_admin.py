@@ -1,4 +1,5 @@
 from flask import flash
+
 from amapy_server import models
 from .readonly_admin import ReadOnlyAdminView
 

@@ -1,5 +1,5 @@
-from .read_write_admin import ReadWriteAdminView
 from amapy_server import models
+from .read_write_admin import ReadWriteAdminView
 
 
 class AssetObjectRelationsAdmin(ReadWriteAdminView):

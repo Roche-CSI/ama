@@ -1,7 +1,8 @@
-from amapy_server import models
-from .read_write_admin import ReadWriteAdminView
 from flask import flash
 from flask_admin.babel import gettext
+
+from amapy_server import models
+from .read_write_admin import ReadWriteAdminView
 
 
 class WebhookAdmin(ReadWriteAdminView):
@@ -19,7 +20,8 @@ class WebhookAdmin(ReadWriteAdminView):
                    'created_by',
                    )
     column_searchable_list = ['name', 'title', 'entity_type', 'entity_id', 'created_by']
-    form_columns = ['entity_type', 'entity_id', 'name', 'title', 'description', 'webhook_url', 'event_type', 'event_source', 'attributes', 'created_by']
+    form_columns = ['entity_type', 'entity_id', 'name', 'title', 'description', 'webhook_url', 'event_type',
+                    'event_source', 'attributes', 'created_by']
 
     def __init__(self):
         super().__init__(model=models.Webhook)
@@ -38,4 +40,3 @@ class WebhookAdmin(ReadWriteAdminView):
             self.after_model_delete(model)
 
         return True
-
