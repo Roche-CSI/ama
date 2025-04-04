@@ -1,8 +1,8 @@
-from amapy_server.configs import Configs
-from .asset_object import AssetObject
-from amapy_server.gcp import list_url_blobs
-# from amapy_server.gcp.async_gcp import move_from_staging
 import os
+
+from amapy_server.configs import Configs
+from amapy_server.gcp import list_url_blobs
+from .asset_object import AssetObject
 
 
 # noinspection PyAttributeOutsideInit

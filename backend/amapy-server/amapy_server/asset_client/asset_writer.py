@@ -1,22 +1,20 @@
-# models
-from amapy_server.models.base.base import db_proxy as db
+from peewee import DoesNotExist
+
+from amapy_server.gcp.async_gcp import write_yaml_to_bucket
 from amapy_server.models.asset import Asset as AssetModel
+from amapy_server.models.asset_class import AssetClass as AssetClassModel
+from amapy_server.models.asset_class_content_relations import AssetClassContentRelations
+from amapy_server.models.asset_object_relations import AssetObjectRelations
+from amapy_server.models.asset_version import AssetVersion as AssetVersionModel
+from amapy_server.models.base.base import db_proxy as db
 from amapy_server.models.content import Content as ContentModel
 from amapy_server.models.object import Object as ObjectModel
-from amapy_server.models.asset_object_relations import AssetObjectRelations
-from amapy_server.models.asset_class_content_relations import AssetClassContentRelations
-from amapy_server.models.asset_class import AssetClass as AssetClassModel
-from amapy_server.models.asset_version import AssetVersion as AssetVersionModel
 from amapy_server.models.version_counter import VersionCounter
-from peewee import DoesNotExist
-# clients
 from .asset import Asset
 from .asset_class import AssetClass
-from .objects import Object
-from .contents import ContentFactory
 from .asset_version import AssetVersion
-# gcp
-from amapy_server.gcp.async_gcp import write_yaml_to_bucket
+from .contents import ContentFactory
+from .objects import Object
 
 
 class AssetWriter:
