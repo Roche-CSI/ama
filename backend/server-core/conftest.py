@@ -3,12 +3,12 @@ import os
 
 import pytest
 
-from server_core.app import create_app
-from server_core.asset_client.asset import Asset
-from server_core.configs import Configs
-from server_core.models import delete_tables, create_tables, User, Project, AssetClass
-from server_core.plugins import register_plugins
-from server_core.utils.file_utils import FileUtils
+from amapy_server.app import create_app
+from amapy_server.asset_client.asset import Asset
+from amapy_server.configs import Configs
+from amapy_server.models import delete_tables, create_tables, User, Project, AssetClass
+from amapy_server.plugins import register_plugins
+from amapy_server.utils.file_utils import FileUtils
 
 logger = logging.getLogger(__name__)
 
@@ -45,7 +45,7 @@ def pytest_sessionfinish(session, exitstatus):
 
 @pytest.fixture(scope="session")
 def client_asset():
-    path = os.path.join(os.path.dirname(__file__), "server_core/asset_client/tests/test_data.json")
+    path = os.path.join(os.path.dirname(__file__), "amapy_server/asset_client/tests/test_data.json")
     asset = Asset(user="user1", data=FileUtils.read_json(path))
     return asset
 
