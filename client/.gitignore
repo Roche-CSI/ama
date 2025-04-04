@@ -29,10 +29,10 @@ amapy-plugin-gcs/test_data/download_test/
 amapy-plugin-s3/test_data/download_test/
 amapy-plugin-s3/test_data/copy_tests/
 
-asset-manager/cloning_test
+amapy/cloning_test
 
 # debug data
-asset-manager/debug_data
+amapy/debug_data
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
