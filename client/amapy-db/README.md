@@ -1,6 +1,6 @@
 # amapy-db
 
-The Database plugin for asset-manager project. It provides functionalities
+The Database plugin for ama project. It provides functionalities
 to manage and store metadata related to digital assets, such as storing
 MD5 hashes of asset files and managing these records efficiently.
 

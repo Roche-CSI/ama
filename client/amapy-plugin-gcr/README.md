@@ -1,6 +1,6 @@
 # amapy-plugin-gcr
 
-The GCR plugin for the asset-manager project. It provides functionalities to
+The GCR plugin for the ama project. It provides functionalities to
 manage and integrate Google Cloud Registry (GCR) within the asset management system.
 
 ## Installation

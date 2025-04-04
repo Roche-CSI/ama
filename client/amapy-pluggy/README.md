@@ -1,6 +1,6 @@
 # amapy-pluggy
 
-A Plugin handler for asset-manager project. It provides functionalities to
+A Plugin handler for ama project. It provides functionalities to
 manage and integrate various plugins within the asset management system.
 
 ## Installation

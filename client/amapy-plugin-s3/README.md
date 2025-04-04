@@ -1,6 +1,6 @@
 # amapy-plugin-s3
 
-The S3 plugin for the asset manager project. It provides functionalities to
+The S3 plugin for the ama project. It provides functionalities to
 manage and integrate Amazon S3 storage within the asset management system.
 
 ## Installation

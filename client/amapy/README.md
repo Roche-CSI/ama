@@ -1,6 +1,6 @@
 # amapy
 
-The client side tool for asset-manager project. It provides a command-line
+The client side tool for ama project. It provides a command-line
 interface and a Python API for programmatic access to manage and distribute
 digital assets.
 

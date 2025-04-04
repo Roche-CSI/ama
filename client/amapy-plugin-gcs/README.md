@@ -1,6 +1,6 @@
 # amapy-plugin-gcs
 
-The GCS plugin for the asset-manager project. It provides functionalities
+The GCS plugin for the ama project. It provides functionalities
 to manage and integrate Google Cloud Storage (GCS) within the asset management system.
 
 ## Installation

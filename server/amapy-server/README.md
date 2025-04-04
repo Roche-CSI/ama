@@ -1,6 +1,6 @@
 # amapy-server
 
-The server-side component of the Asset Manager system that provides
+The server-side component of the ama system that provides
 backend services for managing digital assets. It functions as a
 centralized server that handles asset storage, retrieval, and
 management across different storage backends.

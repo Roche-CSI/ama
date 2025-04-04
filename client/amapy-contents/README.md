@@ -1,6 +1,6 @@
 # amapy-contents
 
-The Contents plugin for asset-manager project. It provides functionalities
+The Contents plugin for ama project. It provides functionalities
 for handling and cataloging the contents of digital assets.
 
 ## Installation

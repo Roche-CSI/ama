@@ -1,7 +1,7 @@
 # amapy-utils
 
 A utility package that provides common functionality shared across the
-asset-manager ecosystem. It serves as a foundation library offering various
+ama ecosystem. It serves as a foundation library offering various
 helper functions and tools needed by other components in the system.
 
 ## Installation

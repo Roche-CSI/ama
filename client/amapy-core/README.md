@@ -1,6 +1,6 @@
 # amapy-core
 
-The Core package for asset-manager. It provides the core functionalities
+The Core package for ama project. It provides the core functionalities
 like creating, modifying, downloading and uploading of the digital assets.
 It also provides all the necessary APIs for the asset-manager client.
 
