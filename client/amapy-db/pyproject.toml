@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "amapy-db"
 version = "1.0.1"
-description = "The Database plugin for asset-manager project."
+description = "The Database plugin for ama project."
 readme = "README.md"
 license = { text = "Copyright (c) 2024 Roche Diagnostics Computation Science & Informatics" }
 requires-python = ">=3.10,<3.11"  # "==3.10.*"

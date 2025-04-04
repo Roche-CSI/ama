@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "amapy-server"
 version = "1.0.2"
-description = "The server-side component of the Asset Manager system."
+description = "The server-side component of the ama project."
 readme = "README.md"
 authors = [
     { name = "Swarup Mahanti", email = "swarup.mahanti@roche.com" }
