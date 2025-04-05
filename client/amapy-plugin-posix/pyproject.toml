@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "amapy-plugin-posix"
 version = "1.0.1"
-description = "The POSIX plugin for the asset-manager project. It provides functionalities to manage and integrate POSIX-compliant file systems within the asset management system."
+description = "The POSIX plugin for the ama project."
 readme = "README.md"
 authors = [
     { name = "Swarup Mahanti", email = "swarup.mahanti@roche.com" }
