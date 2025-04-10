@@ -11,5 +11,18 @@ since files with the same content need not be uploaded again.
 ![asset_class](imgs/asset_class_schema.jpg)
 
 ```mermaid
-
+classDiagram
+    class asset_class {
+        id uuid 
+         class_name varchar
+         top_hash varchar
+         created_by varchar
+    }
+    
+   
+    note "example :
+    n4xxxxxxa-xxxa-xxx0-xxxc-axxxxxxxxf1
+    resource_model
+    960exxxxxxxxxxxxxxxxxxxxxxxxc56
+    bob prat"
 ```

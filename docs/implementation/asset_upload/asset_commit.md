@@ -40,7 +40,44 @@ asset-commit flow into 2 different stages.
 ![asset_commit_stage1](imgs/asset_commit_stage_1.jpg)
 
 ```mermaid
+%% graph TD
+%%     AssetClient["A"] --> AskForId["Ask for Id"]
+%%     AmaServer["ama-Server"]
+    
+%%     AskForId -->|"1 class_name, parent_id"| CreateRecord
+%%     CreateRecord -->|2| AmaServer
+%%     CreateRecord -->|" 3   asset_id"| AskForId
+%%     AskForId -->|4| SaveAssetId["Save asset_id"]
+%%     SaveAssetId --> Asset["Asset"]
+    
+   
+    
+%%     class AssetClient client
+%%     class AssetServer server
+%%     class AskForId,CreateRecord,SaveAssetId decision
+%%     class Asset asset
 
+flowchart TD
+    AssetClient["Asset-Client"] --> AskForId["Ask for Id"]
+    AssetServer["Asset-Server"]
+    CreateRecord["Create record if not exists"]
+    
+    AskForId -->|"1 class_name, parent_id"| CreateRecord
+    CreateRecord -->|2| AssetServer
+    CreateRecord -->|"3 asset_id"| AskForId
+    AskForId -->|4| SaveAssetId["Save asset_id"]
+    SaveAssetId --> Asset["Asset"]
+    
+    %% Styling
+    classDef client fill:#FFC107,stroke:#333,stroke-width:2px,color:black
+    classDef server fill:#FFC107,stroke:#333,stroke-width:2px,color:black
+    classDef decision fill:#FFC107,stroke:#333,stroke-width:1px,color:black,shape:diamond
+    classDef asset fill:white,stroke:#333,stroke-width:1px,color:black
+    
+    class AssetClient client
+    class AssetServer server
+    class AskForId,CreateRecord,SaveAssetId decision
+    class Asset asset
 ```
 
 In stage-1 the ```BaseAsset-Client``` checks if the asset to be committed has an id, if not, it requests for an id to the asset-server. The request payload

@@ -5,7 +5,33 @@ A Content is an abstraction for stored data. Contents are immutable.
 ![content](imgs/content_schema.jpg)
 
 ```mermaid
-
+classDiagram
+    class asset_class {
+        id uuid
+        counter int
+        name varchar
+        class_type varchar
+        title varchar
+        description text
+        readme text
+    }
+    
+    class asset_class_content_rel {
+        id int
+        asset_class uuid
+        content varchar
+    }
+    
+    class content {
+        id varchar
+        mime_type varchar
+        hash varchar
+        size bigint
+        meta json
+    }
+    
+    asset_class -- asset_class_content_rel 
+    asset_class_content_rel -- content 
 ```
 
 * Contents are stored in the bucket and their metadata is stored in the Contents Table in the database

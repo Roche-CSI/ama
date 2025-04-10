@@ -9,5 +9,31 @@ any changes you make to an asset if diffed and stored separately which can be in
 ![asset](imgs/asset_schema.jpg)
 
 ```mermaid
-
+classDiagram
+    class asset_class {
+         id uuid
+    }
+    
+    class asset {
+    id uuid 
+    asset_class uuid
+    seq_id varchar
+    version varchar
+    parent_asset uuid
+    owner varchar
+    refs varchar
+    patch text
+    }
+    
+    asset_class --|> asset
+    
+    note   "Example:
+    n4xxxxxxa-xxxa-xxx0-xxxc-axxxxxxxxf1
+    resource_model
+    2
+    0.2.1
+    resource_model/1/0.11
+    chris prat
+    [resource_model/2/0.1]
+    [diff from parent_asset]"
 ```

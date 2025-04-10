@@ -12,7 +12,24 @@ class_id
 ![asset-class-create](imgs/asset_class_create.jpg)
 
 ```mermaid
-
+flowchart TD
+    AssetClient["Ama"] --> RequestServer
+    RequestServer{"Request Server"} -->|class_name| AssetServer["Ama-Server"]
+    AssetServer --> CreateClass{"Create class record,
+    if not exists"}
+    CreateClass --> DB[("Database")]
+    CreateClass -. class_id, top_hash .-> AssetClient
+    %% AssetServer -.-> DB
+    %% Styling
+    classDef client fill:white,stroke:#333,stroke-width:1px,color:black
+    classDef server fill:white,stroke:#333,stroke-width:1px,color:black
+    classDef decision fill:#FFC107,stroke:#333,stroke-width:1px,color:black,shape:diamond
+    classDef database fill:#f5f5f5,stroke:#333,stroke-width:1px,color:black
+    
+    class AssetClient client
+    class AssetServer server
+    class RequestServer,CreateClass decision
+    class DB database
 ```
 
 <br>

@@ -10,7 +10,32 @@ candidate for upload.
 ![file-edit](imgs/file_edit.jpg)
 
 ```mermaid
-
+flowchart TD
+    Content["Content"] --> File["File"]
+    File --> AddedByUser["Added by user"]
+    AddedByUser -->|No| Ignore["ignore"]
+    AddedByUser -->|Yes| IsDeleted["Is Deleted"]
+    IsDeleted -->|Yes| AskRemove["Ask user to remove.
+    'ama remove file'"]
+    IsDeleted -->|No| IsModified["Is Modified"]
+    IsModified -->|Yes| AskReAdd["Ask user to re-add.
+    'ama add file'"]
+    IsModified -->|No| AddToUpload["Add to upload list"]
+    AddToUpload --> UploadList["Upload list"]
+    
+  
+    %% Styling
+    classDef default fill:white,stroke:#333,stroke-width:1px,color:black
+    classDef decision fill:#FFC107,stroke:#333,stroke-width:1px,color:black,shape:diamond
+    classDef highlight fill:#FFC107,stroke:#333,stroke-width:1px,color:black,shape:diamond
+    classDef command fill:white,stroke:none,color:black
+    classDef list fill:white,stroke:#333,stroke-width:1px,color:black
+    
+    class Content,File,Ignore,UploadList default
+    class AddedByUser,IsDeleted,IsModified,AddToUpload decision
+    class AskRemove,AskReAdd highlight
+    class Command1,Command2 command
+    class UploadList list
 ```
 
 Since the file sizes can be very large, in AMA, we took the approach of not copying files. Therefore,
@@ -40,6 +65,25 @@ and its yet to be indexed then it would exist in the staging area. Therefore, we
 
 ```mermaid
 
+graph TD
+    Content[("Content")]
+    CheckRemote["Check if exists"]
+    RemoteRepo[("Remote repo")] --> CheckRemote
+    CheckRemote -->|Yes| RemoveUpload["Remove from upload"]
+    RemoveUpload -->Content
+    CheckRemote --> CheckStaging["Check if exists + verify hash"]
+    StagingRepo[("Staging repo")] --> CheckStaging
+    CheckStaging -->|No| UploadList[("Upload list")]
+    CheckStaging -->|Yes| RemoveUpload
+    
+    %% Styling
+    classDef default fill:white,stroke:#333,stroke-width:1px,color:black
+    classDef decision fill:#FFC107,stroke:#333,stroke-width:1px,color:black,shape:diamond
+    classDef highlight fill:#FFC107,stroke:#333,stroke-width:1px,color:black,shape:diamond
+    classDef stacked fill:white,stroke:#333,stroke-width:1px,color:black
+    
+    class Content,RemoteRepo,StagingRepo,UploadList stacked
+    class CheckRemote,CheckStaging,RemoveUpload decision
 ```
 
 #### User access
@@ -50,7 +94,27 @@ to the remote bucket.
 ![access-rights](imgs/access_rights.jpg)
 
 ```mermaid
-
+graph TD
+    AssetServer["Asset-Server"] --> ReadWrite1["Read-Write"]
+    ReadWrite1 --> RemoteRepo["Remote
+    repo"]
+    ReadWrite1 --> StagingRepo["Staging
+    repo"]
+    RemoteRepo --> ReadOnly["Read-only"]
+    StagingRepo --> ReadWrite2["Read-Write"]
+    ReadOnly --> User
+    ReadWrite2 --> User
+    
+    %% Styling
+    classDef server fill:white,stroke:#666,stroke-width:3px,color:black
+    classDef access fill:white,stroke:#333,stroke-width:1px,color:black
+    classDef repo fill:#f5f5f5,stroke:#333,stroke-width:1px,color:black
+    classDef user fill:#66B2A0,stroke:none,color:black
+    
+    class AssetServer server
+    class ReadWrite1,ReadOnly,ReadWrite2 access
+    class RemoteRepo,StagingRepo repo
+    class User user
 ```
 
 #### Upload Files to Staging
@@ -58,7 +122,33 @@ to the remote bucket.
 ![content-state](imgs/content_staging_states.jpg)
 
 ```mermaid
-
+graph TD
+    Content[("Content")] --> StartUpload["Start Upload"]
+    StartUpload --> StagingRepo[("Staging repo")]
+    StartUpload --> Staging["Staging"]
+    ChecksumValid["checksum-valid"]
+    StagingRepo-- Finish Upload -->ChecksumValid -->|Yes| Staged["Staged"]
+    Content --> Pending["Pending"]
+    Pending --> Staging
+    Staging --> Staged
+    
+    %% States subgraph
+    subgraph States
+    Pending
+    Staging
+    Staged
+    end
+    
+    %% Styling
+    classDef default fill:white,stroke:#333,stroke-width:1px,color:black
+    classDef decision fill:#FFC107,stroke:#333,stroke-width:1px,color:black,shape:diamond
+    classDef stacked fill:white,stroke:#333,stroke-width:1px,color:black
+    classDef state fill:white,stroke:#333,stroke-width:1px,color:black
+    
+    class Content stacked
+    class StagingRepo stacked
+    class StartUpload,ChecksumValid decision
+    class Pending,Staging,Staged state
 ```
 
 We use asyncio for fast concurrent network calls. The staging area is namespaced to the top-hash of the asset-class. 

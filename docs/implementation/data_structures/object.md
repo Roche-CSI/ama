@@ -5,7 +5,45 @@ Asset holds a collection of objects. An Object is a relation between Content and
 ![object](imgs/object_schema.jpg)
 
 ```mermaid
-
+classDiagram
+class asset_class {
+        id: uuid
+    }
+    class asset {
+        id: uuid
+        asset_class: uuid
+    }
+    
+    class asset_object_relations {
+        id: uuid
+        asset: uuid
+        object: uuid
+    }
+    
+    class object {
+        id: uuid
+        path: varchar
+        content: uuid
+        created_by: varchar
+        created_at: timestamp
+    }
+    
+    class content {
+        id: uuid
+        asset_class: uuid
+    }
+    
+    asset <-- asset_class
+    asset --> asset_object_relations
+    asset_object_relations --> object
+    object --> content
+    content <-- asset_class 
+    
+    note "Example:
+    afxxxxxxxf1
+    gs:md55xxxxxxxxxxxxxxxxe1Q==
+    bob smith
+    2021-11-09T11-00-17-PST"
 ```
 
 * Object to Content is a many-to-one relationship i.e. multiple Objects can point to the same content
