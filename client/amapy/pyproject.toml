@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "amapy"
-version = "1.0.1.dev0"
+version = "1.0.1"
 description = "The client side tool for ama project."
 readme = "README.md"
 authors = [
@@ -16,15 +16,15 @@ maintainers = [
 license = { text = "Copyright (c) 2024 Roche Diagnostics Computation Science & Informatics" }
 requires-python = ">=3.10,<3.11"  # "==3.10.*"
 dependencies = [
-    "amapy-contents==1.0.1.dev0",
-    "amapy-core==1.0.1.dev0",
-    "amapy-db==1.0.1.dev0",
-    "amapy-pluggy==1.0.1.dev0",
-    "amapy-plugin-gcr==1.0.1.dev0",
-    "amapy-plugin-gcs==1.0.1.dev0",
-    "amapy-plugin-posix==1.0.1.dev0",
-    "amapy-plugin-s3==1.0.1.dev0",
-    "amapy-utils==1.0.1.dev0",
+    "amapy-contents==1.0.1",
+    "amapy-core==1.0.1",
+    "amapy-db==1.0.1",
+    "amapy-pluggy==1.0.1",
+    "amapy-plugin-gcr==1.0.1",
+    "amapy-plugin-gcs==1.0.1",
+    "amapy-plugin-posix==1.0.1",
+    "amapy-plugin-s3==1.0.1",
+    "amapy-utils==1.0.1",
     "markupsafe==2.1.*",
 ]
 

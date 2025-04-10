@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "amapy-utils"
-version = "1.0.1.dev0"
+version = "1.0.1"
 description = "A utility package that provides common functionality shared across the ama ecosystem."
 readme = "README.md"
 authors = [
