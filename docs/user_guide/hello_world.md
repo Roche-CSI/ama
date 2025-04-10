@@ -8,12 +8,8 @@ asset-projects to get started. We will try to explain them as we go along. So le
 
 ### Setting up the environment
 
-- Make sure you have a python virtual environment with `amapy` installed. If not, please refer
-  to [Installing AMA](index.md#installing-amapy).
-- Let's call our virtual environment `ama-env`. We need to activate the environment to start using amapy.
-- You can activate the environment using the following command:
-- `conda activate ama-env` : for conda users
-- `mamba activate ama-env` : for mamba users
+- In python 3.10 environment:
+  - `pip install amapy`
 
 ### Signing up / logging in
 
@@ -77,7 +73,7 @@ downloading asset-class list: 100%|███████████████
 verifying checksum: 100%|████████████████████████████████████████| 32/32 [00:00<00:00, 20394.73it/s] done - verifying 32 files took: 0.00 sec
 
 completed
-to view the list of classes: (use: ama class list --> to list all the asset classes)
+to view the list of classes: (use: ama class list --> to list all the asset collections)
 ```
 
 - `ama class list` : to view the list of asset-classes available in the project

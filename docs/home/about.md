@@ -16,11 +16,10 @@ However it works only on amazon web services and lacks support of Google cloud w
 It does not provide source tracing, permission control and limited code integration either.
 </div>
 
-![asset-life-cycle](imgs/asset_life_cycle.jpg)
 
 ### Description
 <div style="text-align: justify">
-AMA is a project initiated by Data Science Automation Software Engineering at Roche to streamline the management of digital assets. 
+AMA is a project initiated at Roche to streamline the management of digital assets. 
 The tool is being developed keeping in mind the need of data scientists, machine learning engineers and integrates well into existing and ML workflow 
 pipelines. AMA will provide the following main functionalities:
 </div>

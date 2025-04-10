@@ -1,6 +1,5 @@
-## Uploading BaseAsset
+## Uploading Asset
 
-![asset-upload-flow](imgs/asset_upload_flow.jpg)
 
 ```mermaid
 flowchart LR

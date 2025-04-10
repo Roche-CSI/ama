@@ -10,7 +10,7 @@ The following steps are performed.
 ```mermaid
 flowchart TD
     A[Init command] --> B[Init Repo class]
-    B --> C[Init Asset class]
+    B --> C[Init Asset Collection]
     
     subgraph RepoInfo
         direction TB

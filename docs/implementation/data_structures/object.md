@@ -2,7 +2,6 @@
 
 Asset holds a collection of objects. An Object is a relation between Content and a file path inside the asset-repo dir of the user.
 
-![object](imgs/object_schema.jpg)
 
 ```mermaid
 classDiagram
@@ -33,10 +32,10 @@ class asset_class {
         asset_class: uuid
     }
     
-    asset <-- asset_class
+    asset --> asset_class
     asset --> asset_object_relations
     asset_object_relations --> object
-    object --> content
+    object <-- content
     content <-- asset_class 
     
     note "Example:

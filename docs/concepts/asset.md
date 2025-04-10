@@ -7,7 +7,6 @@ code or models etc. A good way to reason about this is basically anything that c
 
 **Examples of Asset**
 
-![asset-example](imgs/asset_example.jpg)
 
 ### How do we store an Asset
 In AMA, assets are serialized to ```yaml``` files and stored in the gs bucket. Conceptually, an asset
@@ -48,7 +47,7 @@ and shared for greater efficiency and more accurate results over time, across co
 
 
 * **Trackability**: Know and lineage of every asset
-* **Availability**: Run your experiments without worrying about how to plugin data. Asset Manager will fetch the relevant dataset and make it available. Both locally and in cloud.
+* **Availability**: Run your experiments without worrying about how to plugin data. AMA will fetch the relevant dataset and make it available. Both locally and in cloud.
 * **Shareability**: human friendly name to communicate assets.
 * **Searchability**: Query and filter all data / metadata
 * **Pipeline Integration**: seamlessly integrated into pipeline

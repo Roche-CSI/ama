@@ -7,7 +7,6 @@ ama remove file
 
 The following steps are performed.
 
-![asset-remove](imgs/object_remove.jpg)
 
 ```mermaid
 flowchart TD

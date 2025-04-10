@@ -2,7 +2,6 @@
 
 A Content is an abstraction for stored data. Contents are immutable.
 
-![content](imgs/content_schema.jpg)
 
 ```mermaid
 classDiagram

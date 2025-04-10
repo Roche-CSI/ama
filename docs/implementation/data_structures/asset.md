@@ -6,7 +6,6 @@ an Asset represents a collection of all digital resources you need for your acti
 any changes you make to an asset if diffed and stored separately which can be inspected and traced back to source.
 </div>
 
-![asset](imgs/asset_schema.jpg)
 
 ```mermaid
 classDiagram

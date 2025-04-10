@@ -4,10 +4,8 @@
 
 ### Installing AMA
 
-- Use any python environment management tool, we used [miniforge](https://github.com/conda-forge/miniforge) in this example, but it is not required.
-  - `conda create -n ama-env python=3.10`
-  - `conda activate ama-env`
-  - `python -m pip install amapy`
+- In python 3.10 environment:
+  - `pip install amapy`
 
 ### How to start using after installation
 
@@ -99,10 +97,10 @@ Make sure you are using a valid and existing `asset-class` name.
   updates, the underlying files must be pulled after you switch to the latest version, this is done in the interest of
   efficiency)
 - `ama list` : to list all peer assets, i.e. assets in the same class
-- `ama list --class class-name` : to list all assets in a class
+- `ama list --class collections-name` : to list all assets in a class
 - `ama history` : displays the history of the asset i.e. all changes across different versions of the asset
 - `ama status` : displays asset version and any pending changes that are not committed yet
-- `ama class list`: lists all the asset classes of the current project
+- `ama class list`: lists all the asset collections of the current project
 
 ## Searching / Finding an asset
 
@@ -154,24 +152,24 @@ The Asset Store is the global cache of all the assets and their metadata in your
 - `ama store clear`: clears all files in the store. Warning: Don't do this unless you must. You can still use your
   cloned assets but note that you will need to do `ama download` again to switch a different version of the asset.
 
-## Admin Commands (to be implemented)
+## Admin Commands (Coming Soon)
 
-**Note**: when you delete asset / asset-clas, they are flagged for deletion and will be permanently
+**Note**: when you delete asset / asset-collection, they are flagged for deletion and will be permanently
 deleted after 30 days. You can undo delete within that time.
 
-#### Deleting an Asset / Asset Class
+#### Deleting an Asset / Asset Collection
 
 - `ama delete <asset-id>` : deletes an asset from your local cache
 - `ama delete --alias <alias>` : deletes an asset from your local cache using its alias
 
-#### Deleting an Asset / Asset Class
+#### Deleting an Asset / Asset Collection
 
 - `ama schedule-deletion <asset-name> <days:optional>`: deletes an assets after a specified number of days. If
   the `days` is not specified, it will default to 30 days. Any value less than 30 days will be treated as 30 days.
 - `ama class delete <class-name>`: removes the asset-class from local cache as well as in the remot along with all the
   assets and its related content from the repo. ( admin option - may be not needed yet )
 
-#### Restoring a deleted Asset / Asset Class
+#### Restoring a deleted Asset / Asset Collection
 
 - `ama restore <asset-name>` : restores a deleted asset, you will need to do `ama fetch <class-name>` to pull from
   remote

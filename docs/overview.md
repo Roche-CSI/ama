@@ -5,7 +5,6 @@ The explosion in data science activities has created a new set of challenges whe
 and using the assets involved. A typical data science experiment involves:
 </div>
 
-![overview](imgs/assets_example.jpg)
 
 ```mermaid
 graph TD

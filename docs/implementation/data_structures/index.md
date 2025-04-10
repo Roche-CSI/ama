@@ -1,6 +1,5 @@
 ## Data Structures
 
-![asset-data-structure](imgs/asset.jpg)
 
 ```mermaid
 graph TD

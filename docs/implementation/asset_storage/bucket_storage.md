@@ -1,6 +1,5 @@
 ### Asset Storage Structure in Bucket
 
-![asset-init](imgs/bucket_asset.jpg)
 
 ```mermaid
 flowchart LR
@@ -23,7 +22,7 @@ flowchart LR
 ```
 
 **assets** is a directory inside the bucket. This directory holds a list of directories which are the ids of all the
-asset classes.
+asset collections.
 
 **asset_class_id** is a directory inside assets. This directory holds of list of directory, each of which are the
 ids of all the assets in that class

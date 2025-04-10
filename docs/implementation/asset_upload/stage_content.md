@@ -7,7 +7,6 @@ candidate for upload.
 * added by the user
 * have not been deleted, modified or renamed
 
-![file-edit](imgs/file_edit.jpg)
 
 ```mermaid
 flowchart TD
@@ -15,7 +14,7 @@ flowchart TD
     File --> AddedByUser["Added by user"]
     AddedByUser -->|No| Ignore["ignore"]
     AddedByUser -->|Yes| IsDeleted["Is Deleted"]
-    IsDeleted -->|Yes| AskRemove["Ask user to remove.
+    IsDeleted -->|Yes| AskRemove["Ask user to remove.   
     'ama remove file'"]
     IsDeleted -->|No| IsModified["Is Modified"]
     IsModified -->|Yes| AskReAdd["Ask user to re-add.
@@ -61,7 +60,6 @@ after determining the list of files to be uploaded, we check if any of the files
 If the file is already indexed it would exist in the remote repo, if another user is in the process of uploading the file
 and its yet to be indexed then it would exist in the staging area. Therefore, we check both remote-repo and staging-repos.
 
-![files-in-remote](imgs/files_in_remote.jpg)
 
 ```mermaid
 
@@ -91,7 +89,6 @@ Staging and remote buckets are separate by design to maintain data integrity. Fo
 write acess where as for remote buckets, only the asset-server will have write-access. Individual users will have readonly-access
 to the remote bucket.
 
-![access-rights](imgs/access_rights.jpg)
 
 ```mermaid
 graph TD
@@ -119,7 +116,6 @@ graph TD
 
 #### Upload Files to Staging
 
-![content-state](imgs/content_staging_states.jpg)
 
 ```mermaid
 graph TD
@@ -131,6 +127,7 @@ graph TD
     Content --> Pending["Pending"]
     Pending --> Staging
     Staging --> Staged
+    StartUpload --> ChecksumValid
     
     %% States subgraph
     subgraph States

@@ -1,10 +1,10 @@
-#### Commit BaseAsset
+#### Commit Asset
 
 <div class="justified">
 After the files are successfully uploading to staging area, we identify the linked objects to those files. These objects
 can now be committed to the asset. The asset and object are committed together since they are inter-linked. 
 
-The BaseAsset-commit process is a handoff to the asset-server which performs the following steps. The BaseAsset-server receives the request from asset-client. The payload is in the following format
+The Asset-commit process is a handoff to the asset-server which performs the following steps. The BaseAsset-server receives the request from asset-client. The payload is in the following format
 </div>
 
 <pre class="code">
@@ -19,7 +19,7 @@ The BaseAsset-commit process is a handoff to the asset-server which performs the
 
 <br>
 
-##### Ensuring Atomicity of the BaseAsset-Commit process
+##### Ensuring Atomicity of the Asset-Commit process
 Its possible, that the previous commit was interrupted and didn't go through. A few possible reasons could be
 
 * **Network failure with User**: Content staging was successful, but a network error happened at the user-end during the commit process. In such a case
@@ -37,7 +37,6 @@ asset-commit flow into 2 different stages.
 
 **Asset Commit flow - Stage 1**
 
-![asset_commit_stage1](imgs/asset_commit_stage_1.jpg)
 
 ```mermaid
 %% graph TD
@@ -80,7 +79,7 @@ flowchart TD
     class Asset asset
 ```
 
-In stage-1 the ```BaseAsset-Client``` checks if the asset to be committed has an id, if not, it requests for an id to the asset-server. The request payload
+In stage-1 the ```Asset-Client``` checks if the asset to be committed has an id, if not, it requests for an id to the asset-server. The request payload
 contains the class_name, and the parent_asset_id (if asset inherits from a different asset). The ```Asset-Server``` receives the request, creates a record
 in the asset-table (with seq_id and version) and returns the asset_id to the Client. 
 
@@ -93,7 +92,7 @@ In stage-2, the asset-client requests for the asset to committed. The commit pro
 * Transfer contents from staging area in to remote-repo, do checksum validation.
 * Create records in Content table, if not exist already
 * Create records in Objects table, if not exist already
-* Create records in BaseAsset-Objects join table
+* Create records in Asset-Objects join table
 * Update asset-record with commit-hash
 * Respond to client with commit-hash
 

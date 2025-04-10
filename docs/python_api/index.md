@@ -1,4 +1,4 @@
-# Asset SDK for Python
+# AMA SDK for Python
 
 <div class="justified">
 A Python library for the AMA. It lets you do anything the asset cli does, but from within Python apps – create
@@ -51,15 +51,15 @@ asset.project.activate(project_name=project_name)
 active_project = asset.project.active
 ```
 
-#### How to manage asset Classes
+#### How to manage Asset Collections
 
 ```python
 from amapy import asset
 
-# to fetch information about all the asset classes of the active project
+# to fetch information about all the asset collections of the active project
 asset.klass.fetch()
 
-# to list info of all the asset classes of the active project
+# to list info of all the asset collections of the active project
 classes = asset.klass.list()
 
 # to get the info of a specific class_name
