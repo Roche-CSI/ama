@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "amapy-plugin-posix"
-version = "1.0.1"
+version = "1.0.1.dev0"
 description = "The POSIX plugin for the ama project."
 readme = "README.md"
 authors = [

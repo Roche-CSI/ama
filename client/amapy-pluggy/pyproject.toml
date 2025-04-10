@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "amapy-pluggy"
-version = "1.0.1"
+version = "1.0.1.dev0"
 description = "A Plugin handler for ama project."
 readme = "README.md"
 authors = [

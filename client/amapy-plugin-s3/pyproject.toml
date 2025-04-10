@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "amapy-plugin-s3"
-version = "1.0.1"
+version = "1.0.1.dev0"
 description = "The S3 plugin for the ama project."
 readme = "README.md"
 authors = [

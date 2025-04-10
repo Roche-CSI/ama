@@ -1,0 +1,30 @@
+site_name: AMA
+theme:
+  name: readthedocs
+  features:
+    - content.code.copy
+    - content.code.select
+extra_css: [ css/extra.css ]
+repo_url: https://github.com/Roche-CSI/ama
+site_author: swarup.mahanti@roche.com
+site_url: https://github.com/Roche-CSI/ama
+
+nav:
+  - Home: home/index.md
+  - Quick Start: user_guide/index.md
+  - Hello World: user_guide/hello_world.md
+  - Python API: python_api/index.md
+  - Case Studies: case_studies/index.md
+  - Overview: overview.md
+  - Conceptual Model: concepts/index.md
+  - Architecture: architecture.md
+  - Implementation: implementation/index.md
+
+plugins:
+  - include-markdown
+  - search
+  - mermaid2
+  - codeinclude
+
+extra_javascript:
+  - https://unpkg.com/mermaid/dist/mermaid.min.js
