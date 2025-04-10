@@ -95,7 +95,7 @@ to the remote bucket.
 
 ```mermaid
 graph TD
-    AssetServer["Asset-Server"] --> ReadWrite1["Read-Write"]
+    AssetServer["ama-Server"] --> ReadWrite1["Read-Write"]
     ReadWrite1 --> RemoteRepo["Remote
     repo"]
     ReadWrite1 --> StagingRepo["Staging

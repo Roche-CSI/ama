@@ -58,8 +58,8 @@ asset-commit flow into 2 different stages.
 %%     class Asset asset
 
 flowchart TD
-    AssetClient["Asset-Client"] --> AskForId["Ask for Id"]
-    AssetServer["Asset-Server"]
+    AssetClient["Client"] --> AskForId["Ask for Id"]
+    AssetServer["ama-Server"]
     CreateRecord["Create record if not exists"]
     
     AskForId -->|"1 class_name, parent_id"| CreateRecord
