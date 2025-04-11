@@ -1,4 +1,4 @@
-# asset-manager
+# AMA
 
 # Documentation generation
 - Utility requirements are listed at `requirements.txt`
