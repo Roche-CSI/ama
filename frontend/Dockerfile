@@ -5,4 +5,7 @@ COPY node_app/dist ./
 
 EXPOSE 3000
 
+ENV KEY_FILE_NAME=""
+ENV CERT_FILE_NAME=""
+
 CMD ["node", "./node_app.bundle.js"]

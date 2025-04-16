@@ -17,6 +17,7 @@ let server: http.Server | https.Server;
 
 // Check if both key and certificate files exist
 if (KEY && CERT && fs.existsSync(`${MOUNT_DIR}/${KEY}`) && fs.existsSync(`${MOUNT_DIR}/${CERT}`)) {
+    logger.info("Key and certificate files exist. Creating HTTPS server.");
     const options = {
         key: fs.readFileSync(`${MOUNT_DIR}/${KEY}`),
         cert: fs.readFileSync(`${MOUNT_DIR}/${CERT}`)
@@ -24,6 +25,7 @@ if (KEY && CERT && fs.existsSync(`${MOUNT_DIR}/${KEY}`) && fs.existsSync(`${MOUN
     server = https.createServer(options, App);
     logger.info("HTTPS server created.");
 } else {
+    logger.error("Key and/or certificate files do not exist. Falling back to HTTP.");
     server = http.createServer(App);
     logger.info("HTTP server created.");
 }
