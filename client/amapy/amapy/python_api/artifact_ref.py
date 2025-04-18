@@ -1,7 +1,8 @@
 from functools import cached_property
 
-from amapy import ArtifactInputs, Artifact
 from amapy.app import ACTIVE_CONFIG_MODE
+from amapy.python_api.artifact import Artifact
+from amapy.python_api.inputs import ArtifactInputs
 from amapy_core.configs import configs
 from amapy_utils.common import exceptions
 
