@@ -6,7 +6,7 @@ from datetime import datetime
 import peewee
 import pytz
 from peewee import *
-from playhouse.postgres_ext import JSONField
+from amapy_server.models.utils.fields import JSONField, UUIDField
 from playhouse.shortcuts import model_to_dict
 
 from amapy_server.configs import Configs
@@ -37,7 +37,7 @@ STATUS_CHOICES = (
 class BaseModel(LoggingMixin, Model):
     statuses = StatusEnums
     """Base Models, all models inherit from this"""
-    id = UUIDField(primary_key=True, unique=True, default=uuid.uuid4)
+    id = UUIDField(primary_key=True, unique=True, default=lambda: str(uuid.uuid4()))
     created_at = DateTimeField(null=False, default=lambda: datetime.now(pytz.utc))
     created_by = CharField(null=False)  # user_id
     # do soft delete only otherwise, versioning will get corrupted

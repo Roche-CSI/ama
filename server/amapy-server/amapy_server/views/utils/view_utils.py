@@ -3,7 +3,16 @@ import json
 from typing import Dict, Any
 
 from flask import Request, g
+import datetime
 
+class DateTimeEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, datetime.datetime):
+            return obj.strftime('%Y-%m-%d %H:%M:%S')
+        return super().default(obj)
+
+def to_json(data):
+    return json.dumps(data, cls=DateTimeEncoder)
 
 def data_from_request(request: Request) -> Dict[str, Any]:
     """
@@ -46,5 +55,5 @@ def data_from_request(request: Request) -> Dict[str, Any]:
         return {'user': g.user} if hasattr(g, 'user') else {}
 
 
-def compress_data(data: any):
-    return gzip.compress(json.dumps(data).encode('utf-8'), 5)
+def compress_data(data):
+    return gzip.compress(to_json(data).encode('utf-8'), 5)
