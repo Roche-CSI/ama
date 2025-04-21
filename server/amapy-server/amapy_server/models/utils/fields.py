@@ -81,7 +81,7 @@ def UUIDField(primary_key=True, unique=True, default=None):
     if default is None:
         default = lambda: str(uuid.uuid4())
 
-    if DatabaseSelector.get_database_type() != 'sqlite':  # Fixed typo: 'sqllite' -> 'sqlite'
+    if DatabaseSelector.get_database_type() != 'sqlite':
         return PeeweeUUIDField(primary_key=primary_key, unique=unique, default=default)
     else:
         return CharField(36, primary_key=primary_key, unique=unique, default=default)
