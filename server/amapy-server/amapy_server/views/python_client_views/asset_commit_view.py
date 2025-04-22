@@ -56,7 +56,7 @@ def commit_asset(user, data, message=None, bucket_sync=True):
     """
     is_valid, error = validate(data=data)
     if not is_valid:
-        return Response(to_json({"error": error}), mimetype="application/json", status=400)
+        return Response(to_json({"error": error}), mimetype="application/json", status=f"400 {error}")
 
     class_data: dict = data.get("asset_class", {})
     if not class_data.get("project"):
