@@ -57,12 +57,14 @@ class AppSettings:
 
         Needed by server to validate breaking changes for new releases.
         """
+        package_name = "amapy"
         try:
-            package_version = version('amapy')
+            package_version = version(package_name)
         except PackageNotFoundError as e:
             raise exceptions.AssetException(f"cli version not found: {e}")
 
-        return self.extract_version(package_version)
+        version_number = self.extract_version(package_version)
+        return f"{package_name}-{version_number}"
 
     def extract_version(self, string):
         # Get rid of .dev from the version string

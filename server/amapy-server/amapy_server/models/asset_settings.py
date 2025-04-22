@@ -40,6 +40,11 @@ class AssetSettings(ReadWriteModel):
     def supported_cli_version(cls):
         record = cls.get_if_exists(cls.name == 'min_cli_version')
         return record.value if record else None
+    
+    @classmethod
+    def supported_amapy_version(cls):
+        record = cls.get_if_exists(cls.name == 'min_amapy_version')
+        return record.value if record else None
 
     @classmethod
     def server_available(cls):
