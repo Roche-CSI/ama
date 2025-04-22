@@ -99,15 +99,46 @@ def validate(data: dict) -> tuple:
     # check if the cli-version is supported
     cli_version = data.pop("cli_version", None)
     if not cli_version:
-        # note: this is temp, raising exception to force asset-client to upgrade to 2.0
         raise Exception("missing required param: cli-version, asset-client needs upgrade")
         # return False, "missing required param: cli_version"
 
-    supported_cli_version = models.AssetSettings.supported_cli_version()
-    if not supported_cli_version:
-        return False, "server must have a supported CLI version"
+    # Parse the cli_version to extract the package name and version
+    package_name, version_number = parse_cli_version(cli_version)
 
-    if version.parse(cli_version) < version.parse(supported_cli_version):
-        return False, f"unsupported cli-version, you must have a cli-version:{supported_cli_version} or greater"
+    # Determine which database entry to check
+    if package_name == "amapy":
+        # Retrieve the supported amapy version from a separate entry
+        amapy_version_entry = models.AssetSettings.supported_amapy_version()
+        supported_version = amapy_version_entry.value if amapy_version_entry else None
+    else:
+        # Default to checking the asset-manager version
+        cli_version_entry = models.AssetSettings.supported_amapy_version()
+        supported_version = cli_version_entry.value if cli_version_entry else None
+
+    if not supported_version:
+        return False, f"unsupported cli-version for {package_name}, no supported version found"
+
+    # Compare versions
+    if version.parse(version_number) < version.parse(supported_version):
+        return False, f"unsupported cli-version for {package_name}, you must have version: {supported_version} or greater"
 
     return True, None
+
+def parse_cli_version(cli_version: str) -> tuple:
+    """Extracts the package name and version number from the cli_version string.
+
+    Parameters
+    ----------
+    cli_version: str
+
+    Returns
+    -------
+    tuple: package name, version number
+    """
+    if '-' in cli_version:
+        package_name, version_number = cli_version.split('-', 1)
+    else:
+        package_name = 'asset-manager'  # Default package name
+        version_number = cli_version
+
+    return package_name, version_number
