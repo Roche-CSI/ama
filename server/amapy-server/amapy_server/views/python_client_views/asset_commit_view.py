@@ -112,7 +112,7 @@ def validate(data: dict) -> tuple:
         supported_version = amapy_version_entry.value if amapy_version_entry else None
     else:
         # Default to checking the asset-manager version
-        cli_version_entry = models.AssetSettings.supported_amapy_version()
+        cli_version_entry = models.AssetSettings.supported_cli_version()
         supported_version = cli_version_entry.value if cli_version_entry else None
 
     if not supported_version:
