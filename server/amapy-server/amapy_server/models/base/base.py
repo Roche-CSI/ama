@@ -37,7 +37,7 @@ STATUS_CHOICES = (
 class BaseModel(LoggingMixin, Model):
     statuses = StatusEnums
     """Base Models, all models inherit from this"""
-    id = UUIDField(primary_key=True, unique=True, default=lambda: str(uuid.uuid4()))
+    id = UUIDField(primary_key=True, unique=True, default=uuid.uuid4())
     created_at = DateTimeField(null=False, default=lambda: datetime.now(pytz.utc))
     created_by = CharField(null=False)  # user_id
     # do soft delete only otherwise, versioning will get corrupted
