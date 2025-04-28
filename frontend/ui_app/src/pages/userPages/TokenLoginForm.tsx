@@ -3,7 +3,10 @@ import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { StoreNames, useStore } from "../../stores";
 
-export default function GoogleLoginForm() {
+/**
+ * Login with token, intended for testing purposes only.
+ */
+export default function TokenLoginForm() {
     const [token, setToken] = React.useState<string>("")
     const userStore = useStore(StoreNames.userStore, true);
     const navigate = useNavigate();

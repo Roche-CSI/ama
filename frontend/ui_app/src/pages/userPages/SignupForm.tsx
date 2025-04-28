@@ -1,46 +1,27 @@
 import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom";
-import { useQuery } from "../../utils/utils";
-import { fetchPost } from "../../servers/base";
-import AssetURLs from "../../servers/asset_server/assetURLs";
 import { Logo } from "../../components/logo";
-import { StoreNames, useStore } from "../../stores";
 import { ButtonSpinner } from "../assetClassPageV2/forms/FormHelpers";
 
+interface SignupFormProps {
+	onSignupSubmit: (email: string, userId: string, confirmUserId: string) => void;
+	isLoading: boolean;
+	signupError?: string;
+	navigate: (path: string) => void;
+}
 
-export const SignupV2 = ({ onClick }) => {
-	const query = useQuery();
-	const action = query.get("action");
-	const error = query.get("error");
-	const [signupError, setSignupError] = useState('');
+export const SignupForm: React.FC<SignupFormProps> = ({ onSignupSubmit, isLoading, signupError, navigate }) => {
 	const [email, setEmail] = useState('');
 	const [userId, setUserId] = useState('');
 	const [confirmUserId, setConfirmUserId] = useState('');
-	const userStore = useStore(StoreNames.userStore, true);
-	const [loading, setLoading] = useState(false);
-	const navigate = useNavigate()
+
+	const handleSubmit = (event: React.FormEvent) => {
+		event.preventDefault();
+		onSignupSubmit(email, userId, confirmUserId);
+	};
 
 	const onClickSignIn = () => {
-		navigate("/login")
-	}
-
-	function onSubmit(event: React.FormEvent) {
-		event.preventDefault();
-		if (userId !== confirmUserId) {
-			setSignupError("User ID and Confirm User ID do not match.");
-			return;
-		}
-		setLoading(true);
-		fetchPost(new AssetURLs().signup_route(), { 'email': email, 'username': userId })
-			.then((data) => {
-				console.log("res: ", data);
-				onClick()
-			})
-			.catch((err) => {
-				setLoading(false);
-				setSignupError("Oh Snap! You've got an unexpected error.")
-			});
-	}
+		navigate("/login");
+	};
 
 	return (
 		<div className="min-h-screen w-full bg-slate-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
@@ -55,7 +36,7 @@ export const SignupV2 = ({ onClick }) => {
 
 			<div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
 				<div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-					<form className="space-y-6" onSubmit={onSubmit}>
+					<form className="space-y-6" onSubmit={handleSubmit}>
 						<div>
 							<label htmlFor="email" className="block text-sm font-medium text-gray-700">
 								Email address
@@ -83,7 +64,6 @@ export const SignupV2 = ({ onClick }) => {
 									id="unix-id"
 									name="user_id"
 									type="text"
-									// autoComplete="user_id"
 									required
 									value={userId}
 									onChange={(e) => setUserId(e.target.value)}
@@ -117,9 +97,9 @@ export const SignupV2 = ({ onClick }) => {
 							<button
 								type="submit"
 								className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
-								disabled={loading}
+								disabled={isLoading}
 							>
-								{loading ? <ButtonSpinner message="Signing up..." /> : 'Sign up'}
+								{isLoading ? <ButtonSpinner message="Signing up..." /> : 'Sign up'}
 							</button>
 						</div>
 					</form>
