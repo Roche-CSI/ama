@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 import uuid
 from datetime import datetime
 
@@ -310,9 +311,29 @@ class BaseModel(LoggingMixin, Model):
         # batch_size: 1000 -> 12.67 seconds
         # batch_size: 20000 -> 12.65 seconds
         for chunk in chunked(data, 1000):
-            inserted = cls.insert_many(chunk).on_conflict_ignore().execute()
-            ids = list(map(lambda x: x[0], inserted))
-            created += ids
+            # Determine if we're using SQLite or PostgreSQL
+            db_type = os.getenv("DB_TYPE")
+        
+            if 'sqlite' == db_type:
+                # SQLite approach - insert and then query for the IDs
+                # First, collect the data we need to identify these records
+                identifiers = []
+                for item in chunk:
+                    # Use a field that can uniquely identify the record
+                    if 'id' in item:
+                        identifiers.append(item['id'])
+                
+                cls.insert_many(chunk).on_conflict_ignore().execute()
+                # Query for the inserted records
+                if identifiers:
+                    query = cls.select(cls.id).where(cls.id.in_(identifiers))
+                    inserted_ids = [record.id for record in query]
+                    created.extend(inserted_ids)
+            else:
+                # PostgreSQL approach - use RETURNING
+                inserted = cls.insert_many(chunk).on_conflict_ignore().execute()
+                ids = list(map(lambda x: x[0], inserted))
+                created.extend(ids)
         return created
 
     @classmethod
