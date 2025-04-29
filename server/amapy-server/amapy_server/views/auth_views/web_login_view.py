@@ -110,19 +110,16 @@ def callback():
         }
 
     jwt_token = auth_utils.generate_jwt(login_info)
-    DEFAULT_FRONTEND_URL = Configs.shared().frontend_url
-    client_url = session.get("client_url", DEFAULT_FRONTEND_URL)
+    default_client_url: str = Configs.shared().frontend_url
+    client_url = session.get("client_url")
+    if client_url is None:
+        print("client_url is not set for the session, using DEFAULT_FRONTEND_URL")
+        client_url = default_client_url
     decoded_client_url = unquote(client_url)
     # print("decoded_client_url", decoded_client_url)
     response = make_response(redirect(f"{decoded_client_url}"))
     response.set_cookie('jwt', jwt_token, httponly=True, secure=True, samesite=None)
     return response
-
-    """ return Response(
-        response=json.dumps({'JWT':jwt_token}),
-        status=200,
-        mimetype='application/json'
-    ) """
 
 
 @view.route("/token_refresh", methods=['POST'])
