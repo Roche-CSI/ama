@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Navigate, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import { StoreNames, useStore } from "../../stores";
 import { isEmptyObject } from "../../utils";
 import { useQuery } from "../../utils/utils";
 import AssetURLs from "../../servers/asset_server/assetURLs";
 import { fetchPost } from "../../servers/base";
-
+import Spinner from "../../components/spinner/Spinner.tsx";
 
 export function save_user(store: any, userInfo: any) {
     if (!userInfo.user) {
@@ -48,14 +48,14 @@ function parse_projects(roles: object[], default_project: string): any {
 
 export function PrivateRoute({ children }: any) {
     const userStore = useStore(StoreNames.userStore);
-    const urlStack = useStore(StoreNames.urlHistoryStore);
-    const location = useLocation();
     const query = useQuery();
     const [token, setToken] = useState<string>((userStore.get("user") || {}).token)
     const [error, setError] = useState<string | null>(null);
-    const navigate = useNavigate();
+    const [loading, setLoading] = useState<boolean>(false);
 
     const loginWithToken = (jwtToken: string | null) => {
+        setLoading(true);
+        setError(null);
         let data: Record<string, string> = {};
         if (jwtToken) {
             data = { jwt: jwtToken }
@@ -71,6 +71,8 @@ export function PrivateRoute({ children }: any) {
             setError(JSON.stringify(err.message))
             // urlStack.set('redirect_from', `${window.location.pathname}${window.location.search}`)
             setError(error || 'Please login to access the page you requested');
+        }).finally(() => {
+            setLoading(false);
         })
     }
 
@@ -91,6 +93,7 @@ export function PrivateRoute({ children }: any) {
 
     return (
         <div>
+            {loading && <Spinner message={"Loading"} />}
             {token ?
                 (children ?? <Outlet />)
                 :

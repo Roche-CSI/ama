@@ -67,12 +67,15 @@ export default function ProjectsListPage() {
 	const fetchProjects = () => {
 		if (!projectStore.last_update) {
 			Project.getFromServer(userStore.get("user").username).then((data: any[]) => {
+				setLoading(true)
 				data.forEach((proj: any) => projectStore.set(proj.id, proj));
 				setProjects(data);
 				setError("");
 			}).catch((error) => {
 				setError(error.message)
 				setProjects([]);
+			}).finally(() => {
+				setLoading(false)
 			})
 		} else {
 			setProjects(Object.values(projectStore.get()));
