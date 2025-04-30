@@ -3,7 +3,7 @@ import json
 
 from cryptography.fernet import Fernet
 from peewee import *
-from playhouse.postgres_ext import JSONField
+from amapy_server.models.utils.fields import JSONField
 
 from amapy_pluggy.storage.storage_credentials import StorageCredentials
 from amapy_pluggy.storage.storage_factory import StorageFactory

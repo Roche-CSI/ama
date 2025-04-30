@@ -7,8 +7,7 @@ from typing import Dict, Any, Optional
 
 from peewee import *
 from peewee import operator
-from playhouse.postgres_ext import JSONField
-
+from amapy_server.models.utils.fields import JSONField
 from amapy_pluggy.storage.storage_factory import StorageFactory
 from amapy_pluggy.storage.transporter import Transporter
 from amapy_server.asset_client.exceptions import AssetException
