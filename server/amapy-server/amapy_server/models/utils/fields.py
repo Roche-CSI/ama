@@ -93,31 +93,18 @@ class JSONFieldMixin:
         Supports both SQLite (using json_extract) and PostgreSQL (using LIKE on casted text).
         """
         if self._is_sqlite_database():
-            if isinstance(term, dict):
-                conditions = []
-                for k, v in term.items():
-                    json_path = f'$.{k}'
-                    value = v if isinstance(v, (int, float)) else str(v)
-                    expr = fn.json_extract(self, json_path) == value
-                    conditions.append(expr)
-                return Expression.reduce(OP.AND, conditions)
-            elif isinstance(term, list):
-                return fn.json_extract(self, '$').contains(json.dumps(term))
-            elif isinstance(term, str):
+            if isinstance(term, str):
                 return fn.json_extract(self, '$').contains(term)
             else:
                 return fn.json_extract(self, '$').contains(json.dumps(term))
-
         else:
             # PostgreSQL: cast to text and do LIKE search
-            if isinstance(term, (dict, list)):
-                search_text = json.dumps(term)
-            elif isinstance(term, str):
+            if isinstance(term, str):
                 search_text = term
             else:
                 search_text = json.dumps(term)
             return Expression(SQL(f"CAST({self.as_entity()} AS text)"), 'ILIKE', f'%{search_text}%')
-            
+  
     def __getitem__(self, key):
         """Access a specific key in the JSON data"""
         if self._is_sqlite_database():
