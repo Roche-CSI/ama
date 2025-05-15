@@ -76,16 +76,6 @@ class JSONFieldMixin:
         if isinstance(self, BinaryJSONField):
             return 'jsonb'
         return 'json'
-    
-    def contains(self, value):
-        if self._is_sqlite_database():
-            if isinstance(value, dict) and len(value) == 1:
-                key, val = list(value.items())[0]
-                return fn.json_extract(self, f'$.{key}') == val
-        else:
-            # Use native PostgreSQL JSON containment
-            return super().contains(value)
-        raise NotImplementedError("Cross-database JSON containment is only supported for single-key dicts in SQLite.")
 
     def search(self, term):
         """
@@ -93,10 +83,8 @@ class JSONFieldMixin:
         Supports both SQLite (using json_extract) and PostgreSQL (using LIKE on casted text).
         """
         if self._is_sqlite_database():
-            if isinstance(term, str):
-                return fn.json_extract(self, '$').contains(term)
-            else:
-                return fn.json_extract(self, '$').contains(json.dumps(term))
+            search_text = term if isinstance(term, str) else json.dumps(term)
+            return fn.json_extract(self, '$') ** f'%{search_text}%'
         else:
             # PostgreSQL: cast to text and do LIKE search
             if isinstance(term, str):
@@ -104,6 +92,7 @@ class JSONFieldMixin:
             else:
                 search_text = json.dumps(term)
             return Expression(SQL(f"CAST({self.as_entity()} AS text)"), 'ILIKE', f'%{search_text}%')
+            
   
     def __getitem__(self, key):
         """Access a specific key in the JSON data"""
