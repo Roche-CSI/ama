@@ -16,7 +16,7 @@ export default class Content extends ReadOnlyRestObject implements ContentInterf
     private static HASH_SEP: string = "_";
     private static ID_SEP: string = ":";
     public static STORAGE_SYSTEMS: string[] = ["gs", "s3"];
-    public static DOWNLOAD_SIZE_LIMIT: number = 100 * MB_TO_BYTES; // 10 MB maximum
+    public static DOWNLOAD_SIZE_LIMIT: number = 100 * MB_TO_BYTES; // 100 MB maximum
     id: string;
     mime_type: string | null;
     size: number;

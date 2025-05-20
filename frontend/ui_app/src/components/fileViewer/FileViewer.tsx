@@ -98,6 +98,7 @@ class FileViewer extends React.Component<FileViewerProps, FileViewerState> {
                                     format: this.props.contentType,
                                     fileName: this.props.fileName,
                                     showProgress: false,
+                                    isProxy: isProxy,
                                     error: this.props.error || (isProxy && "Proxy file is not supported.")
                                 });
                             // this.validateContent(existing.content, this.state.format)
@@ -108,6 +109,7 @@ class FileViewer extends React.Component<FileViewerProps, FileViewerState> {
                                 url: isProxy? null: this.props.url,
                                 format: this.props.contentType,
                                 fileName: this.props.fileName,
+                                isProxy: isProxy,
                                 error: this.props.error || (isProxy && "Proxy file is not supported.")
                             });
                         }
@@ -191,7 +193,7 @@ class FileViewer extends React.Component<FileViewerProps, FileViewerState> {
         return (
             <div>
                 {
-                    this.state.url ?
+                    !this.state.isProxy ?
                         <div>
                             {
                                 this.state.showProgress &&
@@ -230,7 +232,14 @@ class FileViewer extends React.Component<FileViewerProps, FileViewerState> {
             case FileType.CSV: {
                 return (
                     <div className={`${styles.fileViewer} ${styles.csv}`}>
-                        <CsvRenderer content={content} />
+                        {this.props.objectData?.content?.size > 1000000 ? // show content only for > 1MB
+                            <CodeEditor language={this.state.format}
+                            value={this.formatContent(content, this.state.format)}
+                            readonly={true}
+                            setLineNumber={this.setLineNumber} />
+                        :
+                            <CsvRenderer content={content} />
+                        }
                     </div>
                 )
             }
