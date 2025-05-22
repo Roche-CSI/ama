@@ -40,10 +40,7 @@ class JSONFieldMixin:
                 except (json.JSONDecodeError, TypeError):
                     return value
             return value
-        else:
-            # For PostgreSQL, use the original implementation
-            if hasattr(super(), 'python_value'):
-                return super().python_value(value)
+        else:            
             if isinstance(value, str):
                 try:
                     return json.loads(value)
@@ -77,21 +74,21 @@ class JSONFieldMixin:
             return 'jsonb'
         return 'json'
 
-    def search(self, term):
+    def contains(self, term):
         """
         Search for a term within JSON data.
         Supports both SQLite (using json_extract) and PostgreSQL (using LIKE on casted text).
         """
         if self._is_sqlite_database():
             search_text = term if isinstance(term, str) else json.dumps(term)
-            return fn.json_extract(self, '$') ** f'%{search_text}%'
+            return Expression(Cast(self, 'text'), 'ILIKE', f'%{search_text}%')
         else:
             # PostgreSQL: cast to text and do LIKE search
             if isinstance(term, str):
                 search_text = term
             else:
                 search_text = json.dumps(term)
-            return Expression(SQL(f"CAST({self.as_entity()} AS text)"), 'ILIKE', f'%{search_text}%')
+            return Expression(Cast(self, 'text'), 'ILIKE', f'%{search_text}%')
             
   
     def __getitem__(self, key):
