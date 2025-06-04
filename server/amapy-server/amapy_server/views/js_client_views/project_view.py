@@ -6,6 +6,7 @@ from peewee import DoesNotExist
 from amapy_pluggy.storage import BlobStoreURL
 from amapy_plugin_gcs.bucket_cors import update_cors_configuration as gcs_update_cors
 from amapy_plugin_s3.bucket_cors import set_bucket_cors as s3_update_cors
+from amapy_plugin_minio.bucket_cors import set_bucket_cors as minio_update_cors
 from amapy_server.configs import Configs
 from amapy_server.models.project import Project
 from amapy_server.models.role import Role
@@ -101,7 +102,7 @@ def create_project():
 
 def update_cors(data: dict):
     store_url = BlobStoreURL(url=data.get("remote_url"))
-    update_by_host_name = {"s3": s3_update_cors, "gs": gcs_update_cors}
+    update_by_host_name = {"s3": s3_update_cors, "gs": gcs_update_cors, "minio": minio_update_cors}
 
     host = store_url.host
     host_update_cors = update_by_host_name[host]
