@@ -24,7 +24,7 @@ dependencies = [
     "amapy-plugin-gcs==1.0.1",
     "amapy-plugin-posix==1.0.1",
     "amapy-plugin-s3==1.0.1",
-    "amapy-plugin-minio==1.0.1"
+    "amapy-plugin-minio==1.0.1",
     "amapy-utils==1.0.1",
     "markupsafe==2.1.*",
 ]
