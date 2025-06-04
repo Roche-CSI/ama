@@ -5,12 +5,14 @@ from amapy_plugin_gcr import GcrStoragePlugin
 from amapy_plugin_gcs import GcsStoragePlugin
 from amapy_plugin_posix import PosixStoragePlugin
 from amapy_plugin_s3 import AwsStoragePlugin
+from amapy_plugin_minio import MinioStoragePlugin
 
 BUNDLED_PLUGINS = [
     GcsStoragePlugin,
     GcrStoragePlugin,
     AwsStoragePlugin,
-    PosixStoragePlugin
+    PosixStoragePlugin,
+    MinioStoragePlugin
 ]
 
 PLUGINS_REGISTERED = False
