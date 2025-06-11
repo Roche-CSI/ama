@@ -99,7 +99,8 @@ const AssetBrowserV2: React.FC<AssetBrowserProps> = (props) => {
     const navigateToFolder = (path: string) => {
         let target = `${location.pathname}?version=${versionNumber}`;
         if (path) {
-            target += `&folder=${path}`
+            const encodedPath = encodeURIComponent(path);
+            target += `&folder=${encodedPath}`
         }
         navigate(target);
     }
