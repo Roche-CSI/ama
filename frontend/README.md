@@ -11,7 +11,7 @@ Change in to the ui_app directory and run `npm install` to install all the proje
 
 #### `npm start`
 
-To run the development server run `npm start`. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.\ 
+To run the development server run `npm start`. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 You should be able to see the dashboard ui.
 
 The page will reload if you make edits.\
@@ -23,6 +23,8 @@ To use a different server:
 run `VITE_API_URL=http://your-server-domain.com/ npm start`
 
 check `vite-env.d.ts` for other configurable environment variables.
+
+(Note: when running both the amapy server and the dashboard locally, run `VITE_API_URL=http://127.0.0.1:5000/ npm start`, assuming the amapy server is running on port 5000. Then use http://localhost:3000?token=abc to view it in the browser, where token is your admin user's token.)
 
 #### `npm test`
 
