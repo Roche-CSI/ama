@@ -42,11 +42,10 @@ class AwsStorage(AwsStorageMixin, AssetStorage):
                                bucket_name=url.bucket)
 
     # used in asset-server
-    def set_bucket_cors(self, bucket_url: str, origin_url):
+    def set_bucket_cors(self, credentials, bucket_name: str, origin_url):
         """Sets the CORS configuration for the given bucket URL."""
-        url = BlobStoreURL(url=bucket_url)
         return set_bucket_cors(credentials=self.credentials,
-                               bucket_name=url.bucket,
+                               bucket_name=bucket_name,
                                origin_url=origin_url)
 
 

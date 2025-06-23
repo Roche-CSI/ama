@@ -3,7 +3,7 @@ import os
 from cached_property import cached_property
 import hashlib
 
-from amapy_plugin_minio.transport.minio_hash import *
+from amapy_plugin_minio.transporter.minio_hash import *
 from amapy_pluggy.storage import BlobStoreURL
 from amapy_pluggy.storage.transporter import TransportResource
 from amapy_utils.common import exceptions
@@ -45,9 +45,7 @@ def safe_file_etags(filepath, etag):
     if etag.startswith('"') and etag.endswith('"'):
         etag = etag[1:-1]
     
-    # Check if this is a multipart etag
     if '-' in etag:
-        # Use the original function for multipart etags
         try:
             return aws_hash.file_etags(filepath=filepath, etag=etag)
         except IndexError:
@@ -65,7 +63,6 @@ def safe_file_etags(filepath, etag):
 class MinioDownloadResource(MinioTransportResource):
     def __init__(self, src: str, dst: str, hash: tuple = None, callback=None, **kwargs):
         super().__init__(src=src, dst=dst, hash=hash, callback=callback, **kwargs)
-        # Initialize _dst_hash to avoid AttributeError
         self._dst_hash = None
     
     @cached_property
@@ -75,7 +72,6 @@ class MinioDownloadResource(MinioTransportResource):
     def compute_dest_hash(self, hash_type: str) -> tuple:
         """Computes the destination hash."""
         if hash_type == "etag":
-            # For etag, return the original etag type but with our computed value
             if not os.path.exists(self.dst):
                 return "etag", []
             
@@ -83,7 +79,6 @@ class MinioDownloadResource(MinioTransportResource):
             etag_value = self.src_hash[1]
             etag_value = normalize_etag(etag_value)
             
-            # If it's a multipart etag, we need to calculate possible etags
             if '-' in etag_value:                
                 try:
                     _, part_count = parse_multipart_etag(etag_value)
@@ -105,12 +100,12 @@ class MinioDownloadResource(MinioTransportResource):
         
         src_hash_type, src_hash_val = self.src_hash
         
-        # For etag, use our specialized verification
+        # For etag, use specialized verification
         if src_hash_type == "etag":
             if not os.path.exists(self.dst):
                 return False
             
-            # Use our etag verification function
+            # Use etag verification function
             return verify_etag(self.dst, src_hash_val)
         
         # For other hash types, use the standard verification

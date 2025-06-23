@@ -142,10 +142,9 @@ class GcsStorage(AssetStorage, GcsStorageMixin):
         return get_bucket_cors(credentials=self.credentials, bucket_name=url.bucket)
 
     # used in asset-server
-    def set_bucket_cors(self, bucket_url: str, origin_url):
-        url = BlobStoreURL(url=bucket_url)
+    def set_bucket_cors(self, credentials, bucket_name: str, origin_url):
         return update_cors_configuration(credentials=self.credentials,
-                                         bucket_name=url.bucket,
+                                         bucket_name=bucket_name,
                                          origin_url=origin_url)
 
 

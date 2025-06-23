@@ -4,6 +4,9 @@ from minio import Minio
 from amapy_pluggy.storage.transporter import Transporter
 from amapy_pluggy.storage import TransportResource
 from amapy_pluggy.storage import BlobStoreURL
+from amapy_plugin_minio.transporter.minio_transport_resources import MinioDownloadResource
+from amapy_plugin_minio.transporter.minio_transport_resources import MinioUploadResource
+from amapy_plugin_minio.transporter.minio_transport_resources import MinioCopyResource
 
 logger = logging.getLogger(__name__)
 
@@ -33,7 +36,7 @@ class MinioTransporter(Transporter):
         """Create a download resource for MinIO."""
         # Use MinioDownloadResource if available, otherwise use TransportResource
         try:
-            from amapy_plugin_minio.transport.minio_transport_resources import MinioDownloadResource
+            
             return MinioDownloadResource(
                 src=src,
                 dst=dst,
@@ -49,7 +52,6 @@ class MinioTransporter(Transporter):
     def get_upload_resource(self, src: str, dst: str, src_hash: tuple) -> TransportResource:
         """Create an upload resource for MinIO."""
         try:
-            from amapy_plugin_minio.transport.minio_transport_resources import MinioUploadResource
             return MinioUploadResource(
                 src=src,
                 dst=dst,
@@ -65,7 +67,6 @@ class MinioTransporter(Transporter):
     def get_copy_resource(self, src: str, dst: str, src_hash: tuple, **kwargs) -> TransportResource:
         """Create a copy resource for MinIO."""
         try:
-            from amapy_plugin_minio.transport.minio_transport_resources import MinioCopyResource
             return MinioCopyResource(
                 src=src,
                 dst=dst,
@@ -80,7 +81,6 @@ class MinioTransporter(Transporter):
                 **kwargs
             )
     
-        # amapy_plugin_minio/minio_transporter.py
     def download(self, resources: [TransportResource]):
         """Download resources from MinIO to local paths."""
         for resource in resources:

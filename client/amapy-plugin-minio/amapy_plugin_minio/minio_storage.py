@@ -7,7 +7,7 @@ from amapy_pluggy.plugin.object_content import ObjectContent
 from amapy_pluggy.storage import StorageData, StorageURL, BlobStoreURL
 from amapy_pluggy.storage.asset_storage import AssetStorage
 from amapy_plugin_minio.minio_storage_mixin import MinioStorageMixin
-from amapy_plugin_minio.bucket_cors import set_bucket_cors
+from amapy_plugin_minio.bucket_cors import set_bucket_cors, get_bucket_cors
 from amapy_plugin_minio.signed_url import create_presigned_url
 from amapy_utils.common import exceptions
 
@@ -39,11 +39,10 @@ class MinioStorage(MinioStorageMixin, AssetStorage):
         return get_bucket_cors(credentials=self.credentials,
                                bucket_name=url.bucket)
 
-    def set_bucket_cors(self, bucket_url: str, origin_url):
+    def set_bucket_cors(self, credentials, bucket_name: str, origin_url):
         """Sets the CORS configuration for the given bucket URL."""
-        url = BlobStoreURL(url=bucket_url)
-        return set_bucket_cors(credentials=self.credentials,
-                               bucket_name=url.bucket,
+        return set_bucket_cors(credentials=credentials,
+                               bucket_name=bucket_name,
                                origin_url=origin_url)
 
 
