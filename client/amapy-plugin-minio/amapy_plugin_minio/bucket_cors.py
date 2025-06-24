@@ -6,9 +6,9 @@ logger = logging.getLogger(__name__)
 
 def get_minio_client(credentials):
     """Create a MinIO client from credentials."""
-    endpoint = credentials.get('endpoint', 'localhost:9000')
-    access_key = credentials.get('access_key', 'minioadmin')
-    secret_key = credentials.get('secret_key', 'minioadmin')
+    endpoint = credentials.get('endpoint')
+    access_key = credentials.get('access_key')
+    secret_key = credentials.get('secret_key')
     secure = credentials.get('secure', False)
     
     if isinstance(secure, str):
