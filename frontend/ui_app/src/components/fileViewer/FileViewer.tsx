@@ -124,11 +124,11 @@ class FileViewer extends React.Component<FileViewerProps, FileViewerState> {
             downLoadBlobToDisk(data, this.props.fileName)
             return
         }
-        this.setState({ content: data.toString(), showProgress: false }, () => {
+        this.setState({ content: data, showProgress: false }, () => {
             this.validateContent(data, this.state.format);
             
             const contentId: string = this.props.objectData?.content?.id;
-            if (contentId && this.state.format !== FileType.IMAGE) {
+            if (contentId) {
                 this.store?.set(contentId, { content: data, timestamp: new Date().getTime() });
             }
         });
@@ -215,7 +215,11 @@ class FileViewer extends React.Component<FileViewerProps, FileViewerState> {
     renderContent(content: any, format: string) {
         switch (format) {
             case FileType.IMAGE: {
-                return <div className={styles.imageViewer}><img src={content} alt={''}/></div>
+                let imageUrl = content;
+                if (content instanceof Blob) {
+                    imageUrl = URL.createObjectURL(content);
+                }
+                return <div className={styles.imageViewer}><img src={imageUrl} alt={''}/></div>
             }
             case FileType.YAML: {
                 const fileName: string = this.state.fileName || this.props.fileName;

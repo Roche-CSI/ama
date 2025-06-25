@@ -5,7 +5,6 @@ import styles from "./file_diff_viewer.module.scss";
 import { DownloadWithProgress } from "../progressBars";
 import { CodeDiffEditor } from "../codeEditor";
 import { jsonPretty } from "../../utils/utils";
-import { AlertDismissible } from "../alerts";
 import Button from "react-bootstrap/Button";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import {convertToCurrentTimeZone} from "../../utils";
@@ -158,7 +157,7 @@ class FileDiffViewer extends React.Component<FileDiffViewerProps, FileDiffViewer
         }
         this.setState({ content: data, showProgress: false })
         const contentId: string = this.props.objectData?.content?.id;
-        if (contentId && this.state.format !== FileType.IMAGE) {
+        if (contentId) {
             this.store?.set(contentId, { content: data, timestamp: new Date().getTime() })
         }
     }
@@ -171,7 +170,7 @@ class FileDiffViewer extends React.Component<FileDiffViewerProps, FileDiffViewer
         }
         this.setState({ prevContent: data, showDiffProgress: false })
         const prevContentId: string = this.props.prevObjectData?.content?.id;
-        if (prevContentId && this.state.format !== FileType.IMAGE) {
+        if (prevContentId) {
             this.store?.set(prevContentId, { content: data, timestamp: new Date().getTime() })
         }
     }
@@ -260,10 +259,18 @@ class FileDiffViewer extends React.Component<FileDiffViewerProps, FileDiffViewer
     renderDiff(prevContent: any, content: any, format: any) {
         switch (format) {
             case FileType.IMAGE: {
+                let leftUrl = prevContent;
+                let rightUrl = content;
+                if (prevContent instanceof Blob) {
+                    leftUrl = URL.createObjectURL(prevContent);
+                }
+                if (content instanceof Blob) {
+                    rightUrl = URL.createObjectURL(content);
+                }
                 return (
                     <div className={styles.imageDiffViewer}>
-                        <div className={styles.imageDiffLeft}><img src={prevContent} alt={'None'} /></div>
-                        <div className={styles.imageDiffRight}><img src={content} alt={'None'} /></div>
+                        <div className={styles.imageDiffLeft}><img src={leftUrl} alt={'None'} /></div>
+                        <div className={styles.imageDiffRight}><img src={rightUrl} alt={'None'} /></div>
                     </div>
                 )
             }
