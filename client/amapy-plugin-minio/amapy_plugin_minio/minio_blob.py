@@ -11,20 +11,16 @@ class MinioBlob(BlobData):
     def initialize(self, data: Any, url_object: BlobStoreURL):
         """Initialize the MinioBlob object with data from a MinIO object."""
         self._minio_obj = data
-        
-        # Set basic properties
         self.name = data.object_name
         self.size = data.size
         self.host = url_object.host
         self.bucket = url_object.bucket
         self.url = url_object.url_for_blob(host=self.host, bucket=self.bucket, name=self.name)
         
-        # Initialize empty hashes dictionary
         self.hashes = {}
         
-        # Handle etag - store it as etag (not md5)
+        # Handle etag - store it as etag
         if hasattr(data, 'etag') and data.etag:
-            # Store the etag with quotes as aws_hash expects
             self.hashes["etag"] = data.etag
             
             # For single-part uploads, also store as md5
@@ -40,7 +36,6 @@ class MinioBlob(BlobData):
                     self.hashes["md5"] = parts[0]
                     self._multipart_size = self.size
         
-        # Set content type based on file extension
         from amapy_utils.utils.file_utils import FileUtils
         self.content_type = FileUtils.mime_type(self.name)
 
@@ -53,11 +48,9 @@ class MinioBlob(BlobData):
         if "etag" in self.hashes:
             return ("etag", self.hashes["etag"])
         
-        # Fall back to md5
         if "md5" in self.hashes:
             return ("md5", self.hashes["md5"])
         
-        # No suitable hash found
         return None
     
     @property

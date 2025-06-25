@@ -1,14 +1,17 @@
 from minio import Minio
-import json
+import subprocess
+import tempfile
+import os
 import logging
+import json
 
 logger = logging.getLogger(__name__)
 
 def get_minio_client(credentials):
     """Create a MinIO client from credentials."""
-    endpoint = credentials.get('endpoint', 'localhost:9000')
-    access_key = credentials.get('access_key', 'minioadmin')
-    secret_key = credentials.get('secret_key', 'minioadmin')
+    endpoint = credentials.get('endpoint')
+    access_key = credentials.get('access_key')
+    secret_key = credentials.get('secret_key')
     secure = credentials.get('secure', False)
     
     if isinstance(secure, str):
@@ -54,6 +57,8 @@ def set_bucket_cors(credentials, bucket_name, origin_url):
                 }
             ]
         }
+
+        
         
         # Set the policy
         client.set_bucket_policy(bucket_name, json.dumps(policy))

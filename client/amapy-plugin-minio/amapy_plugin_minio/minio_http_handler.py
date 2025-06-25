@@ -22,9 +22,9 @@ class MinioHttpHandler:
     @cached_property
     def client(self):
         """Returns a MinIO client."""
-        endpoint = self.credentials.get('endpoint', 'localhost:9000')
-        access_key = self.credentials.get('access_key', 'minioadmin')
-        secret_key = self.credentials.get('secret_key', 'minioadmin')
+        endpoint = self.credentials.get('endpoint')
+        access_key = self.credentials.get('access_key')
+        secret_key = self.credentials.get('secret_key')
         secure = self.credentials.get('secure', False)
         
         if isinstance(secure, str):
@@ -95,7 +95,6 @@ class MinioHttpHandler:
         return self.blob_exists(f"minio://{url.bucket}/{url.path}")
     
 
-    # amapy_plugin_minio/minio_http_handler.py
     def list_blobs(self, url: Union[str, StorageURL], ignore: str = None) -> [StorageData]:
         """Lists blobs at the given URL."""
         if isinstance(url, str):

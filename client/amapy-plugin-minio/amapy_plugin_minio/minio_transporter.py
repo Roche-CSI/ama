@@ -17,9 +17,9 @@ class MinioTransporter(Transporter):
         super().post_init(**kwargs)
         
         # Initialize MinIO client
-        endpoint = self.credentials.get('endpoint', 'localhost:9000')
-        access_key = self.credentials.get('access_key', 'minioadmin')
-        secret_key = self.credentials.get('secret_key', 'minioadmin')
+        endpoint = self.credentials.get('endpoint')
+        access_key = self.credentials.get('access_key')
+        secret_key = self.credentials.get('secret_key')
         secure = self.credentials.get('secure', False)
         
         if isinstance(secure, str):

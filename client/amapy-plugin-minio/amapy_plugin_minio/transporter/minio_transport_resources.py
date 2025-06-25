@@ -30,7 +30,7 @@ def safe_bytes_etags(file_bytes, etag):
 class MinioTransportResource(TransportResource):
     @classmethod
     def from_transport_resource(cls, res: TransportResource):
-        return cls(src=res.src, dst=res.dst, callback=res.callback)
+        return cls(src=res.src, dst=res.dst, hash=res.src_hash, callback=res.callback)
 
 class MinioUploadResource(MinioTransportResource):
     @cached_property
@@ -105,7 +105,6 @@ class MinioDownloadResource(MinioTransportResource):
             if not os.path.exists(self.dst):
                 return False
             
-            # Use etag verification function
             return verify_etag(self.dst, src_hash_val)
         
         # For other hash types, use the standard verification
