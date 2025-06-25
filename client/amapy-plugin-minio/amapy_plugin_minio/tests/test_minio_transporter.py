@@ -14,15 +14,6 @@ from amapy_plugin_minio.transporter.minio_transport_resources import (
     MinioCopyResource
 )
 
-import debugpy
-
-debugpy.listen(("0.0.0.0", 5678))  # You can change port if needed
-print("Waiting for debugger attach...")
-
-debugpy.wait_for_client()  # Pauses here until debugger is attached
-
-debugpy.breakpoint()  # Optional: start debugging from this line
-
 class TestMinioTransporter(unittest.TestCase):
     """Test suite for MinioTransporter download, upload, and copy operations."""
 
