@@ -1,7 +1,7 @@
 import { useStore, StoreNames } from "../../stores";
 import { useFetchSignedUrlWithStore } from "./useFetchSignedUrlWithStore";
 import FileHandler from "../../servers/asset_server/fileHandler";
-import { fetchWithCache } from "../../stores/cacheFirstFetch";
+import { fetchWithCache } from "../../stores/fetchWithCache";
 
 /**
  * Custom hook to fetch file content and update in both store and state

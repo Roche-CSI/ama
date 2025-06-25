@@ -2,7 +2,7 @@ import { useStore, StoreNames } from "../../stores";
 import AssetObject from "../../servers/asset_server/assetObject";
 import AssetURLs from "../../servers/asset_server/assetURLs";
 import { ParsedObject } from "../objectBrowser/ObjectBrowser";
-import { fetchWithCache } from "../../stores/cacheFirstFetch";
+import { fetchWithCache } from "../../stores/fetchWithCache";
 
 /**
  * Custom hook to fetch signedGCSURL and update in both store and state
