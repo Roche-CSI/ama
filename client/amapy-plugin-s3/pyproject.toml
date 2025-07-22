@@ -20,7 +20,8 @@ dependencies = [
     "amapy-contents==1.*",
     "amapy-pluggy==1.*",
     "amapy-utils==1.*",
-    "backoff==2.2.*"
+    "backoff==2.2.*",
+    "urllib3==1.26.19"
 ]
 
 [tool.setuptools.packages.find]
