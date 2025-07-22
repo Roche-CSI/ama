@@ -473,6 +473,11 @@ class Asset(SerializableAsset):
     def states_path(cls, repo, asset_id, version):
         return os.path.join(repo.states_dir, asset_id, f"{version}.json")
 
+    @classmethod
+    def asset_state_path(cls, repo, asset_id):
+        """Returns the path to the asset state file."""
+        return os.path.join(repo.states_dir, asset_id, "asset.json")
+
     def cached_versions(self) -> list:
         """Returns a sorted list of all the versions of the asset."""
         version_yamls = utils.list_files(root_dir=self.cache_dir, pattern="version*.yaml")
