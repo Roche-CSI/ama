@@ -16,7 +16,7 @@ class RemoveAPI(RepoAPI):
             e.logs.add(UserCommands().alias_set())
             raise e
         # set the alias to None
-        self.asset.alias = None
+        self.asset.update_properties(alias=None)
         self.user_log.success("alias removed")
         self.user_log.message(UserCommands().upload_asset())
 
