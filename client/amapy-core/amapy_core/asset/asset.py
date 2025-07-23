@@ -17,7 +17,7 @@ from .asset_class import AssetClass
 from .asset_version import AssetVersion
 from .refs.asset_ref import AssetRef
 from .serializable_asset import SerializableAsset
-from .state import AssetState
+from .state import AssetState, EditStatus
 
 
 class Asset(SerializableAsset):
@@ -235,6 +235,14 @@ class Asset(SerializableAsset):
         # reset the state to pending
         if self.get_state() != self.states.PENDING:
             self.set_state(self.states.PENDING, save=True)
+
+    def update_properties(self, **kwargs):
+        """Modifies the asset properties"""
+        for key, val in kwargs.items():
+            setattr(self, key, val)
+            # update the state of the property
+            self.asset_states_db.set_state(property_name=key,
+                                           state=EditStatus.MODIFIED)
 
     def create_and_add_objects(self,
                                data: dict,
