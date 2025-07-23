@@ -247,7 +247,8 @@ class AddAPI(RepoAPI):
         alias = alias.strip()
         # check if the alias is valid
         self.validate_alias(alias)
-        self.asset.alias = alias
+        # update the alias property
+        self.asset.update_properties(alias=alias)
         InfoAPI(asset=self.asset).list_alias()
 
     def validate_alias(self, alias: str) -> None:
