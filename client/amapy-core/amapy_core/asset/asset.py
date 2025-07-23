@@ -11,7 +11,7 @@ from cached_property import cached_property
 from amapy_core.objects.asset_object import AssetObject, ObjectViews
 from amapy_core.objects.object_factory import ObjectFactory
 from amapy_core.plugins import utils, FileUtils, Progress, exceptions
-from amapy_db import ManifestDB, FileDB, StatesDB, StoreFileDB
+from amapy_db import ManifestDB, FileDB, StatesDB, StoreFileDB, AssetStatesDB
 from amapy_utils.utils.path_utils import PathUtils
 from .asset_class import AssetClass
 from .asset_version import AssetVersion
@@ -196,6 +196,10 @@ class Asset(SerializableAsset):
     @property
     def states_db(self) -> StatesDB:
         return StatesDB(path=self.states_file)
+
+    @property
+    def asset_states_db(self) -> AssetStatesDB:
+        return AssetStatesDB(path=self.asset_states_file)
 
     @property
     def hash(self):
@@ -446,6 +450,13 @@ class Asset(SerializableAsset):
         return self.__class__.states_path(repo=self.repo, asset_id=self.id, version=self.version.number)
 
     @property
+    def asset_states_file(self):
+        """Returns the path to the asset state file."""
+        if not self.id:
+            return None
+        return self.__class__.asset_states_path(repo=self.repo, asset_id=self.id)
+
+    @property
     def manifest_file(self):
         if not self.id or not self.repo or not self.version.number:
             return None
@@ -474,8 +485,8 @@ class Asset(SerializableAsset):
         return os.path.join(repo.states_dir, asset_id, f"{version}.json")
 
     @classmethod
-    def asset_state_path(cls, repo, asset_id):
-        """Returns the path to the asset state file."""
+    def asset_states_path(cls, repo, asset_id):
+        """Returns the path to the asset states file."""
         return os.path.join(repo.states_dir, asset_id, "asset.json")
 
     def cached_versions(self) -> list:
