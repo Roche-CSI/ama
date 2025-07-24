@@ -67,8 +67,9 @@ class AddAPI(RepoAPI):
         updated_tags = set(self.asset.tags).union(tags)
         if len(updated_tags) > MAX_ALLOWED_TAGS:
             raise exceptions.InvalidTagError(f"a maximum of {MAX_ALLOWED_TAGS} tags is allowed")
-        # update the asset tags
-        self.asset.tags = list(updated_tags)
+
+        # update the asset tags property
+        self.asset.update_properties(tags=list(updated_tags))
         self.user_log.info(f"asset tags: {self.asset.tags}")
         self.user_log.message(UserCommands().upload_asset())
 
