@@ -44,13 +44,13 @@ class AddAPI(RepoAPI):
 
     def add_metadata(self, metadata: dict):
         """Adds metadata to the asset."""
-        self.asset.metadata = metadata
+        self.asset.update_properties(metadata=metadata)
         self.user_log.info(f"added metadata to the asset")
         self.user_log.message(UserCommands().upload_asset())
 
     def add_attributes(self, attributes: dict):
         """Adds attributes to the asset."""
-        self.asset.attributes = attributes
+        self.asset.update_properties(attributes=attributes)
         self.user_log.info(f"added attributes to the asset")
         self.user_log.message(UserCommands().upload_asset())
 
