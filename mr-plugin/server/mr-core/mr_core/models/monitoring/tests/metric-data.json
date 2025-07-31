@@ -1,0 +1,256 @@
+[
+    {
+        "id": 1,
+        "run_id": 1,
+        "timestamp": "2024-01-01T00:00:00Z",
+        "category": "drift",
+        "metric_type": "feature_drift",
+        "metric_name": "age_ks_test",
+        "metric_value": 0.03,
+        "metric_details": {
+            "p_value": 0.82,
+            "test_statistic": 0.15,
+            "distribution_comparison": {
+                "reference": {
+                    "mean": 35.5,
+                    "std": 12.3,
+                    "quartiles": [
+                        25,
+                        34,
+                        45
+                    ]
+                },
+                "current": {
+                    "mean": 36.2,
+                    "std": 12.8,
+                    "quartiles": [
+                        26,
+                        35,
+                        46
+                    ]
+                }
+            }
+        },
+        "dimensions": {
+            "feature_name": "age",
+            "data_type": "numerical"
+        },
+        "metadata": {
+            "sample_size": 1000,
+            "test_method": "kolmogorov_smirnov",
+            "window_size": "1h"
+        }
+    },
+    {
+        "id": 2,
+        "run_id": 1,
+        "timestamp": "2024-01-01T00:00:00Z",
+        "category": "drift",
+        "metric_type": "feature_drift",
+        "metric_name": "occupation_chi_square",
+        "metric_value": 0.04,
+        "metric_details": {
+            "p_value": 0.78,
+            "chi_square_statistic": 3.2,
+            "category_distributions": {
+                "reference": {
+                    "professional": 0.45,
+                    "student": 0.25,
+                    "retired": 0.15,
+                    "other": 0.15
+                },
+                "current": {
+                    "professional": 0.43,
+                    "student": 0.26,
+                    "retired": 0.16,
+                    "other": 0.15
+                }
+            }
+        },
+        "dimensions": {
+            "feature_name": "occupation",
+            "data_type": "categorical"
+        },
+        "metadata": {
+            "sample_size": 1000,
+            "test_method": "chi_square",
+            "window_size": "1h"
+        }
+    },
+    {
+        "id": 3,
+        "run_id": 1,
+        "timestamp": "2024-01-01T00:00:00Z",
+        "category": "performance",
+        "metric_type": "classification_metrics",
+        "metric_name": "model_performance",
+        "metric_value": 0.89,
+        "metric_details": {
+            "accuracy": 0.89,
+            "precision": 0.87,
+            "recall": 0.85,
+            "f1_score": 0.86,
+            "confusion_matrix": {
+                "true_positive": 425,
+                "false_positive": 75,
+                "true_negative": 450,
+                "false_negative": 50
+            },
+            "roc_auc": 0.92,
+            "pr_auc": 0.90
+        },
+        "dimensions": {
+            "model_version": "1.0.0",
+            "prediction_type": "binary"
+        },
+        "metadata": {
+            "sample_size": 1000,
+            "computation_time": "2.3s",
+            "evaluation_window": "1h"
+        }
+    },
+    {
+        "id": 4,
+        "run_id": 1,
+        "timestamp": "2024-01-01T00:00:00Z",
+        "category": "health",
+        "metric_type": "latency",
+        "metric_name": "inference_latency",
+        "metric_value": 120.5,
+        "metric_details": {
+            "percentiles": {
+                "p50": 85.2,
+                "p90": 110.3,
+                "p95": 120.5,
+                "p99": 150.8
+            },
+            "min": 50.2,
+            "max": 180.5,
+            "mean": 88.7
+        },
+        "dimensions": {
+            "environment": "production",
+            "region": "us-east-1"
+        },
+        "metadata": {
+            "unit": "milliseconds",
+            "request_count": 5000,
+            "error_count": 23
+        }
+    },
+    {
+        "id": 5,
+        "run_id": 1,
+        "timestamp": "2024-01-01T00:00:00Z",
+        "category": "quality",
+        "metric_type": "data_quality",
+        "metric_name": "missing_values",
+        "metric_value": 0.015,
+        "metric_details": {
+            "per_feature": {
+                "age": 0.001,
+                "income": 0.025,
+                "occupation": 0.012,
+                "usage_months": 0.022
+            },
+            "total_rows": 10000,
+            "affected_rows": 150
+        },
+        "dimensions": {
+            "data_source": "production_db",
+            "batch_id": "2024010100"
+        },
+        "metadata": {
+            "check_timestamp": "2024-01-01T00:00:00Z",
+            "processing_time": "1.2s"
+        }
+    },
+    {
+        "id": 6,
+        "run_id": 2,
+        "timestamp": "2024-01-01T00:00:00Z",
+        "category": "health",
+        "metric_type": "resource_utilization",
+        "metric_name": "gpu_utilization",
+        "metric_value": 0.75,
+        "metric_details": {
+            "memory_used": 14.2,
+            "memory_total": 16.0,
+            "temperature": 72,
+            "power_usage": 180,
+            "compute_utilization": 0.75
+        },
+        "dimensions": {
+            "gpu_id": "gpu-0",
+            "instance_id": "i-0123456789"
+        },
+        "metadata": {
+            "unit": "GB",
+            "temperature_unit": "celsius",
+            "power_unit": "watts"
+        }
+    },
+    {
+        "id": 7,
+        "run_id": 2,
+        "timestamp": "2024-01-01T00:00:00Z",
+        "category": "drift",
+        "metric_type": "target_drift",
+        "metric_name": "target_distribution",
+        "metric_value": 0.08,
+        "metric_details": {
+            "reference_distribution": {
+                "class_0": 0.85,
+                "class_1": 0.15
+            },
+            "current_distribution": {
+                "class_0": 0.82,
+                "class_1": 0.18
+            },
+            "js_divergence": 0.08
+        },
+        "dimensions": {
+            "target_column": "churn_status",
+            "target_type": "binary"
+        },
+        "metadata": {
+            "sample_size": 5000,
+            "window_size": "1d"
+        }
+    },
+    {
+        "id": 8,
+        "run_id": 2,
+        "timestamp": "2024-01-01T00:00:00Z",
+        "category": "performance",
+        "metric_type": "bias_metrics",
+        "metric_name": "demographic_parity",
+        "metric_value": 0.92,
+        "metric_details": {
+            "overall_score": 0.92,
+            "group_metrics": {
+                "age": {
+                    "18-25": 0.91,
+                    "26-35": 0.93,
+                    "36-50": 0.92,
+                    "51+": 0.90
+                },
+                "gender": {
+                    "male": 0.93,
+                    "female": 0.91,
+                    "other": 0.92
+                }
+            }
+        },
+        "dimensions": {
+            "protected_features": [
+                "age",
+                "gender"
+            ]
+        },
+        "metadata": {
+            "minimum_group_size": 100,
+            "confidence_level": 0.95
+        }
+    }
+]

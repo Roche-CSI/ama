@@ -1,0 +1,284 @@
+[
+    {
+        "asset_action_id": "16a8040b-fbe3-45d9-a468-ab513f51d1a9",
+        "description": "Precision drop alert for Basecalling Model",
+        "state": "completed",
+        "attempt_number": 1,
+        "max_retries": 3,
+        "started_at": "2024-01-01T10:15:00Z",
+        "completed_at": "2024-01-01T10:15:05Z",
+        "input_data": {
+            "model_name": "Fraud Detection Model",
+            "model_version": "2.1.0",
+            "environment": "production",
+            "metric_name": "precision",
+            "current_value": 0.92,
+            "previous_value": 0.95,
+            "threshold": 0.94,
+            "evaluation_timestamp": "2024-01-01T10:00:00Z",
+            "team_owner": "ml-team"
+        },
+        "output_data": {
+            "issue_number": 123,
+            "issue_url": "https://github.com/org/repo/issues/123",
+            "created_at": "2024-01-01T10:15:05Z"
+        },
+        "provider_response": {
+            "id": 123,
+            "number": 123,
+            "state": "open",
+            "title": "[production] Performance Alert: Fraud Detection Model precision degradation",
+            "html_url": "https://github.com/org/repo/issues/123"
+        },
+        "essential_logs": [
+            {
+                "timestamp": "2024-01-01T10:15:00Z",
+                "level": "info",
+                "message": "Action started",
+                "metadata": {
+                    "attempt_number": 1
+                }
+            },
+            {
+                "timestamp": "2024-01-01T10:15:02Z",
+                "level": "info",
+                "message": "Creating GitHub issue for performance alert",
+                "metadata": {
+                    "metric": "precision",
+                    "drop": 0.03
+                }
+            },
+            {
+                "timestamp": "2024-01-01T10:15:05Z",
+                "level": "info",
+                "message": "Action completed successfully",
+                "metadata": {
+                    "issue_number": 123
+                }
+            }
+        ],
+        "detailed_logs": {
+            "bucket_url": "gs://model-registry-logs/actions/2024/01/01/fraud-detection-alert-123.json"
+        }
+    },
+    {
+        "asset_action_id": "16a8040b-fbe3-45d9-a468-ab513f51d1a9",
+        "description": "Deploy Customer Churn Predictor v3.0.0 to staging",
+        "state": "completed",
+        "attempt_number": 1,
+        "max_retries": 3,
+        "started_at": "2024-01-01T14:00:00Z",
+        "completed_at": "2024-01-01T14:00:10Z",
+        "input_data": {
+            "model_name": "Customer Churn Predictor",
+            "current_version": "2.1.0",
+            "new_version": "3.0.0",
+            "environment": "staging",
+            "performance_comparison": {
+                "accuracy": {
+                    "current": 0.85,
+                    "new": 0.88
+                },
+                "latency": {
+                    "current": 150,
+                    "new": 145
+                }
+            },
+            "validation_results": {
+                "data_drift": "passed",
+                "unit_tests": "passed",
+                "integration_tests": "passed",
+                "performance_tests": "passed"
+            },
+            "config_changes": {
+                "feature_set": "Added 2 new features",
+                "preprocessing": "Updated scaling method",
+                "hyperparameters": {
+                    "learning_rate": "0.01 -> 0.015",
+                    "max_depth": "6 -> 8"
+                }
+            }
+        },
+        "output_data": {
+            "pull_request_number": 456,
+            "pull_request_url": "https://github.com/org/repo/pull/456"
+        },
+        "provider_response": {
+            "id": 456,
+            "number": 456,
+            "state": "open",
+            "title": "[staging] Deploy Customer Churn Predictor v3.0.0",
+            "html_url": "https://github.com/org/repo/pull/456"
+        },
+        "essential_logs": [
+            {
+                "timestamp": "2024-01-01T14:00:00Z",
+                "level": "info",
+                "message": "Action started",
+                "metadata": {
+                    "attempt_number": 1
+                }
+            },
+            {
+                "timestamp": "2024-01-01T14:00:05Z",
+                "level": "info",
+                "message": "Creating deployment pull request",
+                "metadata": {
+                    "environment": "staging",
+                    "version": "3.0.0"
+                }
+            },
+            {
+                "timestamp": "2024-01-01T14:00:10Z",
+                "level": "info",
+                "message": "Action completed successfully",
+                "metadata": {
+                    "pull_request_number": 456
+                }
+            }
+        ],
+        "detailed_logs": {
+            "bucket_url": "gs://model-registry-logs/actions/2024/01/01/churn-predictor-deploy-456.json"
+        }
+    },
+    {
+        "asset_action_id": "e2a11818-cbe9-44ee-bf75-12aff5bb8cf1",
+        "description": "Validation check for Recommendation Engine v1.5.0",
+        "state": "failed",
+        "attempt_number": 1,
+        "max_retries": 3,
+        "started_at": "2024-01-01T16:00:00Z",
+        "completed_at": "2024-01-01T16:02:00Z",
+        "input_data": {
+            "model_name": "Recommendation Engine",
+            "version": "1.5.0",
+            "sha": "abc123def456",
+            "validation_results": {
+                "performance_tests": {
+                    "state": "failed",
+                    "metrics": {
+                        "ndcg": 0.75,
+                        "precision@10": 0.76,
+                        "recall@10": 0.68
+                    }
+                },
+                "data_tests": {
+                    "state": "success",
+                    "issues": []
+                },
+                "security_scan": {
+                    "state": "success",
+                    "findings": []
+                },
+                "overall_status": "failure",
+                "summary": "Performance tests failed: NDCG below threshold",
+                "details_url": "https://model-registry/validations/rec-eng-v1"
+            }
+        },
+        "output_data": null,
+        "error_message": "Validation failed: NDCG metric (0.75) below required threshold (0.80)",
+        "error_type": "ValidationError",
+        "provider_response": {
+            "state": "failure",
+            "context": "model-registry/validation/recommendation_engine",
+            "description": "Performance tests failed: NDCG below threshold",
+            "target_url": "https://model-registry/validations/rec-eng-v1"
+        },
+        "retry_strategy": {
+            "backoff": "exponential",
+            "initial_delay": 300,
+            "max_delay": 3600
+        },
+        "next_retry_at": "2024-01-01T16:05:00Z",
+        "essential_logs": [
+            {
+                "timestamp": "2024-01-01T16:00:00Z",
+                "level": "info",
+                "message": "Action started",
+                "metadata": {
+                    "attempt_number": 1
+                }
+            },
+            {
+                "timestamp": "2024-01-01T16:01:30Z",
+                "level": "warning",
+                "message": "NDCG metric below threshold",
+                "metadata": {
+                    "current": 0.75,
+                    "threshold": 0.80
+                }
+            },
+            {
+                "timestamp": "2024-01-01T16:02:00Z",
+                "level": "error",
+                "message": "Validation failed: NDCG metric (0.75) below required threshold (0.80)",
+                "metadata": {
+                    "error_type": "ValidationError",
+                    "metrics": {
+                        "ndcg": 0.75
+                    }
+                }
+            }
+        ],
+        "detailed_logs": {
+            "bucket_url": "gs://model-registry-logs/actions/2024/01/01/rec-engine-validation-fail-789.json"
+        }
+    },
+    {
+        "asset_action_id": "e2a11818-cbe9-44ee-bf75-12aff5bb8cf1",
+        "description": "Precision drop alert for Fraud Detection Model (Retry 2)",
+        "state": "completed",
+        "attempt_number": 2,
+        "max_retries": 3,
+        "started_at": "2024-01-01T10:30:00Z",
+        "completed_at": "2024-01-01T10:30:05Z",
+        "input_data": {
+            "model_name": "Fraud Detection Model",
+            "model_version": "2.1.0",
+            "environment": "production",
+            "metric_name": "precision",
+            "current_value": 0.92,
+            "previous_value": 0.95,
+            "threshold": 0.94,
+            "evaluation_timestamp": "2024-01-01T10:00:00Z"
+        },
+        "error_message": null,
+        "error_type": null,
+        "output_data": {
+            "issue_number": 124,
+            "issue_url": "https://github.com/org/repo/issues/124"
+        },
+        "provider_response": {
+            "id": 124,
+            "number": 124,
+            "state": "open",
+            "title": "[production] Performance Alert: Fraud Detection Model precision degradation",
+            "html_url": "https://github.com/org/repo/issues/124"
+        },
+        "retry_strategy": {
+            "backoff": "exponential",
+            "initial_delay": 300
+        },
+        "essential_logs": [
+            {
+                "timestamp": "2024-01-01T10:30:00Z",
+                "level": "info",
+                "message": "Retry attempt 2 started",
+                "metadata": {
+                    "attempt_number": 2
+                }
+            },
+            {
+                "timestamp": "2024-01-01T10:30:05Z",
+                "level": "info",
+                "message": "Action completed successfully on retry",
+                "metadata": {
+                    "issue_number": 124
+                }
+            }
+        ],
+        "detailed_logs": {
+            "bucket_url": "gs://model-registry-logs/actions/2024/01/01/fraud-detection-alert-124-retry2.json"
+        }
+    }
+]

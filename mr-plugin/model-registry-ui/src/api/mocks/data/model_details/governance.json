@@ -1,0 +1,11 @@
+{
+	"compliance": [
+		"GDPR",
+		"CCPA"
+	],
+	"review": {
+		"reviewer": "John Smith",
+		"date": "2024-07-10",
+		"status": "Approved"
+	}
+}

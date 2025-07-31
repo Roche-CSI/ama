@@ -1,0 +1,14 @@
+[
+	{
+		"file_name": "transformer_model_v1.pth",
+		"file_size": "350 MB",
+		"file_type": "Model weights",
+		"uploaded_at": "2024-01-20"
+	},
+	{
+		"file_name": "transformer_model_config.json",
+		"file_size": "5 KB",
+		"file_type": "Configuration",
+		"uploaded_at": "2024-01-20"
+	}
+]

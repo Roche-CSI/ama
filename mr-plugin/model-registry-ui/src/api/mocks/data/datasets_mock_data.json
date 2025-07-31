@@ -1,0 +1,470 @@
+[
+	{
+		"id": "550e8400-e29b-41d4-a716-446655440001",
+		"name": "Genomic Reads Dataset",
+		"description": "A dataset for basecalling in genomic sequencing.",
+		"tags": [
+			"genomics",
+			"basecalling",
+			"sequencing"
+		],
+		"license": "MIT",
+		"author": "Roche Bioinformatics Team",
+		"created_at": "2023-10-01T00:00:00Z",
+		"modified_at": "2023-10-01T00:00:00Z",
+		"downloads": 120,
+		"likes": 45,
+		"format": "FASTQ",
+		"size": "100k",
+		"example_entries": [
+			{
+				"input": "AGCTGATCGATCGATCGATCGATCGATCGATC",
+				"output": "AGCTGATCGATCGATCGATCGATCGATCGATC"
+			}
+		]
+	},
+	{
+		"id": "550e8400-e29b-41d4-a716-446655440002",
+		"name": "Histopathology Images",
+		"description": "A dataset of histopathology images for cancer cell detection.",
+		"tags": [
+			"cancer",
+			"histopathology",
+			"imaging"
+		],
+		"license": "Apache-2.0",
+		"author": "Roche Oncology Team",
+		"created_at": "2023-10-02T00:00:00Z",
+		"modified_at": "2023-10-02T00:00:00Z",
+		"downloads": 200,
+		"likes": 75,
+		"format": "TIFF",
+		"size": "50k",
+		"example_entries": [
+			{
+				"input": "image_path/histopathology_sample_1.tiff",
+				"output": "cancer_cell_detected"
+			}
+		]
+	},
+	{
+		"id": "550e8400-e29b-41d4-a716-446655440003",
+		"name": "Drug Response Dataset",
+		"description": "A dataset for predicting patient response to various drugs.",
+		"tags": [
+			"drug-response",
+			"pharmacogenomics"
+		],
+		"license": "GPL-3.0",
+		"author": "Roche Pharmacogenomics Team",
+		"created_at": "2023-10-03T00:00:00Z",
+		"modified_at": "2023-10-03T00:00:00Z",
+		"downloads": 150,
+		"likes": 60,
+		"format": "CSV",
+		"size": "200k",
+		"example_entries": [
+			{
+				"input": "patient_data/sample_patient_1.csv",
+				"output": "drug_response_prediction"
+			}
+		]
+	},
+	{
+		"id": "550e8400-e29b-41d4-a716-446655440004",
+		"name": "Protein Sequences",
+		"description": "A dataset of protein sequences for structure prediction.",
+		"tags": [
+			"proteomics",
+			"protein-structure"
+		],
+		"license": "MIT",
+		"author": "Roche Bioinformatics Team",
+		"created_at": "2023-10-04T00:00:00Z",
+		"modified_at": "2023-10-04T00:00:00Z",
+		"downloads": 180,
+		"likes": 70,
+		"format": "FASTA",
+		"size": "300k",
+		"example_entries": [
+			{
+				"input": "protein_sequence/sequence_1.fasta",
+				"output": "3d_structure.pdb"
+			}
+		]
+	},
+	{
+		"id": "550e8400-e29b-41d4-a716-446655440005",
+		"name": "Genetic Variants",
+		"description": "A dataset of genetic variants for annotation.",
+		"tags": [
+			"genetics",
+			"variant-annotation"
+		],
+		"license": "Apache-2.0",
+		"author": "Roche Genetics Team",
+		"created_at": "2023-10-05T00:00:00Z",
+		"modified_at": "2023-10-05T00:00:00Z",
+		"downloads": 130,
+		"likes": 55,
+		"format": "VCF",
+		"size": "150k",
+		"example_entries": [
+			{
+				"input": "variant_data/sample_variant_1.vcf",
+				"output": "annotated_variant.json"
+			}
+		]
+	},
+	{
+		"id": "550e8400-e29b-41d4-a716-446655440006",
+		"name": "Gene Expression Data",
+		"description": "A dataset for analyzing gene expression levels.",
+		"tags": [
+			"genomics",
+			"gene-expression"
+		],
+		"license": "MIT",
+		"author": "Roche Bioinformatics Team",
+		"created_at": "2023-10-06T00:00:00Z",
+		"modified_at": "2023-10-06T00:00:00Z",
+		"downloads": 140,
+		"likes": 65,
+		"format": "CSV",
+		"size": "200k",
+		"example_entries": [
+			{
+				"input": "gene_expression_data/sample_expression_1.csv",
+				"output": "gene_expression_analysis.json"
+			}
+		]
+	},
+	{
+		"id": "550e8400-e29b-41d4-a716-446655440007",
+		"name": "Disease Prediction Data",
+		"description": "A dataset for predicting the likelihood of diseases.",
+		"tags": [
+			"disease-prediction",
+			"genomics"
+		],
+		"license": "Apache-2.0",
+		"author": "Roche Bioinformatics Team",
+		"created_at": "2023-10-07T00:00:00Z",
+		"modified_at": "2023-10-07T00:00:00Z",
+		"downloads": 160,
+		"likes": 80,
+		"format": "CSV",
+		"size": "250k",
+		"example_entries": [
+			{
+				"input": "genetic_data/sample_genetic_data_1.csv",
+				"output": "disease_prediction.json"
+			}
+		]
+	},
+	{
+		"id": "550e8400-e29b-41d4-a716-446655440008",
+		"name": "Pathway Analysis Data",
+		"description": "A dataset for analyzing biological pathways.",
+		"tags": [
+			"pathway-analysis",
+			"bioinformatics"
+		],
+		"license": "MIT",
+		"author": "Roche Bioinformatics Team",
+		"created_at": "2023-10-08T00:00:00Z",
+		"modified_at": "2023-10-08T00:00:00Z",
+		"downloads": 110,
+		"likes": 50,
+		"format": "CSV",
+		"size": "150k",
+		"example_entries": [
+			{
+				"input": "pathway_data/sample_pathway_1.csv",
+				"output": "pathway_analysis.json"
+			}
+		]
+	},
+	{
+		"id": "550e8400-e29b-41d4-a716-446655440009",
+		"name": "Metabolomics Data",
+		"description": "A dataset for analyzing metabolomics data.",
+		"tags": [
+			"metabolomics",
+			"bioinformatics"
+		],
+		"license": "Apache-2.0",
+		"author": "Roche Bioinformatics Team",
+		"created_at": "2023-10-09T00:00:00Z",
+		"modified_at": "2023-10-09T00:00:00Z",
+		"downloads": 100,
+		"likes": 40,
+		"format": "CSV",
+		"size": "100k",
+		"example_entries": [
+			{
+				"input": "metabolomics_data/sample_metabolomics_1.csv",
+				"output": "metabolomics_analysis.json"
+			}
+		]
+	},
+	{
+		"id": "550e8400-e29b-41d4-a716-446655440010",
+		"name": "Microbiome Data",
+		"description": "A dataset for analyzing microbiome composition.",
+		"tags": [
+			"microbiome",
+			"bioinformatics"
+		],
+		"license": "MIT",
+		"author": "Roche Bioinformatics Team",
+		"created_at": "2023-10-10T00:00:00Z",
+		"modified_at": "2023-10-10T00:00:00Z",
+		"downloads": 90,
+		"likes": 35,
+		"format": "CSV",
+		"size": "80k",
+		"example_entries": [
+			{
+				"input": "microbiome_data/sample_microbiome_1.csv",
+				"output": "microbiome_analysis.json"
+			}
+		]
+	},
+	{
+		"id": "550e8400-e29b-41d4-a716-446655440011",
+		"name": "Epigenomics Data",
+		"description": "A dataset for analyzing epigenomic modifications.",
+		"tags": [
+			"epigenomics",
+			"bioinformatics"
+		],
+		"license": "Apache-2.0",
+		"author": "Roche Bioinformatics Team",
+		"created_at": "2023-10-11T00:00:00Z",
+		"modified_at": "2023-10-11T00:00:00Z",
+		"downloads": 110,
+		"likes": 50,
+		"format": "CSV",
+		"size": "120k",
+		"example_entries": [
+			{
+				"input": "epigenomics_data/sample_epigenomics_1.csv",
+				"output": "epigenomics_analysis.json"
+			}
+		]
+	},
+	{
+		"id": "550e8400-e29b-41d4-a716-446655440012",
+		"name": "Single-Cell RNA-Seq Data",
+		"description": "A dataset for analyzing single-cell RNA sequencing data.",
+		"tags": [
+			"single-cell",
+			"rna-seq",
+			"bioinformatics"
+		],
+		"license": "MIT",
+		"author": "Roche Bioinformatics Team",
+		"created_at": "2023-10-12T00:00:00Z",
+		"modified_at": "2023-10-12T00:00:00Z",
+		"downloads": 130,
+		"likes": 55,
+		"format": "FASTQ",
+		"size": "150k",
+		"example_entries": [
+			{
+				"input": "single_cell_data/sample_single_cell_1.fastq",
+				"output": "single_cell_analysis.json"
+			}
+		]
+	},
+	{
+		"id": "550e8400-e29b-41d4-a716-446655440013",
+		"name": "CRISPR Screening Data",
+		"description": "A dataset for analyzing CRISPR screening results.",
+		"tags": [
+			"crispr",
+			"screening",
+			"bioinformatics"
+		],
+		"license": "Apache-2.0",
+		"author": "Roche Bioinformatics Team",
+		"created_at": "2023-10-13T00:00:00Z",
+		"modified_at": "2023-10-13T00:00:00Z",
+		"downloads": 140,
+		"likes": 60,
+		"format": "CSV",
+		"size": "180k",
+		"example_entries": [
+			{
+				"input": "crispr_data/sample_crispr_1.csv",
+				"output": "crispr_analysis.json"
+			}
+		]
+	},
+	{
+		"id": "550e8400-e29b-41d4-a716-446655440014",
+		"name": "Immune Repertoire Data",
+		"description": "A dataset for analyzing immune repertoire sequencing data.",
+		"tags": [
+			"immune-repertoire",
+			"sequencing",
+			"bioinformatics"
+		],
+		"license": "MIT",
+		"author": "Roche Bioinformatics Team",
+		"created_at": "2023-10-14T00:00:00Z",
+		"modified_at": "2023-10-14T00:00:00Z",
+		"downloads": 150,
+		"likes": 65,
+		"format": "FASTQ",
+		"size": "200k",
+		"example_entries": [
+			{
+				"input": "immune_repertoire_data/sample_immune_repertoire_1.fastq",
+				"output": "immune_repertoire_analysis.json"
+			}
+		]
+	},
+	{
+		"id": "550e8400-e29b-41d4-a716-446655440015",
+		"name": "Proteomics Data",
+		"description": "A dataset for analyzing proteomics data.",
+		"tags": [
+			"proteomics",
+			"bioinformatics"
+		],
+		"license": "Apache-2.0",
+		"author": "Roche Bioinformatics Team",
+		"created_at": "2023-10-15T00:00:00Z",
+		"modified_at": "2023-10-15T00:00:00Z",
+		"downloads": 160,
+		"likes": 70,
+		"format": "CSV",
+		"size": "220k",
+		"example_entries": [
+			{
+				"input": "proteomics_data/sample_proteomics_1.csv",
+				"output": "proteomics_analysis.json"
+			}
+		]
+	},
+	{
+		"id": "550e8400-e29b-41d4-a716-446655440016",
+		"name": "Metagenomics Data",
+		"description": "A dataset for analyzing metagenomics data.",
+		"tags": [
+			"metagenomics",
+			"bioinformatics"
+		],
+		"license": "MIT",
+		"author": "Roche Bioinformatics Team",
+		"created_at": "2023-10-16T00:00:00Z",
+		"modified_at": "2023-10-16T00:00:00Z",
+		"downloads": 170,
+		"likes": 75,
+		"format": "CSV",
+		"size": "240k",
+		"example_entries": [
+			{
+				"input": "metagenomics_data/sample_metagenomics_1.csv",
+				"output": "metagenomics_analysis.json"
+			}
+		]
+	},
+	{
+		"id": "550e8400-e29b-41d4-a716-446655440017",
+		"name": "Transcriptomics Data",
+		"description": "A dataset for analyzing transcriptomics data.",
+		"tags": [
+			"transcriptomics",
+			"bioinformatics"
+		],
+		"license": "Apache-2.0",
+		"author": "Roche Bioinformatics Team",
+		"created_at": "2023-10-17T00:00:00Z",
+		"modified_at": "2023-10-17T00:00:00Z",
+		"downloads": 180,
+		"likes": 80,
+		"format": "CSV",
+		"size": "260k",
+		"example_entries": [
+			{
+				"input": "transcriptomics_data/sample_transcriptomics_1.csv",
+				"output": "transcriptomics_analysis.json"
+			}
+		]
+	},
+	{
+		"id": "550e8400-e29b-41d4-a716-446655440018",
+		"name": "Cell Type Classification Data",
+		"description": "A dataset for classifying cell types from single-cell RNA sequencing data.",
+		"tags": [
+			"cell-type-classification",
+			"single-cell",
+			"rna-seq",
+			"bioinformatics"
+		],
+		"license": "MIT",
+		"author": "Roche Bioinformatics Team",
+		"created_at": "2023-10-18T00:00:00Z",
+		"modified_at": "2023-10-18T00:00:00Z",
+		"downloads": 190,
+		"likes": 85,
+		"format": "FASTQ",
+		"size": "280k",
+		"example_entries": [
+			{
+				"input": "cell_type_data/sample_cell_type_1.fastq",
+				"output": "cell_type_classification.json"
+			}
+		]
+	},
+	{
+		"id": "550e8400-e29b-41d4-a716-446655440019",
+		"name": "Gene Regulatory Network Data",
+		"description": "A dataset for inferring gene regulatory networks from gene expression data.",
+		"tags": [
+			"gene-regulatory-network",
+			"bioinformatics"
+		],
+		"license": "Apache-2.0",
+		"author": "Roche Bioinformatics Team",
+		"created_at": "2023-10-19T00:00:00Z",
+		"modified_at": "2023-10-19T00:00:00Z",
+		"downloads": 200,
+		"likes": 90,
+		"format": "CSV",
+		"size": "300k",
+		"example_entries": [
+			{
+				"input": "gene_regulatory_data/sample_gene_regulatory_1.csv",
+				"output": "gene_regulatory_network.json"
+			}
+		]
+	},
+	{
+		"id": "550e8400-e29b-41d4-a716-446655440020",
+		"name": "Variant Effect Prediction Data",
+		"description": "A dataset for predicting the effects of genetic variants.",
+		"tags": [
+			"variant-effect-prediction",
+			"genetics",
+			"bioinformatics"
+		],
+		"license": "MIT",
+		"author": "Roche Bioinformatics Team",
+		"created_at": "2023-10-20T00:00:00Z",
+		"modified_at": "2023-10-20T00:00:00Z",
+		"downloads": 210,
+		"likes": 95,
+		"format": "VCF",
+		"size": "320k",
+		"example_entries": [
+			{
+				"input": "variant_effect_data/sample_variant_effect_1.vcf",
+				"output": "variant_effect_prediction.json"
+			}
+		]
+	}
+]

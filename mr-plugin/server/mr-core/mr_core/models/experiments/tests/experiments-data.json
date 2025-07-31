@@ -1,0 +1,866 @@
+[
+	{
+		"dir": "/var/folders/s0/zjyp4c395_j7_4_l5f80z3fr0000gn/T/test-user/my-first-project/f9ld7i0u",
+		"entity": "test-user",
+		"id": "f9ld7i0u",
+		"json_config": "{\"epochs\": {\"value\": 10, \"desc\": null}, \"dataset\": {\"value\": \"CIFAR-100\", \"desc\": null}, \"architecture\": {\"value\": \"CNN\", \"desc\": null}, \"learning_rate\": {\"value\": 0.02, \"desc\": null}}",
+		"metadata": {
+			"os": "macOS-14.3.1-x86_64-i386-64bit",
+			"python": "3.10.14",
+			"heartbeatAt": "2024-05-29T23:25:17.442133",
+			"startedAt": "2024-05-29T23:25:17.077070",
+			"docker": null,
+			"cuda": null,
+			"args": [],
+			"state": "running",
+			"program": "/Users/user29/asset_client/wandb-plugin-test/wandb_script_swarup.py",
+			"codePathLocal": "wandb_script_swarup.py",
+			"codePath": "wandb-plugin-test/wandb_script_swarup.py",
+			"git": {
+				"remote": "git@github.com:ORG/asset_client.git",
+				"commit": "860dc35843d43681ea15c4031a689db0a1917100"
+			},
+			"email": "myemail@roche.com",
+			"root": "path",
+			"host": "user29-F0MD6P",
+			"username": "user29",
+			"executable": "path",
+			"cpu_count": 6,
+			"cpu_count_logical": 12,
+			"cpu_freq": {
+				"current": 2600,
+				"min": 2600,
+				"max": 2600
+			},
+			"cpu_freq_per_core": [
+				{
+					"current": 2600,
+					"min": 2600,
+					"max": 2600
+				}
+			],
+			"disk": {
+				"/": {
+					"total": 465.62699127197266,
+					"used": 185.0666961669922
+				}
+			},
+			"memory": {
+				"total": 16
+			}
+		},
+		"name": "resilient-salad-13",
+		"project": "my-first-project",
+		"state": "finished",
+		"storage_id": "UnVuOnYxOmY5bGQ3aTB1Om15LWZpcnN0LXByb2plY3Q6cmFucHVy",
+		"sweep": null,
+		"url": "https://et-url/test-user/my-first-project/runs/f9ld7i0u",
+		"username": "test-user",
+		"lastHistoryStep": 7,
+		"summary": {
+			"_runtime": 1.8240180015563965,
+			"_step": 7,
+			"_timestamp": 1717025118.908606,
+			"_wandb": {
+				"runtime": 1
+			},
+			"acc": 0.7800972914653911,
+			"loss": 0.22331346704764649
+		},
+		"logs": "'list' object has no attribute 'to_dict'"
+	},
+	{
+		"dir": "/var/folders/s0/zjyp4c395_j7_4_l5f80z3fr0000gn/T/test-user/my-first-project/kwmh732o",
+		"entity": "test-user",
+		"id": "kwmh732o",
+		"json_config": "{\"epochs\": {\"value\": 10, \"desc\": null}, \"dataset\": {\"value\": \"CIFAR-100\", \"desc\": null}, \"architecture\": {\"value\": \"CNN\", \"desc\": null}, \"learning_rate\": {\"value\": 0.02, \"desc\": null}}",
+		"metadata": {
+			"os": "macOS-14.3-arm64-arm-64bit",
+			"python": "3.10.14",
+			"heartbeatAt": "2024-05-28T06:59:12.431361",
+			"startedAt": "2024-05-28T06:59:11.924838",
+			"docker": null,
+			"cuda": null,
+			"args": [],
+			"state": "running",
+			"program": "/Users/user1/src/asset_client/integration-test/wandb_script.py",
+			"codePathLocal": "wandb_script.py",
+			"codePath": "integration-test/wandb_script.py",
+			"git": {
+				"remote": "git@github.com:ORG/asset_client.git",
+				"commit": "a91397fa9adc2542cd0c3056fde84e2c98d22aa6"
+			},
+			"email": "email@roche.com",
+			"root": "/Users/user1/src/asset_client",
+			"host": "user1-W430W5",
+			"username": "user1",
+			"executable": "/Users/user1/miniforge3/envs/wandb_test/bin/python",
+			"cpu_count": 10,
+			"cpu_count_logical": 10,
+			"cpu_freq": {
+				"current": 3228,
+				"min": 600,
+				"max": 3228
+			},
+			"cpu_freq_per_core": [
+				{
+					"current": 3228,
+					"min": 600,
+					"max": 3228
+				}
+			],
+			"disk": {
+				"/": {
+					"total": 460.4317207336426,
+					"used": 64.41091918945312
+				}
+			},
+			"gpuapple": {
+				"type": "arm",
+				"vendor": "Apple"
+			},
+			"memory": {
+				"total": 16
+			}
+		},
+		"name": "bumbling-star-12",
+		"project": "my-first-project",
+		"state": "finished",
+		"storage_id": "UnVuOnYxOmt3bWg3MzJvOm15LWZpcnN0LXByb2plY3Q6cmFucHVy",
+		"sweep": null,
+		"url": "https://et-url/test-user/my-first-project/runs/kwmh732o",
+		"username": "test-user",
+		"lastHistoryStep": 7,
+		"summary": {
+			"_runtime": 1.4823861122131348,
+			"_step": 7,
+			"_timestamp": 1716879553.416115,
+			"_wandb": {
+				"runtime": 0
+			},
+			"acc": 0.9227337135470272,
+			"loss": 0.04609102678013848
+		},
+		"logs": "'list' object has no attribute 'to_dict'"
+	},
+	{
+		"dir": "/var/folders/s0/zjyp4c395_j7_4_l5f80z3fr0000gn/T/test-user/my-first-project/qdi5lwq7",
+		"entity": "test-user",
+		"id": "qdi5lwq7",
+		"json_config": "{\"epochs\": {\"value\": 10, \"desc\": null}, \"dataset\": {\"value\": \"CIFAR-100\", \"desc\": null}, \"architecture\": {\"value\": \"CNN\", \"desc\": null}, \"learning_rate\": {\"value\": 0.02, \"desc\": null}}",
+		"metadata": {
+			"os": "macOS-14.3-arm64-arm-64bit",
+			"python": "3.10.14",
+			"heartbeatAt": "2024-05-20T02:07:25.505923",
+			"startedAt": "2024-05-20T02:07:24.996616",
+			"docker": null,
+			"cuda": null,
+			"args": [],
+			"state": "running",
+			"program": "/Users/user1/src/asset_client/integration-test/wandb_script.py",
+			"codePathLocal": "wandb_script.py",
+			"codePath": "integration-test/wandb_script.py",
+			"git": {
+				"remote": "git@github.com:ORG/asset_client.git",
+				"commit": "c00b8e1bc5bc0eeeff53e14e91676a24ac6224b1"
+			},
+			"email": null,
+			"root": "/Users/user1/src/asset_client",
+			"host": "user1-W430W5",
+			"username": "user1",
+			"executable": "/Users/user1/miniforge3/envs/wandb_test/bin/python",
+			"cpu_count": 10,
+			"cpu_count_logical": 10,
+			"cpu_freq": {
+				"current": 3228,
+				"min": 600,
+				"max": 3228
+			},
+			"cpu_freq_per_core": [
+				{
+					"current": 3228,
+					"min": 600,
+					"max": 3228
+				}
+			],
+			"disk": {
+				"/": {
+					"total": 460.4317207336426,
+					"used": 61.01549530029297
+				}
+			},
+			"gpuapple": {
+				"type": "arm",
+				"vendor": "Apple"
+			},
+			"memory": {
+				"total": 16
+			}
+		},
+		"name": "logical-snow-11",
+		"project": "my-first-project",
+		"state": "finished",
+		"storage_id": "UnVuOnYxOnFkaTVsd3E3Om15LWZpcnN0LXByb2plY3Q6cmFucHVy",
+		"sweep": null,
+		"url": "https://et-url/test-user/my-first-project/runs/qdi5lwq7",
+		"username": "test-user",
+		"lastHistoryStep": 7,
+		"summary": {
+			"_runtime": 1.5014619827270508,
+			"_step": 7,
+			"_timestamp": 1716170846.504708,
+			"_wandb": {
+				"runtime": 1
+			},
+			"acc": 0.78112138409245,
+			"loss": 0.20585526500097465
+		},
+		"logs": "'list' object has no attribute 'to_dict'"
+	},
+	{
+		"dir": "/var/folders/s0/zjyp4c395_j7_4_l5f80z3fr0000gn/T/test-user/my-first-project/v7n6mb6z",
+		"entity": "test-user",
+		"id": "v7n6mb6z",
+		"json_config": "{\"epochs\": {\"value\": 10, \"desc\": null}, \"dataset\": {\"value\": \"CIFAR-100\", \"desc\": null}, \"architecture\": {\"value\": \"CNN\", \"desc\": null}, \"learning_rate\": {\"value\": 0.02, \"desc\": null}}",
+		"metadata": {
+			"os": "macOS-10.16-x86_64-i386-64bit",
+			"python": "3.10.0",
+			"heartbeatAt": "2024-05-17T00:46:55.592474",
+			"startedAt": "2024-05-17T00:46:54.957463",
+			"docker": null,
+			"cuda": null,
+			"args": [],
+			"state": "running",
+			"program": "/Users/admin-user/Development/tutorials/wanDB/main.py",
+			"codePathLocal": "main.py",
+			"codePath": "main.py",
+			"host": "admin-user-N4MD6R",
+			"username": "admin-user",
+			"executable": "/Users/admin-user/miniconda3/envs/wan_db/bin/python",
+			"cpu_count": 8,
+			"cpu_count_logical": 16,
+			"cpu_freq": {
+				"current": 2400,
+				"min": 2400,
+				"max": 2400
+			},
+			"cpu_freq_per_core": [
+				{
+					"current": 2400,
+					"min": 2400,
+					"max": 2400
+				}
+			],
+			"disk": {
+				"/": {
+					"total": 931.546989440918,
+					"used": 14.637836456298828
+				}
+			},
+			"memory": {
+				"total": 32
+			}
+		},
+		"name": "lemon-lake-10",
+		"project": "my-first-project",
+		"state": "finished",
+		"storage_id": "UnVuOnYxOnY3bjZtYjZ6Om15LWZpcnN0LXByb2plY3Q6cmFucHVy",
+		"sweep": null,
+		"url": "https://et-url/test-user/my-first-project/runs/v7n6mb6z",
+		"username": "test-user",
+		"lastHistoryStep": 7,
+		"summary": {
+			"_runtime": 2.066962242126465,
+			"_step": 7,
+			"_timestamp": 1715906817.0315251,
+			"_wandb": {
+				"runtime": 1
+			},
+			"acc": 0.8414547859787359,
+			"loss": 0.17931570143146802
+		},
+		"logs": "'list' object has no attribute 'to_dict'"
+	},
+	{
+		"dir": "/var/folders/s0/zjyp4c395_j7_4_l5f80z3fr0000gn/T/test-user/my-first-project/jfnn5thc",
+		"entity": "test-user",
+		"id": "jfnn5thc",
+		"json_config": "{\"epochs\": {\"value\": 10, \"desc\": null}, \"dataset\": {\"value\": \"CIFAR-100\", \"desc\": null}, \"architecture\": {\"value\": \"CNN\", \"desc\": null}, \"learning_rate\": {\"value\": 0.02, \"desc\": null}}",
+		"metadata": {
+			"os": "macOS-10.16-x86_64-i386-64bit",
+			"python": "3.8.0",
+			"heartbeatAt": "2024-05-17T00:06:11.962850",
+			"startedAt": "2024-05-17T00:06:11.223004",
+			"docker": null,
+			"cuda": null,
+			"args": [],
+			"state": "running",
+			"program": "/Users/user29/asset_client/integration-test/wandb_script.py",
+			"codePathLocal": "wandb_script.py",
+			"codePath": "integration-test/wandb_script.py",
+			"git": {
+				"remote": "git@github.com:ORG/asset_client.git",
+				"commit": "f2f0cc4e67d635271d7913887a2cebc45e89973b"
+			},
+			"email": "email.roche.com",
+			"root": "/Users/user29/asset_client",
+			"host": "user29-F0MD6P",
+			"username": "user29",
+			"executable": "/Users/user29/mambaforge/envs/am-dev-env/bin/python",
+			"cpu_count": 6,
+			"cpu_count_logical": 12,
+			"cpu_freq": {
+				"current": 2600,
+				"min": 2600,
+				"max": 2600
+			},
+			"cpu_freq_per_core": [
+				{
+					"current": 2600,
+					"min": 2600,
+					"max": 2600
+				}
+			],
+			"disk": {
+				"/": {
+					"total": 465.62699127197266,
+					"used": 195.35027694702148
+				}
+			},
+			"memory": {
+				"total": 16
+			}
+		},
+		"name": "hopeful-feather-9",
+		"project": "my-first-project",
+		"state": "finished",
+		"storage_id": "UnVuOnYxOmpmbm41dGhjOm15LWZpcnN0LXByb2plY3Q6cmFucHVy",
+		"sweep": null,
+		"url": "https://et-url/test-user/my-first-project/runs/jfnn5thc",
+		"username": "test-user",
+		"lastHistoryStep": 7,
+		"summary": {
+			"_runtime": 6.755498886108398,
+			"_step": 7,
+			"_timestamp": 1715904377.999388,
+			"_wandb": {
+				"runtime": 6
+			},
+			"acc": 0.9019998401203538,
+			"loss": 0.05632970979782406
+		},
+		"logs": "'list' object has no attribute 'to_dict'"
+	},
+	{
+		"dir": "/var/folders/s0/zjyp4c395_j7_4_l5f80z3fr0000gn/T/test-user/my-first-project/cvigjoje",
+		"entity": "test-user",
+		"id": "cvigjoje",
+		"json_config": "{\"epochs\": {\"value\": 10, \"desc\": null}, \"dataset\": {\"value\": \"CIFAR-100\", \"desc\": null}, \"architecture\": {\"value\": \"CNN\", \"desc\": null}, \"learning_rate\": {\"value\": 0.02, \"desc\": null}}",
+		"metadata": {
+			"os": "macOS-10.16-x86_64-i386-64bit",
+			"python": "3.10.0",
+			"heartbeatAt": "2024-04-30T18:38:07.694818",
+			"startedAt": "2024-04-30T18:38:07.323728",
+			"docker": null,
+			"cuda": null,
+			"args": [],
+			"state": "running",
+			"program": "/Users/admin-user/Development/tutorials/wanDB/main.py",
+			"codePathLocal": "main.py",
+			"codePath": "main.py",
+			"host": "admin-user-N4MD6R",
+			"username": "admin-user",
+			"executable": "/Users/admin-user/miniconda3/envs/wan_db/bin/python",
+			"cpu_count": 8,
+			"cpu_count_logical": 16,
+			"cpu_freq": {
+				"current": 2400,
+				"min": 2400,
+				"max": 2400
+			},
+			"cpu_freq_per_core": [
+				{
+					"current": 2400,
+					"min": 2400,
+					"max": 2400
+				}
+			],
+			"disk": {
+				"/": {
+					"total": 931.546989440918,
+					"used": 14.637836456298828
+				}
+			},
+			"memory": {
+				"total": 32
+			}
+		},
+		"name": "comic-aardvark-8",
+		"project": "my-first-project",
+		"state": "finished",
+		"storage_id": "UnVuOnYxOmN2aWdqb2plOm15LWZpcnN0LXByb2plY3Q6cmFucHVy",
+		"sweep": null,
+		"url": "https://et-url/test-user/my-first-project/runs/cvigjoje",
+		"username": "test-user",
+		"lastHistoryStep": 7,
+		"summary": {
+			"_runtime": 1.8563709259033203,
+			"_step": 7,
+			"_timestamp": 1714502289.186333,
+			"_wandb": {
+				"runtime": 1
+			},
+			"acc": 0.9230235972362536,
+			"loss": 0.1275778076956712
+		},
+		"logs": "'list' object has no attribute 'to_dict'"
+	},
+	{
+		"dir": "/var/folders/s0/zjyp4c395_j7_4_l5f80z3fr0000gn/T/test-user/my-first-project/b3om9301",
+		"entity": "test-user",
+		"id": "b3om9301",
+		"json_config": "{\"epochs\": {\"value\": 10, \"desc\": null}, \"dataset\": {\"value\": \"CIFAR-100\", \"desc\": null}, \"architecture\": {\"value\": \"CNN\", \"desc\": null}, \"learning_rate\": {\"value\": 0.02, \"desc\": null}}",
+		"metadata": {
+			"os": "macOS-10.16-x86_64-i386-64bit",
+			"python": "3.10.0",
+			"heartbeatAt": "2024-04-16T17:26:39.226381",
+			"startedAt": "2024-04-16T17:26:38.726633",
+			"docker": null,
+			"cuda": null,
+			"args": [],
+			"state": "running",
+			"program": "/Users/admin-user/Development/tutorials/wanDB/main.py",
+			"codePathLocal": "main.py",
+			"codePath": "main.py",
+			"host": "admin-user-N4MD6R",
+			"username": "admin-user",
+			"executable": "/Users/admin-user/miniconda3/envs/wan_db/bin/python",
+			"cpu_count": 8,
+			"cpu_count_logical": 16,
+			"cpu_freq": {
+				"current": 2400,
+				"min": 2400,
+				"max": 2400
+			},
+			"cpu_freq_per_core": [
+				{
+					"current": 2400,
+					"min": 2400,
+					"max": 2400
+				}
+			],
+			"disk": {
+				"/": {
+					"total": 931.546989440918,
+					"used": 14.637836456298828
+				}
+			},
+			"memory": {
+				"total": 32
+			}
+		},
+		"name": "vital-resonance-7",
+		"project": "my-first-project",
+		"state": "finished",
+		"storage_id": "UnVuOnYxOmIzb205MzAxOm15LWZpcnN0LXByb2plY3Q6cmFucHVy",
+		"sweep": null,
+		"url": "https://et-url/test-user/my-first-project/runs/b3om9301",
+		"username": "test-user",
+		"lastHistoryStep": 7,
+		"summary": {
+			"_runtime": 1.828779935836792,
+			"_step": 7,
+			"_timestamp": 1713288400.560871,
+			"_wandb": {
+				"runtime": 1
+			},
+			"acc": 0.8197862568164783,
+			"loss": 0.1854590789987247
+		},
+		"logs": "'list' object has no attribute 'to_dict'"
+	},
+	{
+		"dir": "/var/folders/s0/zjyp4c395_j7_4_l5f80z3fr0000gn/T/test-user/my-first-project/8vz5gyrx",
+		"entity": "test-user",
+		"id": "8vz5gyrx",
+		"json_config": "{\"epochs\": {\"value\": 10, \"desc\": null}, \"dataset\": {\"value\": \"CIFAR-100\", \"desc\": null}, \"architecture\": {\"value\": \"CNN\", \"desc\": null}, \"learning_rate\": {\"value\": 0.02, \"desc\": null}}",
+		"metadata": {
+			"os": "macOS-10.16-x86_64-i386-64bit",
+			"python": "3.10.0",
+			"heartbeatAt": "2024-04-16T17:17:30.327325",
+			"startedAt": "2024-04-16T17:17:29.794847",
+			"docker": null,
+			"cuda": null,
+			"args": [],
+			"state": "running",
+			"program": "/Users/admin-user/Development/tutorials/wanDB/main.py",
+			"codePathLocal": "main.py",
+			"codePath": "main.py",
+			"host": "admin-user-N4MD6R",
+			"username": "admin-user",
+			"executable": "/Users/admin-user/miniconda3/envs/wan_db/bin/python",
+			"cpu_count": 8,
+			"cpu_count_logical": 16,
+			"cpu_freq": {
+				"current": 2400,
+				"min": 2400,
+				"max": 2400
+			},
+			"cpu_freq_per_core": [
+				{
+					"current": 2400,
+					"min": 2400,
+					"max": 2400
+				}
+			],
+			"disk": {
+				"/": {
+					"total": 931.546989440918,
+					"used": 14.637836456298828
+				}
+			},
+			"memory": {
+				"total": 32
+			}
+		},
+		"name": "giddy-valley-6",
+		"project": "my-first-project",
+		"state": "finished",
+		"storage_id": "UnVuOnYxOjh2ejVneXJ4Om15LWZpcnN0LXByb2plY3Q6cmFucHVy",
+		"sweep": null,
+		"url": "https://et-url/test-user/my-first-project/runs/8vz5gyrx",
+		"username": "test-user",
+		"lastHistoryStep": 7,
+		"summary": {
+			"_runtime": 1.8142709732055664,
+			"_step": 7,
+			"_timestamp": 1713287851.615413,
+			"_wandb": {
+				"runtime": 1
+			},
+			"acc": 0.8289492520223776,
+			"loss": 0.17144098101493296
+		},
+		"logs": "'list' object has no attribute 'to_dict'"
+	},
+	{
+		"dir": "/var/folders/s0/zjyp4c395_j7_4_l5f80z3fr0000gn/T/test-user/my-first-project/qox94mgx",
+		"entity": "test-user",
+		"id": "qox94mgx",
+		"json_config": "{\"epochs\": {\"value\": 10, \"desc\": null}, \"dataset\": {\"value\": \"CIFAR-100\", \"desc\": null}, \"architecture\": {\"value\": \"CNN\", \"desc\": null}, \"learning_rate\": {\"value\": 0.02, \"desc\": null}}",
+		"metadata": {
+			"os": "macOS-10.16-x86_64-i386-64bit",
+			"python": "3.10.0",
+			"heartbeatAt": "2024-04-16T17:15:40.190848",
+			"startedAt": "2024-04-16T17:15:39.800700",
+			"docker": null,
+			"cuda": null,
+			"args": [],
+			"state": "running",
+			"program": "/Users/admin-user/Development/tutorials/wanDB/main.py",
+			"codePathLocal": "main.py",
+			"codePath": "main.py",
+			"host": "admin-user-N4MD6R",
+			"username": "admin-user",
+			"executable": "/Users/admin-user/miniconda3/envs/wan_db/bin/python",
+			"cpu_count": 8,
+			"cpu_count_logical": 16,
+			"cpu_freq": {
+				"current": 2400,
+				"min": 2400,
+				"max": 2400
+			},
+			"cpu_freq_per_core": [
+				{
+					"current": 2400,
+					"min": 2400,
+					"max": 2400
+				}
+			],
+			"disk": {
+				"/": {
+					"total": 931.546989440918,
+					"used": 14.637836456298828
+				}
+			},
+			"memory": {
+				"total": 32
+			}
+		},
+		"name": "faithful-snow-5",
+		"project": "my-first-project",
+		"state": "finished",
+		"storage_id": "UnVuOnYxOnFveDk0bWd4Om15LWZpcnN0LXByb2plY3Q6cmFucHVy",
+		"sweep": null,
+		"url": "https://et-url/test-user/my-first-project/runs/qox94mgx",
+		"username": "test-user",
+		"lastHistoryStep": 7,
+		"summary": {
+			"_runtime": 1.6136040687561035,
+			"_step": 7,
+			"_timestamp": 1713287741.419671,
+			"_wandb": {
+				"runtime": 1
+			},
+			"acc": 0.8437564332182289,
+			"loss": 0.13469875440178938
+		},
+		"logs": "'list' object has no attribute 'to_dict'"
+	},
+	{
+		"dir": "/var/folders/s0/zjyp4c395_j7_4_l5f80z3fr0000gn/T/test-user/my-first-project/h2p1cpb2",
+		"entity": "test-user",
+		"id": "h2p1cpb2",
+		"json_config": "{\"epochs\": {\"value\": 10, \"desc\": null}, \"dataset\": {\"value\": \"CIFAR-100\", \"desc\": null}, \"architecture\": {\"value\": \"CNN\", \"desc\": null}, \"learning_rate\": {\"value\": 0.02, \"desc\": null}}",
+		"metadata": {
+			"os": "macOS-10.16-x86_64-i386-64bit",
+			"python": "3.10.0",
+			"heartbeatAt": "2024-04-16T17:14:55.435872",
+			"startedAt": "2024-04-16T17:14:55.037664",
+			"docker": null,
+			"cuda": null,
+			"args": [],
+			"state": "running",
+			"program": "/Users/admin-user/Development/tutorials/wanDB/main.py",
+			"codePathLocal": "main.py",
+			"codePath": "main.py",
+			"host": "admin-user-N4MD6R",
+			"username": "admin-user",
+			"executable": "/Users/admin-user/miniconda3/envs/wan_db/bin/python",
+			"cpu_count": 8,
+			"cpu_count_logical": 16,
+			"cpu_freq": {
+				"current": 2400,
+				"min": 2400,
+				"max": 2400
+			},
+			"cpu_freq_per_core": [
+				{
+					"current": 2400,
+					"min": 2400,
+					"max": 2400
+				}
+			],
+			"disk": {
+				"/": {
+					"total": 931.546989440918,
+					"used": 14.637836456298828
+				}
+			},
+			"memory": {
+				"total": 32
+			}
+		},
+		"name": "stellar-wildflower-4",
+		"project": "my-first-project",
+		"state": "finished",
+		"storage_id": "UnVuOnYxOmgycDFjcGIyOm15LWZpcnN0LXByb2plY3Q6cmFucHVy",
+		"sweep": null,
+		"url": "https://et-url/test-user/my-first-project/runs/h2p1cpb2",
+		"username": "test-user",
+		"lastHistoryStep": 7,
+		"summary": {
+			"_runtime": 3.461993932723999,
+			"_step": 7,
+			"_timestamp": 1713287698.508208,
+			"_wandb": {
+				"runtime": 3
+			},
+			"acc": 0.772513092578803,
+			"loss": 0.13318179886669818
+		},
+		"logs": "'list' object has no attribute 'to_dict'"
+	},
+	{
+		"dir": "/var/folders/s0/zjyp4c395_j7_4_l5f80z3fr0000gn/T/test-user/my-first-project/xbi4gbg3",
+		"entity": "test-user",
+		"id": "xbi4gbg3",
+		"json_config": "{\"epochs\": {\"value\": 10, \"desc\": null}, \"dataset\": {\"value\": \"CIFAR-100\", \"desc\": null}, \"architecture\": {\"value\": \"CNN\", \"desc\": null}, \"learning_rate\": {\"value\": 0.02, \"desc\": null}}",
+		"metadata": {
+			"os": "macOS-10.16-x86_64-i386-64bit",
+			"python": "3.10.0",
+			"heartbeatAt": "2024-04-15T20:38:12.030772",
+			"startedAt": "2024-04-15T20:38:11.433823",
+			"docker": null,
+			"cuda": null,
+			"args": [],
+			"state": "running",
+			"program": "/Users/admin-user/Development/tutorials/wanDB/main.py",
+			"codePathLocal": "main.py",
+			"codePath": "main.py",
+			"host": "admin-user-N4MD6R",
+			"username": "admin-user",
+			"executable": "/Users/admin-user/miniconda3/envs/wan_db/bin/python",
+			"cpu_count": 8,
+			"cpu_count_logical": 16,
+			"cpu_freq": {
+				"current": 2400,
+				"min": 2400,
+				"max": 2400
+			},
+			"cpu_freq_per_core": [
+				{
+					"current": 2400,
+					"min": 2400,
+					"max": 2400
+				}
+			],
+			"disk": {
+				"/": {
+					"total": 931.546989440918,
+					"used": 14.637836456298828
+				}
+			},
+			"memory": {
+				"total": 32
+			}
+		},
+		"name": "misty-lake-3",
+		"project": "my-first-project",
+		"state": "finished",
+		"storage_id": "UnVuOnYxOnhiaTRnYmczOm15LWZpcnN0LXByb2plY3Q6cmFucHVy",
+		"sweep": null,
+		"url": "https://et-url/test-user/my-first-project/runs/xbi4gbg3",
+		"username": "test-user",
+		"lastHistoryStep": 7,
+		"summary": {
+			"_runtime": 3.7899951934814458,
+			"_step": 7,
+			"_timestamp": 1713213495.231702,
+			"_wandb": {
+				"runtime": 3
+			},
+			"acc": 0.9001013698181619,
+			"loss": 0.05124644087010819
+		},
+		"logs": "'list' object has no attribute 'to_dict'"
+	},
+	{
+		"dir": "/var/folders/s0/zjyp4c395_j7_4_l5f80z3fr0000gn/T/test-user/my-first-project/cmma6ckr",
+		"entity": "test-user",
+		"id": "cmma6ckr",
+		"json_config": "{\"epochs\": {\"value\": 10, \"desc\": null}, \"dataset\": {\"value\": \"CIFAR-100\", \"desc\": null}, \"architecture\": {\"value\": \"CNN\", \"desc\": null}, \"learning_rate\": {\"value\": 0.02, \"desc\": null}}",
+		"metadata": {
+			"os": "macOS-10.16-x86_64-i386-64bit",
+			"python": "3.10.0",
+			"heartbeatAt": "2024-04-12T21:50:27.047918",
+			"startedAt": "2024-04-12T21:50:26.431584",
+			"docker": null,
+			"cuda": null,
+			"args": [],
+			"state": "running",
+			"program": "/Users/admin-user/Development/tutorials/wanDB/main.py",
+			"codePathLocal": "main.py",
+			"codePath": "main.py",
+			"host": "admin-user-N4MD6R",
+			"username": "admin-user",
+			"executable": "/Users/admin-user/miniconda3/envs/wan_db/bin/python",
+			"cpu_count": 8,
+			"cpu_count_logical": 16,
+			"cpu_freq": {
+				"current": 2400,
+				"min": 2400,
+				"max": 2400
+			},
+			"cpu_freq_per_core": [
+				{
+					"current": 2400,
+					"min": 2400,
+					"max": 2400
+				}
+			],
+			"disk": {
+				"/": {
+					"total": 931.546989440918,
+					"used": 14.637836456298828
+				}
+			},
+			"memory": {
+				"total": 32
+			}
+		},
+		"name": "firm-sun-2",
+		"project": "my-first-project",
+		"state": "finished",
+		"storage_id": "UnVuOnYxOmNtbWE2Y2tyOm15LWZpcnN0LXByb2plY3Q6cmFucHVy",
+		"sweep": null,
+		"url": "https://et-url/test-user/my-first-project/runs/cmma6ckr",
+		"username": "test-user",
+		"lastHistoryStep": 7,
+		"summary": {
+			"_runtime": 1.9558489322662351,
+			"_step": 7,
+			"_timestamp": 1712958628.395198,
+			"_wandb": {
+				"runtime": 1
+			},
+			"acc": 0.7778417222325293,
+			"loss": 0.13085323733597293
+		},
+		"logs": "'list' object has no attribute 'to_dict'"
+	},
+	{
+		"dir": "/var/folders/s0/zjyp4c395_j7_4_l5f80z3fr0000gn/T/test-user/my-first-project/1f724tu3",
+		"entity": "test-user",
+		"id": "1f724tu3",
+		"json_config": "{\"epochs\": {\"value\": 10, \"desc\": null}, \"dataset\": {\"value\": \"CIFAR-100\", \"desc\": null}, \"architecture\": {\"value\": \"CNN\", \"desc\": null}, \"learning_rate\": {\"value\": 0.02, \"desc\": null}}",
+		"metadata": {
+			"os": "macOS-10.16-x86_64-i386-64bit",
+			"python": "3.10.0",
+			"heartbeatAt": "2024-04-12T21:45:17.912201",
+			"startedAt": "2024-04-12T21:45:17.366666",
+			"docker": null,
+			"cuda": null,
+			"args": [],
+			"state": "running",
+			"program": "/Users/admin-user/Development/tutorials/wanDB/main.py",
+			"codePathLocal": "main.py",
+			"codePath": "main.py",
+			"host": "admin-user-N4MD6R",
+			"username": "admin-user",
+			"executable": "/Users/admin-user/miniconda3/envs/wan_db/bin/python",
+			"cpu_count": 8,
+			"cpu_count_logical": 16,
+			"cpu_freq": {
+				"current": 2400,
+				"min": 2400,
+				"max": 2400
+			},
+			"cpu_freq_per_core": [
+				{
+					"current": 2400,
+					"min": 2400,
+					"max": 2400
+				}
+			],
+			"disk": {
+				"/": {
+					"total": 931.546989440918,
+					"used": 14.637836456298828
+				}
+			},
+			"memory": {
+				"total": 32
+			}
+		},
+		"name": "warm-universe-1",
+		"project": "my-first-project",
+		"state": "finished",
+		"storage_id": "UnVuOnYxOjFmNzI0dHUzOm15LWZpcnN0LXByb2plY3Q6cmFucHVy",
+		"sweep": null,
+		"url": "https://et-url/test-user/my-first-project/runs/1f724tu3",
+		"username": "test-user",
+		"lastHistoryStep": 7,
+		"summary": {
+			"_runtime": 2.0506088733673096,
+			"_step": 7,
+			"_timestamp": 1712958319.422817,
+			"_wandb": {
+				"runtime": 1
+			},
+			"acc": 0.7293515207780366,
+			"loss": 0.2103831721096713
+		},
+		"logs": "'list' object has no attribute 'to_dict'"
+	}
+]

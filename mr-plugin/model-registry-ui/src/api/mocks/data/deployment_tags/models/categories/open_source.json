@@ -1,0 +1,63 @@
+{
+	"id": "abc67890-1234-5678-efgh-ijklmnopqrstu",
+	"name": "open-source",
+	"group_id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+	"group_name": "models",
+	"description": "A collection of proprietary licenses that restrict modification, redistribution, and usage of software or datasets.",
+	"created_by": "user2",
+	"created_at": "2024-08-02T11:00:00Z",
+	"modified_at": "2024-08-15T15:00:00Z",
+	"tags": [
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440021",
+			"name": "alphafold",
+			"category_id": "abc67890-1234-5678-efgh-ijklmnopqrstu"
+		},
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440022",
+			"name": "chembl",
+			"category_id": "abc67890-1234-5678-efgh-ijklmnopqrstu"
+		},
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440023",
+			"name": "deepchem",
+			"category_id": "abc67890-1234-5678-efgh-ijklmnopqrstu"
+		},
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440024",
+			"name": "gnina",
+			"category_id": "abc67890-1234-5678-efgh-ijklmnopqrstu"
+		},
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440025",
+			"name": "rdkit",
+			"category_id": "abc67890-1234-5678-efgh-ijklmnopqrstu"
+		},
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440026",
+			"name": "mordred",
+			"category_id": "abc67890-1234-5678-efgh-ijklmnopqrstu"
+		},
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440027",
+			"name": "openbabel",
+			"category_id": "abc67890-1234-5678-efgh-ijklmnopqrstu"
+		},
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440028",
+			"name": "pytorch-geometric",
+			"category_id": "abc67890-1234-5678-efgh-ijklmnopqrstu"
+		},
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440029",
+			"name": "tensorflow",
+			"category_id": "abc67890-1234-5678-efgh-ijklmnopqrstu"
+		},
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440030",
+			"name": "transformers",
+			"category_id": "abc67890-1234-5678-efgh-ijklmnopqrstu"
+		}
+	],
+	"readme_md": "## Proprietary Licenses\nThis category includes licenses that restrict modification, redistribution, and usage of software or datasets."
+}

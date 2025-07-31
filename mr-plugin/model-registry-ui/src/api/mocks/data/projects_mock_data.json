@@ -1,0 +1,62 @@
+[
+	{
+		"id": "e8f7d1c1-df4a-4a1b-b8b8-8b2b0f90c3d2",
+		"name": "Digital Pathology",
+		"description": "Data storage and management for digital pathology images and related diagnostic data. Includes cloud-based storage solutions and data analytics.",
+		"created_at": "2023-01-15",
+		"url": "https://s3.amazonaws.com/research",
+		"data_type": "Imaging Data, Diagnostic Records",
+		"admin": "jdoe",
+		"created_by": "johnsmith"
+	},
+	{
+		"id": "e1d3a2b6-b8c5-4e7f-b6a1-3b2a5d6c2e8b",
+		"name": "CSI",
+		"description": "Centralized data repository for crime scene investigation data, including forensic evidence and case files. Utilizes secure data storage and retrieval systems.",
+		"created_at": "2022-11-01",
+		"url": "http://on-premises-csi-data.local",
+		"data_type": "Forensic Evidence, Case Files",
+		"admin": "mjohnson",
+		"created_by": "lisagreen"
+	},
+	{
+		"id": "8d3f5a76-2d29-4c12-8e6d-1a0b8c6e2f5a",
+		"name": "gRED",
+		"description": "Genetic research data management project, including genomic sequences, research data, and experimental results. Supports large-scale data storage and bioinformatics analysis.",
+		"created_at": "2021-06-20",
+		"url": "https://storage.googleapis.com/gred-data",
+		"data_type": "Genomic Data, Research Data",
+		"admin": "edavis",
+		"created_by": "robertbrown"
+	},
+	{
+		"id": "b2e4d6a1-7f4a-4b3d-bd1b-d3f7a9e6b8d9",
+		"name": "pRED",
+		"description": "Pre-clinical research data storage and management for drug discovery, including experimental data, chemical compounds, and research documentation.",
+		"created_at": "2020-08-15",
+		"url": "https://storage.azure.com/pred-data",
+		"data_type": "Experimental Data, Chemical Data",
+		"admin": "awilson",
+		"created_by": "jameslee"
+	},
+	{
+		"id": "f0d7e8a9-2c6d-4b12-8c6a-4b9d3e2d1e7b",
+		"name": "Roche",
+		"description": "Data management system for Roche’s drug development projects, encompassing clinical trial data, patient records, and research outcomes.",
+		"created_at": "2022-03-10",
+		"url": "https://cloud.ibm.com/vpc/roche-data",
+		"data_type": "Clinical Trial Data, Patient Records",
+		"admin": "dmartinez",
+		"created_by": "sandrathompson"
+	},
+	{
+		"id": "a1e2b3c4-5d6e-4f7a-8b9c-1d2e3f4g5h6i",
+		"name": "Genentech",
+		"description": "Data storage and management for Genentech’s biologics development projects, including production data, quality control reports, and regulatory documentation.",
+		"created_at": "2023-05-25",
+		"url": "https://genentech-data.example.com",
+		"data_type": "Production Data, Quality Control Data",
+		"admin": "swilson",
+		"created_by": "danielscott"
+	}
+]

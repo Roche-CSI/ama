@@ -1,0 +1,34 @@
+[
+	{
+		"threadId": "dis-001",
+		"title": "Improving Model Performance",
+		"comments": [
+			{
+				"author": "Alice",
+				"comment": "Great model! Have you tried adjusting the learning rate?",
+				"timestamp": "2024-07-15T12:00:00Z"
+			},
+			{
+				"author": "Bob",
+				"comment": "Yes, and it significantly improved the performance.",
+				"timestamp": "2024-07-16T08:30:00Z"
+			}
+		]
+	},
+	{
+		"threadId": "dis-002",
+		"title": "Deployment Strategies",
+		"comments": [
+			{
+				"author": "Charlie",
+				"comment": "What deployment strategies are you using for this model?",
+				"timestamp": "2024-07-18T09:00:00Z"
+			},
+			{
+				"author": "Dana",
+				"comment": "We are exploring AWS Lambda and Kubernetes for deployment.",
+				"timestamp": "2024-07-19T11:00:00Z"
+			}
+		]
+	}
+]

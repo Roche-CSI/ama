@@ -1,0 +1,38 @@
+{
+	"id": "abc12345-def6-7890-abcd-ef1234567890",
+	"name": "Code",
+	"group_id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+	"group_name": "languages",
+	"description": "A collection of programming languages and frameworks used for coding and development.",
+	"created_by": "user1",
+	"created_at": "2024-08-01T10:00:00Z",
+	"modified_at": "2024-08-15T14:30:00Z",
+	"tags": [
+		{
+			"id": "tag001",
+			"name": "python",
+			"category_id": "abc12345-def6-7890-abcd-ef1234567890"
+		},
+		{
+			"id": "tag002",
+			"name": "javascript",
+			"category_id": "abc12345-def6-7890-abcd-ef1234567890"
+		},
+		{
+			"id": "tag003",
+			"name": "java",
+			"category_id": "abc12345-def6-7890-abcd-ef1234567890"
+		},
+		{
+			"id": "tag004",
+			"name": "c++",
+			"category_id": "abc12345-def6-7890-abcd-ef1234567890"
+		},
+		{
+			"id": "tag005",
+			"name": "r",
+			"category_id": "abc12345-def6-7890-abcd-ef1234567890"
+		}
+	],
+	"readme_md": "## Code Languages\nThis category includes programming languages and frameworks used in development and coding."
+}

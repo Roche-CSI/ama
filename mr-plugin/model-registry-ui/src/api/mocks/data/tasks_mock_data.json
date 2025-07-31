@@ -1,0 +1,119 @@
+[
+	{
+		"id": "550e8400-e29b-41d4-a716-446655440000",
+		"name": "genomics",
+		"tags": [
+			"basecalling",
+			"variant-calling",
+			"genome-assembly",
+			"gene-expression-analysis",
+			"epigenomics-analysis"
+		],
+		"created_by": "user1",
+		"created_at": "2023-10-01T00:00:00Z",
+		"modified_at": "2023-10-01T00:00:00Z"
+	},
+	{
+		"id": "550e8400-e29b-41d4-a716-446655440001",
+		"name": "proteomics",
+		"tags": [
+			"protein-structure-prediction",
+			"protein-protein-interaction",
+			"proteomics-data-analysis"
+		],
+		"created_by": "user2",
+		"created_at": "2023-10-02T00:00:00Z",
+		"modified_at": "2023-10-02T00:00:00Z"
+	},
+	{
+		"id": "550e8400-e29b-41d4-a716-446655440002",
+		"name": "transcriptomics",
+		"tags": [
+			"single-cell-rna-seq-analysis",
+			"bulk-rna-seq-analysis",
+			"alternative-splicing-analysis"
+		],
+		"created_by": "user3",
+		"created_at": "2023-10-03T00:00:00Z",
+		"modified_at": "2023-10-03T00:00:00Z"
+	},
+	{
+		"id": "550e8400-e29b-41d4-a716-446655440003",
+		"name": "metabolomics",
+		"tags": [
+			"metabolite-identification",
+			"metabolomics-data-analysis"
+		],
+		"created_by": "user4",
+		"created_at": "2023-10-04T00:00:00Z",
+		"modified_at": "2023-10-04T00:00:00Z"
+	},
+	{
+		"id": "550e8400-e29b-41d4-a716-446655440004",
+		"name": "microbiomics",
+		"tags": [
+			"microbiome-composition-analysis",
+			"microbial-function-prediction"
+		],
+		"created_by": "user5",
+		"created_at": "2023-10-05T00:00:00Z",
+		"modified_at": "2023-10-05T00:00:00Z"
+	},
+	{
+		"id": "550e8400-e29b-41d4-a716-446655440005",
+		"name": "clinical-data-analysis",
+		"tags": [
+			"disease-prediction",
+			"drug-response-prediction",
+			"clinical-trial-analysis"
+		],
+		"created_by": "user6",
+		"created_at": "2023-10-06T00:00:00Z",
+		"modified_at": "2023-10-06T00:00:00Z"
+	},
+	{
+		"id": "550e8400-e29b-41d4-a716-446655440006",
+		"name": "pathology",
+		"tags": [
+			"cancer-cell-detection",
+			"tumor-classification",
+			"cancer-research"
+		],
+		"created_by": "user7",
+		"created_at": "2023-10-07T00:00:00Z",
+		"modified_at": "2023-10-07T00:00:00Z"
+	},
+	{
+		"id": "550e8400-e29b-41d4-a716-446655440007",
+		"name": "crispr",
+		"tags": [
+			"crispr-screening-analysis",
+			"crispr-off-target-prediction"
+		],
+		"created_by": "user8",
+		"created_at": "2023-10-08T00:00:00Z",
+		"modified_at": "2023-10-08T00:00:00Z"
+	},
+	{
+		"id": "550e8400-e29b-41d4-a716-446655440008",
+		"name": "immunology",
+		"tags": [
+			"immune-repertoire-analysis",
+			"antibody-antigen-interaction"
+		],
+		"created_by": "user9",
+		"created_at": "2023-10-09T00:00:00Z",
+		"modified_at": "2023-10-09T00:00:00Z"
+	},
+	{
+		"id": "550e8400-e29b-41d4-a716-446655440009",
+		"name": "pharmacogenomics",
+		"tags": [
+			"drug-target-identification",
+			"pharmacokinetics-prediction"
+		],
+		"created_by": "user10",
+		"created_at": "2023-10-10T00:00:00Z",
+		"modified_at": "2023-10-10T00:00:00Z"
+	}
+]

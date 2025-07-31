@@ -1,0 +1,7 @@
+/* Custom CSS for Monaco Editor line numbers */
+
+.monaco-editor .line-numbers {
+    color: rgb(99, 108, 118); /* Line number text color */
+}
+
+/* You can use more specific selectors or classes if needed */

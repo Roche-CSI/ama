@@ -1,0 +1,41 @@
+{
+	"id": "1",
+	"name": "Transformers Model",
+	"description": "A state-of-the-art transformer model for NLP tasks.",
+	"tags": ["NLP", "Transformers", "Pretrained"],
+	"license": "MIT",
+	"author": "Jane Doe",
+	"created_at": "2024-01-15",
+	"modified_at": "2024-07-20",
+	"downloads": 20000,
+	"likes": 1500,
+	"type": "Text Generation",
+	"language": "English",
+	"tasks": ["Text Generation"],
+	"architecture": "Transformer",
+	"parameters": {
+		"numLayers": 12,
+		"hiddenSize": 768,
+		"numAttentionHeads": 12,
+		"intermediateSize": 3072
+	},
+	"training_data": {
+		"dataset": "Common Crawl",
+		"size": "100 GB",
+		"epochs": 3,
+		"batchSize": 32,
+		"learningRate": 0.001
+	},
+	"evaluation_metrics": {
+		"accuracy": 92.5,
+		"f1Score": 91.8,
+		"precision": 93.0,
+		"recall": 90.5
+	},
+	"example_inputs": ["Sample input text"],
+	"example_outputs": ["Sample output text"],
+	"modelcard": {
+		"summary": "This model is a cutting-edge transformer model designed for high-performance text generation.",
+		"details": "Developed using the latest advancements in transformer architecture, this model excels in generating coherent and contextually relevant text."
+	}
+}

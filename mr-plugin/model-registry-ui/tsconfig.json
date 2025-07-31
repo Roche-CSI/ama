@@ -1,0 +1,23 @@
+{
+	"files": [],
+	"references": [
+		{
+			"path": "./tsconfig.app.json"
+		},
+		{
+			"path": "./tsconfig.node.json"
+		}
+	],
+	"compilerOptions": {
+		"baseUrl": "./src",
+		"paths": {
+			"@themes/*": [
+				"themes/*"
+			]
+		},
+		"strict": true, // Optional: Enforces strict type-checking options
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"allowSyntheticDefaultImports": true,
+	}
+}

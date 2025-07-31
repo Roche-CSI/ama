@@ -1,0 +1,52 @@
+{
+	"id": "550e8400-e29b-41d4-a716-446655440005",
+	"group_name": "tasks",
+	"group_id": "550e8400-e29b-41d4-a716-446655440000",
+	"name": "modalities",
+	"description": "Each modality represents a type of dataset that is used for specific kinds of machine learning tasks",
+	"created_by": "user6",
+	"created_at": "2023-10-06T00:00:00Z",
+	"modified_at": "2023-10-06T00:00:00Z",
+	"tags": [
+		{
+			"id": "tag001",
+			"name": "3d",
+			"category_id": "f47ac10b-58cc-4372-a567-0e02b2c3d479"
+		},
+		{
+			"id": "tag002",
+			"name": "audio",
+			"category_id": "f47ac10b-58cc-4372-a567-0e02b2c3d479"
+		},
+		{
+			"id": "tag003",
+			"name": "geospatial",
+			"category_id": "f47ac10b-58cc-4372-a567-0e02b2c3d479"
+		},
+		{
+			"id": "tag004",
+			"name": "image",
+			"category_id": "f47ac10b-58cc-4372-a567-0e02b2c3d479"
+		},
+		{
+			"id": "tag005",
+			"name": "tabular",
+			"category_id": "f47ac10b-58cc-4372-a567-0e02b2c3d479"
+		},
+		{
+			"id": "tag006",
+			"name": "text",
+			"category_id": "f47ac10b-58cc-4372-a567-0e02b2c3d479"
+		},
+		{
+			"id": "tag007",
+			"name": "time-series",
+			"category_id": "f47ac10b-58cc-4372-a567-0e02b2c3d479"
+		},
+		{
+			"id": "tag008",
+			"name": "video",
+			"category_id": "f47ac10b-58cc-4372-a567-0e02b2c3d479"
+		}
+	]
+}

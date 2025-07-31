@@ -1,0 +1,938 @@
+[
+	{
+		"id": "roche-model-001",
+		"name": "Basecalling Model",
+		"description": "A model for basecalling in genomic sequencing.",
+		"tags": [
+			"genomics",
+			"basecalling",
+			"sequencing"
+		],
+		"license": "MIT",
+		"author": "Roche Bioinformatics Team",
+		"created_at": "2023-10-01T00:00:00Z",
+		"modified_at": "2023-10-01T00:00:00Z",
+		"downloads": 120,
+		"likes": 45,
+		"model_type": "convolutional neural network",
+		"language": "python",
+		"tasks": [
+			"basecalling"
+		],
+		"architecture": "cnn-basecaller",
+		"parameters": {
+			"num_layers": 10,
+			"hidden_size": 512,
+			"num_attention_heads": 8,
+			"intermediate_size": 2048
+		},
+		"training_data": {
+			"dataset": "GenomicReadsDataset",
+			"size": "100k",
+			"epochs": 20,
+			"batch_size": 64,
+			"learning_rate": 1e-4
+		},
+		"evaluation_metrics": {
+			"accuracy": 0.98,
+			"f1_score": 0.97,
+			"precision": 0.96,
+			"recall": 0.95
+		},
+		"example_inputs": [
+			"AGCTGATCGATCGATCGATCGATCGATCGATC"
+		],
+		"example_outputs": [
+			"AGCTGATCGATCGATCGATCGATCGATCGATC"
+		]
+	},
+	{
+		"id": "roche-model-002",
+		"name": "Cancer Cell Detection",
+		"description": "A model for detecting cancer cells in histopathology images.",
+		"tags": [
+			"cancer",
+			"cell-detection",
+			"histopathology"
+		],
+		"license": "Apache-2.0",
+		"author": "Roche Oncology Team",
+		"created_at": "2023-10-02T00:00:00Z",
+		"modified_at": "2023-10-02T00:00:00Z",
+		"downloads": 200,
+		"likes": 75,
+		"model_type": "convolutional neural network",
+		"language": "python",
+		"tasks": [
+			"cancer-cell-detection"
+		],
+		"architecture": "resnet50",
+		"parameters": {
+			"num_layers": 50,
+			"hidden_size": 2048,
+			"num_attention_heads": 32,
+			"intermediate_size": 8192
+		},
+		"training_data": {
+			"dataset": "HistopathologyImages",
+			"size": "50k",
+			"epochs": 30,
+			"batch_size": 32,
+			"learning_rate": 1e-4
+		},
+		"evaluation_metrics": {
+			"accuracy": 0.95,
+			"f1_score": 0.94,
+			"precision": 0.93,
+			"recall": 0.92
+		},
+		"example_inputs": [
+			"image_path/histopathology_sample.jpg"
+		],
+		"example_outputs": [
+			"cancer_cell_detected"
+		]
+	},
+	{
+		"id": "roche-model-003",
+		"name": "Drug Response Prediction",
+		"description": "A model for predicting patient response to various drugs.",
+		"tags": [
+			"drug-response",
+			"prediction",
+			"pharmacogenomics"
+		],
+		"license": "GPL-3.0",
+		"author": "Roche Pharmacogenomics Team",
+		"created_at": "2023-10-03T00:00:00Z",
+		"modified_at": "2023-10-03T00:00:00Z",
+		"downloads": 150,
+		"likes": 60,
+		"model_type": "transformer",
+		"language": "python",
+		"tasks": [
+			"drug-response-prediction"
+		],
+		"architecture": "transformer-drug-response",
+		"parameters": {
+			"num_layers": 12,
+			"hidden_size": 768,
+			"num_attention_heads": 12,
+			"intermediate_size": 3072
+		},
+		"training_data": {
+			"dataset": "DrugResponseDataset",
+			"size": "200k",
+			"epochs": 25,
+			"batch_size": 16,
+			"learning_rate": 3e-5
+		},
+		"evaluation_metrics": {
+			"accuracy": 0.92,
+			"f1_score": 0.91,
+			"precision": 0.90,
+			"recall": 0.89
+		},
+		"example_inputs": [
+			"patient_data/sample_patient.json"
+		],
+		"example_outputs": [
+			"drug_response_prediction"
+		]
+	},
+	{
+		"id": "roche-model-004",
+		"name": "Protein Structure Prediction",
+		"description": "A model for predicting the 3D structure of proteins.",
+		"tags": [
+			"protein",
+			"structure-prediction",
+			"bioinformatics"
+		],
+		"license": "MIT",
+		"author": "Roche Bioinformatics Team",
+		"created_at": "2023-10-04T00:00:00Z",
+		"modified_at": "2023-10-04T00:00:00Z",
+		"downloads": 180,
+		"likes": 70,
+		"model_type": "transformer",
+		"language": "python",
+		"tasks": [
+			"protein-structure-prediction"
+		],
+		"architecture": "alphafold",
+		"parameters": {
+			"num_layers": 48,
+			"hidden_size": 1024,
+			"num_attention_heads": 16,
+			"intermediate_size": 4096
+		},
+		"training_data": {
+			"dataset": "ProteinSequences",
+			"size": "300k",
+			"epochs": 50,
+			"batch_size": 8,
+			"learning_rate": 1e-5
+		},
+		"evaluation_metrics": {
+			"accuracy": 0.93,
+			"f1_score": 0.92,
+			"precision": 0.91,
+			"recall": 0.90
+		},
+		"example_inputs": [
+			"protein_sequence/sequence.fasta"
+		],
+		"example_outputs": [
+			"3d_structure.pdb"
+		]
+	},
+	{
+		"id": "roche-model-005",
+		"name": "Genetic Variant Annotation",
+		"description": "A model for annotating genetic variants.",
+		"tags": [
+			"genetics",
+			"variant-annotation",
+			"bioinformatics"
+		],
+		"license": "Apache-2.0",
+		"author": "Roche Genetics Team",
+		"created_at": "2023-10-05T00:00:00Z",
+		"modified_at": "2023-10-05T00:00:00Z",
+		"downloads": 130,
+		"likes": 55,
+		"model_type": "transformer",
+		"language": "python",
+		"tasks": [
+			"variant-annotation"
+		],
+		"architecture": "transformer-variant-annotation",
+		"parameters": {
+			"num_layers": 24,
+			"hidden_size": 1024,
+			"num_attention_heads": 16,
+			"intermediate_size": 4096
+		},
+		"training_data": {
+			"dataset": "GeneticVariants",
+			"size": "150k",
+			"epochs": 20,
+			"batch_size": 32,
+			"learning_rate": 2e-5
+		},
+		"evaluation_metrics": {
+			"accuracy": 0.94,
+			"f1_score": 0.93,
+			"precision": 0.92,
+			"recall": 0.91
+		},
+		"example_inputs": [
+			"variant_data/sample_variant.vcf"
+		],
+		"example_outputs": [
+			"annotated_variant.json"
+		]
+	},
+	{
+		"id": "roche-model-006",
+		"name": "Gene Expression Analysis",
+		"description": "A model for analyzing gene expression data.",
+		"tags": [
+			"genomics",
+			"gene-expression",
+			"bioinformatics"
+		],
+		"license": "MIT",
+		"author": "Roche Bioinformatics Team",
+		"created_at": "2023-10-06T00:00:00Z",
+		"modified_at": "2023-10-06T00:00:00Z",
+		"downloads": 140,
+		"likes": 65,
+		"model_type": "transformer",
+		"language": "python",
+		"tasks": [
+			"gene-expression-analysis"
+		],
+		"architecture": "transformer-gene-expression",
+		"parameters": {
+			"num_layers": 24,
+			"hidden_size": 1024,
+			"num_attention_heads": 16,
+			"intermediate_size": 4096
+		},
+		"training_data": {
+			"dataset": "GeneExpressionDataset",
+			"size": "200k",
+			"epochs": 30,
+			"batch_size": 32,
+			"learning_rate": 2e-5
+		},
+		"evaluation_metrics": {
+			"accuracy": 0.95,
+			"f1_score": 0.94,
+			"precision": 0.93,
+			"recall": 0.92
+		},
+		"example_inputs": [
+			"gene_expression_data/sample_expression.csv"
+		],
+		"example_outputs": [
+			"gene_expression_analysis.json"
+		]
+	},
+	{
+		"id": "roche-model-007",
+		"name": "Metabolite Identification",
+		"description": "A model for identifying metabolites in mass spectrometry data.",
+		"tags": [
+			"metabolomics",
+			"metabolite-identification",
+			"mass-spectrometry"
+		],
+		"license": "Apache-2.0",
+		"author": "Roche Metabolomics Team",
+		"created_at": "2023-10-07T00:00:00Z",
+		"modified_at": "2023-10-07T00:00:00Z",
+		"downloads": 160,
+		"likes": 70,
+		"model_type": "convolutional neural network",
+		"language": "python",
+		"tasks": [
+			"metabolite-identification"
+		],
+		"architecture": "cnn-metabolite",
+		"parameters": {
+			"num_layers": 20,
+			"hidden_size": 512,
+			"num_attention_heads": 8,
+			"intermediate_size": 2048
+		},
+		"training_data": {
+			"dataset": "MassSpectrometryData",
+			"size": "100k",
+			"epochs": 25,
+			"batch_size": 64,
+			"learning_rate": 1e-4
+		},
+		"evaluation_metrics": {
+			"accuracy": 0.96,
+			"f1_score": 0.95,
+			"precision": 0.94,
+			"recall": 0.93
+		},
+		"example_inputs": [
+			"mass_spectrometry_data/sample_spectrum.mzML"
+		],
+		"example_outputs": [
+			"identified_metabolites.json"
+		]
+	},
+	{
+		"id": "roche-model-008",
+		"name": "Pathway Analysis",
+		"description": "A model for analyzing biological pathways.",
+		"tags": [
+			"pathway-analysis",
+			"bioinformatics",
+			"systems-biology"
+		],
+		"license": "MIT",
+		"author": "Roche Systems Biology Team",
+		"created_at": "2023-10-08T00:00:00Z",
+		"modified_at": "2023-10-08T00:00:00Z",
+		"downloads": 170,
+		"likes": 75,
+		"model_type": "transformer",
+		"language": "python",
+		"tasks": [
+			"pathway-analysis"
+		],
+		"architecture": "transformer-pathway",
+		"parameters": {
+			"num_layers": 24,
+			"hidden_size": 1024,
+			"num_attention_heads": 16,
+			"intermediate_size": 4096
+		},
+		"training_data": {
+			"dataset": "PathwayData",
+			"size": "150k",
+			"epochs": 20,
+			"batch_size": 32,
+			"learning_rate": 2e-5
+		},
+		"evaluation_metrics": {
+			"accuracy": 0.94,
+			"f1_score": 0.93,
+			"precision": 0.92,
+			"recall": 0.91
+		},
+		"example_inputs": [
+			"pathway_data/sample_pathway.csv"
+		],
+		"example_outputs": [
+			"pathway_analysis.json"
+		]
+	},
+	{
+		"id": "roche-model-009",
+		"name": "Cell Type Classification",
+		"description": "A model for classifying cell types in single-cell RNA sequencing data.",
+		"tags": [
+			"single-cell",
+			"cell-type-classification",
+			"rna-sequencing"
+		],
+		"license": "Apache-2.0",
+		"author": "Roche Single-Cell Team",
+		"created_at": "2023-10-09T00:00:00Z",
+		"modified_at": "2023-10-09T00:00:00Z",
+		"downloads": 190,
+		"likes": 80,
+		"model_type": "transformer",
+		"language": "python",
+		"tasks": [
+			"cell-type-classification"
+		],
+		"architecture": "transformer-cell-type",
+		"parameters": {
+			"num_layers": 24,
+			"hidden_size": 1024,
+			"num_attention_heads": 16,
+			"intermediate_size": 4096
+		},
+		"training_data": {
+			"dataset": "SingleCellRNASeq",
+			"size": "250k",
+			"epochs": 30,
+			"batch_size": 32,
+			"learning_rate": 2e-5
+		},
+		"evaluation_metrics": {
+			"accuracy": 0.95,
+			"f1_score": 0.94,
+			"precision": 0.93,
+			"recall": 0.92
+		},
+		"example_inputs": [
+			"single_cell_data/sample_scRNAseq.csv"
+		],
+		"example_outputs": [
+			"cell_type_classification.json"
+		]
+	},
+	{
+		"id": "roche-model-010",
+		"name": "Epigenetic Modification Prediction",
+		"description": "A model for predicting epigenetic modifications.",
+		"tags": [
+			"epigenetics",
+			"modification-prediction",
+			"bioinformatics"
+		],
+		"license": "MIT",
+		"author": "Roche Epigenetics Team",
+		"created_at": "2023-10-10T00:00:00Z",
+		"modified_at": "2023-10-10T00:00:00Z",
+		"downloads": 160,
+		"likes": 70,
+		"model_type": "transformer",
+		"language": "python",
+		"tasks": [
+			"epigenetic-modification-prediction"
+		],
+		"architecture": "transformer-epigenetics",
+		"parameters": {
+			"num_layers": 24,
+			"hidden_size": 1024,
+			"num_attention_heads": 16,
+			"intermediate_size": 4096
+		},
+		"training_data": {
+			"dataset": "EpigeneticData",
+			"size": "200k",
+			"epochs": 25,
+			"batch_size": 32,
+			"learning_rate": 2e-5
+		},
+		"evaluation_metrics": {
+			"accuracy": 0.94,
+			"f1_score": 0.93,
+			"precision": 0.92,
+			"recall": 0.91
+		},
+		"example_inputs": [
+			"epigenetic_data/sample_modification.csv"
+		],
+		"example_outputs": [
+			"epigenetic_modification_prediction.json"
+		]
+	},
+	{
+		"id": "roche-model-011",
+		"name": "Epigenomics Analysis",
+		"description": "A model for analyzing epigenomic data.",
+		"tags": [
+			"epigenomics",
+			"bioinformatics"
+		],
+		"license": "Apache-2.0",
+		"author": "Roche Bioinformatics Team",
+		"created_at": "2023-10-11T00:00:00Z",
+		"modified_at": "2023-10-11T00:00:00Z",
+		"downloads": 110,
+		"likes": 50,
+		"model_type": "transformer",
+		"language": "python",
+		"tasks": [
+			"epigenomics-analysis"
+		],
+		"architecture": "transformer-epigenomics",
+		"parameters": {
+			"num_layers": 24,
+			"hidden_size": 1024,
+			"num_attention_heads": 16,
+			"intermediate_size": 4096
+		},
+		"training_data": {
+			"dataset": "EpigenomicsDataset",
+			"size": "120k",
+			"epochs": 25,
+			"batch_size": 32,
+			"learning_rate": 2e-5
+		},
+		"evaluation_metrics": {
+			"accuracy": 0.94,
+			"f1_score": 0.93,
+			"precision": 0.92,
+			"recall": 0.91
+		},
+		"example_inputs": [
+			"epigenomics_data/sample_epigenomics.csv"
+		],
+		"example_outputs": [
+			"epigenomics_analysis.json"
+		]
+	},
+	{
+		"id": "roche-model-012",
+		"name": "Single-Cell RNA-Seq Analysis",
+		"description": "A model for analyzing single-cell RNA sequencing data.",
+		"tags": [
+			"single-cell",
+			"rna-seq",
+			"bioinformatics"
+		],
+		"license": "MIT",
+		"author": "Roche Bioinformatics Team",
+		"created_at": "2023-10-12T00:00:00Z",
+		"modified_at": "2023-10-12T00:00:00Z",
+		"downloads": 130,
+		"likes": 55,
+		"model_type": "transformer",
+		"language": "python",
+		"tasks": [
+			"single-cell-rna-seq-analysis"
+		],
+		"architecture": "transformer-single-cell",
+		"parameters": {
+			"num_layers": 24,
+			"hidden_size": 1024,
+			"num_attention_heads": 16,
+			"intermediate_size": 4096
+		},
+		"training_data": {
+			"dataset": "SingleCellRNADataset",
+			"size": "150k",
+			"epochs": 30,
+			"batch_size": 32,
+			"learning_rate": 2e-5
+		},
+		"evaluation_metrics": {
+			"accuracy": 0.95,
+			"f1_score": 0.94,
+			"precision": 0.93,
+			"recall": 0.92
+		},
+		"example_inputs": [
+			"single_cell_data/sample_single_cell.csv"
+		],
+		"example_outputs": [
+			"single_cell_analysis.json"
+		]
+	},
+	{
+		"id": "roche-model-013",
+		"name": "CRISPR Screening Analysis",
+		"description": "A model for analyzing CRISPR screening data.",
+		"tags": [
+			"crispr",
+			"screening",
+			"bioinformatics"
+		],
+		"license": "Apache-2.0",
+		"author": "Roche Bioinformatics Team",
+		"created_at": "2023-10-13T00:00:00Z",
+		"modified_at": "2023-10-13T00:00:00Z",
+		"downloads": 140,
+		"likes": 60,
+		"model_type": "transformer",
+		"language": "python",
+		"tasks": [
+			"crispr-screening-analysis"
+		],
+		"architecture": "transformer-crispr",
+		"parameters": {
+			"num_layers": 24,
+			"hidden_size": 1024,
+			"num_attention_heads": 16,
+			"intermediate_size": 4096
+		},
+		"training_data": {
+			"dataset": "CRISPRScreeningDataset",
+			"size": "180k",
+			"epochs": 35,
+			"batch_size": 32,
+			"learning_rate": 2e-5
+		},
+		"evaluation_metrics": {
+			"accuracy": 0.96,
+			"f1_score": 0.95,
+			"precision": 0.94,
+			"recall": 0.93
+		},
+		"example_inputs": [
+			"crispr_data/sample_crispr.csv"
+		],
+		"example_outputs": [
+			"crispr_analysis.json"
+		]
+	},
+	{
+		"id": "roche-model-014",
+		"name": "Immune Repertoire Analysis",
+		"description": "A model for analyzing immune repertoire sequencing data.",
+		"tags": [
+			"immune-repertoire",
+			"sequencing",
+			"bioinformatics"
+		],
+		"license": "MIT",
+		"author": "Roche Bioinformatics Team",
+		"created_at": "2023-10-14T00:00:00Z",
+		"modified_at": "2023-10-14T00:00:00Z",
+		"downloads": 150,
+		"likes": 65,
+		"model_type": "transformer",
+		"language": "python",
+		"tasks": [
+			"immune-repertoire-analysis"
+		],
+		"architecture": "transformer-immune-repertoire",
+		"parameters": {
+			"num_layers": 24,
+			"hidden_size": 1024,
+			"num_attention_heads": 16,
+			"intermediate_size": 4096
+		},
+		"training_data": {
+			"dataset": "ImmuneRepertoireDataset",
+			"size": "200k",
+			"epochs": 40,
+			"batch_size": 32,
+			"learning_rate": 2e-5
+		},
+		"evaluation_metrics": {
+			"accuracy": 0.97,
+			"f1_score": 0.96,
+			"precision": 0.95,
+			"recall": 0.94
+		},
+		"example_inputs": [
+			"immune_repertoire_data/sample_immune_repertoire.csv"
+		],
+		"example_outputs": [
+			"immune_repertoire_analysis.json"
+		]
+	},
+	{
+		"id": "roche-model-015",
+		"name": "Proteomics Analysis",
+		"description": "A model for analyzing proteomics data.",
+		"tags": [
+			"proteomics",
+			"bioinformatics"
+		],
+		"license": "Apache-2.0",
+		"author": "Roche Bioinformatics Team",
+		"created_at": "2023-10-15T00:00:00Z",
+		"modified_at": "2023-10-15T00:00:00Z",
+		"downloads": 160,
+		"likes": 70,
+		"model_type": "transformer",
+		"language": "python",
+		"tasks": [
+			"proteomics-analysis"
+		],
+		"architecture": "transformer-proteomics",
+		"parameters": {
+			"num_layers": 24,
+			"hidden_size": 1024,
+			"num_attention_heads": 16,
+			"intermediate_size": 4096
+		},
+		"training_data": {
+			"dataset": "ProteomicsDataset",
+			"size": "220k",
+			"epochs": 45,
+			"batch_size": 32,
+			"learning_rate": 2e-5
+		},
+		"evaluation_metrics": {
+			"accuracy": 0.98,
+			"f1_score": 0.97,
+			"precision": 0.96,
+			"recall": 0.95
+		},
+		"example_inputs": [
+			"proteomics_data/sample_proteomics.csv"
+		],
+		"example_outputs": [
+			"proteomics_analysis.json"
+		]
+	},
+	{
+		"id": "roche-model-016",
+		"name": "Metagenomics Analysis",
+		"description": "A model for analyzing metagenomics data.",
+		"tags": [
+			"metagenomics",
+			"bioinformatics"
+		],
+		"license": "MIT",
+		"author": "Roche Bioinformatics Team",
+		"created_at": "2023-10-16T00:00:00Z",
+		"modified_at": "2023-10-16T00:00:00Z",
+		"downloads": 170,
+		"likes": 75,
+		"model_type": "transformer",
+		"language": "python",
+		"tasks": [
+			"metagenomics-analysis"
+		],
+		"architecture": "transformer-metagenomics",
+		"parameters": {
+			"num_layers": 24,
+			"hidden_size": 1024,
+			"num_attention_heads": 16,
+			"intermediate_size": 4096
+		},
+		"training_data": {
+			"dataset": "MetagenomicsDataset",
+			"size": "240k",
+			"epochs": 50,
+			"batch_size": 32,
+			"learning_rate": 2e-5
+		},
+		"evaluation_metrics": {
+			"accuracy": 0.99,
+			"f1_score": 0.98,
+			"precision": 0.97,
+			"recall": 0.96
+		},
+		"example_inputs": [
+			"metagenomics_data/sample_metagenomics.csv"
+		],
+		"example_outputs": [
+			"metagenomics_analysis.json"
+		]
+	},
+	{
+		"id": "roche-model-017",
+		"name": "Transcriptomics Analysis",
+		"description": "A model for analyzing transcriptomics data.",
+		"tags": [
+			"transcriptomics",
+			"bioinformatics"
+		],
+		"license": "Apache-2.0",
+		"author": "Roche Bioinformatics Team",
+		"created_at": "2023-10-17T00:00:00Z",
+		"modified_at": "2023-10-17T00:00:00Z",
+		"downloads": 180,
+		"likes": 80,
+		"model_type": "transformer",
+		"language": "python",
+		"tasks": [
+			"transcriptomics-analysis"
+		],
+		"architecture": "transformer-transcriptomics",
+		"parameters": {
+			"num_layers": 24,
+			"hidden_size": 1024,
+			"num_attention_heads": 16,
+			"intermediate_size": 4096
+		},
+		"training_data": {
+			"dataset": "TranscriptomicsDataset",
+			"size": "260k",
+			"epochs": 55,
+			"batch_size": 32,
+			"learning_rate": 2e-5
+		},
+		"evaluation_metrics": {
+			"accuracy": 0.98,
+			"f1_score": 0.97,
+			"precision": 0.96,
+			"recall": 0.95
+		},
+		"example_inputs": [
+			"transcriptomics_data/sample_transcriptomics.csv"
+		],
+		"example_outputs": [
+			"transcriptomics_analysis.json"
+		]
+	},
+	{
+		"id": "roche-model-018",
+		"name": "Cell Type Classification",
+		"description": "A model for classifying cell types from single-cell RNA sequencing data.",
+		"tags": [
+			"cell-type-classification",
+			"single-cell",
+			"rna-seq",
+			"bioinformatics"
+		],
+		"license": "MIT",
+		"author": "Roche Bioinformatics Team",
+		"created_at": "2023-10-18T00:00:00Z",
+		"modified_at": "2023-10-18T00:00:00Z",
+		"downloads": 190,
+		"likes": 85,
+		"model_type": "transformer",
+		"language": "python",
+		"tasks": [
+			"cell-type-classification"
+		],
+		"architecture": "transformer-cell-type",
+		"parameters": {
+			"num_layers": 24,
+			"hidden_size": 1024,
+			"num_attention_heads": 16,
+			"intermediate_size": 4096
+		},
+		"training_data": {
+			"dataset": "CellTypeDataset",
+			"size": "280k",
+			"epochs": 60,
+			"batch_size": 32,
+			"learning_rate": 2e-5
+		},
+		"evaluation_metrics": {
+			"accuracy": 0.99,
+			"f1_score": 0.98,
+			"precision": 0.97,
+			"recall": 0.96
+		},
+		"example_inputs": [
+			"cell_type_data/sample_cell_type.csv"
+		],
+		"example_outputs": [
+			"cell_type_classification.json"
+		]
+	},
+	{
+		"id": "roche-model-019",
+		"name": "Gene Regulatory Network Inference",
+		"description": "A model for inferring gene regulatory networks from gene expression data.",
+		"tags": [
+			"gene-regulatory-network",
+			"bioinformatics"
+		],
+		"license": "Apache-2.0",
+		"author": "Roche Bioinformatics Team",
+		"created_at": "2023-10-19T00:00:00Z",
+		"modified_at": "2023-10-19T00:00:00Z",
+		"downloads": 200,
+		"likes": 90,
+		"model_type": "transformer",
+		"language": "python",
+		"tasks": [
+			"gene-regulatory-network-inference"
+		],
+		"architecture": "transformer-gene-regulatory",
+		"parameters": {
+			"num_layers": 24,
+			"hidden_size": 1024,
+			"num_attention_heads": 16,
+			"intermediate_size": 4096
+		},
+		"training_data": {
+			"dataset": "GeneRegulatoryDataset",
+			"size": "300k",
+			"epochs": 65,
+			"batch_size": 32,
+			"learning_rate": 2e-5
+		},
+		"evaluation_metrics": {
+			"accuracy": 0.99,
+			"f1_score": 0.98,
+			"precision": 0.97,
+			"recall": 0.96
+		},
+		"example_inputs": [
+			"gene_regulatory_data/sample_gene_regulatory.csv"
+		],
+		"example_outputs": [
+			"gene_regulatory_network.json"
+		]
+	},
+	{
+		"id": "roche-model-020",
+		"name": "Variant Effect Prediction",
+		"description": "A model for predicting the effects of genetic variants.",
+		"tags": [
+			"variant-effect-prediction",
+			"genetics",
+			"bioinformatics"
+		],
+		"license": "MIT",
+		"author": "Roche Bioinformatics Team",
+		"created_at": "2023-10-20T00:00:00Z",
+		"modified_at": "2023-10-20T00:00:00Z",
+		"downloads": 210,
+		"likes": 95,
+		"model_type": "transformer",
+		"language": "python",
+		"tasks": [
+			"variant-effect-prediction"
+		],
+		"architecture": "transformer-variant-effect",
+		"parameters": {
+			"num_layers": 24,
+			"hidden_size": 1024,
+			"num_attention_heads": 16,
+			"intermediate_size": 4096
+		},
+		"training_data": {
+			"dataset": "VariantEffectDataset",
+			"size": "320k",
+			"epochs": 70,
+			"batch_size": 32,
+			"learning_rate": 2e-5
+		},
+		"evaluation_metrics": {
+			"accuracy": 0.99,
+			"f1_score": 0.98,
+			"precision": 0.97,
+			"recall": 0.96
+		},
+		"example_inputs": [
+			"variant_effect_data/sample_variant_effect.csv"
+		],
+		"example_outputs": [
+			"variant_effect_prediction.json"
+		]
+	}
+]

@@ -1,0 +1,177 @@
+[
+    {
+        "id": 1,
+        "run_id": 1,
+        "timestamp": "2024-01-01T00:00:00Z",
+        "level": "info",
+        "message": "Started monitoring run for model asset_id: 1d68cc07-cbae-4242-871b-434e48425601",
+        "metadata": {
+            "provider": "evidently_ai",
+            "configuration_hash": "abc123def456",
+            "monitoring_config": {
+                "batch_size": 1000,
+                "monitoring_frequency": "hourly"
+            }
+        }
+    },
+    {
+        "id": 2,
+        "run_id": 1,
+        "timestamp": "2024-01-01T00:00:05Z",
+        "level": "info",
+        "message": "Successfully loaded reference data snapshot",
+        "metadata": {
+            "snapshot_id": "ref_20240101",
+            "features_count": 4,
+            "sample_size": 10000,
+            "data_hash": "sha256:abc123"
+        }
+    },
+    {
+        "id": 3,
+        "run_id": 1,
+        "timestamp": "2024-01-01T00:15:00Z",
+        "level": "warning",
+        "message": "Generated drift alert for feature 'age'",
+        "metadata": {
+            "alert_id": 1,
+            "threshold_value": 0.02,
+            "current_value": 0.03,
+            "statistical_test": "ks_test"
+        }
+    },
+    {
+        "id": 4,
+        "run_id": 1,
+        "timestamp": "2024-01-01T00:15:01Z",
+        "level": "info",
+        "message": "Successfully sent alert notifications",
+        "metadata": {
+            "alert_id": 1,
+            "notification_channels": [
+                "slack"
+            ],
+            "delivery_status": {
+                "slack": "delivered"
+            }
+        }
+    },
+    {
+        "id": 5,
+        "run_id": 1,
+        "timestamp": "2024-01-01T00:30:00Z",
+        "level": "error",
+        "message": "Failed to collect metrics batch",
+        "metadata": {
+            "error_type": "ConnectionError",
+            "error_details": "Connection timeout after 30s",
+            "retry_count": 2,
+            "batch_id": "batch_20240101_003000"
+        }
+    },
+    {
+        "id": 6,
+        "run_id": 1,
+        "timestamp": "2024-01-01T00:30:15Z",
+        "level": "info",
+        "message": "Successfully retried failed metrics collection",
+        "metadata": {
+            "batch_id": "batch_20240101_003000",
+            "retry_attempt": 3,
+            "metrics_collected": 15
+        }
+    },
+    {
+        "id": 7,
+        "run_id": 2,
+        "timestamp": "2024-01-01T01:00:00Z",
+        "level": "warning",
+        "message": "High GPU memory utilization detected",
+        "metadata": {
+            "device_id": "gpu-0",
+            "memory_used": 14.2,
+            "memory_total": 16.0,
+            "temperature": 72
+        }
+    },
+    {
+        "id": 8,
+        "run_id": 2,
+        "timestamp": "2024-01-01T01:15:00Z",
+        "level": "error",
+        "message": "Failed to compute embedding analysis",
+        "metadata": {
+            "error_type": "OutOfMemoryError",
+            "component": "embedding_analyzer",
+            "memory_snapshot": {
+                "available": "1.8GB",
+                "required": "2.5GB"
+            }
+        }
+    },
+    {
+        "id": 9,
+        "run_id": 2,
+        "timestamp": "2024-01-01T01:30:00Z",
+        "level": "info",
+        "message": "Threshold configuration updated",
+        "metadata": {
+            "threshold_id": 5,
+            "metric_type": "demographic_parity",
+            "old_value": 0.90,
+            "new_value": 0.91,
+            "updated_by": "scheduled_calibration"
+        }
+    },
+    {
+        "id": 10,
+        "run_id": 3,
+        "timestamp": "2024-01-01T02:00:00Z",
+        "level": "error",
+        "message": "Data quality check failed: schema validation error",
+        "metadata": {
+            "error_type": "SchemaValidationError",
+            "invalid_columns": [
+                "income",
+                "age"
+            ],
+            "expected_types": {
+                "income": "float",
+                "age": "integer"
+            },
+            "found_types": {
+                "income": "string",
+                "age": "string"
+            },
+            "affected_rows": 150
+        }
+    },
+    {
+        "id": 11,
+        "run_id": 1,
+        "timestamp": "2024-01-01T02:30:00Z",
+        "level": "info",
+        "message": "Alert resolved: Feature drift for 'age' returned to normal levels",
+        "metadata": {
+            "alert_id": 1,
+            "resolution_type": "auto",
+            "current_value": 0.015,
+            "threshold_value": 0.02,
+            "duration": "2h15m"
+        }
+    },
+    {
+        "id": 12,
+        "run_id": 1,
+        "timestamp": "2024-01-01T03:00:00Z",
+        "level": "info",
+        "message": "Generated hourly monitoring report",
+        "metadata": {
+            "report_id": "RPT_20240101_03",
+            "metrics_collected": 120,
+            "alerts_generated": 3,
+            "alerts_resolved": 1,
+            "report_url": "https://monitoring.example.com/reports/RPT_20240101_03"
+        }
+    }
+]

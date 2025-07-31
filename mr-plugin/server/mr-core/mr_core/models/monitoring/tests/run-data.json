@@ -1,0 +1,172 @@
+[
+    {
+      "id": 1,
+      "asset_id": "1d68cc07-cbae-4242-871b-434e48425601",
+      "provider_id": "a79a4bbd-2e4d-46cc-8838-e5b9d1cd8785",
+      "start_time": "2024-01-01T00:00:00Z",
+      "end_time": "2024-01-01T01:00:00Z",
+      "status": "active",
+      "configuration": {
+        "monitoring_frequency": "hourly",
+        "batch_size": 1000,
+        "features": {
+          "numerical": ["age", "income", "usage_months"],
+          "categorical": ["occupation", "education", "region"],
+          "target": "churn_status"
+        },
+        "drift_detection": {
+          "feature_drift": {
+            "enabled": true,
+            "statistical_test": "ks_test",
+            "significance_level": 0.05,
+            "min_sample_size": 500
+          },
+          "target_drift": {
+            "enabled": true,
+            "detection_threshold": 0.1
+          }
+        },
+        "performance_monitoring": {
+          "metrics": ["accuracy", "precision", "recall", "f1_score"],
+          "confusion_matrix": true,
+          "roc_curve": true
+        },
+        "alerts": {
+          "drift_threshold": 0.05,
+          "performance_drop_threshold": 0.1,
+          "notification_channels": ["slack", "email"]
+        }
+      },
+      "data_snapshot": {
+        "timestamp": "2024-01-01T00:00:00Z",
+        "sample_size": 10000,
+        "feature_statistics": {
+          "age": {
+            "mean": 35.5,
+            "std": 12.3,
+            "min": 18,
+            "max": 85,
+            "distribution": "normal"
+          },
+          "income": {
+            "mean": 75000,
+            "std": 25000,
+            "min": 20000,
+            "max": 200000,
+            "distribution": "log_normal"
+          },
+          "usage_months": {
+            "mean": 24.5,
+            "std": 15.2,
+            "min": 1,
+            "max": 120,
+            "distribution": "exponential"
+          },
+          "occupation": {
+            "categories": ["professional", "student", "retired", "other"],
+            "distribution": {
+              "professional": 0.45,
+              "student": 0.25,
+              "retired": 0.15,
+              "other": 0.15
+            }
+          }
+        },
+        "target_statistics": {
+          "churn_rate": 0.15,
+          "class_distribution": {
+            "churned": 0.15,
+            "retained": 0.85
+          }
+        },
+        "performance_baseline": {
+          "accuracy": 0.88,
+          "precision": 0.85,
+          "recall": 0.83,
+          "f1_score": 0.84
+        }
+      }
+    },
+    {
+      "id": 2,
+      "asset_id": "1d68cc07-cbae-4242-871b-434e48425601",
+      "provider_id": "faf889d4-289b-41b5-ae1e-f0d2fbd923c6",
+      "start_time": "2024-01-01T12:00:00Z",
+      "end_time": "2024-01-02T12:00:00Z",
+      "status": "completed",
+      "configuration": {
+        "monitoring_mode": "real_time",
+        "sampling_rate": 1.0,
+        "feature_importance": true,
+        "embedding_analysis": {
+          "enabled": true,
+          "embedding_dim": 128,
+          "update_frequency": "daily"
+        },
+        "bias_monitoring": {
+          "enabled": true,
+          "protected_features": ["age", "gender", "region"],
+          "fairness_metrics": ["demographic_parity", "equal_opportunity"]
+        },
+        "performance_monitoring": {
+          "latency_tracking": true,
+          "resource_utilization": true,
+          "batch_scoring_metrics": true
+        }
+      },
+      "data_snapshot": {
+        "timestamp": "2024-01-01T12:00:00Z",
+        "embedding_space": {
+          "dimensions": 128,
+          "clustering_info": {
+            "n_clusters": 5,
+            "silhouette_score": 0.72
+          }
+        },
+        "bias_metrics": {
+          "age": {
+            "demographic_parity": 0.92,
+            "equal_opportunity": 0.89
+          },
+          "gender": {
+            "demographic_parity": 0.95,
+            "equal_opportunity": 0.93
+          }
+        }
+      }
+    },
+    {
+      "id": 3,
+      "asset_id": "1d68cc07-cbae-4242-871b-434e48425601",
+      "provider_id": "1fd71462-9a66-4d76-ad85-9a84ab965633",
+      "start_time": "2024-01-02T00:00:00Z",
+      "end_time": "2024-01-02T01:00:00Z",
+      "status": "failed",
+      "configuration": {
+        "monitoring_frequency": "hourly",
+        "data_quality": {
+          "schema_validation": true,
+          "missing_value_check": true,
+          "type_validation": true,
+          "range_validation": {
+            "age": {"min": 18, "max": 100},
+            "income": {"min": 0, "max": 1000000}
+          }
+        },
+        "drift_detection": {
+          "enabled": true,
+          "methods": ["population_stability_index", "kolmogorov_smirnov_test"],
+          "window_size": "1d"
+        }
+      },
+      "data_snapshot": {
+        "timestamp": "2024-01-02T00:00:00Z",
+        "error_info": {
+          "error_type": "DataQualityError",
+          "message": "Schema validation failed: unexpected data types in columns [income, age]",
+          "affected_rows": 150,
+          "total_rows": 1000
+        }
+      }
+    }
+  ]

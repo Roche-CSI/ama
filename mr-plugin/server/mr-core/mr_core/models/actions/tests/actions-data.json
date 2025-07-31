@@ -1,0 +1,270 @@
+[
+    {
+        "id": 1,
+        "name": "model_performance_alert",
+        "title": "Create Model Performance Alert",
+        "description": "Creates a GitHub issue when model performance degrades or shows anomalies",
+        "provider_id": 1,
+        "api_config": {
+            "endpoint": "/repos/{owner}/{repo}/issues",
+            "method": "POST",
+            "headers": {
+                "Authorization": "Bearer {token}",
+                "Accept": "application/vnd.github.v3+json"
+            }
+        },
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "model_name": {
+                    "type": "string",
+                    "description": "Name of the model"
+                },
+                "model_version": {
+                    "type": "string",
+                    "description": "Version of the model"
+                },
+                "environment": {
+                    "type": "string",
+                    "enum": [
+                        "production",
+                        "staging",
+                        "development"
+                    ],
+                    "description": "Environment where issue was detected"
+                },
+                "metric_name": {
+                    "type": "string",
+                    "description": "Name of the degraded metric"
+                },
+                "current_value": {
+                    "type": "number",
+                    "description": "Current metric value"
+                },
+                "previous_value": {
+                    "type": "number",
+                    "description": "Previous metric value"
+                },
+                "threshold": {
+                    "type": "number",
+                    "description": "Alert threshold"
+                },
+                "evaluation_timestamp": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "When the evaluation occurred"
+                }
+            },
+            "required": [
+                "model_name",
+                "model_version",
+                "environment",
+                "metric_name",
+                "current_value",
+                "previous_value",
+                "threshold"
+            ]
+        },
+        "request_template": {
+            "title": "[{environment}] Performance Alert: {model_name} {metric_name} degradation",
+            "body": "## Model Performance Alert\n\n### Model Details\n- **Model:** {model_name}\n- **Version:** {model_version}\n- **Environment:** {environment}\n\n### Alert Details\n- **Metric:** {metric_name}\n- **Current Value:** {current_value}\n- **Previous Value:** {previous_value}\n- **Threshold:** {threshold}\n- **Evaluation Time:** {evaluation_timestamp}\n\n### Impact\nThe model's {metric_name} has degraded from {previous_value} to {current_value}, falling below the threshold of {threshold}.\n\n### Next Steps\n1. Review recent data distribution changes\n2. Check for data quality issues\n3. Analyze model predictions\n4. Consider model retraining",
+            "labels": [
+                "model-alert",
+                "{environment}",
+                "performance-degradation"
+            ],
+            "assignees": [
+                "{team_owner}"
+            ]
+        }
+    },
+    {
+        "id": 2,
+        "name": "model_deployment_pr",
+        "title": "Create Model Deployment PR",
+        "description": "Creates a pull request for deploying a new model version",
+        "provider_id": 1,
+        "api_config": {
+            "endpoint": "/repos/{owner}/{repo}/pulls",
+            "method": "POST",
+            "headers": {
+                "Authorization": "Bearer {token}",
+                "Accept": "application/vnd.github.v3+json"
+            }
+        },
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "model_name": {
+                    "type": "string",
+                    "description": "Name of the model"
+                },
+                "current_version": {
+                    "type": "string",
+                    "description": "Current version in production"
+                },
+                "new_version": {
+                    "type": "string",
+                    "description": "New version to be deployed"
+                },
+                "environment": {
+                    "type": "string",
+                    "enum": [
+                        "production",
+                        "staging"
+                    ],
+                    "description": "Target deployment environment"
+                },
+                "performance_comparison": {
+                    "type": "object",
+                    "properties": {
+                        "accuracy": {
+                            "type": "object",
+                            "properties": {
+                                "current": {
+                                    "type": "number"
+                                },
+                                "new": {
+                                    "type": "number"
+                                }
+                            }
+                        },
+                        "latency": {
+                            "type": "object",
+                            "properties": {
+                                "current": {
+                                    "type": "number"
+                                },
+                                "new": {
+                                    "type": "number"
+                                }
+                            }
+                        }
+                    }
+                },
+                "validation_results": {
+                    "type": "object",
+                    "description": "Results from validation tests"
+                },
+                "config_changes": {
+                    "type": "object",
+                    "description": "Changes in model configuration"
+                }
+            },
+            "required": [
+                "model_name",
+                "current_version",
+                "new_version",
+                "environment",
+                "performance_comparison",
+                "validation_results"
+            ]
+        },
+        "request_template": {
+            "title": "[{environment}] Deploy {model_name} v{new_version}",
+            "body": "## Model Deployment Request\n\n### Overview\nRequest to deploy new version of {model_name} to {environment}.\n\n### Version Information\n- **Current Version:** v{current_version}\n- **New Version:** v{new_version}\n\n### Performance Comparison\n#### Accuracy\n- Current: {performance_comparison.accuracy.current}%\n- New: {performance_comparison.accuracy.new}%\n- Improvement: {performance_comparison.accuracy.new - performance_comparison.accuracy.current}%\n\n#### Latency\n- Current: {performance_comparison.latency.current}ms\n- New: {performance_comparison.latency.new}ms\n\n### Validation Results\n{validation_results}\n\n### Configuration Changes\n{config_changes}\n\n### Deployment Checklist\n- [ ] Performance metrics reviewed\n- [ ] A/B testing completed\n- [ ] Data drift checked\n- [ ] Model artifacts validated\n- [ ] Rollback plan prepared",
+            "head": "deploy/{model_name}-v{new_version}",
+            "base": "{environment}",
+            "labels": [
+                "model-deployment",
+                "{environment}",
+                "{model_name}"
+            ],
+            "draft": false
+        }
+    },
+    {
+        "id": 3,
+        "name": "model_validation_status",
+        "title": "Update Model Validation Status",
+        "description": "Updates GitHub status check with model validation results",
+        "provider_id": 1,
+        "api_config": {
+            "endpoint": "/repos/{owner}/{repo}/statuses/{sha}",
+            "method": "POST",
+            "headers": {
+                "Authorization": "Bearer {token}",
+                "Accept": "application/vnd.github.v3+json"
+            }
+        },
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "model_name": {
+                    "type": "string",
+                    "description": "Name of the model"
+                },
+                "version": {
+                    "type": "string",
+                    "description": "Model version"
+                },
+                "sha": {
+                    "type": "string",
+                    "description": "Commit SHA"
+                },
+                "validation_results": {
+                    "type": "object",
+                    "properties": {
+                        "performance_tests": {
+                            "type": "object",
+                            "properties": {
+                                "status": {
+                                    "type": "string",
+                                    "enum": [
+                                        "success",
+                                        "failure"
+                                    ]
+                                },
+                                "metrics": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "data_tests": {
+                            "type": "object",
+                            "properties": {
+                                "status": {
+                                    "type": "string",
+                                    "enum": [
+                                        "success",
+                                        "failure"
+                                    ]
+                                },
+                                "issues": {
+                                    "type": "array"
+                                }
+                            }
+                        },
+                        "security_scan": {
+                            "type": "object",
+                            "properties": {
+                                "status": {
+                                    "type": "string",
+                                    "enum": [
+                                        "success",
+                                        "failure"
+                                    ]
+                                },
+                                "findings": {
+                                    "type": "array"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "required": [
+                "model_name",
+                "version",
+                "sha",
+                "validation_results"
+            ]
+        },
+        "request_template": {
+            "state": "{validation_results.overall_status}",
+            "context": "model-registry/validation/{model_name}",
+            "description": "Model Validation: {validation_results.summary}",
+            "target_url": "{validation_results.details_url}"
+        }
+    }
+]

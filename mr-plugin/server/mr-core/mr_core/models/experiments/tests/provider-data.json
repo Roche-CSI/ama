@@ -1,0 +1,93 @@
+[
+    {
+        "name": "Neptune",
+        "title": "Neptune",
+        "description": "Logs experiment metrics and parameters to Neptune.",
+        "url": "https://webhook.neptune.ai",
+        "is_active": true,
+        "configs": {
+            "apiKey": "neptune-api-key-12345",
+            "projectName": "my-project",
+            "workspace": "my-workspace",
+            "webhookUrl": "https://webhook.neptune.ai"
+        }
+    },
+    {
+        "name": "WandB",
+        "title": "WandB",
+        "description": "Tracks and visualizes machine learning runs in WandB.",
+        "url": "https://api.wandb.ai",
+        "is_active": true,
+        "configs": {
+            "apiKey": "wandb-api-key-67890",
+            "projectName": "ml-project",
+            "entity": "my-entity",
+            "webhookUrl": "https://webhook.wandb.ai"
+        }
+    },
+    {
+        "name": "MLflow",
+        "title": "MLflow",
+        "description": "Tracks experiments, parameters, and metrics using MLflow.",
+        "url": "https://mlflow.example.com",
+        "is_active": true,
+        "configs": {
+            "apiKey": "mlflow-api-key-112233",
+            "trackingUri": "http://mlflow-tracking.example.com",
+            "experimentName": "experiment-1",
+            "webhookUrl": "https://webhook.mlflow.ai"
+        }
+    },
+    {
+        "name": "SageMaker",
+        "title": "SageMaker",
+        "description": "Initiates model training jobs and tracks metrics using SageMaker.",
+        "url": "https://sagemaker.amazonaws.com",
+        "is_active": true,
+        "configs": {
+            "apiKey": "sagemaker-api-key-998877",
+            "region": "us-west-2",
+            "endpoint": "https://sagemaker.us-west-2.amazonaws.com",
+            "webhookUrl": "https://webhook.sagemaker.amazonaws.com"
+        }
+    },
+    {
+        "name": "TensorBoard",
+        "title": "TensorBoard",
+        "description": "Visualizes experiment metrics and training progress using TensorBoard.",
+        "url": "https://tensorboard.example.com",
+        "is_active": true,
+        "configs": {
+            "apiKey": "tensorboard-api-key-54321",
+            "logDir": "/logs/tensorboard",
+            "projectName": "my-tensorboard-project",
+            "webhookUrl": "https://webhook.tensorboard.ai"
+        }
+    },
+    {
+        "name": "Comet",
+        "title": "Comet",
+        "description": "Tracks and visualizes experiments using Comet.",
+        "url": "https://www.comet.ml",
+        "is_active": true,
+        "configs": {
+            "apiKey": "comet-api-key-101010",
+            "projectName": "comet-project",
+            "workspace": "comet-workspace",
+            "webhookUrl": "https://webhook.comet.ml"
+        }
+    },
+    {
+        "name": "ClearML",
+        "title": "ClearML",
+        "description": "Manages and tracks machine learning tasks using ClearML.",
+        "url": "https://app.clear.ml",
+        "is_active": true,
+        "configs": {
+            "apiKey": "clearml-api-key-999888",
+            "projectId": "clearml-project-id-123",
+            "taskId": "clearml-task-id-456",
+            "webhookUrl": "https://webhook.clearml.ai"
+        }
+    }
+]

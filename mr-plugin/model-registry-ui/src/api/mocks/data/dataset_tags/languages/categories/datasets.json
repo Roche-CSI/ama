@@ -1,0 +1,38 @@
+{
+	"id": "def67890-1234-5678-abcd-ef1234567890",
+	"name": "Datasets",
+	"group_id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+	"group_name": "languages",
+	"description": "Datasets categorized by the human languages used or relevant to the data.",
+	"created_by": "user2",
+	"created_at": "2024-08-02T11:00:00Z",
+	"modified_at": "2024-08-15T15:00:00Z",
+	"tags": [
+		{
+			"id": "tag006",
+			"name": "english",
+			"category_id": "def67890-1234-5678-abcd-ef1234567890"
+		},
+		{
+			"id": "tag007",
+			"name": "spanish",
+			"category_id": "def67890-1234-5678-abcd-ef1234567890"
+		},
+		{
+			"id": "tag008",
+			"name": "french",
+			"category_id": "def67890-1234-5678-abcd-ef1234567890"
+		},
+		{
+			"id": "tag009",
+			"name": "chinese",
+			"category_id": "def67890-1234-5678-abcd-ef1234567890"
+		},
+		{
+			"id": "tag010",
+			"name": "japanese",
+			"category_id": "def67890-1234-5678-abcd-ef1234567890"
+		}
+	],
+	"readme_md": "## Datasets by Language\nThis category includes datasets categorized by the human languages present or relevant to the data."
+}

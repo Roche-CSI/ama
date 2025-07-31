@@ -1,0 +1,234 @@
+[
+	{
+		"id": "e0a3b8f2-7d9e-4c11-9f1e-6a8b0c5d4e6f",
+		"name": "Sentiment Analysis Model",
+		"description": "Deployment for a sentiment analysis model for social media posts.",
+		"created_at": "2024-01-15T10:00:00Z",
+		"updated_at": "2024-01-20T16:45:00Z",
+		"url": "https://deployments.example.com/sentiment-analysis",
+		"model_id": "model-001",
+		"user_username": "user1",
+		"machine_config": {
+			"cpu": "4 vCPUs",
+			"memory": "16 GB",
+			"gpu": "0 GPU",
+			"disk": "50 GB SSD"
+		},
+		"status": "active",
+		"logs_url": "https://deployments.example.com/logs/model-001",
+		"metrics": {
+			"cpu_usage": 70,
+			"memory_usage": 55,
+			"disk_usage": 40
+		},
+		"tags": [
+			"sentiment-analysis",
+			"nlp",
+			"social-media"
+		],
+		"deployment_environment": "VM"
+	},
+	{
+		"id": "a1b2c3d4-5e6f-7g8h-9i0j-1k2l3m4n5o6p",
+		"name": "Recommendation System",
+		"description": "Deployment for a recommendation system for e-commerce.",
+		"created_at": "2024-02-10T12:30:00Z",
+		"updated_at": "2024-02-15T14:00:00Z",
+		"url": "https://deployments.example.com/recommendation-system",
+		"model_id": "model-002",
+		"user_username": "user2",
+		"machine_config": {
+			"cpu": "8 vCPUs",
+			"memory": "32 GB",
+			"gpu": "1 GPU",
+			"disk": "100 GB SSD"
+		},
+		"status": "completed",
+		"logs_url": "https://deployments.example.com/logs/model-002",
+		"metrics": {
+			"cpu_usage": 80,
+			"memory_usage": 60,
+			"disk_usage": 55
+		},
+		"tags": [
+			"recommendation",
+			"e-commerce",
+			"machine-learning"
+		],
+		"deployment_environment": "Kubernetes"
+	},
+	{
+		"id": "c3d4e5f6-7g8h-9i0j-1k2l-3m4n5o6p7q8r",
+		"name": "Fraud Detection Model",
+		"description": "Deployment for a fraud detection model for financial transactions.",
+		"created_at": "2024-03-05T08:00:00Z",
+		"updated_at": "2024-03-07T11:30:00Z",
+		"url": "https://deployments.example.com/fraud-detection",
+		"model_id": "model-003",
+		"user_username": "user3",
+		"machine_config": {
+			"cpu": "4 vCPUs",
+			"memory": "16 GB",
+			"gpu": "0 GPU",
+			"disk": "75 GB SSD"
+		},
+		"status": "active",
+		"logs_url": "https://deployments.example.com/logs/model-003",
+		"metrics": {
+			"cpu_usage": 60,
+			"memory_usage": 50,
+			"disk_usage": 45
+		},
+		"tags": [
+			"fraud-detection",
+			"finance",
+			"anomaly-detection"
+		],
+		"deployment_environment": "SHPC"
+	},
+	{
+		"id": "d4e5f6g7-8h9i-0j1k-2l3m-4n5o6p7q8r9s",
+		"name": "Image Segmentation Model",
+		"description": "Deployment for an image segmentation model for medical imaging.",
+		"created_at": "2024-04-01T14:00:00Z",
+		"updated_at": "2024-04-03T09:15:00Z",
+		"url": "https://deployments.example.com/image-segmentation",
+		"model_id": "model-004",
+		"user_username": "user4",
+		"machine_config": {
+			"cpu": "6 vCPUs",
+			"memory": "24 GB",
+			"gpu": "2 GPUs",
+			"disk": "150 GB SSD"
+		},
+		"status": "pending",
+		"logs_url": "https://deployments.example.com/logs/model-004",
+		"metrics": {
+			"cpu_usage": 65,
+			"memory_usage": 55,
+			"disk_usage": 50
+		},
+		"tags": [
+			"image-segmentation",
+			"medical-imaging",
+			"computer-vision"
+		],
+		"deployment_environment": "Kubernetes"
+	},
+	{
+		"id": "e5f6g7h8-9i0j-1k2l-3m4n-5o6p7q8r9s0t",
+		"name": "Speech Recognition Model",
+		"description": "Deployment for a speech recognition model for voice commands.",
+		"created_at": "2024-05-10T16:30:00Z",
+		"updated_at": "2024-05-12T18:00:00Z",
+		"url": "https://deployments.example.com/speech-recognition",
+		"model_id": "model-005",
+		"user_username": "user5",
+		"machine_config": {
+			"cpu": "8 vCPUs",
+			"memory": "32 GB",
+			"gpu": "1 GPU",
+			"disk": "200 GB SSD"
+		},
+		"status": "active",
+		"logs_url": "https://deployments.example.com/logs/model-005",
+		"metrics": {
+			"cpu_usage": 75,
+			"memory_usage": 65,
+			"disk_usage": 60
+		},
+		"tags": [
+			"speech-recognition",
+			"voice-command",
+			"nlp"
+		],
+		"deployment_environment": "VM"
+	},
+	{
+		"id": "f6g7h8i9-0j1k-2l3m-4n5o-6p7q8r9s0t1u",
+		"name": "Anomaly Detection Model",
+		"description": "Deployment for an anomaly detection model for network security.",
+		"created_at": "2024-06-05T12:00:00Z",
+		"updated_at": "2024-06-07T14:30:00Z",
+		"url": "https://deployments.example.com/anomaly-detection",
+		"model_id": "model-006",
+		"user_username": "user6",
+		"machine_config": {
+			"cpu": "4 vCPUs",
+			"memory": "16 GB",
+			"gpu": "0 GPU",
+			"disk": "100 GB SSD"
+		},
+		"status": "completed",
+		"logs_url": "https://deployments.example.com/logs/model-006",
+		"metrics": {
+			"cpu_usage": 55,
+			"memory_usage": 45,
+			"disk_usage": 35
+		},
+		"tags": [
+			"anomaly-detection",
+			"network-security",
+			"machine-learning"
+		],
+		"deployment_environment": "SHPC"
+	},
+	{
+		"id": "g7h8i9j0-1k2l-3m4n-5o6p-7q8r9s0t1u2v",
+		"name": "Text Classification Model",
+		"description": "Deployment for a text classification model for news articles.",
+		"created_at": "2024-07-01T09:30:00Z",
+		"updated_at": "2024-07-03T11:00:00Z",
+		"url": "https://deployments.example.com/text-classification",
+		"model_id": "model-007",
+		"user_username": "user7",
+		"machine_config": {
+			"cpu": "6 vCPUs",
+			"memory": "24 GB",
+			"gpu": "1 GPU",
+			"disk": "75 GB SSD"
+		},
+		"status": "active",
+		"logs_url": "https://deployments.example.com/logs/model-007",
+		"metrics": {
+			"cpu_usage": 60,
+			"memory_usage": 50,
+			"disk_usage": 45
+		},
+		"tags": [
+			"text-classification",
+			"news",
+			"nlp"
+		],
+		"deployment_environment": "Kubernetes"
+	},
+	{
+		"id": "h8i9j0k1-2l3m-4n5o-6p7q-8r9s0t1u2v3w",
+		"name": "Time Series Forecasting Model",
+		"description": "Deployment for a time series forecasting model for financial data.",
+		"created_at": "2024-08-15T15:00:00Z",
+		"updated_at": "2024-08-17T17:30:00Z",
+		"url": "https://deployments.example.com/time-series-forecasting",
+		"model_id": "model-008",
+		"user_username": "user8",
+		"machine_config": {
+			"cpu": "8 vCPUs",
+			"memory": "32 GB",
+			"gpu": "0 GPU",
+			"disk": "150 GB SSD"
+		},
+		"status": "pending",
+		"logs_url": "https://deployments.example.com/logs/model-008",
+		"metrics": {
+			"cpu_usage": 70,
+			"memory_usage": 60,
+			"disk_usage": 55
+		},
+		"tags": [
+			"time-series-forecasting",
+			"finance",
+			"machine-learning"
+		],
+		"deployment_environment": "VM"
+	}
+]

@@ -1,0 +1,104 @@
+{
+	"name": "root",
+	"type": "folder",
+	"id": "root",
+	"parent": null,
+	"items": [
+		{
+			"name": ".gitignore",
+			"type": "file",
+			"id": "root/.gitignore",
+			"parent": "root"
+		},
+		{
+			"name": "index.html",
+			"type": "file",
+			"id": "root/index.html",
+			"parent": "root"
+		},
+		{
+			"name": "package-lock.json",
+			"type": "file",
+			"id": "root/package-lock.json",
+			"parent": "root"
+		},
+		{
+			"name": "package.json",
+			"type": "file",
+			"id": "root/package.json",
+			"parent": "root"
+		},
+		{
+			"name": "vite.config.js",
+			"type": "file",
+			"id": "root/vite.config.js",
+			"parent": "root"
+		},
+		{
+			"name": "src",
+			"type": "folder",
+			"parent": "root",
+			"id": "root/src",
+			"items": [
+				{
+					"name": "App.css",
+					"type": "file",
+					"id": "root/src/App.css",
+					"parent": "root/src"
+				},
+				{
+					"name": "App.jsx",
+					"type": "file",
+					"id": "root/src/App.jsx",
+					"parent": "root/src"
+				},
+				{
+					"name": "index.css",
+					"type": "file",
+					"id": "root/src/index.css",
+					"parent": "root/src"
+				},
+				{
+					"name": "main.jsx",
+					"type": "file",
+					"id": "root/src/main.jsx",
+					"parent": "root/src"
+				},
+				{
+					"name": "components",
+					"type": "folder",
+					"id": "root/src/components",
+					"parent": "root/src",
+					"items": [
+						{
+							"name": "Checkbox.jsx",
+							"type": "file",
+							"id": "root/src/components/Checkbox.jsx",
+							"parent": "root/src/components"
+						}
+					]
+				},
+				{
+					"name": "pages",
+					"type": "folder",
+					"id": "root/src/pages",
+					"parent": "root/src",
+					"items": [
+						{
+							"name": "Home.jsx",
+							"type": "file",
+							"id": "root/src/pages/Home.jsx",
+							"parent": "root/src/pages"
+						},
+						{
+							"name": "About.jsx",
+							"type": "file",
+							"id": "root/src/pages/About.jsx",
+							"parent": "root/src/pages"
+						}
+					]
+				}
+			]
+		}
+	]
+}

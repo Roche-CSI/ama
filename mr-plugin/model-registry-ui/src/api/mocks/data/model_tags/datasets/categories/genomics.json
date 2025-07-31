@@ -1,0 +1,162 @@
+{
+	"id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+	"name": "genomics",
+	"group_id": "b2c3d4e5-f678-9012-abcd-ef1234567890",
+	"group_name": "datasets",
+	"description": "Datasets and tools related to genomic studies and research.",
+	"created_by": "admin",
+	"created_at": "2024-08-01T12:00:00Z",
+	"modified_at": "2024-08-10T15:30:00Z",
+	"tags": [
+		{
+			"id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+			"category_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+			"name": "drug-discovery"
+		},
+		{
+			"id": "b2c3d4e5-f678-9012-abcd-ef1234567890",
+			"category_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+			"name": "clinical-trials"
+		},
+		{
+			"id": "c3d4e5f6-7890-1234-abcd-ef1234567890",
+			"category_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+			"name": "patient-records"
+		},
+		{
+			"id": "d4e5f678-9012-3456-abcd-ef1234567890",
+			"category_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+			"name": "genomic-sequences"
+		},
+		{
+			"id": "e5f67890-1234-5678-abcd-ef1234567890",
+			"category_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+			"name": "adverse-events"
+		},
+		{
+			"id": "f6789012-3456-7890-abcd-ef1234567890",
+			"category_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+			"name": "biomarker-discovery"
+		},
+		{
+			"id": "67890123-4567-8901-abcd-ef1234567890",
+			"category_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+			"name": "drug-interactions"
+		},
+		{
+			"id": "78901234-5678-9012-abcd-ef1234567890",
+			"category_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+			"name": "preclinical-studies"
+		},
+		{
+			"id": "89012345-6789-0123-abcd-ef1234567890",
+			"category_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+			"name": "pharmacogenomics"
+		},
+		{
+			"id": "90123456-7890-1234-abcd-ef1234567890",
+			"category_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+			"name": "disease-registry"
+		},
+		{
+			"id": "a2b3c4d5-e6f7-8901-bcde-234567890123",
+			"category_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+			"name": "genomic-reads-dataset"
+		},
+		{
+			"id": "b3c4d5e6-f701-2345-cdef-345678901234",
+			"category_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+			"name": "histopathology-images"
+		},
+		{
+			"id": "c4d5e6f7-0123-4567-def0-456789012345",
+			"category_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+			"name": "drug-response-dataset"
+		},
+		{
+			"id": "d5e6f701-2345-6789-ef01-567890123456",
+			"category_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+			"name": "protein-sequences"
+		},
+		{
+			"id": "e6f70123-4567-8901-f012-678901234567",
+			"category_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+			"name": "genetic-variants"
+		},
+		{
+			"id": "f7012345-6789-0123-9012-789012345678",
+			"category_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+			"name": "gene-expression-dataset"
+		},
+		{
+			"id": "01234567-8901-2345-0123-890123456789",
+			"category_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+			"name": "disease-prediction-dataset"
+		},
+		{
+			"id": "12345678-9012-3456-1234-901234567890",
+			"category_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+			"name": "pathway-analysis-dataset"
+		},
+		{
+			"id": "23456789-0123-4567-2345-012345678901",
+			"category_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+			"name": "metabolomics-dataset"
+		},
+		{
+			"id": "34567890-1234-5678-3456-123456789012",
+			"category_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+			"name": "microbiome-dataset"
+		},
+		{
+			"id": "45678901-2345-6789-4567-234567890123",
+			"category_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+			"name": "epigenomics-dataset"
+		},
+		{
+			"id": "56789012-3456-7890-5678-345678901234",
+			"category_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+			"name": "single-cell-rna-dataset"
+		},
+		{
+			"id": "67890123-4567-8901-6789-456789012345",
+			"category_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+			"name": "crispr-screening-dataset"
+		},
+		{
+			"id": "78901234-5678-9012-7890-567890123456",
+			"category_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+			"name": "immune-repertoire-dataset"
+		},
+		{
+			"id": "89012345-6789-0123-8901-678901234567",
+			"category_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+			"name": "proteomics-dataset"
+		},
+		{
+			"id": "90123456-7890-1234-9012-789012345678",
+			"category_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+			"name": "metagenomics-dataset"
+		},
+		{
+			"id": "01234567-8901-2345-0123-890123456789",
+			"category_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+			"name": "transcriptomics-dataset"
+		},
+		{
+			"id": "12345678-9012-3456-1234-901234567890",
+			"category_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+			"name": "cell-type-dataset"
+		},
+		{
+			"id": "23456789-0123-4567-2345-012345678901",
+			"category_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+			"name": "gene-regulatory-dataset"
+		},
+		{
+			"id": "34567890-1234-5678-3456-123456789012",
+			"category_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+			"name": "variant-effect-dataset"
+		}
+	]
+}

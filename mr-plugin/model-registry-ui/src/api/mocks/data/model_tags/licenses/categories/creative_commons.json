@@ -1,0 +1,28 @@
+{
+	"id": "abc67890-1234-5678-efgh-ijklmnopqrstu",
+	"name": "creative_commons",
+	"group_id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+	"group_name": "licenses",
+	"description": "A collection of proprietary licenses that restrict modification, redistribution, and usage of software or datasets.",
+	"created_by": "user2",
+	"created_at": "2024-08-02T11:00:00Z",
+	"modified_at": "2024-08-15T15:00:00Z",
+	"tags": [
+		{
+			"id": "tag005",
+			"name": "commercial",
+			"category_id": "abc67890-1234-5678-efgh-ijklmnopqrstu"
+		},
+		{
+			"id": "tag006",
+			"name": "enterprise",
+			"category_id": "abc67890-1234-5678-efgh-ijklmnopqrstu"
+		},
+		{
+			"id": "tag007",
+			"name": "restricted",
+			"category_id": "abc67890-1234-5678-efgh-ijklmnopqrstu"
+		}
+	],
+	"readme_md": "## Proprietary Licenses\nThis category includes licenses that restrict modification, redistribution, and usage of software or datasets."
+}

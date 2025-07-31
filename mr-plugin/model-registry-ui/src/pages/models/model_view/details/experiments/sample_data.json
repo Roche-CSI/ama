@@ -1,0 +1,93 @@
+[
+	{
+		"name": "Neptune",
+		"integrationData": {
+			"apiKey": "string",
+			"projectName": "string",
+			"workspace": "string",
+			"webhookUrl": "string"
+		},
+		"action": {
+			"type": "Experiment Logging",
+			"description": "Logs experiment metrics and parameters to Neptune."
+		}
+	},
+	{
+		"name": "WandB",
+		"integrationData": {
+			"apiKey": "string",
+			"projectName": "string",
+			"entity": "string",
+			"webhookUrl": "string"
+		},
+		"action": {
+			"type": "Run Tracking",
+			"description": "Tracks and visualizes machine learning runs in WandB."
+		}
+	},
+	{
+		"name": "MLflow",
+		"integrationData": {
+			"apiKey": "string",
+			"trackingUri": "string",
+			"experimentName": "string",
+			"webhookUrl": "string"
+		},
+		"action": {
+			"type": "Experiment Tracking",
+			"description": "Tracks experiments, parameters, and metrics using MLflow."
+		}
+	},
+	{
+		"name": "SageMaker",
+		"integrationData": {
+			"apiKey": "string",
+			"region": "string",
+			"endpoint": "string",
+			"webhookUrl": "string"
+		},
+		"action": {
+			"type": "Model Training",
+			"description": "Initiates model training jobs and tracks metrics using SageMaker."
+		}
+	},
+	{
+		"name": "TensorBoard",
+		"integrationData": {
+			"apiKey": "string",
+			"logDir": "string",
+			"projectName": "string",
+			"webhookUrl": "string"
+		},
+		"action": {
+			"type": "Visualization",
+			"description": "Visualizes experiment metrics and training progress using TensorBoard."
+		}
+	},
+	{
+		"name": "Comet",
+		"integrationData": {
+			"apiKey": "string",
+			"projectName": "string",
+			"workspace": "string",
+			"webhookUrl": "string"
+		},
+		"action": {
+			"type": "Experiment Tracking",
+			"description": "Tracks and visualizes experiments using Comet."
+		}
+	},
+	{
+		"name": "ClearML",
+		"integrationData": {
+			"apiKey": "string",
+			"projectId": "string",
+			"taskId": "string",
+			"webhookUrl": "string"
+		},
+		"action": {
+			"type": "Task Management",
+			"description": "Manages and tracks machine learning tasks using ClearML."
+		}
+	}
+]

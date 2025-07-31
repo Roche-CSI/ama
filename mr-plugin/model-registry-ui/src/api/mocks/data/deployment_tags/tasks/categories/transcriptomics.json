@@ -1,0 +1,28 @@
+{
+	"id": "550e8400-e29b-41d4-a716-446655440002",
+	"group_name": "tasks",
+	"group_id": "550e8400-e29b-41d4-a716-446655440000",
+	"name": "transcriptomics",
+	"description": "A comprehensive project focused on transcriptomics research.",
+	"created_by": "user3",
+	"created_at": "2023-10-03T00:00:00Z",
+	"modified_at": "2023-10-03T00:00:00Z",
+	"tags": [
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440004",
+			"category_id": "550e8400-e29b-41d4-a716-446655440002",
+			"name": "single-cell-rna-seq-analysis"
+		},
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440005",
+			"category_id": "550e8400-e29b-41d4-a716-446655440002",
+			"name": "bulk-rna-seq-analysis"
+		},
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440006",
+			"category_id": "550e8400-e29b-41d4-a716-446655440002",
+			"name": "alternative-splicing-analysis"
+		}
+	],
+	"readme_md": "## Transcriptomics Project\nThis project encompasses various transcriptomics-related analyses and research."
+}

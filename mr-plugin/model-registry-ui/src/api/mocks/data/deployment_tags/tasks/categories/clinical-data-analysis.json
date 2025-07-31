@@ -1,0 +1,28 @@
+{
+	"id": "550e8400-e29b-41d4-a716-446655440005",
+	"group_name": "tasks",
+	"group_id": "550e8400-e29b-41d4-a716-446655440000",
+	"name": "clinical-data-analysis",
+	"description": "A comprehensive project focused on clinical data analysis.",
+	"created_by": "user6",
+	"created_at": "2023-10-06T00:00:00Z",
+	"modified_at": "2023-10-06T00:00:00Z",
+	"tags": [
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440011",
+			"category_id": "550e8400-e29b-41d4-a716-446655440005",
+			"name": "disease-prediction"
+		},
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440012",
+			"category_id": "550e8400-e29b-41d4-a716-446655440005",
+			"name": "drug-response-prediction"
+		},
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440013",
+			"category_id": "550e8400-e29b-41d4-a716-446655440005",
+			"name": "clinical-trial-analysis"
+		}
+	],
+	"readme_md": "## Clinical Data Analysis Project\nThis project encompasses various clinical data analysis-related research."
+}

@@ -1,0 +1,33 @@
+SERVER:
+    # base url for pipeline service
+    BASE_URL: "your url goes here"
+
+FRONTEND:
+    BASE_URL: "your url goes here"
+
+REMOTE:
+    GCP_PROJECT_ID:
+        google-prod-project
+    GCP_BUCKET_ID:
+        # separate buckets for repo and staging area
+        # this allows have different access permissions for users
+        # assets bucket will be readonly for users
+        # whereas staging bucket will be read and write
+        repo: mybucket/sb
+        staging: mybucket_staging/sb
+    GCP_CONTENTS_DIR:
+        repo: contents
+        staging: contents
+    GCP_ASSETS_DIR:
+        repo: assets
+    GCP_ASSET_CLASSES_DIR:
+        repo: asset_classes
+    GCP_ASSET_ALIASES_DIR:
+        repo: asset_aliases
+
+DATABASE:
+    database: db-name
+    user: db-user
+    password: db-password
+    host: localhost
+    port: 5432

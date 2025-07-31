@@ -1,0 +1,163 @@
+[
+    {
+        "id": 1,
+        "run_id": 1,
+        "metric_type": "drift",
+        "metric_name": "feature_drift_score",
+        "threshold_value": 0.05,
+        "comparison_operator": ">",
+        "severity": "warning",
+        "enabled": true,
+        "metadata": {
+            "description": "Feature drift detection threshold",
+            "affected_features": [
+                "age",
+                "income",
+                "usage_months"
+            ],
+            "statistical_test": "ks_test",
+            "notification_channels": [
+                "slack"
+            ],
+            "check_frequency": "hourly"
+        }
+    },
+    {
+        "id": 2,
+        "run_id": 1,
+        "metric_type": "performance",
+        "metric_name": "accuracy",
+        "threshold_value": 0.85,
+        "comparison_operator": "<",
+        "severity": "critical",
+        "enabled": true,
+        "metadata": {
+            "description": "Model accuracy threshold",
+            "baseline_value": 0.88,
+            "notification_channels": [
+                "slack",
+                "email"
+            ],
+            "alert_cooldown_minutes": 60
+        }
+    },
+    {
+        "id": 3,
+        "run_id": 1,
+        "metric_type": "performance",
+        "metric_name": "latency_p95",
+        "threshold_value": 100,
+        "comparison_operator": ">",
+        "severity": "warning",
+        "enabled": true,
+        "metadata": {
+            "description": "95th percentile latency threshold",
+            "unit": "milliseconds",
+            "notification_channels": [
+                "slack"
+            ],
+            "measurement_window": "5m"
+        }
+    },
+    {
+        "id": 4,
+        "run_id": 2,
+        "metric_type": "data_quality",
+        "metric_name": "missing_values_ratio",
+        "threshold_value": 0.01,
+        "comparison_operator": ">",
+        "severity": "warning",
+        "enabled": true,
+        "metadata": {
+            "description": "Missing values threshold",
+            "affected_features": "all",
+            "notification_channels": [
+                "slack"
+            ],
+            "minimum_sample_size": 1000
+        }
+    },
+    {
+        "id": 5,
+        "run_id": 2,
+        "metric_type": "bias",
+        "metric_name": "demographic_parity",
+        "threshold_value": 0.90,
+        "comparison_operator": "<",
+        "severity": "critical",
+        "enabled": true,
+        "metadata": {
+            "description": "Demographic parity threshold for bias detection",
+            "protected_features": [
+                "age",
+                "gender"
+            ],
+            "notification_channels": [
+                "slack",
+                "email"
+            ],
+            "requires_investigation": true
+        }
+    },
+    {
+        "id": 6,
+        "run_id": 2,
+        "metric_type": "drift",
+        "metric_name": "psi_score",
+        "threshold_value": 0.2,
+        "comparison_operator": ">",
+        "severity": "critical",
+        "enabled": true,
+        "metadata": {
+            "description": "Population Stability Index threshold",
+            "calculation_window": "1d",
+            "notification_channels": [
+                "slack",
+                "email"
+            ],
+            "min_samples_required": 5000
+        }
+    },
+    {
+        "id": 7,
+        "run_id": 3,
+        "metric_type": "data_quality",
+        "metric_name": "schema_mismatch",
+        "threshold_value": 0,
+        "comparison_operator": ">",
+        "severity": "critical",
+        "enabled": true,
+        "metadata": {
+            "description": "Schema validation threshold",
+            "expected_schema": {
+                "age": "integer",
+                "income": "float",
+                "usage_months": "integer"
+            },
+            "notification_channels": [
+                "slack",
+                "pagerduty"
+            ],
+            "immediate_notification": true
+        }
+    },
+    {
+        "id": 8,
+        "run_id": 1,
+        "metric_type": "performance",
+        "metric_name": "f1_score",
+        "threshold_value": 0.80,
+        "comparison_operator": "<",
+        "severity": "warning",
+        "enabled": false,
+        "metadata": {
+            "description": "F1 score threshold",
+            "baseline_value": 0.84,
+            "notification_channels": [
+                "slack"
+            ],
+            "disabled_reason": "Temporarily disabled for model retraining period",
+            "disabled_at": "2024-01-01T12:00:00Z"
+        }
+    }
+]

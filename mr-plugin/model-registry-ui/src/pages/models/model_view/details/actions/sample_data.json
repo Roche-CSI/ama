@@ -1,0 +1,132 @@
+[
+	{
+		"name": "GitHub",
+		"integrationData": {
+			"apiKey": "string",
+			"username": "string",
+			"repositoryName": "string",
+			"webhookUrl": "string"
+		},
+		"action": {
+			"type": "GitHub Actions",
+			"description": "Triggered CI/CD pipeline for model deployment"
+		}
+	},
+	{
+		"name": "Jira",
+		"integrationData": {
+			"apiKey": "string",
+			"username": "string",
+			"projectKey": "string",
+			"webhookUrl": "string"
+		},
+		"action": {
+			"type": "Issue Creation",
+			"description": "Creates a new issue in a specified Jira project"
+		}
+	},
+	{
+		"name": "Slack",
+		"integrationData": {
+			"apiKey": "string",
+			"channel": "string",
+			"message": "string",
+			"webhookUrl": "string"
+		},
+		"action": {
+			"type": "Message Posting",
+			"description": "Sends a message to a Slack channel"
+		}
+	},
+	{
+		"name": "Trello",
+		"integrationData": {
+			"apiKey": "string",
+			"username": "string",
+			"boardId": "string",
+			"webhookUrl": "string"
+		},
+		"action": {
+			"type": "Card Creation",
+			"description": "Creates a new card on a Trello board"
+		}
+	},
+	{
+		"name": "Google Sheets",
+		"integrationData": {
+			"apiKey": "string",
+			"spreadsheetId": "string",
+			"sheetName": "string",
+			"webhookUrl": "string"
+		},
+		"action": {
+			"type": "Data Insertion",
+			"description": "Inserts data into a specific sheet in Google Sheets"
+		}
+	},
+	{
+		"name": "Zendesk",
+		"integrationData": {
+			"apiKey": "string",
+			"email": "string",
+			"ticketId": "string",
+			"webhookUrl": "string"
+		},
+		"action": {
+			"type": "Ticket Update",
+			"description": "Updates a ticket status in Zendesk"
+		}
+	},
+	{
+		"name": "GitLab",
+		"integrationData": {
+			"apiKey": "string",
+			"username": "string",
+			"projectId": "string",
+			"webhookUrl": "string"
+		},
+		"action": {
+			"type": "Merge Request",
+			"description": "Creates a merge request in a GitLab project"
+		}
+	},
+	{
+		"name": "Asana",
+		"integrationData": {
+			"apiKey": "string",
+			"projectId": "string",
+			"taskName": "string",
+			"webhookUrl": "string"
+		},
+		"action": {
+			"type": "Task Creation",
+			"description": "Creates a new task in an Asana project"
+		}
+	},
+	{
+		"name": "Twilio",
+		"integrationData": {
+			"apiKey": "string",
+			"accountSid": "string",
+			"authToken": "string",
+			"phoneNumber": "string"
+		},
+		"action": {
+			"type": "SMS Sending",
+			"description": "Sends an SMS message using Twilio"
+		}
+	},
+	{
+		"name": "Stripe",
+		"integrationData": {
+			"apiKey": "string",
+			"customerId": "string",
+			"amount": "number",
+			"currency": "string"
+		},
+		"action": {
+			"type": "Charge Creation",
+			"description": "Creates a new charge for a customer using Stripe"
+		}
+	}
+]

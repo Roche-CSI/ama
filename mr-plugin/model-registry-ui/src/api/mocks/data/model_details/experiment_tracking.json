@@ -1,0 +1,20 @@
+[
+	{
+		"experimentId": "exp-001",
+		"experimentName": "Initial Training",
+		"metrics": {
+			"accuracy": 91.0,
+			"f1Score": 90.0
+		},
+		"date": "2024-01-15"
+	},
+	{
+		"experimentId": "exp-002",
+		"experimentName": "Fine-tuning",
+		"metrics": {
+			"accuracy": 92.5,
+			"f1Score": 91.8
+		},
+		"date": "2024-02-15"
+	}
+]

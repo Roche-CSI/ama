@@ -1,0 +1,28 @@
+{
+	"id": "550e8400-e29b-41d4-a716-446655440006",
+	"group_name": "tasks",
+	"group_id": "550e8400-e29b-41d4-a716-446655440000",
+	"name": "pathology",
+	"description": "A comprehensive project focused on pathology research.",
+	"created_by": "user7",
+	"created_at": "2023-10-07T00:00:00Z",
+	"modified_at": "2023-10-07T00:00:00Z",
+	"tags": [
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440014",
+			"category_id": "550e8400-e29b-41d4-a716-446655440006",
+			"name": "cancer-cell-detection"
+		},
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440015",
+			"category_id": "550e8400-e29b-41d4-a716-446655440006",
+			"name": "tumor-classification"
+		},
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440016",
+			"category_id": "550e8400-e29b-41d4-a716-446655440006",
+			"name": "cancer-research"
+		}
+	],
+	"readme_md": "## Pathology Project\nThis project encompasses various pathology-related analyses and research."
+}

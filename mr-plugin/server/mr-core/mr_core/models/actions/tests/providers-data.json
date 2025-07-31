@@ -1,0 +1,192 @@
+[
+    {
+        "name": "GitHub",
+        "title": "GitHub",
+        "description": "GitHub is a platform for version control and collaboration. It allows developers to store and manage code repositories.",
+        "url": "https://github.com",
+        "is_active": true,
+        "configs": {
+            "integrationData": {
+                "apiKey": "ghp_12345ABCDEfghij67890",
+                "username": "john_doe",
+                "repositoryName": "example-repo",
+                "webhookUrl": "https://api.github.com/webhooks/12345"
+            },
+            "action": {
+                "type": "GitHub Actions",
+                "description": "Triggered CI/CD pipeline for model deployment"
+            }
+        }
+    },
+    {
+        "name": "Jira",
+        "title": "Jira",
+        "description": "Jira is a project management tool for teams to track issues, bugs, and tasks across projects.",
+        "url": "https://www.atlassian.com/software/jira",
+        "is_active": true,
+        "configs": {
+            "integrationData": {
+                "apiKey": "abcd1234efgh5678ijkl9012",
+                "username": "jane_smith",
+                "projectKey": "PROJECT_123",
+                "webhookUrl": "https://jira.example.com/webhooks/45678"
+            },
+            "action": {
+                "type": "Issue Creation",
+                "description": "Creates a new issue in a specified Jira project"
+            }
+        }
+    },
+    {
+        "name": "Slack",
+        "title": "Slack",
+        "description": "Slack is a messaging platform for teams that enables collaboration through direct messaging and channels.",
+        "url": "https://slack.com",
+        "is_active": true,
+        "configs": {
+            "integrationData": {
+                "apiKey": "xoxb-1234-5678-91011-abcdef",
+                "channel": "#general",
+                "message": "Model deployment completed successfully!",
+                "webhookUrl": "https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX"
+            },
+            "action": {
+                "type": "Message Posting",
+                "description": "Sends a message to a Slack channel"
+            }
+        }
+    },
+    {
+        "name": "Trello",
+        "title": "Trello",
+        "description": "Trello is a visual project management tool that uses boards, lists, and cards to organize tasks and projects.",
+        "url": "https://trello.com",
+        "is_active": true,
+        "configs": {
+            "integrationData": {
+                "apiKey": "abc123def456ghi789jkl012",
+                "username": "alice_wilson",
+                "boardId": "5f1234567890abcdefg12345",
+                "webhookUrl": "https://api.trello.com/1/webhooks/98765"
+            },
+            "action": {
+                "type": "Card Creation",
+                "description": "Creates a new card on a Trello board"
+            }
+        }
+    },
+    {
+        "name": "Google Sheets",
+        "title": "Google Sheets",
+        "description": "Google Sheets is a web-based spreadsheet application that allows users to create, edit, and collaborate on spreadsheets.",
+        "url": "https://sheets.google.com",
+        "is_active": true,
+        "configs": {
+            "integrationData": {
+                "apiKey": "AIzaSyBx2-3F4G5H6I7J8K9L0MnpQRStUvwxYzZ",
+                "spreadsheetId": "1A2B3C4D5E6F7G8H9I0J1K2L3M4N5O6P7Q8R9S0T",
+                "sheetName": "Model Data",
+                "webhookUrl": "https://sheets.googleapis.com/webhooks/54321"
+            },
+            "action": {
+                "type": "Data Insertion",
+                "description": "Inserts data into a specific sheet in Google Sheets"
+            }
+        }
+    },
+    {
+        "name": "Zendesk",
+        "title": "Zendesk",
+        "description": "Zendesk is a customer service platform that provides support ticket management and customer interaction tools.",
+        "url": "https://www.zendesk.com",
+        "is_active": true,
+        "configs": {
+            "integrationData": {
+                "apiKey": "zdsfghjkl1234567890abcde",
+                "email": "support@example.com",
+                "ticketId": "TICKET-12345",
+                "webhookUrl": "https://www.zendesk.com/webhooks/67890"
+            },
+            "action": {
+                "type": "Ticket Update",
+                "description": "Updates a ticket status in Zendesk"
+            }
+        }
+    },
+    {
+        "name": "GitLab",
+        "title": "GitLab",
+        "description": "GitLab is a web-based DevOps platform that provides version control, CI/CD, and project management tools.",
+        "url": "https://gitlab.com",
+        "is_active": true,
+        "configs": {
+            "integrationData": {
+                "apiKey": "glpat-12345abcde67890fghijk",
+                "username": "bob_lee",
+                "projectId": "example-project-id",
+                "webhookUrl": "https://gitlab.com/api/v4/projects/12345/trigger/pipeline"
+            },
+            "action": {
+                "type": "Merge Request",
+                "description": "Creates a merge request in a GitLab project"
+            }
+        }
+    },
+    {
+        "name": "Asana",
+        "title": "Asana",
+        "description": "Asana is a work management platform that helps teams plan, track, and manage their tasks and projects.",
+        "url": "https://asana.com",
+        "is_active": true,
+        "configs": {
+            "integrationData": {
+                "apiKey": "0a1b2c3d4e5f6789g0h1i2j3k4l5m6n7",
+                "projectId": "project_abc123",
+                "taskName": "Deploy Model",
+                "webhookUrl": "https://app.asana.com/api/1.0/webhooks/12345"
+            },
+            "action": {
+                "type": "Task Creation",
+                "description": "Creates a new task in an Asana project"
+            }
+        }
+    },
+    {
+        "name": "Twilio",
+        "title": "Twilio",
+        "description": "Twilio is a cloud communications platform for building SMS, voice, and messaging applications.",
+        "url": "https://www.twilio.com",
+        "is_active": true,
+        "configs": {
+            "integrationData": {
+                "apiKey": "SK12345a1b2c3d4efg5hi6jk7lm8no9pq",
+                "accountSid": "ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+                "authToken": "your_auth_token",
+                "phoneNumber": "+1234567890"
+            },
+            "action": {
+                "type": "SMS Sending",
+                "description": "Sends an SMS message using Twilio"
+            }
+        }
+    },
+    {
+        "name": "Stripe",
+        "title": "Stripe",
+        "description": "Stripe is an online payment processing platform for businesses to accept payments and manage transactions.",
+        "url": "https://stripe.com",
+        "is_active": true,
+        "configs": {
+            "integrationData": {
+                "apiKey": "strip-key",
+                "customerId": "cus_4fdAW5fFGEy1fi",
+                "amount": 20.50,
+                "currency": "usd"
+            },
+            "action": {
+                "type": "Charge Creation",
+                "description": "Creates a new charge for a customer using Stripe"
+            }
+        }
+    }
+]

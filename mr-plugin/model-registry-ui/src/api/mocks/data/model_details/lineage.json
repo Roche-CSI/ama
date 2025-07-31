@@ -1,0 +1,7 @@
+{
+	"source": "Developed from GPT-3 architecture",
+	"transformations": [
+		"Pre-trained on Common Crawl",
+		"Fine-tuned on specific NLP tasks"
+	]
+}

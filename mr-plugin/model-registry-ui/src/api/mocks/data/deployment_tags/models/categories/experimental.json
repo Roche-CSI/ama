@@ -1,0 +1,103 @@
+{
+	"id": "abc67890-1234-5678-efgh-ijklmnopqrstu",
+	"name": "experimental",
+	"group_id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+	"group_name": "models",
+	"description": "A collection of proprietary licenses that restrict modification, redistribution, and usage of software or datasets.",
+	"created_by": "user2",
+	"created_at": "2024-08-02T11:00:00Z",
+	"modified_at": "2024-08-15T15:00:00Z",
+	"tags": [
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440003",
+			"name": "drug-response-prediction",
+			"category_id": "abc67890-1234-5678-efgh-ijklmnopqrstu"
+		},
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440004",
+			"name": "protein-structure-prediction",
+			"category_id": "abc67890-1234-5678-efgh-ijklmnopqrstu"
+		},
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440005",
+			"name": "genetic-variant-annotation",
+			"category_id": "abc67890-1234-5678-efgh-ijklmnopqrstu"
+		},
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440006",
+			"name": "gene-expression-analysis",
+			"category_id": "abc67890-1234-5678-efgh-ijklmnopqrstu"
+		},
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440007",
+			"name": "metabolite-identification",
+			"category_id": "abc67890-1234-5678-efgh-ijklmnopqrstu"
+		},
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440008",
+			"name": "pathway-analysis",
+			"category_id": "abc67890-1234-5678-efgh-ijklmnopqrstu"
+		},
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440009",
+			"name": "cell-type-classification",
+			"category_id": "abc67890-1234-5678-efgh-ijklmnopqrstu"
+		},
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440010",
+			"name": "epigenetic-modification-prediction",
+			"category_id": "abc67890-1234-5678-efgh-ijklmnopqrstu"
+		},
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440011",
+			"name": "epigenomics-analysis",
+			"category_id": "abc67890-1234-5678-efgh-ijklmnopqrstu"
+		},
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440012",
+			"name": "single-cell-rna-seq-analysis",
+			"category_id": "abc67890-1234-5678-efgh-ijklmnopqrstu"
+		},
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440013",
+			"name": "crispr-screening-analysis",
+			"category_id": "abc67890-1234-5678-efgh-ijklmnopqrstu"
+		},
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440014",
+			"name": "immune-repertoire-analysis",
+			"category_id": "abc67890-1234-5678-efgh-ijklmnopqrstu"
+		},
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440015",
+			"name": "proteomics-analysis",
+			"category_id": "abc67890-1234-5678-efgh-ijklmnopqrstu"
+		},
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440016",
+			"name": "metagenomics-analysis",
+			"category_id": "abc67890-1234-5678-efgh-ijklmnopqrstu"
+		},
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440017",
+			"name": "transcriptomics-analysis",
+			"category_id": "abc67890-1234-5678-efgh-ijklmnopqrstu"
+		},
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440018",
+			"name": "cell-type-classification",
+			"category_id": "abc67890-1234-5678-efgh-ijklmnopqrstu"
+		},
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440019",
+			"name": "gene-regulatory-network-inference",
+			"category_id": "abc67890-1234-5678-efgh-ijklmnopqrstu"
+		},
+		{
+			"id": "550e8400-e29b-41d4-a716-446655440020",
+			"name": "variant-effect-prediction",
+			"category_id": "abc67890-1234-5678-efgh-ijklmnopqrstu"
+		}
+	],
+	"readme_md": "## Proprietary Licenses\nThis category includes licenses that restrict modification, redistribution, and usage of software or datasets."
+}

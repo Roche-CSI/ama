@@ -1,0 +1,33 @@
+{
+	"id": "xyz12345-6789-0123-abcd-ef1234567890",
+	"name": "open-source",
+	"group_id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+	"group_name": "licenses",
+	"description": "A collection of open-source licenses that allow for modification, distribution, and use with minimal restrictions.",
+	"created_by": "user1",
+	"created_at": "2024-08-01T10:00:00Z",
+	"modified_at": "2024-08-15T14:30:00Z",
+	"tags": [
+		{
+			"id": "tag001",
+			"name": "mit",
+			"category_id": "xyz12345-6789-0123-abcd-ef1234567890"
+		},
+		{
+			"id": "tag002",
+			"name": "apache",
+			"category_id": "xyz12345-6789-0123-abcd-ef1234567890"
+		},
+		{
+			"id": "tag003",
+			"name": "gpl",
+			"category_id": "xyz12345-6789-0123-abcd-ef1234567890"
+		},
+		{
+			"id": "tag004",
+			"name": "bsd",
+			"category_id": "xyz12345-6789-0123-abcd-ef1234567890"
+		}
+	],
+	"readme_md": "## Open Source Licenses\nThis category includes licenses that are used for open-source software with minimal restrictions."
+}

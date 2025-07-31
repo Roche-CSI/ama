@@ -1,0 +1,171 @@
+[
+    {
+        "id": 1,
+        "name": "evidently_ai",
+        "title": "Evidently AI",
+        "description": "Open-source ML model and data monitoring platform with comprehensive drift detection and data quality monitoring capabilities",
+        "url": "https://evidentlyai.com",
+        "is_active": true,
+        "configs": {
+            "schema_version": "1.0",
+            "authentication": {
+                "type": "api_key",
+                "required": true,
+                "fields": {
+                    "api_key": {
+                        "type": "string",
+                        "required": true
+                    },
+                    "api_endpoint": {
+                        "type": "string",
+                        "required": true
+                    }
+                }
+            },
+            "monitoring_settings": {
+                "supported_metrics": [
+                    "data_drift",
+                    "concept_drift",
+                    "data_quality"
+                ],
+                "batch_size": {
+                    "type": "integer",
+                    "default": 1000
+                },
+                "monitoring_frequency": {
+                    "type": "string",
+                    "enum": [
+                        "5min",
+                        "15min",
+                        "hourly",
+                        "daily"
+                    ],
+                    "default": "hourly"
+                },
+                "retention_days": {
+                    "type": "integer",
+                    "default": 30
+                }
+            },
+            "notification_channels": {
+                "supported": [
+                    "email",
+                    "slack",
+                    "webhook"
+                ],
+                "configuration": {
+                    "slack": {
+                        "webhook_url": {
+                            "type": "string",
+                            "required": true
+                        },
+                        "channel": {
+                            "type": "string",
+                            "required": false
+                        }
+                    }
+                }
+            }
+        }
+    },
+    {
+        "id": 2,
+        "name": "arize_ai",
+        "title": "Arize AI",
+        "description": "ML observability platform with real-time monitoring and advanced embedding analysis",
+        "url": "https://arize.com",
+        "is_active": true,
+        "configs": {
+            "schema_version": "1.0",
+            "authentication": {
+                "type": "api_key",
+                "required": true,
+                "fields": {
+                    "api_key": {
+                        "type": "string",
+                        "required": true
+                    },
+                    "org_id": {
+                        "type": "string",
+                        "required": true
+                    }
+                }
+            },
+            "monitoring_settings": {
+                "supported_features": {
+                    "real_time_monitoring": true,
+                    "embedding_analysis": true,
+                    "bias_detection": true,
+                    "performance_monitoring": true
+                },
+                "sampling_rate": {
+                    "type": "float",
+                    "default": 1.0
+                },
+                "latency_sla_ms": {
+                    "type": "integer",
+                    "default": 100
+                }
+            },
+            "data_retention": {
+                "metrics_retention_days": 90,
+                "logs_retention_days": 30
+            }
+        }
+    },
+    {
+        "id": 3,
+        "name": "whylabs",
+        "title": "WhyLabs",
+        "description": "AI observability platform with automated monitoring and data quality validation",
+        "url": "https://whylabs.ai",
+        "is_active": true,
+        "configs": {
+            "schema_version": "1.0",
+            "authentication": {
+                "type": "api_key",
+                "required": true,
+                "fields": {
+                    "api_key": {
+                        "type": "string",
+                        "required": true
+                    },
+                    "dataset_id": {
+                        "type": "string",
+                        "required": true
+                    },
+                    "org_id": {
+                        "type": "string",
+                        "required": true
+                    }
+                }
+            },
+            "monitoring_settings": {
+                "supported_features": {
+                    "data_quality": true,
+                    "drift_detection": true,
+                    "performance_monitoring": true,
+                    "custom_metrics": true
+                },
+                "monitoring_frequency": {
+                    "type": "string",
+                    "enum": [
+                        "realtime",
+                        "hourly",
+                        "daily"
+                    ],
+                    "default": "hourly"
+                }
+            },
+            "notification_settings": {
+                "channels": [
+                    "email",
+                    "slack",
+                    "pagerduty",
+                    "webhook"
+                ],
+                "min_severity": "warning"
+            }
+        }
+    }
+]

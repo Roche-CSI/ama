@@ -1,0 +1,147 @@
+[
+    {
+        "id": 1,
+        "asset_id": "fraud_detection_model",
+        "version_id": "fra-det-v2",
+        "version_number": "2.1.0",
+        "action_id": 1,
+        "config": {
+            "model_name": "Fraud Detection Model",
+            "model_version": "2.1.0",
+            "environment": "production",
+            "metric_name": "precision",
+            "current_value": 0.92,
+            "previous_value": 0.95,
+            "threshold": 0.94,
+            "team_owner": "ml-team"
+        },
+        "trigger_type": "automatic",
+        "trigger_condition": {
+            "metric": "precision",
+            "operator": "less_than",
+            "threshold": 0.94,
+            "window": "1h",
+            "consecutive_breaches": 3
+        },
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+    },
+    {
+        "id": 2,
+        "asset_id": "customer_churn_predictor",
+        "version_id": "cus-chu-v3",
+        "version_number": "3.0.0",
+        "action_id": 2,
+        "config": {
+            "model_name": "Customer Churn Predictor",
+            "current_version": "2.1.0",
+            "new_version": "3.0.0",
+            "environment": "staging",
+            "performance_comparison": {
+                "accuracy": {
+                    "current": 0.85,
+                    "new": 0.88
+                },
+                "latency": {
+                    "current": 150,
+                    "new": 145
+                }
+            },
+            "validation_results": {
+                "data_drift": "passed",
+                "unit_tests": "passed",
+                "integration_tests": "passed",
+                "performance_tests": "passed"
+            },
+            "config_changes": {
+                "feature_set": "Added 2 new features",
+                "preprocessing": "Updated scaling method",
+                "hyperparameters": {
+                    "learning_rate": "0.01 -> 0.015",
+                    "max_depth": "6 -> 8"
+                }
+            }
+        },
+        "trigger_type": "manual",
+        "trigger_condition": null,
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+    },
+    {
+        "id": 3,
+        "asset_id": "recommendation_engine",
+        "version_id": "rec-eng-v1",
+        "version_number": "1.5.0",
+        "action_id": 3,
+        "config": {
+            "model_name": "Recommendation Engine",
+            "version": "1.5.0",
+            "sha": "abc123def456",
+            "validation_results": {
+                "performance_tests": {
+                    "status": "success",
+                    "metrics": {
+                        "ndcg": 0.82,
+                        "precision@10": 0.76,
+                        "recall@10": 0.68
+                    }
+                },
+                "data_tests": {
+                    "status": "success",
+                    "issues": []
+                },
+                "security_scan": {
+                    "status": "success",
+                    "findings": []
+                },
+                "overall_status": "success",
+                "summary": "All validation tests passed",
+                "details_url": "https://model-registry/validations/rec-eng-v1"
+            }
+        },
+        "trigger_type": "automatic",
+        "trigger_condition": {
+            "on_version_update": true,
+            "required_checks": [
+                "performance_tests",
+                "data_tests",
+                "security_scan"
+            ],
+            "timeout": "1h"
+        },
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+    },
+    {
+        "id": 4,
+        "asset_id": "credit_scoring_model",
+        "version_id": "cre-sco-v2",
+        "version_number": "2.3.0",
+        "action_id": 1,
+        "config": {
+            "model_name": "Credit Scoring Model",
+            "model_version": "2.3.0",
+            "environment": "production",
+            "metric_name": "auc_roc",
+            "current_value": 0.83,
+            "previous_value": 0.87,
+            "threshold": 0.85
+        },
+        "trigger_type": "scheduled",
+        "trigger_condition": {
+            "schedule": "0 0 * * *",
+            "metrics_to_check": [
+                "auc_roc",
+                "ks_statistic"
+            ],
+            "thresholds": {
+                "auc_roc": 0.85,
+                "ks_statistic": 0.45
+            },
+            "data_drift_threshold": 0.1,
+            "min_samples_required": 10000
+        },
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+    }
+]

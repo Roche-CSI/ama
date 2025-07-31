@@ -1,0 +1,38 @@
+{
+	"id": "ghi90123-jkl4-5678-mnop-qrstuvwxyza1",
+	"name": "visualization",
+	"group_id": "3e6f593d-1d76-4dbe-9b99-5798a8f03f93",
+	"group_name": "libraries",
+	"description": "A collection of tools and libraries used for data visualization, including plotting and statistical graphics.",
+	"created_by": "user2",
+	"created_at": "2024-08-01T12:00:00Z",
+	"modified_at": "2024-08-15T16:00:00Z",
+	"tags": [
+		{
+			"id": "lib005",
+			"name": "Matplotlib",
+			"category_id": "ghi90123-jkl4-5678-mnop-qrstuvwxyza1"
+		},
+		{
+			"id": "lib006",
+			"name": "Seaborn",
+			"category_id": "ghi90123-jkl4-5678-mnop-qrstuvwxyza1"
+		},
+		{
+			"id": "lib007",
+			"name": "Plotly",
+			"category_id": "ghi90123-jkl4-5678-mnop-qrstuvwxyza1"
+		},
+		{
+			"id": "lib008",
+			"name": "Bokeh",
+			"category_id": "ghi90123-jkl4-5678-mnop-qrstuvwxyza1"
+		},
+		{
+			"id": "lib009",
+			"name": "Altair",
+			"category_id": "ghi90123-jkl4-5678-mnop-qrstuvwxyza1"
+		}
+	],
+	"readme_md": "## Visualization Tools\nThis category includes libraries and tools used for creating various types of visualizations, from basic plotting to advanced statistical graphics."
+}

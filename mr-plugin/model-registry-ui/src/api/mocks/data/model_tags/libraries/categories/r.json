@@ -1,0 +1,38 @@
+{
+	"id": "e5f67890-1234-5678-abcd-ef1234567890",
+	"name": "R",
+	"group_id": "3e6f593d-1d76-4dbe-9b99-5798a8f03f93",
+	"group_name": "libraries",
+	"description": "A collection of libraries and tools for R programming.",
+	"created_by": "user7",
+	"created_at": "2024-08-06T14:00:00Z",
+	"modified_at": "2024-08-15T16:00:00Z",
+	"tags": [
+		{
+			"id": "lib030",
+			"name": "ggplot2",
+			"category_id": "e5f67890-1234-5678-abcd-ef1234567890"
+		},
+		{
+			"id": "lib031",
+			"name": "dplyr",
+			"category_id": "e5f67890-1234-5678-abcd-ef1234567890"
+		},
+		{
+			"id": "lib032",
+			"name": "tidyr",
+			"category_id": "e5f67890-1234-5678-abcd-ef1234567890"
+		},
+		{
+			"id": "lib033",
+			"name": "shiny",
+			"category_id": "e5f67890-1234-5678-abcd-ef1234567890"
+		},
+		{
+			"id": "lib034",
+			"name": "lubridate",
+			"category_id": "e5f67890-1234-5678-abcd-ef1234567890"
+		}
+	],
+	"readme_md": "## R Libraries\nThis category includes libraries for R, focusing on data manipulation, visualization, and web application development."
+}

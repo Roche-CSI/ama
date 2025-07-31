@@ -1,0 +1,45 @@
+{
+	"datasets": {
+		"training": [
+			"patient-records",
+			"genomics-reads-dataset",
+			"drug-response-dataset"
+		],
+		"validation": [
+			"patient-records",
+			"genomics-reads-dataset",
+			"drug-response-dataset"
+		],
+		"test": [
+			"patient-records",
+			"genomics-reads-dataset",
+			"drug-response-dataset"
+		],
+		"exception": [
+			"disease-records",
+			"metabolomics-dataset"
+		]
+	},
+	"validation_metrics": [
+		"accuracy",
+		"precision",
+		"recall",
+		"f1-score"
+	],
+	"deployments": [
+		"SageMaker",
+		"Kubeflow",
+		"KFServing"
+	],
+	"repos": [
+		"https://gtihub.com/username/repo1",
+		"https://gtihub.com/username/repo2"
+	],
+	"tasks": [
+		"variant-calling",
+		"genome-assembly",
+		"gene-expression-analysis"
+	],
+
+	"others": []
+}

@@ -1,0 +1,38 @@
+{
+	"id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+	"name": "C++",
+	"group_id": "3e6f593d-1d76-4dbe-9b99-5798a8f03f93",
+	"group_name": "libraries",
+	"description": "A collection of libraries and tools for C++ development.",
+	"created_by": "user3",
+	"created_at": "2024-08-02T10:00:00Z",
+	"modified_at": "2024-08-15T16:00:00Z",
+	"tags": [
+		{
+			"id": "lib010",
+			"name": "Boost",
+			"category_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+		},
+		{
+			"id": "lib011",
+			"name": "Eigen",
+			"category_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+		},
+		{
+			"id": "lib012",
+			"name": "Poco",
+			"category_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+		},
+		{
+			"id": "lib013",
+			"name": "OpenCV",
+			"category_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+		},
+		{
+			"id": "lib014",
+			"name": "Qt",
+			"category_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+		}
+	],
+	"readme_md": "## C++ Libraries\nThis category includes libraries and tools commonly used for C++ programming, from mathematical libraries to graphical user interface frameworks."
+}

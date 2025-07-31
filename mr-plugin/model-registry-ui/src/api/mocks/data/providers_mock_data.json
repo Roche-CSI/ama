@@ -1,0 +1,94 @@
+{
+	"providers": [
+		{
+			"id": "aws-provider-1",
+			"name": "AWS",
+			"description": "Amazon Web Services",
+			"createdAt": "2024-08-01T12:00:00Z",
+			"updatedAt": "2024-08-20T15:00:00Z",
+			"environments": [
+				{
+					"id": "aws-env-1",
+					"name": "AWS Compute Environment",
+					"type": "compute",
+					"description": "Compute resources on AWS EC2.",
+					"status": "active",
+					"createdAt": "2024-08-01T12:00:00Z",
+					"updatedAt": "2024-08-20T15:00:00Z"
+				},
+				{
+					"id": "aws-env-2",
+					"name": "AWS Lambda",
+					"type": "lambda",
+					"description": "Serverless compute service.",
+					"status": "inactive",
+					"createdAt": "2024-08-10T14:00:00Z",
+					"updatedAt": "2024-08-15T10:00:00Z"
+				},
+				{
+					"id": "aws-env-3",
+					"name": "AWS S3 Bucket",
+					"type": "storage",
+					"description": "Object storage service.",
+					"status": "active",
+					"createdAt": "2024-08-05T09:00:00Z",
+					"updatedAt": "2024-08-20T15:00:00Z"
+				}
+			]
+		},
+		{
+			"id": "gcs-provider-1",
+			"name": "Google Cloud",
+			"description": "Google Cloud Platform",
+			"createdAt": "2024-07-25T11:00:00Z",
+			"updatedAt": "2024-08-18T16:00:00Z",
+			"environments": [
+				{
+					"id": "gcs-env-1",
+					"name": "GCP Compute Engine",
+					"type": "compute",
+					"description": "Virtual machines on Google Cloud.",
+					"status": "active",
+					"createdAt": "2024-07-25T11:00:00Z",
+					"updatedAt": "2024-08-18T16:00:00Z"
+				},
+				{
+					"id": "gcs-env-2",
+					"name": "GCS Bucket",
+					"type": "storage",
+					"description": "Cloud storage for your data.",
+					"status": "active",
+					"createdAt": "2024-08-02T12:00:00Z",
+					"updatedAt": "2024-08-18T16:00:00Z"
+				}
+			]
+		},
+		{
+			"id": "azure-provider-1",
+			"name": "Azure",
+			"description": "Microsoft Azure Cloud",
+			"createdAt": "2024-08-10T13:00:00Z",
+			"updatedAt": "2024-08-22T14:00:00Z",
+			"environments": [
+				{
+					"id": "azure-env-1",
+					"name": "Azure VM",
+					"type": "compute",
+					"description": "Virtual machines in Azure.",
+					"status": "pending",
+					"createdAt": "2024-08-10T13:00:00Z",
+					"updatedAt": "2024-08-22T14:00:00Z"
+				},
+				{
+					"id": "azure-env-2",
+					"name": "Azure Blob Storage",
+					"type": "storage",
+					"description": "Blob storage service in Azure.",
+					"status": "inactive",
+					"createdAt": "2024-08-15T14:00:00Z",
+					"updatedAt": "2024-08-22T14:00:00Z"
+				}
+			]
+		}
+	]
+}

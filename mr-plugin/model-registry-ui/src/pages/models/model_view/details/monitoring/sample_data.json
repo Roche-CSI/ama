@@ -1,0 +1,132 @@
+[
+	{
+		"name": "Evidently AI",
+		"integrationData": {
+			"apiKey": "string",
+			"username": "string",
+			"projectId": "string",
+			"webhookUrl": "string"
+		},
+		"action": {
+			"type": "Model Monitoring",
+			"description": "Monitors and evaluates model performance in Evidently AI"
+		}
+	},
+	{
+		"name": "DataRobot",
+		"integrationData": {
+			"apiKey": "string",
+			"username": "string",
+			"projectName": "string",
+			"webhookUrl": "string"
+		},
+		"action": {
+			"type": "Model Deployment",
+			"description": "Triggers deployment of a model in DataRobot"
+		}
+	},
+	{
+		"name": "H2O.ai",
+		"integrationData": {
+			"apiKey": "string",
+			"username": "string",
+			"projectId": "string",
+			"webhookUrl": "string"
+		},
+		"action": {
+			"type": "Model Training",
+			"description": "Initiates model training in H2O.ai"
+		}
+	},
+	{
+		"name": "Google Cloud AutoML",
+		"integrationData": {
+			"apiKey": "string",
+			"projectId": "string",
+			"modelId": "string",
+			"webhookUrl": "string"
+		},
+		"action": {
+			"type": "Model Prediction",
+			"description": "Performs model prediction using Google Cloud AutoML"
+		}
+	},
+	{
+		"name": "Microsoft Azure Machine Learning",
+		"integrationData": {
+			"apiKey": "string",
+			"subscriptionId": "string",
+			"resourceGroup": "string",
+			"webhookUrl": "string"
+		},
+		"action": {
+			"type": "Model Training",
+			"description": "Triggers model training in Azure Machine Learning"
+		}
+	},
+	{
+		"name": "Amazon SageMaker",
+		"integrationData": {
+			"apiKey": "string",
+			"region": "string",
+			"endpoint": "string",
+			"webhookUrl": "string"
+		},
+		"action": {
+			"type": "Model Deployment",
+			"description": "Deploys a model using Amazon SageMaker"
+		}
+	},
+	{
+		"name": "IBM Watson Studio",
+		"integrationData": {
+			"apiKey": "string",
+			"projectId": "string",
+			"modelId": "string",
+			"webhookUrl": "string"
+		},
+		"action": {
+			"type": "Model Deployment",
+			"description": "Deploys a model in IBM Watson Studio"
+		}
+	},
+	{
+		"name": "RapidMiner",
+		"integrationData": {
+			"apiKey": "string",
+			"projectId": "string",
+			"pipelineId": "string",
+			"webhookUrl": "string"
+		},
+		"action": {
+			"type": "Pipeline Execution",
+			"description": "Executes a data science pipeline in RapidMiner"
+		}
+	},
+	{
+		"name": "TPOT",
+		"integrationData": {
+			"apiKey": "string",
+			"projectId": "string",
+			"pipelineId": "string",
+			"webhookUrl": "string"
+		},
+		"action": {
+			"type": "Pipeline Optimization",
+			"description": "Optimizes machine learning pipelines using TPOT"
+		}
+	},
+	{
+		"name": "Pachyderm",
+		"integrationData": {
+			"apiKey": "string",
+			"repositoryId": "string",
+			"pipelineId": "string",
+			"webhookUrl": "string"
+		},
+		"action": {
+			"type": "Pipeline Automation",
+			"description": "Automates data processing pipelines in Pachyderm"
+		}
+	}
+]
