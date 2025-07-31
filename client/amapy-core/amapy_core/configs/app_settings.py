@@ -166,7 +166,7 @@ class AppSettings:
         project = self.projects.get(project_id)
         os.environ["ASSET_PROJECT_ID"] = project_id
         # todo: move to tokens instead of service_account.json
-        # allow for user override i.e. to tackle issues such as not having access to genia bucket
+        # allow for user override i.e. to tackle issues such as not having access to my-data bucket
         # todo: discuss and resolve
 
         # set the credentials from the project

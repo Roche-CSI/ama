@@ -21,7 +21,7 @@ def asset_data(test_user, test_asset_class):
 
 @pytest.fixture(scope="module")
 def large_asset_data(test_user, asset_data):
-    objects_data = FileUtils.read_json(os.path.join(os.path.dirname(__file__), "genia_data.json"))
+    objects_data = FileUtils.read_json(os.path.join(os.path.dirname(__file__), "my-data_data.json"))
     asset_data["payload"]["objects"] = objects_data
     return asset_data
 

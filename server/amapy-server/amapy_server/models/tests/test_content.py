@@ -63,7 +63,7 @@ def test_crud_ops(test_user, test_data):
 
 def profile_create(test_user):
     """for profiling large writes"""
-    path = os.path.join(os.path.dirname(__file__), "genia_data.json")
+    path = os.path.join(os.path.dirname(__file__), "my-data.json")
     objects_data = FileUtils.read_json(path)
     contents_data = list(map(lambda x: x["content"], objects_data))
     with time_it("create"):
@@ -76,7 +76,7 @@ def profile_create(test_user):
 
 def profile_batch_create(test_user):
     """for profiling large writes"""
-    path = os.path.join(os.path.dirname(__file__), "genia_data.json")
+    path = os.path.join(os.path.dirname(__file__), "my-data.json")
     objects_data = FileUtils.read_json(path)
     contents_data = list(map(lambda x: x["content"], objects_data))
     with time_it("batch-create"):

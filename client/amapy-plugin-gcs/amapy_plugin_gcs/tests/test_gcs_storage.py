@@ -54,7 +54,7 @@ class MockBucket:
 
 class MockClient:
     def __init__(self, project=None, credentials=None):
-        self.project = project or "rsc-general-computing"
+        self.project = project or "my-gcp-project"
         self._credentials = credentials
 
     def get_bucket(self, bucket_or_name):

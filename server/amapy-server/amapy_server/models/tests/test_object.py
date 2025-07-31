@@ -102,7 +102,7 @@ def test_to_dict(test_user, test_data, content_record):
 
 
 def test_profile_batch_create(test_user):
-    path = os.path.join(os.path.dirname(__file__), "genia_data.json")
+    path = os.path.join(os.path.dirname(__file__), "my-data.json")
     objects_data = FileUtils.read_json(path)
     contents_data = []
     for data in objects_data:
