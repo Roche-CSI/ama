@@ -10,17 +10,22 @@ MinIO provides a lightweight, S3-compatible object storage solution that can be 
 
 ### Installation Steps
 
-1. **Download MinIO Server**
+1. **Download MinIO Server Linux**
    ```bash
    wget https://dl.min.io/server/minio/release/linux-amd64/minio
    chmod +x minio
    ```
+   Download MinIO Server MacOS
+   `brew install minio/stable/minio`
+2. Create Data Directory in /Users/biswalc/roche/minio-tests
+   WORKING_DIR="/Users/biswalc/roche/minio-tests"
+   MINIO_PORT="9001"
 
 2. **Start MinIO Server**
    ```bash
-   ./minio server /data --console-address ":9001"
+   minio server ${WORKING_DIR} --console-address ":${MINIO_PORT}"
    ```
-   This starts MinIO with data stored in the `/data` directory and the web console available at port 9001.
+   This starts MinIO with data stored in the `${WORKING_DIR}` directory and the web console available at port MINIO_PORT.
 
 3. **Access the MinIO Console**
    - Open your browser and navigate to http://localhost:9001
@@ -34,6 +39,7 @@ MinIO provides a lightweight, S3-compatible object storage solution that can be 
 
 ### Configuring AMA with Local MinIO
 
+Start amapy-server
 #### Using the API
 ```bash
 curl -X POST http://127.0.0.1:5000/db/project \

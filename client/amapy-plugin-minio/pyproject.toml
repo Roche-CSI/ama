@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "amapy-plugin-minio"
-version = "1.0.1"
+version = "1.0.0"
 description = "The MINIO plugin for the ama project."
 readme = "README.md"
 license = { text = "Copyright (c) 2024 Roche Diagnostics Computation Science & Informatics" }
