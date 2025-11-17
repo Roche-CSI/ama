@@ -5,7 +5,6 @@ from concurrent.futures import ProcessPoolExecutor
 from contextlib import contextmanager
 
 from amapy.python_api import asset
-from amapy_utils.common.exceptions import NoActiveProjectError
 
 asset.disable_logging()
 
@@ -13,8 +12,8 @@ asset.disable_logging()
 def get_active_asset_project() -> str | None:
     try:
         return asset.project.active["name"]
-    except NoActiveProjectError:
-        return None
+    except Exception as e:
+        return f"Error: {str(e)}"
 
 
 @contextmanager
