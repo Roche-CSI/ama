@@ -12,8 +12,7 @@ asset.disable_logging()
 
 def get_active_asset_project() -> str | None:
     try:
-        active_project = asset.project.active
-        return active_project["name"]
+        return asset.project.active["name"]
     except NoActiveProjectError:
         return None
 
