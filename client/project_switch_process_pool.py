@@ -13,7 +13,7 @@ def get_active_asset_project() -> str | None:
     try:
         return asset.project.active["name"]
     except Exception as e:
-        return f"Error: {str(e)}"
+        return f"{e}"
 
 
 @contextmanager
