@@ -1,5 +1,4 @@
 import collections.abc
-import contextlib
 import datetime
 import fnmatch
 import functools
@@ -13,6 +12,7 @@ from os.path import expanduser
 from time import time
 from typing import Iterable, Union, List, Dict, Callable
 
+from filelock import FileLock
 from pytz import utc, timezone
 
 from amapy_utils.common import DEBUG, PROFILE, PRINT_ARGS
@@ -344,7 +344,7 @@ def time_elapsed(message, ts, te):
     print(f'{message} took: {te - ts:.2f} sec')
 
 
-@contextlib.contextmanager
+@contextmanager
 def time_it(desc: str):
     ts = time()
     yield
@@ -378,3 +378,10 @@ def ch_dir(path):
         yield
     finally:
         os.chdir(cur_dir)
+
+
+@contextmanager
+def locked_file(file_path: str):
+    lock_path = f"{file_path}.lock"
+    with FileLock(lock_path):
+        yield
