@@ -4,6 +4,7 @@ theme:
   features:
     - content.code.copy
     - content.code.select
+docs_dir: docs
 extra_css: [ css/extra.css ]
 repo_url: https://github.com/Roche-CSI/ama
 site_author: swarup.mahanti@roche.com
@@ -25,6 +26,7 @@ plugins:
   - search
   - mermaid2
   - codeinclude
-
+# python -m pip install mkdocs-include-markdown-plugin \
+#  mkdocs-mermaid2-plugin mkdocs-codeinclude-plugin
 extra_javascript:
   - https://unpkg.com/mermaid/dist/mermaid.min.js
