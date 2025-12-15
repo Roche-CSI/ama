@@ -26,7 +26,6 @@ plugins:
   - search
   - mermaid2
   - codeinclude
-# python -m pip install mkdocs-include-markdown-plugin \
-#  mkdocs-mermaid2-plugin mkdocs-codeinclude-plugin
+
 extra_javascript:
   - https://unpkg.com/mermaid/dist/mermaid.min.js
