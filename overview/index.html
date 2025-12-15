@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="swarup.mahanti@roche.com" name="author"/><link href="https://github.com/Roche-CSI/ama/overview/" rel="canonical"/>
+<link href="../img/favicon.ico" rel="shortcut icon"/>
+<title>Overview - AMA</title>
+<link href="../css/theme.css" rel="stylesheet"/>
+<link href="../css/theme_extra.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
+<link href="../css/extra.css" rel="stylesheet"/>
+<script>
+        // Current page data
+        var mkdocs_page_name = "Overview";
+        var mkdocs_page_input_path = "overview.md";
+        var mkdocs_page_url = "/Roche-CSI/ama/overview/";
+      </script>
+<!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body class="wy-body-for-nav" role="document">
+<div class="wy-grid-for-nav">
+<nav class="wy-nav-side stickynav" data-toggle="wy-nav-shift">
+<div class="wy-side-scroll">
+<div class="wy-side-nav-search">
+<a class="icon icon-home" href=".."> AMA
+        </a><div role="search">
+<form action="../search.html" class="wy-form" id="rtd-search-form" method="get">
+<input aria-label="Search docs" name="q" placeholder="Search docs" title="Type search term here" type="text"/>
+</form>
+</div>
+</div>
+<div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../home/">Home</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/">Quick Start</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/hello_world/">Hello World</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../python_api/">Python API</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../case_studies/">Case Studies</a>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal current" href="#">Overview</a>
+<ul class="current">
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/">Conceptual Model</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../architecture/">Architecture</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../implementation/">Implementation</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<section class="wy-nav-content-wrap" data-toggle="wy-nav-shift">
+<nav aria-label="Mobile navigation menu" class="wy-nav-top" role="navigation">
+<i class="fa fa-bars" data-toggle="wy-nav-top"></i>
+<a href="..">AMA</a>
+</nav>
+<div class="wy-nav-content">
+<div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
+<ul class="wy-breadcrumbs">
+<li><a aria-label="Docs" class="icon icon-home" href=".."></a></li>
+<li class="breadcrumb-item active">Overview</li>
+<li class="wy-breadcrumbs-aside">
+<a class="icon icon-github" href="https://github.com/Roche-CSI/ama/edit/master/docs/overview.md"> Edit on GitHub</a>
+</li>
+</ul>
+<hr/>
+</div>
+<div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+<div class="section" itemprop="articleBody">
+<h1 id="the-problem">The Problem</h1>
+<div style="text-align: justify">
+The explosion in data science activities has created a new set of challenges when it comes to generating, managing
+and using the assets involved. A typical data science experiment involves:
+</div>
+<div class="mermaid">graph TD
+    center[Digital Asset Repos in Practice]
+
+    env[Env - Container Registry] --&gt; center
+    code[Code - Github] --&gt; center
+    models[Models - GCP Bucket/Artifactory] --&gt; center
+
+    center --&gt; parameters[Parameters - Google Sheets/Docs]
+    center --&gt; datasets[Datasets - GCP Bucket]
+
+    classDef main fill:#E8F0FE,stroke:#4285F4
+    classDef component fill:#FFFFFF,stroke:#9AA0A6
+
+    class center main
+    class env,code,models,parameters,datasets component
+</div>
+<p><br/></p>
+<ul>
+<li><strong>Code</strong>: This would be any custom code you implement in your activity. Your GitHub repo provides source control for all your code.</li>
+<li>
+<p><strong>Environment</strong>: This refers to the runtime environment in which your code is executed. It comprises the OS, 
+  Language runtime(Python, Java version etc), your package-manager (conda, pip etc) and package-control. When running locally
+  your IDE handles this - for running in cloud, we package the environment in a Docker Image. There is no version control 
+  with Docker but Docker does provide a sha256 for each image.</p>
+</li>
+<li>
+<p><strong>Models</strong>: These refer to the model files (TF2 or HDF5) that are used in your activity. These are currently stored either in Artifactory
+or GCS Buckets. There is no version control for models.</p>
+</li>
+<li>
+<p><strong>Datasets</strong>: These refer to the collection of separate pieces of data that is used for training. These are currently stored in GCS Buckets.
+  There is no version control for Datasets.</p>
+</li>
+<li>
+<p><strong>Parameters</strong>:  These refer to the parameters used for model training. These are stored in GoogleSheets and are not version-controlled.  </p>
+</li>
+</ul>
+<p><br/></p>
+</div>
+</div><footer>
+<div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
+<a class="btn btn-neutral float-left" href="../case_studies/" title="Case Studies"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+<a class="btn btn-neutral float-right" href="../concepts/" title="Conceptual Model">Next <span class="icon icon-circle-arrow-right"></span></a>
+</div>
+<hr/>
+<div role="contentinfo">
+<!-- Copyright etc -->
+</div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+</div>
+</div>
+</section>
+</div>
+<div aria-label="Versions" class="rst-versions" role="note">
+<span class="rst-current-version" data-toggle="rst-current-version">
+<span>
+<a class="fa fa-github" href="https://github.com/Roche-CSI/ama" style="color: #fcfcfc"> GitHub</a>
+</span>
+<span><a href="../case_studies/" style="color: #fcfcfc">« Previous</a></span>
+<span><a href="../concepts/" style="color: #fcfcfc">Next »</a></span>
+</span>
+</div>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script>var base_url = "..";</script>
+<script src="../js/theme_extra.js"></script>
+<script src="../js/theme.js"></script>
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+<script src="../search/main.js"></script>
+<script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+<script>mermaid.initialize({});</script></body>
+</html>

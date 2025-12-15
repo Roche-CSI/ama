@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="swarup.mahanti@roche.com" name="author"/><link href="https://github.com/Roche-CSI/ama/case_studies/" rel="canonical"/>
+<link href="../img/favicon.ico" rel="shortcut icon"/>
+<title>Case Studies - AMA</title>
+<link href="../css/theme.css" rel="stylesheet"/>
+<link href="../css/theme_extra.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
+<link href="../css/extra.css" rel="stylesheet"/>
+<script>
+        // Current page data
+        var mkdocs_page_name = "Case Studies";
+        var mkdocs_page_input_path = "case_studies/index.md";
+        var mkdocs_page_url = "/Roche-CSI/ama/case_studies/";
+      </script>
+<!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body class="wy-body-for-nav" role="document">
+<div class="wy-grid-for-nav">
+<nav class="wy-nav-side stickynav" data-toggle="wy-nav-shift">
+<div class="wy-side-scroll">
+<div class="wy-side-nav-search">
+<a class="icon icon-home" href=".."> AMA
+        </a><div role="search">
+<form action="../search.html" class="wy-form" id="rtd-search-form" method="get">
+<input aria-label="Search docs" name="q" placeholder="Search docs" title="Type search term here" type="text"/>
+</form>
+</div>
+</div>
+<div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../home/">Home</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/">Quick Start</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/hello_world/">Hello World</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../python_api/">Python API</a>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal current" href="#">Case Studies</a>
+<ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="#model-training">Model Training</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#status-quo">Status Quo</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#how-ama-can-help">How AMA can help</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#tracking">Tracking</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#sharing">Sharing</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#comparing">Comparing</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#lineage">Lineage</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/">Overview</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/">Conceptual Model</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../architecture/">Architecture</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../implementation/">Implementation</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<section class="wy-nav-content-wrap" data-toggle="wy-nav-shift">
+<nav aria-label="Mobile navigation menu" class="wy-nav-top" role="navigation">
+<i class="fa fa-bars" data-toggle="wy-nav-top"></i>
+<a href="..">AMA</a>
+</nav>
+<div class="wy-nav-content">
+<div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
+<ul class="wy-breadcrumbs">
+<li><a aria-label="Docs" class="icon icon-home" href=".."></a></li>
+<li class="breadcrumb-item active">Case Studies</li>
+<li class="wy-breadcrumbs-aside">
+<a class="icon icon-github" href="https://github.com/Roche-CSI/ama/edit/master/docs/case_studies/index.md"> Edit on GitHub</a>
+</li>
+</ul>
+<hr/>
+</div>
+<div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+<div class="section" itemprop="articleBody">
+<h1 id="case-studies">Case studies</h1>
+<h3 id="model-training">Model Training</h3>
+<h4 id="status-quo">Status Quo</h4>
+<p>The model pipeline is executed in airflow + AIPlatform to train neural network models. The pipeline
+to train a single model involves a series of steps. Broadly it can be explained as follows:</p>
+<ul>
+<li>Packaging the model code and uploading to AIPlatform</li>
+<li>Launching AI Platform jobs in sequence for multiple stages</li>
+<li>Evaluating checkpoints in parallel to determine the least loss checkpoint</li>
+<li>Freezing and uploading the model to artifactory/bucket</li>
+<li>Testing to ensure model integrity</li>
+</ul>
+<p>The output of training pipeline is a zip file which has the following structure. All models are stored in a cloud bucket.</p>
+<p>The current structure presents the following challenges when it comes to lineage of models.</p>
+<ul>
+<li>There is no meta tracking of models.</li>
+<li>There is no summary of parameters, code, data used for a specific model and comparison across models.</li>
+<li>To understand the lineage of a model, user has to manually open the zip and examine the individual files </li>
+</ul>
+<h4 id="how-ama-can-help">How AMA can help</h4>
+<h5 id="tracking">Tracking</h5>
+<p>AMA can help solve the problems described above including uploading, managing and sharing of models.
+In order to understand the steps involved, we need to elaborate a bit on the information within the zip archive.
+The files within the archive can be broadly classified into the following:</p>
+<pre class="code">
+Inputs
+git_commit_info_ckpt0.yml (contains git commit hashes for model repo)
+run_config_ckpt0.yml (generated before model_freezing step)
+training.yml (contains parameters and datasets used for training)
+
+Outputs
+graph_version.txt (tensorflow graph version number)
+meta.yml (human readable description and training date)
+model.h5 (model file)
+model.yml (parameters, shape and layers of the model) 
+summary_dict.json (training meta data)
+</pre>
+<p>User has to perform the following operations and AMA will take care of the rest. At the end of the model freezing (prior to uploading to bucket)</p>
+<pre class="code">
+cd output_dir # parent dir of the files
+# lets create the input assets first
+ama init nlp_embeddings
+ama add git_commit_info_ckpt0.yml, run_config_ckpt0.yml, training.yml
+ama set --alias my_training_inputs # user defined name
+ama upload
+</pre>
+<pre class="code">
+# now the output asset
+ama init sequence_models
+ama add graph_version.txt, meta.yml, model.h5, model.yml, summary_dict.json
+ama set --alias my_model # user defined name
+ama add ref --alias my_training_inputs # linking the two assets
+ama upload
+</pre>
+<p>Now in the AMA dashboard, you can track the sequence model assets in the following manner.</p>
+<h5 id="sharing">Sharing</h5>
+<p>You can just pass the alias to your colleagues. They can use the following commands to download and use the asset.</p>
+<pre class="code">
+# download the model assets
+ama download sequence_models --alias my_model
+# download model asset including the any references
+ama download sequence_models --alias my_model --refs
+</pre>
+<h5 id="comparing">Comparing</h5>
+<p>You can find all models with the same model.yml file. 
+We index based on content-hash so users are free to choose any names for their files.</p>
+<h5 id="lineage">Lineage</h5>
+<p>You can find the history of every asset created.</p>
+<ul>
+<li>Created By</li>
+<li>Created At</li>
+</ul>
+</div>
+</div><footer>
+<div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
+<a class="btn btn-neutral float-left" href="../python_api/" title="Python API"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+<a class="btn btn-neutral float-right" href="../overview/" title="Overview">Next <span class="icon icon-circle-arrow-right"></span></a>
+</div>
+<hr/>
+<div role="contentinfo">
+<!-- Copyright etc -->
+</div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+</div>
+</div>
+</section>
+</div>
+<div aria-label="Versions" class="rst-versions" role="note">
+<span class="rst-current-version" data-toggle="rst-current-version">
+<span>
+<a class="fa fa-github" href="https://github.com/Roche-CSI/ama" style="color: #fcfcfc"> GitHub</a>
+</span>
+<span><a href="../python_api/" style="color: #fcfcfc">« Previous</a></span>
+<span><a href="../overview/" style="color: #fcfcfc">Next »</a></span>
+</span>
+</div>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script>var base_url = "..";</script>
+<script src="../js/theme_extra.js"></script>
+<script src="../js/theme.js"></script>
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+<script src="../search/main.js"></script>
+<script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+</body>
+</html>

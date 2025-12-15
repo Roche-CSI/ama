@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="swarup.mahanti@roche.com" name="author"/><link href="https://github.com/Roche-CSI/ama/implementation/asset_create/asset_remove/" rel="canonical"/>
+<link href="../../../img/favicon.ico" rel="shortcut icon"/>
+<title>Asset remove - AMA</title>
+<link href="../../../css/theme.css" rel="stylesheet"/>
+<link href="../../../css/theme_extra.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
+<link href="../../../css/extra.css" rel="stylesheet"/>
+<script>
+        // Current page data
+        var mkdocs_page_name = "Asset remove";
+        var mkdocs_page_input_path = "implementation/asset_create/asset_remove.md";
+        var mkdocs_page_url = "/Roche-CSI/ama/implementation/asset_create/asset_remove/";
+      </script>
+<!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body class="wy-body-for-nav" role="document">
+<div class="wy-grid-for-nav">
+<nav class="wy-nav-side stickynav" data-toggle="wy-nav-shift">
+<div class="wy-side-scroll">
+<div class="wy-side-nav-search">
+<a class="icon icon-home" href="../../.."> AMA
+        </a><div role="search">
+<form action="../../../search.html" class="wy-form" id="rtd-search-form" method="get">
+<input aria-label="Search docs" name="q" placeholder="Search docs" title="Type search term here" type="text"/>
+</form>
+</div>
+</div>
+<div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../home/">Home</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/">Quick Start</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/hello_world/">Hello World</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../python_api/">Python API</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../case_studies/">Case Studies</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/">Overview</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../concepts/">Conceptual Model</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture/">Architecture</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../">Implementation</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<section class="wy-nav-content-wrap" data-toggle="wy-nav-shift">
+<nav aria-label="Mobile navigation menu" class="wy-nav-top" role="navigation">
+<i class="fa fa-bars" data-toggle="wy-nav-top"></i>
+<a href="../../..">AMA</a>
+</nav>
+<div class="wy-nav-content">
+<div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
+<ul class="wy-breadcrumbs">
+<li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
+<li class="breadcrumb-item active">Asset remove</li>
+<li class="wy-breadcrumbs-aside">
+<a class="icon icon-github" href="https://github.com/Roche-CSI/ama/edit/master/docs/implementation/asset_create/asset_remove.md"> Edit on GitHub</a>
+</li>
+</ul>
+<hr/>
+</div>
+<div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+<div class="section" itemprop="articleBody">
+<h3 id="removing-files-from-an-asset">Removing files from an asset</h3>
+<pre class="code">
+cd your_dir
+ama remove file
+</pre>
+<p>The following steps are performed.</p>
+<div class="mermaid">flowchart TD
+    A{{remove command}} --&gt; B[Asset]
+    B --&gt; C{{Find objects matching file_path}}
+
+    %% Object stack connected to Asset and Find objects
+    J[Objects] -.- B
+    J -.-&gt; C
+
+    C --&gt; D[Objects]
+    D --&gt; E{{If multiple, remove last added Object}}
+    E --&gt; F{{Remove Object Reference from Content}}
+    E --&gt; G{{Link the previous Object to path, if any}}
+    G --&gt; F
+
+    %% Single Contents connected to Asset, Remove Object Reference, and Remove file
+    K[Contents] -.- B
+    K -.-&gt; F
+    F --&gt; K
+    K --&gt; I{{Remove file. If content-ref counter is 0, remove cached-file}}
+</div>
+<ul>
+<li>Normalize the user-input path to asset_repo dir</li>
+<li>Find all objects that match the path <code>asset.objects.filter(lambda x: x.path == path)</code></li>
+<li>Remove the object from asset, if multiple objects, we remove the last added object</li>
+<li>Remove the object reference from linked content, if ref count of content is 0 - remove the cached file pointed to by the content</li>
+<li>If multiple Objects were found earlier, and we had removed the last object then we link the previous object to the file-path</li>
+</ul>
+</div>
+</div><footer>
+<hr/>
+<div role="contentinfo">
+<!-- Copyright etc -->
+</div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+</div>
+</div>
+</section>
+</div>
+<div aria-label="Versions" class="rst-versions" role="note">
+<span class="rst-current-version" data-toggle="rst-current-version">
+<span>
+<a class="fa fa-github" href="https://github.com/Roche-CSI/ama" style="color: #fcfcfc"> GitHub</a>
+</span>
+</span>
+</div>
+<script src="../../../js/jquery-3.6.0.min.js"></script>
+<script>var base_url = "../../..";</script>
+<script src="../../../js/theme_extra.js"></script>
+<script src="../../../js/theme.js"></script>
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+<script src="../../../search/main.js"></script>
+<script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+<script>mermaid.initialize({});</script></body>
+</html>

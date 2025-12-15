@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="swarup.mahanti@roche.com" name="author"/><link href="https://github.com/Roche-CSI/ama/concepts/asset/" rel="canonical"/>
+<link href="../../img/favicon.ico" rel="shortcut icon"/>
+<title>Conceptual Model - AMA</title>
+<link href="../../css/theme.css" rel="stylesheet"/>
+<link href="../../css/theme_extra.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
+<link href="../../css/extra.css" rel="stylesheet"/>
+<script>
+        // Current page data
+        var mkdocs_page_name = "Conceptual Model";
+        var mkdocs_page_input_path = "concepts/asset.md";
+        var mkdocs_page_url = "/Roche-CSI/ama/concepts/asset/";
+      </script>
+<!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body class="wy-body-for-nav" role="document">
+<div class="wy-grid-for-nav">
+<nav class="wy-nav-side stickynav" data-toggle="wy-nav-shift">
+<div class="wy-side-scroll">
+<div class="wy-side-nav-search">
+<a class="icon icon-home" href="../.."> AMA
+        </a><div role="search">
+<form action="../../search.html" class="wy-form" id="rtd-search-form" method="get">
+<input aria-label="Search docs" name="q" placeholder="Search docs" title="Type search term here" type="text"/>
+</form>
+</div>
+</div>
+<div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../home/">Home</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/">Quick Start</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/hello_world/">Hello World</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../python_api/">Python API</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../case_studies/">Case Studies</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../overview/">Overview</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../">Conceptual Model</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture/">Architecture</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../implementation/">Implementation</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<section class="wy-nav-content-wrap" data-toggle="wy-nav-shift">
+<nav aria-label="Mobile navigation menu" class="wy-nav-top" role="navigation">
+<i class="fa fa-bars" data-toggle="wy-nav-top"></i>
+<a href="../..">AMA</a>
+</nav>
+<div class="wy-nav-content">
+<div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
+<ul class="wy-breadcrumbs">
+<li><a aria-label="Docs" class="icon icon-home" href="../.."></a></li>
+<li class="breadcrumb-item active">Conceptual Model</li>
+<li class="wy-breadcrumbs-aside">
+<a class="icon icon-github" href="https://github.com/Roche-CSI/ama/edit/master/docs/concepts/asset.md"> Edit on GitHub</a>
+</li>
+</ul>
+<hr/>
+</div>
+<div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+<div class="section" itemprop="articleBody">
+<h1 id="conceptual-model">Conceptual Model</h1>
+<h3 id="what-is-an-asset">What is an Asset?</h3>
+<p>We define the Asset as a single or collection of digital resources. Digital resources can be data,
+code or models etc. A good way to reason about this is basically anything that can be stored and retrieved.</p>
+<p><strong>Examples of Asset</strong></p>
+<h3 id="how-do-we-store-an-asset">How do we store an Asset</h3>
+<p>In AMA, assets are serialized to <code>yaml</code> files and stored in the gs bucket. Conceptually, an asset
+holds a list of objects and other metadata. </p>
+<pre class="code">
+top_hash: 7e23XXXXXXXXXXXXXXXe3d2c
+class_name: trained_models
+class_id: 88xxxxfa-bxxc-1xx0-1111-a6xxxxxxxxcf1
+created_by: john.smith
+created_at: 2023-06-15T14:27:33-PDT
+objects:
+- path: sequence_data/trained_models.json
+  created_by: john.smith
+  created_at: 2025-02-15T14:29:52-PDT
+  content:
+    id: gs:md5$+MRxxxxxxxx/hxxxxxxxh==
+    type: application/json
+- path: sequence_data/chr2_variants.txt
+  created_by: john.smith
+  created_at: 2025-02-15T14:31:08-PDT
+  content:
+    id: gs:md5$3KxxxxxxxxxxUnLcQ==
+    type: text/plain
+</pre>
+<p>The underlying content is stored separately in a bucket or other data-stores i.e. database, ftp etc depending on the
+type and source of content.</p>
+<h3 id="why-do-i-need-ama">Why do I need AMA?</h3>
+<div style="text-align: justify">
+AMA presents a shared hub to ensure that assets can be trusted, reused, 
+and shared for greater efficiency and more accurate results over time, across collaborators, and in different machine environments
+</div>
+<ul>
+<li><strong>Trackability</strong>: Know and lineage of every asset</li>
+<li><strong>Availability</strong>: Run your experiments without worrying about how to plugin data. AMA will fetch the relevant dataset and make it available. Both locally and in cloud.</li>
+<li><strong>Shareability</strong>: human friendly name to communicate assets.</li>
+<li><strong>Searchability</strong>: Query and filter all data / metadata</li>
+<li><strong>Pipeline Integration</strong>: seamlessly integrated into pipeline</li>
+</ul>
+</div>
+</div><footer>
+<hr/>
+<div role="contentinfo">
+<!-- Copyright etc -->
+</div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+</div>
+</div>
+</section>
+</div>
+<div aria-label="Versions" class="rst-versions" role="note">
+<span class="rst-current-version" data-toggle="rst-current-version">
+<span>
+<a class="fa fa-github" href="https://github.com/Roche-CSI/ama" style="color: #fcfcfc"> GitHub</a>
+</span>
+</span>
+</div>
+<script src="../../js/jquery-3.6.0.min.js"></script>
+<script>var base_url = "../..";</script>
+<script src="../../js/theme_extra.js"></script>
+<script src="../../js/theme.js"></script>
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+<script src="../../search/main.js"></script>
+<script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+</body>
+</html>

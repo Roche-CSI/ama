@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="swarup.mahanti@roche.com" name="author"/><link href="https://github.com/Roche-CSI/ama/implementation/asset_upload/asset_commit/" rel="canonical"/>
+<link href="../../../img/favicon.ico" rel="shortcut icon"/>
+<title>Asset commit - AMA</title>
+<link href="../../../css/theme.css" rel="stylesheet"/>
+<link href="../../../css/theme_extra.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
+<link href="../../../css/extra.css" rel="stylesheet"/>
+<script>
+        // Current page data
+        var mkdocs_page_name = "Asset commit";
+        var mkdocs_page_input_path = "implementation/asset_upload/asset_commit.md";
+        var mkdocs_page_url = "/Roche-CSI/ama/implementation/asset_upload/asset_commit/";
+      </script>
+<!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body class="wy-body-for-nav" role="document">
+<div class="wy-grid-for-nav">
+<nav class="wy-nav-side stickynav" data-toggle="wy-nav-shift">
+<div class="wy-side-scroll">
+<div class="wy-side-nav-search">
+<a class="icon icon-home" href="../../.."> AMA
+        </a><div role="search">
+<form action="../../../search.html" class="wy-form" id="rtd-search-form" method="get">
+<input aria-label="Search docs" name="q" placeholder="Search docs" title="Type search term here" type="text"/>
+</form>
+</div>
+</div>
+<div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../home/">Home</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/">Quick Start</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/hello_world/">Hello World</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../python_api/">Python API</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../case_studies/">Case Studies</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/">Overview</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../concepts/">Conceptual Model</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture/">Architecture</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../">Implementation</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<section class="wy-nav-content-wrap" data-toggle="wy-nav-shift">
+<nav aria-label="Mobile navigation menu" class="wy-nav-top" role="navigation">
+<i class="fa fa-bars" data-toggle="wy-nav-top"></i>
+<a href="../../..">AMA</a>
+</nav>
+<div class="wy-nav-content">
+<div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
+<ul class="wy-breadcrumbs">
+<li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
+<li class="breadcrumb-item active">Asset commit</li>
+<li class="wy-breadcrumbs-aside">
+<a class="icon icon-github" href="https://github.com/Roche-CSI/ama/edit/master/docs/implementation/asset_upload/asset_commit.md"> Edit on GitHub</a>
+</li>
+</ul>
+<hr/>
+</div>
+<div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+<div class="section" itemprop="articleBody">
+<h4 id="commit-asset">Commit Asset</h4>
+<div class="justified">
+After the files are successfully uploading to staging area, we identify the linked objects to those files. These objects
+can now be committed to the asset. The asset and object are committed together since they are inter-linked. 
+
+The Asset-commit process is a handoff to the asset-server which performs the following steps. The BaseAsset-server receives the request from asset-client. The payload is in the following format
+</div>
+<pre class="code">
+{
+  "class_id": 00000000-0000-0000-0000-000000000001
+  "parent_asset_id": 00000000-0000-0000-0000-000000000011,
+  "alias": "my_asset",
+  "objects": [...],
+  "patch": "...",
+}
+</pre>
+<p><br/></p>
+<h5 id="ensuring-atomicity-of-the-asset-commit-process">Ensuring Atomicity of the Asset-Commit process</h5>
+<p>Its possible, that the previous commit was interrupted and didn't go through. A few possible reasons could be</p>
+<ul>
+<li>
+<p><strong>Network failure with User</strong>: Content staging was successful, but a network error happened at the user-end during the commit process. In such a case
+  the asset-client will try to first complete the previous commit before initiating a new transaction. The server should 
+  expect to receive the same payload next-time since the transaction was not completed.</p>
+</li>
+<li>
+<p><strong>Network failure with Server</strong>: Similar issue as the above but this time, there was an error on the server-side in either gcs access or database access</p>
+</li>
+<li>
+<p><strong>User Interruption</strong>: i.e. ctrl + c</p>
+</li>
+</ul>
+<p>To ensure atomicity, we need to make sure the previous transaction was committed successfully. In order to achieve this we break down the
+asset-commit flow into 2 different stages. </p>
+<p><br/></p>
+<p><strong>Asset Commit flow - Stage 1</strong></p>
+<div class="mermaid">%% graph TD
+%%     AssetClient["A"] --&gt; AskForId["Ask for Id"]
+%%     AmaServer["ama-Server"]
+
+%%     AskForId --&gt;|"1 class_name, parent_id"| CreateRecord
+%%     CreateRecord --&gt;|2| AmaServer
+%%     CreateRecord --&gt;|" 3   asset_id"| AskForId
+%%     AskForId --&gt;|4| SaveAssetId["Save asset_id"]
+%%     SaveAssetId --&gt; Asset["Asset"]
+
+
+
+%%     class AssetClient client
+%%     class AssetServer server
+%%     class AskForId,CreateRecord,SaveAssetId decision
+%%     class Asset asset
+
+flowchart TD
+    AssetClient["Client"] --&gt; AskForId["Ask for Id"]
+    AssetServer["ama-Server"]
+    CreateRecord["Create record if not exists"]
+
+    AskForId --&gt;|"1 class_name, parent_id"| CreateRecord
+    CreateRecord --&gt;|2| AssetServer
+    CreateRecord --&gt;|"3 asset_id"| AskForId
+    AskForId --&gt;|4| SaveAssetId["Save asset_id"]
+    SaveAssetId --&gt; Asset["Asset"]
+
+    %% Styling
+    classDef client fill:#FFC107,stroke:#333,stroke-width:2px,color:black
+    classDef server fill:#FFC107,stroke:#333,stroke-width:2px,color:black
+    classDef decision fill:#FFC107,stroke:#333,stroke-width:1px,color:black,shape:diamond
+    classDef asset fill:white,stroke:#333,stroke-width:1px,color:black
+
+    class AssetClient client
+    class AssetServer server
+    class AskForId,CreateRecord,SaveAssetId decision
+    class Asset asset
+</div>
+<p>In stage-1 the <code>Asset-Client</code> checks if the asset to be committed has an id, if not, it requests for an id to the asset-server. The request payload
+contains the class_name, and the parent_asset_id (if asset inherits from a different asset). The <code>Asset-Server</code> receives the request, creates a record
+in the asset-table (with seq_id and version) and returns the asset_id to the Client. </p>
+<p><br/></p>
+<p><strong>Asset Commit flow - Stage 2</strong></p>
+<p>In stage-2, the asset-client requests for the asset to committed. The commit process involves the following steps.</p>
+<ul>
+<li>Transfer contents from staging area in to remote-repo, do checksum validation.</li>
+<li>Create records in Content table, if not exist already</li>
+<li>Create records in Objects table, if not exist already</li>
+<li>Create records in Asset-Objects join table</li>
+<li>Update asset-record with commit-hash</li>
+<li>Respond to client with commit-hash</li>
+</ul>
+<p>If the commit process is successful, the asset-server updates the asset-record with a commit-hash
+and returns the commit-hash to client. Any time, the asset-client initiates a commit, it first checks if the existing asset has a commit-hash, if it finds a commit-has
+this means the previous commit was successful, so the client then moves to follow the 2 stage process. 
+If the previous commit was unsuccessful, the client will initiate stage-2 again i.e. commit the previous asset along with new updates if any.</p>
+<p><br/></p>
+<p><strong>The Previous transaction got interrupted now user wants to add more files to assets</strong></p>
+<p>To verify, check if the previous record created by the same user with node_type and node_name
+    has a commit_hash. If commit_hash is missing - then we presume the current updates are also part of the
+    same commit, and we try to recommit.</p>
+<p><br/></p>
+</div>
+</div><footer>
+<hr/>
+<div role="contentinfo">
+<!-- Copyright etc -->
+</div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+</div>
+</div>
+</section>
+</div>
+<div aria-label="Versions" class="rst-versions" role="note">
+<span class="rst-current-version" data-toggle="rst-current-version">
+<span>
+<a class="fa fa-github" href="https://github.com/Roche-CSI/ama" style="color: #fcfcfc"> GitHub</a>
+</span>
+</span>
+</div>
+<script src="../../../js/jquery-3.6.0.min.js"></script>
+<script>var base_url = "../../..";</script>
+<script src="../../../js/theme_extra.js"></script>
+<script src="../../../js/theme.js"></script>
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+<script src="../../../search/main.js"></script>
+<script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+<script>mermaid.initialize({});</script></body>
+</html>

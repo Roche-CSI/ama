@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="swarup.mahanti@roche.com" name="author"/><link href="https://github.com/Roche-CSI/ama/implementation/asset_create/asset_add2/" rel="canonical"/>
+<link href="../../../img/favicon.ico" rel="shortcut icon"/>
+<title>Asset add2 - AMA</title>
+<link href="../../../css/theme.css" rel="stylesheet"/>
+<link href="../../../css/theme_extra.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
+<link href="../../../css/extra.css" rel="stylesheet"/>
+<script>
+        // Current page data
+        var mkdocs_page_name = "Asset add2";
+        var mkdocs_page_input_path = "implementation/asset_create/asset_add2.md";
+        var mkdocs_page_url = "/Roche-CSI/ama/implementation/asset_create/asset_add2/";
+      </script>
+<!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body class="wy-body-for-nav" role="document">
+<div class="wy-grid-for-nav">
+<nav class="wy-nav-side stickynav" data-toggle="wy-nav-shift">
+<div class="wy-side-scroll">
+<div class="wy-side-nav-search">
+<a class="icon icon-home" href="../../.."> AMA
+        </a><div role="search">
+<form action="../../../search.html" class="wy-form" id="rtd-search-form" method="get">
+<input aria-label="Search docs" name="q" placeholder="Search docs" title="Type search term here" type="text"/>
+</form>
+</div>
+</div>
+<div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../home/">Home</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/">Quick Start</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/hello_world/">Hello World</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../python_api/">Python API</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../case_studies/">Case Studies</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/">Overview</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../concepts/">Conceptual Model</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture/">Architecture</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../">Implementation</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<section class="wy-nav-content-wrap" data-toggle="wy-nav-shift">
+<nav aria-label="Mobile navigation menu" class="wy-nav-top" role="navigation">
+<i class="fa fa-bars" data-toggle="wy-nav-top"></i>
+<a href="../../..">AMA</a>
+</nav>
+<div class="wy-nav-content">
+<div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
+<ul class="wy-breadcrumbs">
+<li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
+<li class="breadcrumb-item active">Asset add2</li>
+<li class="wy-breadcrumbs-aside">
+<a class="icon icon-github" href="https://github.com/Roche-CSI/ama/edit/master/docs/implementation/asset_create/asset_add2.md"> Edit on GitHub</a>
+</li>
+</ul>
+<hr/>
+</div>
+<div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+<div class="section" itemprop="articleBody">
+<h3 id="adding-files-to-an-asset">Adding files to an asset</h3>
+<pre class="code">
+ama add output/logs/annotation.log
+</pre>
+<p>The following actions are performed to add a file to an asset.</p>
+<div class="mermaid">flowchart TD
+    A[add_command] --&gt; B[init Content]
+    B --&gt; C[init Object]
+    C --&gt; D[add Object to asset]
+
+    subgraph Content
+        direction TB
+        E1["• Handles the actual file content and is responsible for integrity of data
+        • Stores meta information to detect changes to underlying data, renaming or file deletion etc
+        • Hashable based on id i.e. storage:hash"]
+    end
+
+    subgraph Object
+        direction TB
+        F1["• This the primary interface object for the user
+        • Holds a reference to the underlying Content object
+        • Creates links between Content and the added file_path
+        • Hashable based on the file_path"]
+    end
+
+    subgraph Asset
+        direction TB
+        G1["• Holds a list of objects
+        • Holds a reference to parent asset if any"]
+    end
+
+    B -.- Content
+    C -.- Object
+    D -.- Asset
+
+    classDef command fill:#F9D949,stroke:#333,stroke-width:1px
+    classDef info fill:#f5f5f5,stroke:#ddd,stroke-width:1px,stroke-dasharray: 5 5
+
+    class A,B,C,D command
+    class E1,F1,G1 info
+</div>
+<ul>
+<li>Verifies if the file exists at the given path</li>
+<li>Calculates hash of the file and checks if a content with hash is already registered.</li>
+<li>If content exists, use the already stored content else create a new content and add to the contents (set) variable in the asset.</li>
+<li>Cache the added file by creating a hard-link from the file into the path. Given the large size of files to be handled by AMA we opted for hard-links instead of copying files.</li>
+<li>Contents can be of many types depending on where they are stored i.e. file-content, sql-content, url-content, docker-content etc.</li>
+</ul>
+<p><br/></p>
+<p><strong>Ensuring atomicity of asset</strong></p>
+<p>Think of scenario, user A adds few files to an asset, commits the asset but there is an interruption in the commit flow. User A,
+then adds a few more files to the asset and commits the asset again.</p>
+<p>Therefore, for every commit, ama should be able to detect:</p>
+<ul>
+<li>If the asset is inheriting from another asset, whether that asset was committed successfully.</li>
+<li>If the parent asset was committed, we can proceed with the regular flow.</li>
+<li>However, if the previous commit was not successful.<ul>
+<li>We should ask the user, if the changes are part of the previous interrupted transaction</li>
+<li>If user answers - yes, then we can proceed with committing the existing asset</li>
+<li>If the user answers - No, then we need to initialize a new-asset, set parent to null and commit that asset</li>
+</ul>
+</li>
+</ul>
+<p><br/></p>
+<p><strong>Ensuring content integrity</strong></p>
+<p>A core principle of AMA is that the file-name is the md5 hash of its contents.</p>
+<p>Data files can be very large, so in the interest of storage efficiency - when a user adds files to an asset we don't
+make a copy the file. Instead, we create a hardlink to the file inside the cache directory.</p>
+<p>The hardlink is a pointer to the same inode, so whenever the user makes any changes to the files, the cached file
+would be changed as well. So when a user alters the file after adding it to the asset, the file-name no longer reflects
+the hash of its contents. This causes data integrity issues.</p>
+<p>To avoid this, we need to make sure that all file-names are the same as their content hash before they are uploaded. 
+We can recompute the file hashes again and make sure the filenames are same. But this presents the following problem</p>
+<ul>
+<li>computing md5 hashes is an expensive operation, especially for large files.</li>
+<li>The user may have deleted the file after adding, which is not handled by this approach</li>
+<li>The user may have renamed the file after adding</li>
+</ul>
+<p>In short, we need to detect if a file has been altered, renamed or deleted before committing to the cloud. To handle this,
+we take the following approach.</p>
+<p>When user adds a file, we compute the file stat and store the following information.</p>
+<ul>
+<li><code>md5 hash</code></li>
+<li><code>st_mtime</code> : last modified time of file metadata, changes when a file is renamed</li>
+<li><code>st_nlink</code> : number of pointers to the inode of the file.</li>
+<li><code>st_ctime</code> : last modified time of the file content</li>
+<li><code>st_ino</code> : inode number of the file</li>
+<li><code>st_size</code> : file size in bytes </li>
+</ul>
+<p><br/></p>
+<p><strong>Detecting if a file was deleted</strong></p>
+<div style="text-align: justify">
+This is very straight forward. Once the user adds the file - we create a hardlink to the file inside the cache. Therefore,
+the `st-nlink` to the file should be atleast 2. If this is less than 2, then that means the file was deleted after adding.
+If we detect the file is deleted, we request the read the file to the asset or remove the file from the asset before it can be
+uploaded.
+</div>
+<p><br/></p>
+<p><strong>Detecting if the contents were modified</strong></p>
+<div style="text-align: justify">
+If a file has not been deleted, we need to check if it's been modified. 
+
+We check if the st_ctime has changed. If it has changed, then we check if the st_size has changed. If st_size has changed, then
+file has been altered - we don't need to compute the md5 for that. We take this approach, so that we can defer computing md5 hash,
+which is expensive - until we must. If st_ctime has changed but size is same, then we compute the md5 and compare with the stored value.
+</div>
+<p><br/></p>
+<p><strong>Detecting if a file has been renamed</strong></p>
+<div style="text-align: justify">
+This is tricky. Any change in name will change the `st_mtime`, but there are other things that can change the `st_time` as well.
+For example, the user might change the name and revert it back, which will also change the `st_mtime`. So detecting renaming
+involves a few workarounds.
+If a file has neither been deleted or altered. We check if it has been renamed.
+We first check if `st_mtime` has changed. If not - then we can be sure, it's not been renamed. If the `st_mtime` has changed,
+we find the object(s) that refer to the same file and compute the inode numbers of the path they point to. If the inode numbers are same,
+then the link is valid and there is no renaming. If the inode numbers are different, then it's a different file with the same name. 
+The linked file has been renamed. So we prompt the user to remove the old file.
+</div>
+<p><br/></p>
+</div>
+</div><footer>
+<hr/>
+<div role="contentinfo">
+<!-- Copyright etc -->
+</div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+</div>
+</div>
+</section>
+</div>
+<div aria-label="Versions" class="rst-versions" role="note">
+<span class="rst-current-version" data-toggle="rst-current-version">
+<span>
+<a class="fa fa-github" href="https://github.com/Roche-CSI/ama" style="color: #fcfcfc"> GitHub</a>
+</span>
+</span>
+</div>
+<script src="../../../js/jquery-3.6.0.min.js"></script>
+<script>var base_url = "../../..";</script>
+<script src="../../../js/theme_extra.js"></script>
+<script src="../../../js/theme.js"></script>
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+<script src="../../../search/main.js"></script>
+<script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+<script>mermaid.initialize({});</script></body>
+</html>

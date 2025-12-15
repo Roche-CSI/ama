@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="swarup.mahanti@roche.com" name="author"/><link href="https://github.com/Roche-CSI/ama/user_guide/" rel="canonical"/>
+<link href="../img/favicon.ico" rel="shortcut icon"/>
+<title>Quick Start - AMA</title>
+<link href="../css/theme.css" rel="stylesheet"/>
+<link href="../css/theme_extra.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
+<link href="../css/extra.css" rel="stylesheet"/>
+<script>
+        // Current page data
+        var mkdocs_page_name = "Quick Start";
+        var mkdocs_page_input_path = "user_guide/index.md";
+        var mkdocs_page_url = "/Roche-CSI/ama/user_guide/";
+      </script>
+<!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body class="wy-body-for-nav" role="document">
+<div class="wy-grid-for-nav">
+<nav class="wy-nav-side stickynav" data-toggle="wy-nav-shift">
+<div class="wy-side-scroll">
+<div class="wy-side-nav-search">
+<a class="icon icon-home" href=".."> AMA
+        </a><div role="search">
+<form action="../search.html" class="wy-form" id="rtd-search-form" method="get">
+<input aria-label="Search docs" name="q" placeholder="Search docs" title="Type search term here" type="text"/>
+</form>
+</div>
+</div>
+<div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../home/">Home</a>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal current" href="#">Quick Start</a>
+<ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="#how-to-install-and-use-ama">How to install and Use AMA</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#installing-ama">Installing AMA</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-start-using-after-installation">How to start using after installation</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#sign-up-and-login-to-ama">Sign up and Login to AMA</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#how-to-use-in-en-environment-without-a-browser">How to use in en environment without a Browser</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#configuring-to-bypass-dns-in-pipelines-cicd-kubernetes-for-advanced-users">Configuring to bypass DNS in pipelines, CI/CD, Kubernetes (for advanced users)</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-an-asset">What is an asset</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-an-asset-class">What is an asset-class</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-work-with-asset-class">How to work with asset-class</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-createupdate-an-asset">How to create/update an asset</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#initialize-a-new-asset">Initialize a new asset</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#modify-an-asset">Modify an asset</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#commit-and-upload">Commit and Upload</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-download-use-an-asset">How to download / use an asset</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#run-the-following-commands-from-the-asset-directory">Run the following commands from the asset directory</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#searching-finding-an-asset">Searching / Finding an asset</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-a-project">What is a Project</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-work-with-projects">How to work with projects</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-an-asset-store">What is an Asset Store</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-work-with-the-asset-store">How to work with the asset-store</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#admin-commands-coming-soon">Admin Commands (Coming Soon)</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#deleting-an-asset-asset-collection">Deleting an Asset / Asset Collection</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#deleting-an-asset-asset-collection_1">Deleting an Asset / Asset Collection</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#restoring-a-deleted-asset-asset-collection">Restoring a deleted Asset / Asset Collection</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="hello_world/">Hello World</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../python_api/">Python API</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../case_studies/">Case Studies</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/">Overview</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/">Conceptual Model</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../architecture/">Architecture</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../implementation/">Implementation</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<section class="wy-nav-content-wrap" data-toggle="wy-nav-shift">
+<nav aria-label="Mobile navigation menu" class="wy-nav-top" role="navigation">
+<i class="fa fa-bars" data-toggle="wy-nav-top"></i>
+<a href="..">AMA</a>
+</nav>
+<div class="wy-nav-content">
+<div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
+<ul class="wy-breadcrumbs">
+<li><a aria-label="Docs" class="icon icon-home" href=".."></a></li>
+<li class="breadcrumb-item active">Quick Start</li>
+<li class="wy-breadcrumbs-aside">
+<a class="icon icon-github" href="https://github.com/Roche-CSI/ama/edit/master/docs/user_guide/index.md"> Edit on GitHub</a>
+</li>
+</ul>
+<hr/>
+</div>
+<div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+<div class="section" itemprop="articleBody">
+<h1 id="quick-start">Quick Start</h1>
+<h2 id="how-to-install-and-use-ama">How to install and Use AMA</h2>
+<h3 id="installing-ama">Installing AMA</h3>
+<ul>
+<li>In python 3.10 environment:</li>
+<li><code>pip install amapy</code></li>
+</ul>
+<h3 id="how-to-start-using-after-installation">How to start using after installation</h3>
+<h4 id="sign-up-and-login-to-ama">Sign up and Login to AMA</h4>
+<ul>
+<li><code>ama auth signup</code> : to sign up if you are a first time user</li>
+<li><code>ama auth login</code> : to sign in and start using asset-manager</li>
+<li><code>ama dashboard</code>: to open the web-ui of asset-manager (if you prefer)</li>
+<li><code>ama auth logout</code>: to logout from asset-manager</li>
+</ul>
+<h4 id="how-to-use-in-en-environment-without-a-browser">How to use in en environment without a Browser</h4>
+<p>Get the user token from your local machine and use it in the headless machine to login. You must be logged in to get the
+token.</p>
+<ul>
+<li><code>ama auth info --token</code>: use this command in your local machine to get the user token</li>
+<li><code>ama auth login --token &lt;token&gt;</code>: use this command in the headless machine to login</li>
+</ul>
+<h4 id="configuring-to-bypass-dns-in-pipelines-cicd-kubernetes-for-advanced-users">Configuring to bypass DNS in pipelines, CI/CD, Kubernetes (<code>for advanced users</code>)</h4>
+<p>We frequently face DNS connectivity issues in data/compute pipelines. To get around this problem you can configure
+asset-manager to use the IP address of asset-server directly. This flag can be set:</p>
+<ul>
+<li><code>export ASSET_SERVER_SKIP_DNS=true</code></li>
+</ul>
+<h2 id="what-is-an-asset">What is an asset</h2>
+<ul>
+<li>An asset holds a collection of files together as a single atomic unit. You can use assets to store, retrieve and share
+  files.</li>
+<li>Assets are immutable objects and version controlled. Any changes you make to an asset is automatically updated as a
+  different version.</li>
+<li>Assets name is in the format <code>&lt;class-name&gt;/&lt;ordinal&gt;</code>. The ordinal is a sequence id that is auto-generated every time
+  you initialize a new asset.</li>
+</ul>
+<h2 id="what-is-an-asset-class">What is an asset-class</h2>
+<ul>
+<li>An asset-class is a grouping of similar types of assets. For example, you can use the asset-class <code>ml-models</code> to store
+  all machine learning models. Another
+  example could be <code>training-data</code> asset-class that holds all model training data.</li>
+<li>The asset-class architecture allows us to conveniently add a lot of the features as follows:<ul>
+<li>easy naming convention for assets i.e. <code>&lt;class-name&gt;/&lt;ordinal&gt;</code></li>
+<li>visualization rules for assets, we can create custom visualization rules for different types of assets</li>
+<li>validation rules for assets</li>
+</ul>
+</li>
+</ul>
+<h4 id="how-to-work-with-asset-class">How to work with asset-class</h4>
+<ul>
+<li><code>ama class init &lt;class-name&gt;</code> : opens up the asset-dashboard to create a new asset-class.</li>
+<li><code>ama class fetch</code> : fetches the class-list and all the metadata of the asset-classes of the current project.</li>
+<li><code>ama class list</code> : lists all the asset-classes in the current project.</li>
+<li><code>ama class info -n &lt;class-name&gt;</code> : to view the info of a specific asset-class.</li>
+</ul>
+<h2 id="how-to-createupdate-an-asset">How to create/update an asset</h2>
+<h4 id="initialize-a-new-asset">Initialize a new asset</h4>
+<ul>
+<li><code>ama init &lt;class-name&gt;</code> : creates a new asset in your current directory.</li>
+</ul>
+<p>Make sure you are using a valid and existing <code>asset-class</code> name.</p>
+<h4 id="modify-an-asset">Modify an asset</h4>
+<ul>
+<li><code>ama add &lt;file/dir&gt;</code> : adds files and directories to the asset. Make sure these files are in the asset directory.</li>
+<li><code>ama remove &lt;file/dir&gt;</code> : removes any added files or directories</li>
+<li><code>ama inputs add &lt;asset_version_name&gt; --label&lt;label_description&gt;</code> : adds reference of another asset as an input to
+  the current asset. Currently, inputs can only be added to the base version of the asset.</li>
+<li><code>ama alias add &lt;alias&gt;</code> : sets an alias for the asset. An alias is a user defined primary key for that asset, alias
+  needs to be unique within asset-class.</li>
+</ul>
+<h4 id="commit-and-upload">Commit and Upload</h4>
+<ul>
+<li><code>ama status</code> : to view the status of the files in the asset</li>
+<li><code>ama update &lt;file_name&gt;</code> : to commit the changes to a file</li>
+<li><code>ama upload -m &lt;commit_msg&gt;</code> : uploads the asset into cloud and creates a new version</li>
+<li><code>ama discard</code> : discards staged or unstaged changes to the asset</li>
+</ul>
+<h2 id="how-to-download-use-an-asset">How to download / use an asset</h2>
+<ul>
+<li><code>ama clone &lt;asset-name&gt;</code> : this will download the latest version of the asset from remote inside a directory named
+  <code>&lt;asset-class&gt;\&lt;ordinal&gt;</code></li>
+</ul>
+<h4 id="run-the-following-commands-from-the-asset-directory">Run the following commands from the asset directory</h4>
+<ul>
+<li><code>ama info</code> : to view the info and contents of an asset (this will also tell you if the asset was cloned successfully
+  or not)</li>
+<li><code>ama fetch</code>: use this command to get the updates to an already cloned asset</li>
+<li><code>ama versions</code>: to see the list of all versions</li>
+<li><code>ama switch --version &lt;version_number&gt;</code> : to switch to a different version</li>
+<li><code>ama download</code>: to download any additions to the asset (<code>note</code>: asset fetch just pulls the meta-data of the latest
+  updates, the underlying files must be pulled after you switch to the latest version, this is done in the interest of
+  efficiency)</li>
+<li><code>ama list</code> : to list all peer assets, i.e. assets in the same class</li>
+<li><code>ama list --class collections-name</code> : to list all assets in a class</li>
+<li><code>ama history</code> : displays the history of the asset i.e. all changes across different versions of the asset</li>
+<li><code>ama status</code> : displays asset version and any pending changes that are not committed yet</li>
+<li><code>ama class list</code>: lists all the asset collections of the current project</li>
+</ul>
+<h2 id="searching-finding-an-asset">Searching / Finding an asset</h2>
+<p>assets are hashable, therefore we can compare if two different assets are identical or not</p>
+<ul>
+<li><code>ama info --hash</code>: to view the unique hash for that asset</li>
+<li><code>ama find --class &lt;asset-class&gt; --hash &lt;hash&gt;</code>: returns the asset-name with the given hash</li>
+<li><code>ama find --class &lt;asset-class&gt; --alias &lt;alias&gt;</code>: returns the asset-name with the given alias</li>
+<li><code>ama find --size &lt;asset-name&gt;</code>: returns the size of the asset, will use the latest version if no version is
+  specified</li>
+</ul>
+<h2 id="what-is-a-project">What is a Project</h2>
+<p>Projects are workspaces for teams so that they can manage their assets separately. Projects give you the ability to
+define the following</p>
+<ul>
+<li>storage location of assets, i.e. a blob store location such as google bucket or aws s3 bucket</li>
+<li>team members, i.e. users who can access your assets</li>
+</ul>
+<h4 id="how-to-work-with-projects">How to work with projects</h4>
+<p>We have created the <code>project_placeholder_01</code> project as a default workspace for all users to try out asset-manager. Once your
+team creates their own project you can get access to it by using the following commands:</p>
+<ul>
+<li><code>ama project list</code>: to list all projects that you have access to</li>
+<li><code>ama project activate &lt;project_name&gt;</code>: to activate a project and start working on it</li>
+<li><code>ama project info</code>: to view information about your currently active project</li>
+</ul>
+<h2 id="what-is-an-asset-store">What is an Asset Store</h2>
+<p>The Asset Store is the global cache of all the assets and their metadata in your machine.</p>
+<ul>
+<li>There is only one active asset-store for your machine.</li>
+<li>AMA uses the asset-store to perform optimizations while uploading/downloading assets, shared files between
+  different assets are cloned from the local <code>asset-store</code> instead of fetching from the remote.</li>
+<li>It maintains a mapping of all local assets and their locations in the machine.</li>
+<li>Asset-store also stores the class-list and class-metadata for all the asset-classes for all your projects.</li>
+<li>Any changes you make to your asset are isolated and can be reversed until you commit those changes.</li>
+<li>Shared files (between different assets or different versions) don't occupy extra disk space up until you make any
+  modifications.</li>
+<li>Shout out to docker, to achieve this, we take an approach that is similar to how docker manages images and containers
+  in your machine.</li>
+</ul>
+<h4 id="how-to-work-with-the-asset-store">How to work with the asset-store</h4>
+<ul>
+<li><code>ama store info</code>: to view the information about the active asset-store</li>
+<li><code>ama store set &lt;store-path&gt;</code>: to set the asset store to any specific location</li>
+<li><code>ama store prune</code>: to remove any invalid asset entries from the asset-store</li>
+<li><code>ama store clear</code>: clears all files in the store. Warning: Don't do this unless you must. You can still use your
+  cloned assets but note that you will need to do <code>ama download</code> again to switch a different version of the asset.</li>
+</ul>
+<h2 id="admin-commands-coming-soon">Admin Commands (Coming Soon)</h2>
+<p><strong>Note</strong>: when you delete asset / asset-collection, they are flagged for deletion and will be permanently
+deleted after 30 days. You can undo delete within that time.</p>
+<h4 id="deleting-an-asset-asset-collection">Deleting an Asset / Asset Collection</h4>
+<ul>
+<li><code>ama delete &lt;asset-id&gt;</code> : deletes an asset from your local cache</li>
+<li><code>ama delete --alias &lt;alias&gt;</code> : deletes an asset from your local cache using its alias</li>
+</ul>
+<h4 id="deleting-an-asset-asset-collection_1">Deleting an Asset / Asset Collection</h4>
+<ul>
+<li><code>ama schedule-deletion &lt;asset-name&gt; &lt;days:optional&gt;</code>: deletes an assets after a specified number of days. If
+  the <code>days</code> is not specified, it will default to 30 days. Any value less than 30 days will be treated as 30 days.</li>
+<li><code>ama class delete &lt;class-name&gt;</code>: removes the asset-class from local cache as well as in the remot along with all the
+  assets and its related content from the repo. ( admin option - may be not needed yet )</li>
+</ul>
+<h4 id="restoring-a-deleted-asset-asset-collection">Restoring a deleted Asset / Asset Collection</h4>
+<ul>
+<li><code>ama restore &lt;asset-name&gt;</code> : restores a deleted asset, you will need to do <code>ama fetch &lt;class-name&gt;</code> to pull from
+  remote</li>
+<li><code>ama restore --alias &lt;asset-name&gt;</code> : restores a deleted asset, you will need to do <code>ama fetch &lt;class-name&gt;</code> to
+  pull from remote</li>
+<li><code>ama restore --class &lt;class-name&gt;</code> : restores a deleted asset-class, you will need to do <code>ama fetch --classes</code> to
+  pull all classes again from remote</li>
+</ul>
+</div>
+</div><footer>
+<div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
+<a class="btn btn-neutral float-left" href="../home/" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+<a class="btn btn-neutral float-right" href="hello_world/" title="Hello World">Next <span class="icon icon-circle-arrow-right"></span></a>
+</div>
+<hr/>
+<div role="contentinfo">
+<!-- Copyright etc -->
+</div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+</div>
+</div>
+</section>
+</div>
+<div aria-label="Versions" class="rst-versions" role="note">
+<span class="rst-current-version" data-toggle="rst-current-version">
+<span>
+<a class="fa fa-github" href="https://github.com/Roche-CSI/ama" style="color: #fcfcfc"> GitHub</a>
+</span>
+<span><a href="../home/" style="color: #fcfcfc">« Previous</a></span>
+<span><a href="hello_world/" style="color: #fcfcfc">Next »</a></span>
+</span>
+</div>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script>var base_url = "..";</script>
+<script src="../js/theme_extra.js"></script>
+<script src="../js/theme.js"></script>
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+<script src="../search/main.js"></script>
+<script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+</body>
+</html>

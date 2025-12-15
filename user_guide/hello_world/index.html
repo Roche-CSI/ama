@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="swarup.mahanti@roche.com" name="author"/><link href="https://github.com/Roche-CSI/ama/user_guide/hello_world/" rel="canonical"/>
+<link href="../../img/favicon.ico" rel="shortcut icon"/>
+<title>Hello World - AMA</title>
+<link href="../../css/theme.css" rel="stylesheet"/>
+<link href="../../css/theme_extra.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
+<link href="../../css/extra.css" rel="stylesheet"/>
+<script>
+        // Current page data
+        var mkdocs_page_name = "Hello World";
+        var mkdocs_page_input_path = "user_guide/hello_world.md";
+        var mkdocs_page_url = "/Roche-CSI/ama/user_guide/hello_world/";
+      </script>
+<!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body class="wy-body-for-nav" role="document">
+<div class="wy-grid-for-nav">
+<nav class="wy-nav-side stickynav" data-toggle="wy-nav-shift">
+<div class="wy-side-scroll">
+<div class="wy-side-nav-search">
+<a class="icon icon-home" href="../.."> AMA
+        </a><div role="search">
+<form action="../../search.html" class="wy-form" id="rtd-search-form" method="get">
+<input aria-label="Search docs" name="q" placeholder="Search docs" title="Type search term here" type="text"/>
+</form>
+</div>
+</div>
+<div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../home/">Home</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../">Quick Start</a>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal current" href="#">Hello World</a>
+<ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="#hands-on-with-ama">Hands-on with AMA</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#setting-up-the-environment">Setting up the environment</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#signing-up-logging-in">Signing up / logging in</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#setting-up-the-project">Setting up the project</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#fetching-the-class-list">Fetching the class list</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#initializing-a-new-asset">Initializing a new asset</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-files-to-the-asset">Adding files to the asset</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#uploading-the-asset">Uploading the asset</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#downloading-the-asset">Downloading the asset</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#updating-the-asset">Updating the asset</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../python_api/">Python API</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../case_studies/">Case Studies</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../overview/">Overview</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/">Conceptual Model</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture/">Architecture</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../implementation/">Implementation</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<section class="wy-nav-content-wrap" data-toggle="wy-nav-shift">
+<nav aria-label="Mobile navigation menu" class="wy-nav-top" role="navigation">
+<i class="fa fa-bars" data-toggle="wy-nav-top"></i>
+<a href="../..">AMA</a>
+</nav>
+<div class="wy-nav-content">
+<div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
+<ul class="wy-breadcrumbs">
+<li><a aria-label="Docs" class="icon icon-home" href="../.."></a></li>
+<li class="breadcrumb-item active">Hello World</li>
+<li class="wy-breadcrumbs-aside">
+<a class="icon icon-github" href="https://github.com/Roche-CSI/ama/edit/master/docs/user_guide/hello_world.md"> Edit on GitHub</a>
+</li>
+</ul>
+<hr/>
+</div>
+<div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+<div class="section" itemprop="articleBody">
+<h1 id="hello-ama">Hello AMA</h1>
+<h2 id="hands-on-with-ama">Hands-on with AMA</h2>
+<p>Here we will walk you through the basic commands of AMA. We will be using the command-line interface as it
+is the primary way to interact with AMA. You don't need to know anything about assets, asset-classes, or
+asset-projects to get started. We will try to explain them as we go along. So let's get started!</p>
+<h3 id="setting-up-the-environment">Setting up the environment</h3>
+<ul>
+<li>In python 3.10 environment:</li>
+<li><code>pip install amapy</code></li>
+</ul>
+<h3 id="signing-up-logging-in">Signing up / logging in</h3>
+<ul>
+<li>We will be using the <code>ama auth</code> sub-command for signing / logging purposes.</li>
+<li>If you are a new user, you need to sign up for amapy. Use the following command with your organization's <code>username</code> and
+  <code>email address</code> to sign up:</li>
+<li><code>ama auth signup -u &lt;username&gt; -e &lt;email_address&gt;</code></li>
+<li>If you are an existing user, you can just log in using the following command:</li>
+<li><code>ama auth login</code> : using google authentication</li>
+<li>To log out, you can use the following command:</li>
+<li><code>ama auth logout</code></li>
+<li>after successful login, you will see a <code>Success</code> message and the list of projects you have access to.</li>
+</ul>
+<pre><code class="language-bash">Success
+Signed in as: &lt;username&gt;
+#         Project Name       ID                                    Remote-URL
+--------  -----------------  ------------------------------------  --------------------------------------------------------------------------------
+0 active  ML-Model-Training   xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  gs://ml-training-artifacts/models/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/commit
+1         Customer-Analytics  7xxxxxx9-dxx6-4xx0-9xxe-fxxxxxxxx4c1  gs://analytics-data-lake/customer-insights
+(use: ama project activate &lt;project_name&gt; --&gt; to activate a project)
+</code></pre>
+<h3 id="setting-up-the-project">Setting up the project</h3>
+<ul>
+<li>By default, all new users will have access to the <code>ML-Model-Training</code> project.</li>
+<li>We will be using the <code>ama project</code> sub-command to interact with amapy projects.</li>
+<li><code>ama project list</code> : to view the list of projects you have access to</li>
+</ul>
+<pre><code class="language-bash">(ama-env) ~ % ama project list
+#         Project Name       ID                                    Remote-URL
+--------  -----------------  ------------------------------------  --------------------------------------------------------------------------------
+0         ML-Model-Training   xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  gs://ml-training-artifacts/models/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/commit
+1 active  Customer-Analytics  7xxxxxx9-dxx6-4xx0-9xxe-fxxxxxxxx4c1  gs://analytics-data-lake/customer-insights
+(use: ama project activate &lt;project_name&gt; --&gt; to activate a project)
+</code></pre>
+<ul>
+<li>If you see a different active project, you have to activate the <code>ML-Model-Training</code> project.</li>
+<li><code>ama project activate ML-Model-Training</code> : to activate <code>ML-Model-Training</code></li>
+</ul>
+<pre><code class="language-bash">(ama-env) ~ % ama project activate ML-Model-Training                        
+Success
+active project: ML-Model-Training
+#         Project Name       ID                                    Remote-URL
+--------  -----------------  ------------------------------------  --------------------------------------------------------------------------------
+0 active  ML-Model-Training   xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  gs://ml-training-artifacts/models/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/commit
+1         Customer-Analytics  7xxxxxx9-dxx6-4xx0-9xxe-fxxxxxxxx4c1  gs://analytics-data-lake/customer-insights
+</code></pre>
+<h3 id="fetching-the-class-list">Fetching the class list</h3>
+<ul>
+<li>To get started, we need to know the asset-classes available in the project.</li>
+<li><code>ama class fetch</code> : to fetch the list of asset-classes available in the project</li>
+</ul>
+<pre><code class="language-bash">(ama-env) ~ % ama class fetch
+fetching asset-classes from remote: gs://ml-training-artifacts/models/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/commit/ml-training-classes
+downloading asset-class list: 100%|█████████████████████████████████| 32/32 [00:00&lt;00:00, 47.24it/s] done - downloading 32 files took: 0.71 sec
+verifying checksum: 100%|████████████████████████████████████████| 32/32 [00:00&lt;00:00, 20394.73it/s] done - verifying 32 files took: 0.00 sec
+
+completed
+to view the list of classes: (use: ama class list --&gt; to list all the asset collections)
+</code></pre>
+<ul>
+<li><code>ama class list</code> : to view the list of asset-classes available in the project</li>
+</ul>
+<pre><code class="language-bash">(ama-env) ~ % ama class list
+Listing asset-classes
+#    Name                         ID                                    Created-By    Created-At
+---  --------------------------  ------------------------------------  ------------  -------------------------
+1    resource_model_1            xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  user1          2025/02/15 09:23:47 -0700
+2    resource_segment_1          xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  user2          2025/02/03 14:38:21 -0800
+3    resource_data_1             xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  user2          2025/02/12 11:05:33 -0800
+4    resource_dataset_1          xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  user3          2025/02/07 16:42:19 -0700
+5    resource_embedding_1        xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  user4          2025/02/22 08:17:42 -0700
+6    resource_feature_1          xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  user4          2025/02/10 13:29:56 -0700
+7    resource_forecast_1         xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  user5          2025/02/05 10:11:38 -0700
+8    resource_detection_1        xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  user6          2025/02/18 15:53:27 -0700
+9    resource_store_1            xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  user4          2025/02/02 09:45:12 -0700
+10   resource_metric_1           xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  user5          2025/02/14 11:36:58 -0700
+11   resource_log_1              xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  user4          2025/02/08 14:22:31 -0700
+12   resource_pipeline_1         xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  user2          2025/02/05 16:49:23 -0700
+13   resource_campaign_1         xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  user7          2025/02/19 08:57:14 -0700
+14   resource_catalog_1          xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  user3          2025/02/28 13:41:05 -0700
+15   resource_analysis_1         xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  user3          2025/02/17 15:33:42 -0700
+16   resource_test_1             xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  user5          2025/02/22 10:28:36 -0700
+17   resource_spatial_1          xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  user2          2025/02/11 17:19:52 -0800
+18   resource_event_1            xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  user2          2025/02/20 14:07:18 -0700
+19   resource_reading_1          xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  user8          2025/02/25 11:52:49 -0700
+20   resource_model_2            xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  user2          2025/02/09 16:38:24 -0700
+21   resource_map_1              xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  user4          2025/02/14 09:26:37 -0700
+22   resource_engine_1           xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  user4          2025/02/03 13:45:19 -0700
+23   resource_speech_1           xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  user3          2025/02/27 15:14:53 -0700
+24   resource_video_1            xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  user4          2025/02/16 10:33:28 -0700
+25   resource_translation_1      xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  user5          2025/02/20 12:21:46 -0700
+26   resource_health_1           xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  user4          2025/02/11 17:49:32 -0700
+(use: ama list --class &lt;class-name&gt; --&gt; to list all the assets in a class)
+(use: ama class fetch --&gt; to refresh the asset-classes from remote)
+(use: ama list --help --&gt; for more details)
+</code></pre>
+<h3 id="initializing-a-new-asset">Initializing a new asset</h3>
+<ul>
+<li>Now that we know the asset-classes available in the project, let's create a new asset.</li>
+<li>We will create a new asset of class type <code>trained_models</code>.</li>
+<li>It's recommended to use a new directory for each asset to keep things organized.</li>
+<li>Let's create a new directory called <code>my_new_asset</code> and navigate to it.</li>
+<li><code>ama init trained_models</code> : to initialize a new asset of class type <code>trained_models</code></li>
+</ul>
+<pre><code class="language-bash">(ama-env) ~ % mkdir my_new_asset
+(ama-env) ~ % cd my_new_asset 
+(ama-env) my_new_asset % ama init trained_models
++-------------------------------------------------------------------------------------------------+
+|                                                                                                 |
+|                                          🅰🆂🆂🅴🆃-🅼🅰🅽🅰🅶🅴🆁                                  |
+|                       New asset for class 'trained_models' initialized                        |
+|                          asset location: /Users/user1/my_new_asset                           |
+|                                                                                                 |
++-------------------------------------------------------------------------------------------------+
+</code></pre>
+<h3 id="adding-files-to-the-asset">Adding files to the asset</h3>
+<ul>
+<li>In the previous section, we have initialized a new asset in the <code>my_new_asset</code> directory.</li>
+<li>As the asset directory is currently empty, let's add some files to it.</li>
+<li>You can add any files to the asset by simply copying them to the asset directory.</li>
+<li>Let's create some new files with some content to begin with.</li>
+</ul>
+<pre><code class="language-bash">(ama-env) my_new_asset % echo "Hello World." &gt; hello_world.txt
+(ama-env) my_new_asset % echo "AMA is awesome." &gt; my_file.txt
+</code></pre>
+<ul>
+<li>After adding the files, you can check the status of the asset using the following command:</li>
+<li><code>ama status</code> : to check the status of the asset</li>
+</ul>
+<pre><code class="language-bash">(ama-env) my_new_asset % ama status
+asset: trained_models/temp_1727989833
+version: temp_1727989833
+
+Untracked files:
+    (use: ama add &lt;file&gt;... --&gt; to add files, dirs to asset)
+        new:   my_file.txt
+        new:   hello_world.txt
+
+(use: ama discard --all --&gt; to discard all staged and unstaged changes)
+</code></pre>
+<ul>
+<li>As you can see, both the files <code>my_file.txt</code> and <code>hello_world.txt</code> are untracked. We need to add them to the asset.</li>
+<li>Also notice the asset name and version has <code>temp_</code> prefix. This means it's a local asset and not been uploaded yet.</li>
+<li>Let's add the <code>hello_world.txt</code> file to the asset using the following command:</li>
+<li><code>ama add hello_world.txt</code> : to add the <code>hello_world.txt</code> file to the asset</li>
+</ul>
+<pre><code class="language-bash">(ama-env) my_new_asset % ama add hello_world.txt
+target: ['hello_world.txt']
+collecting source information: ... done
+this will add 1 files to the asset, do you wish to continue? options: (y/n), default: [y]: y
+creating objects: 100%|██████████████████████████████████████████████| 1/1 [00:00&lt;00:00, 918.19it/s] done
+updating object cache: 100%|█████████████████████████████████████████| 1/1 [00:00&lt;00:00, 118.53it/s] done
+added 1 new files to asset
+list of added:
+#    Location           Size    Cloned
+---  ---------------  ------  --------
+0    hello_world.txt    1 KB         ✓
+</code></pre>
+<ul>
+<li>Let's check the status of the asset again to see the changes:</li>
+<li><code>ama status</code> : to check the status of the asset</li>
+</ul>
+<pre><code class="language-bash">(ama-env) my_new_asset % ama status
+asset: trained_models/temp_1727989833
+version: temp_1727989833
+
+Changes to be committed:
+    (use: ama discard --staged &lt;file&gt;... --&gt; to discard changes to a file)
+        added:   hello_world.txt
+
+Untracked files:
+    (use: ama add &lt;file&gt;... --&gt; to add files, dirs to asset)
+        new:   my_file.txt
+
+(use: ama discard --all --&gt; to discard all staged and unstaged changes)
+</code></pre>
+<ul>
+<li>Notice the <code>hello_world.txt</code> file is now moved from <code>Untracked</code> to staged state.</li>
+<li>Let's add all the untracked files to the asset using the following command:</li>
+<li><code>ama add .</code> : to add all the untracked files in the current directory</li>
+</ul>
+<pre><code class="language-bash">(ama-env) my_new_asset % ama add .
+target: ['.']
+collecting source information: ... done
+this will add 2 files to the asset, do you wish to continue? options: (y/n), default: [y]: y
+creating objects: 100%|█████████████████████████████████████████████| 2/2 [00:00&lt;00:00, 1777.62it/s] done
+updating object cache: 100%|█████████████████████████████████████████| 2/2 [00:00&lt;00:00, 353.74it/s] done
+added 1 new files to asset
+list of added:
+#    Location       Size    Cloned
+---  -----------  ------  --------
+0    my_file.txt    1 KB         ✓
+found 1 existing file in the asset, list of existing:
+#    Location           Size    Cloned
+---  ---------------  ------  --------
+0    hello_world.txt    1 KB         ✓
+</code></pre>
+<ul>
+<li>Let's check the status one more time to see the changes:</li>
+<li><code>ama status</code> : to check the status of the asset</li>
+</ul>
+<pre><code class="language-bash">(ama-env) my_new_asset % ama status
+asset: trained_models/temp_1727989833
+version: temp_1727989833
+
+Changes to be committed:
+    (use: ama discard --staged &lt;file&gt;... --&gt; to discard changes to a file)
+        added:   my_file.txt
+        added:   hello_world.txt
+
+(use: ama discard --all --&gt; to discard all staged and unstaged changes)
+</code></pre>
+<ul>
+<li>Now both the files are in the staged state and ready to be committed/uploaded.</li>
+</ul>
+<h3 id="uploading-the-asset">Uploading the asset</h3>
+<ul>
+<li>After adding the files that we want to include in the asset, we need to commit it by uploading the asset.</li>
+<li>Uploading a new asset will give you a new sequence id and version number.</li>
+<li><code>ama upload -m "commit message"</code> : to upload the asset to remote</li>
+</ul>
+<pre><code class="language-bash">my_new_asset % ama upload -m "Initial commit"
+uploading commit: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx - 'Initial commit'
+uploading derived contents
+downloading asset-meta data: 100%|████████████████████████████████████| 3/3 [00:00&lt;00:00,  7.79it/s] done - downloading 3 files took: 0.39 sec
+verifying checksum: 100%|███████████████████████████████████████████| 3/3 [00:00&lt;00:00, 4545.85it/s] done - verifying 3 files took: 0.00 sec
+success
+asset upload complete
+updated version: 0.0.0
+uploading files: 100%|████████████████████████████████████████████████| 2/2 [00:02&lt;00:00,  1.22s/it] 
+</code></pre>
+<ul>
+<li>Let's check the status of the asset after uploading:</li>
+<li><code>ama status</code> : to check the status of the asset</li>
+</ul>
+<pre><code class="language-bash">(ama-env) my_new_asset % ama status
+asset: trained_models/1
+version: 0.0.0
+asset is clean, there are no changes
+</code></pre>
+<ul>
+<li>Notice we have a sequence id <code>1</code> and version number <code>0.0.0</code> for the asset now.</li>
+<li>We can now use the asset-name <code>trained_models/1</code> to refer to this asset in the future.</li>
+<li>The sequence id might be different for you, so make sure to use the correct sequence id from your output.</li>
+</ul>
+<h3 id="downloading-the-asset">Downloading the asset</h3>
+<ul>
+<li>After you have uploaded the asset, you or your team members can easily download it from remote to start working on it.</li>
+<li>To download the asset, you just need to know the asset-name i.e. <code>trained_models/1</code>.</li>
+<li>The sequence id might be different for you, so make sure to use the correct asset-name from previous section.</li>
+<li>Not specifying the version will download the latest version of the asset.</li>
+<li>If you want to download a specific version, you can specify the version number with the asset-name i.e.
+  <code>trained_models/1/0.0.0</code>.</li>
+<li>Use a new directory to download the asset to keep things organized.</li>
+<li><code>ama clone trained_models/1</code> : to download the asset</li>
+</ul>
+<pre><code class="language-bash">(ama-env) ~ % ama clone trained_models/1
+checking if asset exists (trained_models/1): ... done: found asset
+all files available, skipping download
+asset data exists - skipping download
+constructing asset list for class: trained_models: ... done
+nothing to download
+linking objects: 100%|███████████████████████████████████████████████| 2/2 [00:00&lt;00:00, 566.76it/s] done - linking 2 files took: 0.00 sec using linking type: copy
+Success
+asset: trained_models/1 is  cloned and ready to use
+use: (cd trained_models/1 &amp;&amp; asset info) --&gt; to view the asset
+</code></pre>
+<ul>
+<li>This will create a new directory with the asset-name <code>trained_models/1</code> and download the asset files to it.</li>
+<li>You can now navigate to the asset directory and start working on the asset.</li>
+<li>To view the asset information, you can use the following command:</li>
+<li><code>ama info</code> : to view the asset information</li>
+</ul>
+<pre><code class="language-bash">(ama-env) trained_models/1 % ama info
+project:      ML-Model-Training
+asset:        trained_models/1
+version:      1.0.0
+size:         1 MB
+hash:         xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+created_by:   user1
+created_at:   2023/09/17 14:32:47 -0700
+asset id:     xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+asset class:  trained_models
+alias:        sentiment_analyzer_v1
+refs:         ["production", "stable"]
+remote:       gs://ml-training-artifacts/models/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/commit/assets/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/1/
+cloning:      all files were linked - asset fully cloned
+
+#    Location           Size    Cloned
+---  ---------------  ------  --------
+0    hello_world.txt    1 KB         ✓
+1    my_file.txt        1 KB         ✓
+(use: ama status --&gt; to view any changes to the asset)
+</code></pre>
+<ul>
+<li>Notice the asset information and the files that are part of the asset. Those are the same files that we created and
+  uploaded earlier.</li>
+</ul>
+<h3 id="updating-the-asset">Updating the asset</h3>
+<ul>
+<li>We can update or add any new files to the current asset and upload the changes.</li>
+<li>Let's update the content of the <code>my_file.txt</code> file and check the status of the asset.</li>
+</ul>
+<pre><code class="language-bash">(ama-env) trained_models/1 % echo "We love AMA." &gt; my_file.txt
+(ama-env) trained_models/1 % ama status
+asset: trained_models/1
+version: 0.0.0
+
+Changes not staged for commit:
+    (use: ama discard --unstaged &lt;file&gt;... --&gt; to discard changes to a file)
+    (use: ama update &lt;file&gt;... --&gt; to update un-staged changes to a file)
+    (use: ama update --all --&gt; to update all un-staged changes)
+        modified:   my_file.txt
+
+(use: ama discard --all --&gt; to discard all staged and unstaged changes)
+</code></pre>
+<ul>
+<li>Notice that the <code>my_file.txt</code> file is now <code>modified</code> and not staged.</li>
+<li>Let's stage the changes to the file using the following command:</li>
+<li><code>ama update my_file.txt</code> : to stage the changes</li>
+</ul>
+<pre><code class="language-bash">(ama-env) trained_models/1 % ama update my_file.txt
+collecting source information: ... done
+this will add 1 files to the asset, do you wish to continue? options: (y/n), default: [y]: 
+creating objects: 100%|██████████████████████████████████████████████| 1/1 [00:00&lt;00:00, 915.59it/s] done
+updating object cache: 100%|█████████████████████████████████████████| 1/1 [00:00&lt;00:00, 157.95it/s] done
+updated 1 file in the asset, list of updates:
+#    Location       Size    Cloned
+---  -----------  ------  --------
+0    my_file.txt    1 KB         ✓
+</code></pre>
+<ul>
+<li>Let's check the status of the asset again to verify the changes:</li>
+<li><code>ama status</code> : to check the status of the asset</li>
+</ul>
+<pre><code class="language-bash">(ama-env) trained_models/1 % ama status
+asset: trained_models/1
+version: 0.0.0
+
+Changes to be committed:
+    (use: ama discard --staged &lt;file&gt;... --&gt; to discard changes to a file)
+        modified:   my_file.txt
+
+(use: ama discard --all --&gt; to discard all staged and unstaged changes)
+</code></pre>
+<ul>
+<li>Notice the <code>my_file.txt</code> file is now in the staged state and ready to be committed/uploaded.</li>
+<li>Let's upload the changes to the asset using the following command:</li>
+<li><code>ama upload -m "commit massage"</code> : to upload the changes to remote</li>
+</ul>
+<pre><code class="language-bash">(ama-env) trained_models/1 % ama upload -m "Update my_file.txt"
+uploading commit: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx - 'Update my_file.txt'
+uploading derived contents
+downloading asset-meta data: 100%|████████████████████████████████████| 2/2 [00:00&lt;00:00,  8.26it/s] done - downloading 2 files took: 0.24 sec
+verifying checksum: 100%|███████████████████████████████████████████| 2/2 [00:00&lt;00:00, 3199.32it/s] done - verifying 2 files took: 0.00 sec
+success
+asset upload complete
+updated version: 0.0.1
+uploading files: 100%|████████████████████████████████████████████████| 1/1 [00:01&lt;00:00,  1.85s/it]
+</code></pre>
+<ul>
+<li>As we were on version <code>0.0.0</code>, after uploading the changes, the new version is <code>0.0.1</code>.</li>
+<li>Notice that modifying the asset does not change the sequence id, only the version number is incremented.</li>
+<li>You can now use the new version name <code>trained_models/1/0.0.1</code> to refer to this asset in the future.</li>
+<li>The sequence id might be different for you, so make sure to use the correct sequence id from your output.</li>
+</ul>
+</div>
+</div><footer>
+<div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
+<a class="btn btn-neutral float-left" href="../" title="Quick Start"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+<a class="btn btn-neutral float-right" href="../../python_api/" title="Python API">Next <span class="icon icon-circle-arrow-right"></span></a>
+</div>
+<hr/>
+<div role="contentinfo">
+<!-- Copyright etc -->
+</div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+</div>
+</div>
+</section>
+</div>
+<div aria-label="Versions" class="rst-versions" role="note">
+<span class="rst-current-version" data-toggle="rst-current-version">
+<span>
+<a class="fa fa-github" href="https://github.com/Roche-CSI/ama" style="color: #fcfcfc"> GitHub</a>
+</span>
+<span><a href="../" style="color: #fcfcfc">« Previous</a></span>
+<span><a href="../../python_api/" style="color: #fcfcfc">Next »</a></span>
+</span>
+</div>
+<script src="../../js/jquery-3.6.0.min.js"></script>
+<script>var base_url = "../..";</script>
+<script src="../../js/theme_extra.js"></script>
+<script src="../../js/theme.js"></script>
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+<script src="../../search/main.js"></script>
+<script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+</body>
+</html>

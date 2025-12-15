@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="swarup.mahanti@roche.com" name="author"/><link href="https://github.com/Roche-CSI/ama/implementation/data_structures/" rel="canonical"/>
+<link href="../../img/favicon.ico" rel="shortcut icon"/>
+<title>Index - AMA</title>
+<link href="../../css/theme.css" rel="stylesheet"/>
+<link href="../../css/theme_extra.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
+<link href="../../css/extra.css" rel="stylesheet"/>
+<script>
+        // Current page data
+        var mkdocs_page_name = "Index";
+        var mkdocs_page_input_path = "implementation/data_structures/index.md";
+        var mkdocs_page_url = "/Roche-CSI/ama/implementation/data_structures/";
+      </script>
+<!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body class="wy-body-for-nav" role="document">
+<div class="wy-grid-for-nav">
+<nav class="wy-nav-side stickynav" data-toggle="wy-nav-shift">
+<div class="wy-side-scroll">
+<div class="wy-side-nav-search">
+<a class="icon icon-home" href="../.."> AMA
+        </a><div role="search">
+<form action="../../search.html" class="wy-form" id="rtd-search-form" method="get">
+<input aria-label="Search docs" name="q" placeholder="Search docs" title="Type search term here" type="text"/>
+</form>
+</div>
+</div>
+<div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../home/">Home</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/">Quick Start</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/hello_world/">Hello World</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../python_api/">Python API</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../case_studies/">Case Studies</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../overview/">Overview</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/">Conceptual Model</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture/">Architecture</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../">Implementation</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<section class="wy-nav-content-wrap" data-toggle="wy-nav-shift">
+<nav aria-label="Mobile navigation menu" class="wy-nav-top" role="navigation">
+<i class="fa fa-bars" data-toggle="wy-nav-top"></i>
+<a href="../..">AMA</a>
+</nav>
+<div class="wy-nav-content">
+<div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
+<ul class="wy-breadcrumbs">
+<li><a aria-label="Docs" class="icon icon-home" href="../.."></a></li>
+<li class="breadcrumb-item active">Index</li>
+<li class="wy-breadcrumbs-aside">
+<a class="icon icon-github" href="https://github.com/Roche-CSI/ama/edit/master/docs/implementation/data_structures/index.md"> Edit on GitHub</a>
+</li>
+</ul>
+<hr/>
+</div>
+<div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+<div class="section" itemprop="articleBody">
+<h2 id="data-structures">Data Structures</h2>
+<div class="mermaid">graph TD
+    %% Main hierarchy
+    AssetClass["Asset-Class"] --&gt; Asset
+    Asset --&gt; Object1["Object-1"]
+    Asset --&gt; Object2["Object-2"]
+    Asset --&gt; Object3["Object-3"]
+    Asset --&gt; Object4["Object-4"]
+    Asset --&gt; Object5["Object-5"]
+    Asset --&gt; Content1["Content-1"]
+    Asset --&gt; Content2["Content-2"]
+    Asset --&gt; Content3["Content-3"]
+
+    %% Relationships between objects and content
+    Object1 -.-&gt; Content1
+    Object2 -.-&gt; Content1
+    Object3 -.-&gt; Content2
+    Object4 -.-&gt; Content2
+    Object5 -.-&gt; Content3
+
+    %% Info boxes with annotations
+    AssetClass -.- AssetClassInfo["• resource_model&lt;br&gt;• trained_model&lt;br&gt;• nlp_model&lt;br&gt; etc"]
+    Asset -.- AssetInfo["• resource_models_1/v0.01&lt;br&gt;• resource_models_1/v0.02 etc"]
+    Content1 -.- ContentInfo["id:&lt;br&gt;gs:md5_gdsxxxxxxxxHiS1==&lt;br&gt;dvBDiGQ==&lt;br&gt;&lt;br&gt;type: application/json"]
+    Object1 -.- ObjectInfo["path: outputs/summary.json&lt;br&gt;content_id:&lt;br&gt;gs:md5xxxxxxxx5SI86qlgm&lt;br&gt;UcLmQ=="]
+
+    %% Styling
+    classDef mainNode fill:white,stroke:#333,stroke-width:1px,rx:4px,ry:4px,font-family:Arial,font-size:14px;
+    classDef infoBox fill:#f5f5f5,stroke:#ddd,stroke-width:1px,rx:6px,ry:6px,font-family:Arial,font-size:12px,text-align:left;
+    classDef assetClassNode fill:white,stroke:#333,stroke-width:1px,rx:4px,ry:4px,font-weight:bold;
+    classDef assetNode fill:white,stroke:#333,stroke-width:2px,rx:4px,ry:4px,font-weight:bold;
+
+    %% Apply styles
+    class AssetClass assetClassNode;
+    class Asset assetNode;
+    class Object1,Object2,Object3,Object4,Object5,Content1,Content2,Content3 mainNode;
+    class AssetClassInfo,AssetInfo,ContentInfo,ObjectInfo infoBox;
+
+    %% Layout adjustments
+    subgraph ObjectGroup [" "]
+        Object1
+        Object2
+        Object3
+        Object4
+        Object5
+    end
+
+    subgraph ContentGroup [" "]
+        Content1
+        Content2
+        Content3
+    end
+
+    %% Make subgraph backgrounds transparent
+    classDef transparent fill:transparent,stroke:transparent;
+    class ObjectGroup,ContentGroup transparent;
+</div>
+<h4 id="asset-collection">Asset Collection</h4>
+<div class="justified">
+Conceptually, the Asset Collection is a classification of similar types of assets
+depending on the use case. You could define a `text_analysis` asset-class to store relevant assets pertaining to
+natural language processing components. Similarly, you might declare a `model_training` or `sequence_analyzer` asset-class to manage all their relevant
+assets. All assets belonging to an asset-class share the same storage in the cloud bucket, which helps optimize storage requirements
+since files with the same content need not be uploaded again.
+</div>
+<div class="mermaid">classDiagram
+    class asset_class {
+        id uuid 
+         class_name varchar
+         top_hash varchar
+         created_by varchar
+    }
+
+
+    note "example :
+    n4xxxxxxa-xxxa-xxx0-xxxc-axxxxxxxxf1
+    resource_model
+    960exxxxxxxxxxxxxxxxxxxxxxxxc56
+    bob prat"
+</div>
+<h4 id="asset">Asset</h4>
+<div class="justified">
+Everytime you call ```ama init <class_name>```, it creates an Asset i.e. new member of the asset-class. On a high level
+an Asset represents a collection of all digital resources you need for your activity. Assets are automatically version tracked,
+any changes you make to an asset if diffed and stored separately which can be inspected and traced back to source.
+</class_name></div>
+<div class="mermaid">classDiagram
+    class asset_class {
+         id uuid
+    }
+
+    class asset {
+    id uuid 
+    asset_class uuid
+    seq_id varchar
+    version varchar
+    parent_asset uuid
+    owner varchar
+    refs varchar
+    patch text
+    }
+
+    asset_class --|&gt; asset
+
+    note   "Example:
+    n4xxxxxxa-xxxa-xxx0-xxxc-axxxxxxxxf1
+    resource_model
+    2
+    0.2.1
+    resource_model/1/0.11
+    chris prat
+    [resource_model/2/0.1]
+    [diff from parent_asset]"
+</div>
+<h4 id="content">Content</h4>
+<p>A Content is an abstraction for stored data. Contents are immutable.</p>
+<div class="mermaid">classDiagram
+    class asset_class {
+        id uuid
+        counter int
+        name varchar
+        class_type varchar
+        title varchar
+        description text
+        readme text
+    }
+
+    class asset_class_content_rel {
+        id int
+        asset_class uuid
+        content varchar
+    }
+
+    class content {
+        id varchar
+        mime_type varchar
+        hash varchar
+        size bigint
+        meta json
+    }
+
+    asset_class -- asset_class_content_rel 
+    asset_class_content_rel -- content 
+</div>
+<ul>
+<li>Contents are stored in the bucket and their metadata is stored in the Contents Table in the database</li>
+<li>Contents can be of many types depending on where they are stored<ul>
+<li>file-content</li>
+<li>sql-content </li>
+<li>url-content </li>
+<li>docker-content etc.</li>
+</ul>
+</li>
+</ul>
+<h5 id="managed-content-vs-proxy-content">Managed-Content vs Proxy-Content</h5>
+<ul>
+<li>Managed-Content is where the storage of the underlying data is in control of the asset-manager. This is the default content type
+  that gets created when you add any file / data to an asset.</li>
+<li>Proxy-Content is where users actively manage where their data is stored but still want to use asset-manager for storage, retrieval, sharing
+  and version control of data. For example, users may want to store data in google buckets and directly access those (without using asset-manager). 
+  This situation is especially useful where teams want to have minimal friction of using a data-handling tool like asset-manager.
+  In other cases, users may want to add pre-existing cloud data without increase any cost of additional storage. For example, dna_sequence raw data 
+  can often be in size of multiple magnitudes of terabytes, any duplication of which (in creating to managed-content) can add large cost overheads.</li>
+<li>A key limitation of using proxy-content is that asset-manager can not guarantee availability of data since users can modify / delete the data
+  at source. However, asset-manager can still be used to index the proxy-contents for lineage tracing in experiments.</li>
+</ul>
+<h5 id="calculating-id-for-content">Calculating ID for Content</h5>
+<ul>
+<li>The id of a managed-content is a combination of its md5 hash of data and its storage system i.e. <code>gs:proxy_md5_gDsxxxxxxxx5fH==</code>. The rationale behind composite key
+  is to allow the same content to be stored in multiple locations if required. For example: depending on the use case, we may want to have a copy of 
+  output stored in gcs bucket and in a database or bigquery. </li>
+<li>On the other hand, the id of proxy-content has the following form <code>gs:proxy_md5_gDsxxxxxxxx5fH==</code>. The <code>proxy</code> flag shows that it's a proxy content.
+  However, unlike the managed-content, the md5 hash here is a hash of the string <code>src_url:content_hash</code>. </li>
+</ul>
+<h4 id="object">Object</h4>
+<p>Asset holds a collection of objects. An Object is a relation between Content and a file path inside the asset-repo dir of the user.</p>
+<div class="mermaid">classDiagram
+class asset_class {
+        id: uuid
+    }
+    class asset {
+        id: uuid
+        asset_class: uuid
+    }
+
+    class asset_object_relations {
+        id: uuid
+        asset: uuid
+        object: uuid
+    }
+
+    class object {
+        id: uuid
+        path: varchar
+        content: uuid
+        created_by: varchar
+        created_at: timestamp
+    }
+
+    class content {
+        id: uuid
+        asset_class: uuid
+    }
+
+    asset --&gt; asset_class
+    asset --&gt; asset_object_relations
+    asset_object_relations --&gt; object
+    object &lt;-- content
+    content &lt;-- asset_class 
+
+    note "Example:
+    afxxxxxxxf1
+    gs:md55xxxxxxxxxxxxxxxxe1Q==
+    bob smith
+    2021-11-09T11-00-17-PST"
+</div>
+<ul>
+<li>Object to Content is a many-to-one relationship i.e. multiple Objects can point to the same content</li>
+<li>Each record in the Objects Table has a foreign Key to the Contents Table. </li>
+<li>Object to Asset is a many-to-many relationship i.e. an Asset holds multiple Objects and the same object can be shared by multiple Assets.</li>
+<li>The AssetObjects Join table maintains the relationship between Objects and Assets</li>
+<li>Objects are stored in the Objects Table in the database and in the asset-manifest.yaml file in the bucket</li>
+</ul>
+</div>
+</div><footer>
+<hr/>
+<div role="contentinfo">
+<!-- Copyright etc -->
+</div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+</div>
+</div>
+</section>
+</div>
+<div aria-label="Versions" class="rst-versions" role="note">
+<span class="rst-current-version" data-toggle="rst-current-version">
+<span>
+<a class="fa fa-github" href="https://github.com/Roche-CSI/ama" style="color: #fcfcfc"> GitHub</a>
+</span>
+</span>
+</div>
+<script src="../../js/jquery-3.6.0.min.js"></script>
+<script>var base_url = "../..";</script>
+<script src="../../js/theme_extra.js"></script>
+<script src="../../js/theme.js"></script>
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+<script src="../../search/main.js"></script>
+<script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+<script>mermaid.initialize({});</script></body>
+</html>

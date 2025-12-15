@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="swarup.mahanti@roche.com" name="author"/><link href="https://github.com/Roche-CSI/ama/home/about/" rel="canonical"/>
+<link href="../../img/favicon.ico" rel="shortcut icon"/>
+<title>AMA - AMA</title>
+<link href="../../css/theme.css" rel="stylesheet"/>
+<link href="../../css/theme_extra.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
+<link href="../../css/extra.css" rel="stylesheet"/>
+<script>
+        // Current page data
+        var mkdocs_page_name = "AMA";
+        var mkdocs_page_input_path = "home/about.md";
+        var mkdocs_page_url = "/Roche-CSI/ama/home/about/";
+      </script>
+<!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body class="wy-body-for-nav" role="document">
+<div class="wy-grid-for-nav">
+<nav class="wy-nav-side stickynav" data-toggle="wy-nav-shift">
+<div class="wy-side-scroll">
+<div class="wy-side-nav-search">
+<a class="icon icon-home" href="../.."> AMA
+        </a><div role="search">
+<form action="../../search.html" class="wy-form" id="rtd-search-form" method="get">
+<input aria-label="Search docs" name="q" placeholder="Search docs" title="Type search term here" type="text"/>
+</form>
+</div>
+</div>
+<div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../">Home</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/">Quick Start</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/hello_world/">Hello World</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../python_api/">Python API</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../case_studies/">Case Studies</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../overview/">Overview</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/">Conceptual Model</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture/">Architecture</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../implementation/">Implementation</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<section class="wy-nav-content-wrap" data-toggle="wy-nav-shift">
+<nav aria-label="Mobile navigation menu" class="wy-nav-top" role="navigation">
+<i class="fa fa-bars" data-toggle="wy-nav-top"></i>
+<a href="../..">AMA</a>
+</nav>
+<div class="wy-nav-content">
+<div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
+<ul class="wy-breadcrumbs">
+<li><a aria-label="Docs" class="icon icon-home" href="../.."></a></li>
+<li class="breadcrumb-item active">AMA</li>
+<li class="wy-breadcrumbs-aside">
+<a class="icon icon-github" href="https://github.com/Roche-CSI/ama/edit/master/docs/home/about.md"> Edit on GitHub</a>
+</li>
+</ul>
+<hr/>
+</div>
+<div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+<div class="section" itemprop="articleBody">
+<h1 id="ama">AMA</h1>
+<h3 id="motivation">Motivation</h3>
+<div style="text-align: justify">
+A majority of data pipelines consume or create some form of digital assets such as machine learning models, reference genomes, 
+dna sequences etc. Digital Assets are increasingly becoming a central part of computing  activities within organizations. 
+However, the traditional approaches to manage digital assets e.g. JFROG etc. are often inadequate, as they don’t provide 
+tools to properly manage the whole life cycle of digital assets starting from creation, distribution, usage and retirement. Another 
+dimension of a digital assets management system is exploration, visualization, permission control, code integration. 
+In addition, for healthcare companies, it’s also important to track the data, code and algorithms which went into creating the assets 
+for regulatory purposes. We will call this feature as source tracing from now on. Currently, no such tools exist which can provide an integrated 
+management of digital assets. However, some tools do exists which can solve a part of the overall  problems. E.g. JFROG can be used to distribute 
+the digital assets however it severely lacks in terms of discoverability, source tracing, code integration. QuiltData can provide storage, 
+distribution to geographically distributed teams as well as provide visualization and exploration of the data. 
+However it works only on amazon web services and lacks support of Google cloud which is our most dominant computing platform. 
+It does not provide source tracing, permission control and limited code integration either.
+</div>
+<h3 id="description">Description</h3>
+<div style="text-align: justify">
+AMA is a project initiated at Roche to streamline the management of digital assets. 
+The tool is being developed keeping in mind the need of data scientists, machine learning engineers and integrates well into existing and ML workflow 
+pipelines. AMA will provide the following main functionalities:
+</div>
+<p><br/></p>
+<h4 id="command-line-tool">Command Line Tool</h4>
+<div style="text-align: justify">
+AMA provides a command line tool which will be distributed as part of our deployment manager tool. 
+This command line tool will help create digital assets and upload them to the asset management server, catalog them for distribution. 
+The tool will also let users download assets and integrates with our environment manager to create a working development environment along with all the necessary digital 
+assets with a single command.
+</div>
+<p><br/></p>
+<h4 id="code-level-integration">Code Level Integration</h4>
+<div style="text-align: justify">
+AMA also provides a library to create/download assets from python code. Other languages can also be supported later. The library provides a 
+declarative abstraction of assets in the ML pipeline, so that assets can be just declared within pipeline components 
+without adding any code to download/upload, whether running locally or in a cloud environment.
+</div>
+<p><br/></p>
+<h4 id="source-tracing">Source Tracing</h4>
+<div style="text-align: justify">
+Since we will have the asset management wired into all the data science pipelines eventually, the AMA captures the input and output assets in a 
+pipeline along with all the configuration parameters as a graph. This allows us to implement source tracing for assets created in the pipeline. 
+For example, when we create a neural network based model in a training pipeline, the trained model would be saved in AMA 
+stored along with the details of training data, configuration parameters, code version etc. which can be used to verify or retrain the model if needed. 
+</div>
+<p><br/></p>
+<h4 id="searchexploration">Search/Exploration</h4>
+<div style="text-align: justify">
+AMA would provide a web based search and exploration interface for all the assets managed within the system. The search functionality would be implemented 
+using cloud based search backend such as elastic search. This provides scalable and content based search. The exploration functionality would be 
+customized based on the use cases and will evolve with the actual usage.
+</div>
+<p><br/></p>
+<h4 id="visualization">Visualization</h4>
+<div style="text-align: justify">
+AMA web interface would also include a mechanism to visualize the assets using custom plugins. E.g. if the asset is JSON it would provide  a JSON viewer by default. 
+However you could also render it as a graph revealing more visual representation of the assets. This feature would evolve with usage.
+</div>
+<p><br/></p>
+<h4 id="lifecycle-management">Lifecycle Management</h4>
+<div style="text-align: justify">
+The data science artifacts go through creation, staging, production, retirement and archival. In a regulatory environment, it may also go through 
+validation and certification stages. This necessitates a more flexible lifecycle management than current tools can provide. 
+AMA provides lifecycle stages and policies customizable for every asset category (or asset type). 
+The assets belonging to same category will be treated using the same set of policies specified for that product. 
+Please see AMA documentation for more details on the proposed lifecycle management features.
+</div>
+<p><br/></p>
+<h4 id="permission-control">Permission  Control</h4>
+<div style="text-align: justify">
+AMA will implement user and group level permission control on the access, creation, change and lifecycle management aspect of the artifact. 
+This feature will evolve based on the actual need of the data science workflows.
+</div>
+<p><br/></p>
+</div>
+</div><footer>
+<hr/>
+<div role="contentinfo">
+<!-- Copyright etc -->
+</div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+</div>
+</div>
+</section>
+</div>
+<div aria-label="Versions" class="rst-versions" role="note">
+<span class="rst-current-version" data-toggle="rst-current-version">
+<span>
+<a class="fa fa-github" href="https://github.com/Roche-CSI/ama" style="color: #fcfcfc"> GitHub</a>
+</span>
+</span>
+</div>
+<script src="../../js/jquery-3.6.0.min.js"></script>
+<script>var base_url = "../..";</script>
+<script src="../../js/theme_extra.js"></script>
+<script src="../../js/theme.js"></script>
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+<script src="../../search/main.js"></script>
+<script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="swarup.mahanti@roche.com" name="author"/><link href="https://github.com/Roche-CSI/ama/implementation/" rel="canonical"/>
+<link href="../img/favicon.ico" rel="shortcut icon"/>
+<title>Implementation - AMA</title>
+<link href="../css/theme.css" rel="stylesheet"/>
+<link href="../css/theme_extra.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
+<link href="../css/extra.css" rel="stylesheet"/>
+<script>
+        // Current page data
+        var mkdocs_page_name = "Implementation";
+        var mkdocs_page_input_path = "implementation/index.md";
+        var mkdocs_page_url = "/Roche-CSI/ama/implementation/";
+      </script>
+<!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body class="wy-body-for-nav" role="document">
+<div class="wy-grid-for-nav">
+<nav class="wy-nav-side stickynav" data-toggle="wy-nav-shift">
+<div class="wy-side-scroll">
+<div class="wy-side-nav-search">
+<a class="icon icon-home" href=".."> AMA
+        </a><div role="search">
+<form action="../search.html" class="wy-form" id="rtd-search-form" method="get">
+<input aria-label="Search docs" name="q" placeholder="Search docs" title="Type search term here" type="text"/>
+</form>
+</div>
+</div>
+<div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../home/">Home</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/">Quick Start</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/hello_world/">Hello World</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../python_api/">Python API</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../case_studies/">Case Studies</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/">Overview</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/">Conceptual Model</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../architecture/">Architecture</a>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal current" href="#">Implementation</a>
+<ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="#schema">Schema</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#data-structures">Data Structures</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#asset-collection">Asset Collection</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#asset">Asset</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#content">Content</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#managed-content-vs-proxy-content">Managed-Content vs Proxy-Content</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#calculating-id-for-content">Calculating ID for Content</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#object">Object</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-asset">Creating Asset</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#initializing-an-asset">Initializing an Asset</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-files-to-an-asset">Adding files to an asset</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#uploading-the-asset">Uploading the Asset</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#removing-files-from-an-asset">Removing files from an asset</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#listing-files-in-asset">Listing Files in Asset</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#uploading-asset">Uploading Asset</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#create-asset-collection">Create Asset Collection</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#find-files-to-be-uploaded">Find Files to be Uploaded</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#exclude-content-already-available-in-cloud">Exclude content already available in cloud</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#user-access">User access</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#upload-files-to-staging">Upload Files to Staging</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#commit-asset">Commit Asset</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#ensuring-atomicity-of-the-asset-commit-process">Ensuring Atomicity of the Asset-Commit process</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#downloading-asset">Downloading Asset</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#state-management">State Management</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#adding-references-to-an-asset">Adding references to an asset</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#storing-an-asset">Storing an Asset</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#asset-storage-structure-in-bucket">Asset Storage Structure in Bucket</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<section class="wy-nav-content-wrap" data-toggle="wy-nav-shift">
+<nav aria-label="Mobile navigation menu" class="wy-nav-top" role="navigation">
+<i class="fa fa-bars" data-toggle="wy-nav-top"></i>
+<a href="..">AMA</a>
+</nav>
+<div class="wy-nav-content">
+<div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
+<ul class="wy-breadcrumbs">
+<li><a aria-label="Docs" class="icon icon-home" href=".."></a></li>
+<li class="breadcrumb-item active">Implementation</li>
+<li class="wy-breadcrumbs-aside">
+<a class="icon icon-github" href="https://github.com/Roche-CSI/ama/edit/master/docs/implementation/index.md"> Edit on GitHub</a>
+</li>
+</ul>
+<hr/>
+</div>
+<div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+<div class="section" itemprop="articleBody">
+<h1 id="implementation">Implementation</h1>
+<h2 id="schema">Schema</h2>
+<iframe height="375" src="https://dbdiagram.io/embed/6290fbd3f040f104c1ae51b6" width="690"> </iframe>
+<p><br/></p>
+<h2 id="data-structures">Data Structures</h2>
+<div class="mermaid">graph TD
+    %% Main hierarchy
+    AssetClass["Asset-Class"] --&gt; Asset
+    Asset --&gt; Object1["Object-1"]
+    Asset --&gt; Object2["Object-2"]
+    Asset --&gt; Object3["Object-3"]
+    Asset --&gt; Object4["Object-4"]
+    Asset --&gt; Object5["Object-5"]
+    Asset --&gt; Content1["Content-1"]
+    Asset --&gt; Content2["Content-2"]
+    Asset --&gt; Content3["Content-3"]
+
+    %% Relationships between objects and content
+    Object1 -.-&gt; Content1
+    Object2 -.-&gt; Content1
+    Object3 -.-&gt; Content2
+    Object4 -.-&gt; Content2
+    Object5 -.-&gt; Content3
+
+    %% Info boxes with annotations
+    AssetClass -.- AssetClassInfo["• resource_model&lt;br&gt;• trained_model&lt;br&gt;• nlp_model&lt;br&gt; etc"]
+    Asset -.- AssetInfo["• resource_models_1/v0.01&lt;br&gt;• resource_models_1/v0.02 etc"]
+    Content1 -.- ContentInfo["id:&lt;br&gt;gs:md5_gdsxxxxxxxxHiS1==&lt;br&gt;dvBDiGQ==&lt;br&gt;&lt;br&gt;type: application/json"]
+    Object1 -.- ObjectInfo["path: outputs/summary.json&lt;br&gt;content_id:&lt;br&gt;gs:md5xxxxxxxx5SI86qlgm&lt;br&gt;UcLmQ=="]
+
+    %% Styling
+    classDef mainNode fill:white,stroke:#333,stroke-width:1px,rx:4px,ry:4px,font-family:Arial,font-size:14px;
+    classDef infoBox fill:#f5f5f5,stroke:#ddd,stroke-width:1px,rx:6px,ry:6px,font-family:Arial,font-size:12px,text-align:left;
+    classDef assetClassNode fill:white,stroke:#333,stroke-width:1px,rx:4px,ry:4px,font-weight:bold;
+    classDef assetNode fill:white,stroke:#333,stroke-width:2px,rx:4px,ry:4px,font-weight:bold;
+
+    %% Apply styles
+    class AssetClass assetClassNode;
+    class Asset assetNode;
+    class Object1,Object2,Object3,Object4,Object5,Content1,Content2,Content3 mainNode;
+    class AssetClassInfo,AssetInfo,ContentInfo,ObjectInfo infoBox;
+
+    %% Layout adjustments
+    subgraph ObjectGroup [" "]
+        Object1
+        Object2
+        Object3
+        Object4
+        Object5
+    end
+
+    subgraph ContentGroup [" "]
+        Content1
+        Content2
+        Content3
+    end
+
+    %% Make subgraph backgrounds transparent
+    classDef transparent fill:transparent,stroke:transparent;
+    class ObjectGroup,ContentGroup transparent;
+</div>
+<h4 id="asset-collection">Asset Collection</h4>
+<div class="justified">
+Conceptually, the Asset Collection is a classification of similar types of assets
+depending on the use case. You could define a `text_analysis` asset-class to store relevant assets pertaining to
+natural language processing components. Similarly, you might declare a `model_training` or `sequence_analyzer` asset-class to manage all their relevant
+assets. All assets belonging to an asset-class share the same storage in the cloud bucket, which helps optimize storage requirements
+since files with the same content need not be uploaded again.
+</div>
+<div class="mermaid">classDiagram
+    class asset_class {
+        id uuid 
+         class_name varchar
+         top_hash varchar
+         created_by varchar
+    }
+
+
+    note "example :
+    n4xxxxxxa-xxxa-xxx0-xxxc-axxxxxxxxf1
+    resource_model
+    960exxxxxxxxxxxxxxxxxxxxxxxxc56
+    bob prat"
+</div>
+<h4 id="asset">Asset</h4>
+<div class="justified">
+Everytime you call ```ama init <class_name>```, it creates an Asset i.e. new member of the asset-class. On a high level
+an Asset represents a collection of all digital resources you need for your activity. Assets are automatically version tracked,
+any changes you make to an asset if diffed and stored separately which can be inspected and traced back to source.
+</class_name></div>
+<div class="mermaid">classDiagram
+    class asset_class {
+         id uuid
+    }
+
+    class asset {
+    id uuid 
+    asset_class uuid
+    seq_id varchar
+    version varchar
+    parent_asset uuid
+    owner varchar
+    refs varchar
+    patch text
+    }
+
+    asset_class --|&gt; asset
+
+    note   "Example:
+    n4xxxxxxa-xxxa-xxx0-xxxc-axxxxxxxxf1
+    resource_model
+    2
+    0.2.1
+    resource_model/1/0.11
+    chris prat
+    [resource_model/2/0.1]
+    [diff from parent_asset]"
+</div>
+<h4 id="content">Content</h4>
+<p>A Content is an abstraction for stored data. Contents are immutable.</p>
+<div class="mermaid">classDiagram
+    class asset_class {
+        id uuid
+        counter int
+        name varchar
+        class_type varchar
+        title varchar
+        description text
+        readme text
+    }
+
+    class asset_class_content_rel {
+        id int
+        asset_class uuid
+        content varchar
+    }
+
+    class content {
+        id varchar
+        mime_type varchar
+        hash varchar
+        size bigint
+        meta json
+    }
+
+    asset_class -- asset_class_content_rel 
+    asset_class_content_rel -- content 
+</div>
+<ul>
+<li>Contents are stored in the bucket and their metadata is stored in the Contents Table in the database</li>
+<li>Contents can be of many types depending on where they are stored<ul>
+<li>file-content</li>
+<li>sql-content </li>
+<li>url-content </li>
+<li>docker-content etc.</li>
+</ul>
+</li>
+</ul>
+<h5 id="managed-content-vs-proxy-content">Managed-Content vs Proxy-Content</h5>
+<ul>
+<li>Managed-Content is where the storage of the underlying data is in control of the asset-manager. This is the default content type
+  that gets created when you add any file / data to an asset.</li>
+<li>Proxy-Content is where users actively manage where their data is stored but still want to use asset-manager for storage, retrieval, sharing
+  and version control of data. For example, users may want to store data in google buckets and directly access those (without using asset-manager). 
+  This situation is especially useful where teams want to have minimal friction of using a data-handling tool like asset-manager.
+  In other cases, users may want to add pre-existing cloud data without increase any cost of additional storage. For example, dna_sequence raw data 
+  can often be in size of multiple magnitudes of terabytes, any duplication of which (in creating to managed-content) can add large cost overheads.</li>
+<li>A key limitation of using proxy-content is that asset-manager can not guarantee availability of data since users can modify / delete the data
+  at source. However, asset-manager can still be used to index the proxy-contents for lineage tracing in experiments.</li>
+</ul>
+<h5 id="calculating-id-for-content">Calculating ID for Content</h5>
+<ul>
+<li>The id of a managed-content is a combination of its md5 hash of data and its storage system i.e. <code>gs:proxy_md5_gDsxxxxxxxx5fH==</code>. The rationale behind composite key
+  is to allow the same content to be stored in multiple locations if required. For example: depending on the use case, we may want to have a copy of 
+  output stored in gcs bucket and in a database or bigquery. </li>
+<li>On the other hand, the id of proxy-content has the following form <code>gs:proxy_md5_gDsxxxxxxxx5fH==</code>. The <code>proxy</code> flag shows that it's a proxy content.
+  However, unlike the managed-content, the md5 hash here is a hash of the string <code>src_url:content_hash</code>. </li>
+</ul>
+<h4 id="object">Object</h4>
+<p>Asset holds a collection of objects. An Object is a relation between Content and a file path inside the asset-repo dir of the user.</p>
+<div class="mermaid">classDiagram
+class asset_class {
+        id: uuid
+    }
+    class asset {
+        id: uuid
+        asset_class: uuid
+    }
+
+    class asset_object_relations {
+        id: uuid
+        asset: uuid
+        object: uuid
+    }
+
+    class object {
+        id: uuid
+        path: varchar
+        content: uuid
+        created_by: varchar
+        created_at: timestamp
+    }
+
+    class content {
+        id: uuid
+        asset_class: uuid
+    }
+
+    asset --&gt; asset_class
+    asset --&gt; asset_object_relations
+    asset_object_relations --&gt; object
+    object &lt;-- content
+    content &lt;-- asset_class 
+
+    note "Example:
+    afxxxxxxxf1
+    gs:md55xxxxxxxxxxxxxxxxe1Q==
+    bob smith
+    2021-11-09T11-00-17-PST"
+</div>
+<ul>
+<li>Object to Content is a many-to-one relationship i.e. multiple Objects can point to the same content</li>
+<li>Each record in the Objects Table has a foreign Key to the Contents Table. </li>
+<li>Object to Asset is a many-to-many relationship i.e. an Asset holds multiple Objects and the same object can be shared by multiple Assets.</li>
+<li>The AssetObjects Join table maintains the relationship between Objects and Assets</li>
+<li>Objects are stored in the Objects Table in the database and in the asset-manifest.yaml file in the bucket</li>
+</ul>
+<h2 id="creating-asset">Creating Asset</h2>
+<h3 id="initializing-an-asset">Initializing an Asset</h3>
+<pre class="code">
+cd your_dir
+ama init class_name
+</pre>
+<p>The following steps are performed.</p>
+<div class="mermaid">flowchart TD
+    A[Init command] --&gt; B[Init Repo class]
+    B --&gt; C[Init Asset Collection]
+
+    subgraph RepoInfo
+        direction TB
+        D1["Ensures that operations are performed inside an asset-repo"]
+    end
+
+    subgraph AssetInfo
+        direction TB
+        E1["Handles all operations related to an Asset"]
+    end
+
+    B -.- RepoInfo
+    C -.- AssetInfo
+
+    classDef command fill:#F9D949,stroke:#333,stroke-width:1px
+    classDef info fill:#f5f5f5,stroke:#ddd,stroke-width:1px,stroke-dasharray: 5 5
+
+    class A,B,C command
+    class D1,E1 info
+</div>
+<p><strong>Create Repo instance</strong></p>
+<ul>
+<li>The Repo class checks if we are currently at the root or inside an already existing asset-repo</li>
+<li>If no asset-repos are found, the Repo class initializes a repo by creating a .assets directory at <your_dir></your_dir></li>
+</ul>
+<p><strong>Create Asset instance</strong></p>
+<ul>
+<li>We create a new asset-manifest.yaml file at the root of the asset-repo, this file is a serialized representation of the Asset instance</li>
+<li>We create cache directory inside the .assets dir (if not already exists). This is used to cache all files added to an asset</li>
+</ul>
+<div style="text-align: justify">
+If there is an existing asset-manifest.yaml file which has uncommitted changes, and the user calls `ama init`, we should ask the user to commit
+the changes first or lose them. If the user decides to commit the changes - we upload the asset.
+
+If the user decides to lose the changes, we revert the asset to parent.
+</div>
+<p><strong>How do we find if there are uncommitted changes.</strong></p>
+<ul>
+<li>When users add a new file to an asset, if the asset_id is not null, we move asset_id to parent_asset_id and make asset_id as null.</li>
+<li>we retain the seq_id, since this asset will be a new version of the parent</li>
+<li>When the user removes a file, we check if the parent_id is not null, we compare the asset's hash to parent's hash, if they are same,
+  we make parent_id as asset_id and parent.parent_id as the asset.parent_id</li>
+<li>How do we compare two assets, we compare the assets by their hash which is a hash of all objects in the asset</li>
+<li>What's a commit-hash, a commit-hash is the hash of the asset which has been successfully committed to the database</li>
+</ul>
+<p>If the user calls <code>ama init</code></p>
+<ul>
+<li>make asset_id as null - server will assign asset_id</li>
+<li>make parent as null - server will assign parent id</li>
+<li>make seq_id as null - the server will assign seq_id</li>
+</ul>
+<h3 id="adding-files-to-an-asset">Adding files to an asset</h3>
+<pre class="code">
+ama add output/logs/annotation.log
+</pre>
+<p>The following actions are performed to add a file to an asset.</p>
+<div class="mermaid">flowchart TD
+    A[add_command] --&gt; B[init Content]
+    B --&gt; C[init Object]
+    C --&gt; D[add Object to asset]
+
+    subgraph Content
+        direction TB
+        E1["• Handles the actual file content and is responsible for integrity of data
+        • Stores meta information to detect changes to underlying data, renaming or file deletion etc
+        • Hashable based on id i.e. storage:hash"]
+    end
+
+    subgraph Object
+        direction TB
+        F1["• This the primary interface object for the user
+        • Holds a reference to the underlying Content object
+        • Creates links between Content and the added file_path
+        • Hashable based on the file_path"]
+    end
+
+    subgraph Asset
+        direction TB
+        G1["• Holds a list of objects
+        • Holds a reference to parent asset if any"]
+    end
+
+    B -.- Content
+    C -.- Object
+    D -.- Asset
+
+    classDef command fill:#F9D949,stroke:#333,stroke-width:1px
+    classDef info fill:#f5f5f5,stroke:#ddd,stroke-width:1px,stroke-dasharray: 5 5
+
+    class A,B,C,D command
+    class E1,F1,G1 info
+</div>
+<ul>
+<li>Verifies if the file exists at the given path</li>
+<li>Calculates hash of the file and checks if a content with hash is already registered.</li>
+<li>If content exists, use the already stored content else create a new content and add to the contents (set) variable in the asset.</li>
+<li>Cache the added file by creating a hard-link from the file into the path. Given the large size of files to be handled by AMA we opted for hard-links instead of copying files.</li>
+<li>Contents can be of many types depending on where they are stored i.e. file-content, sql-content, url-content, docker-content etc.</li>
+</ul>
+<p><br/></p>
+<p><strong>Ensuring atomicity of asset</strong></p>
+<p>Think of scenario, user A adds few files to an asset, commits the asset but there is an interruption in the commit flow. User A,
+then adds a few more files to the asset and commits the asset again.</p>
+<p>Therefore, for every commit, ama should be able to detect:</p>
+<ul>
+<li>If the asset is inheriting from another asset, whether that asset was committed successfully.</li>
+<li>If the parent asset was committed, we can proceed with the regular flow.</li>
+<li>However, if the previous commit was not successful.<ul>
+<li>We should ask the user, if the changes are part of the previous interrupted transaction</li>
+<li>If user answers - yes, then we can proceed with committing the existing asset</li>
+<li>If the user answers - No, then we need to initialize a new-asset, set parent to null and commit that asset</li>
+</ul>
+</li>
+</ul>
+<p><br/></p>
+<p><strong>Ensuring content integrity</strong></p>
+<p>A core principle of AMA is that the file-name is the md5 hash of its contents.</p>
+<p>Data files can be very large, so in the interest of storage efficiency - when a user adds files to an asset we don't
+make a copy the file. Instead, we create a hardlink to the file inside the cache directory.</p>
+<p>The hardlink is a pointer to the same inode, so whenever the user makes any changes to the files, the cached file
+would be changed as well. So when a user alters the file after adding it to the asset, the file-name no longer reflects
+the hash of its contents. This causes data integrity issues.</p>
+<p>To avoid this, we need to make sure that all file-names are the same as their content hash before they are uploaded. 
+We can recompute the file hashes again and make sure the filenames are same. But this presents the following problem</p>
+<ul>
+<li>computing md5 hashes is an expensive operation, especially for large files.</li>
+<li>The user may have deleted the file after adding, which is not handled by this approach</li>
+<li>The user may have renamed the file after adding</li>
+</ul>
+<p>In short, we need to detect if a file has been altered, renamed or deleted before committing to the cloud. To handle this,
+we take the following approach.</p>
+<p>When user adds a file, we compute the file stat and store the following information.</p>
+<ul>
+<li><code>md5 hash</code></li>
+<li><code>st_mtime</code> : last modified time of file metadata, changes when a file is renamed</li>
+<li><code>st_nlink</code> : number of pointers to the inode of the file.</li>
+<li><code>st_ctime</code> : last modified time of the file content</li>
+<li><code>st_ino</code> : inode number of the file</li>
+<li><code>st_size</code> : file size in bytes </li>
+</ul>
+<p><br/></p>
+<p><strong>Detecting if a file was deleted</strong></p>
+<div style="text-align: justify">
+This is very straight forward. Once the user adds the file - we create a hardlink to the file inside the cache. Therefore,
+the `st-nlink` to the file should be atleast 2. If this is less than 2, then that means the file was deleted after adding.
+If we detect the file is deleted, we request the read the file to the asset or remove the file from the asset before it can be
+uploaded.
+</div>
+<p><br/></p>
+<p><strong>Detecting if the contents were modified</strong></p>
+<div style="text-align: justify">
+If a file has not been deleted, we need to check if it's been modified. 
+
+We check if the st_ctime has changed. If it has changed, then we check if the st_size has changed. If st_size has changed, then
+file has been altered - we don't need to compute the md5 for that. We take this approach, so that we can defer computing md5 hash,
+which is expensive - until we must. If st_ctime has changed but size is same, then we compute the md5 and compare with the stored value.
+</div>
+<p><br/></p>
+<p><strong>Detecting if a file has been renamed</strong></p>
+<div style="text-align: justify">
+This is tricky. Any change in name will change the `st_mtime`, but there are other things that can change the `st_time` as well.
+For example, the user might change the name and revert it back, which will also change the `st_mtime`. So detecting renaming
+involves a few workarounds.
+If a file has neither been deleted or altered. We check if it has been renamed.
+We first check if `st_mtime` has changed. If not - then we can be sure, it's not been renamed. If the `st_mtime` has changed,
+we find the object(s) that refer to the same file and compute the inode numbers of the path they point to. If the inode numbers are same,
+then the link is valid and there is no renaming. If the inode numbers are different, then it's a different file with the same name. 
+The linked file has been renamed. So we prompt the user to remove the old file.
+</div>
+<p><br/></p>
+<h3 id="uploading-the-asset">Uploading the Asset</h3>
+<p><strong>Check if the Asset can be uploaded.</strong></p>
+<p>In order to be eligible for upload, an Asset must have a designated storage location which it inherits from the asset collection it belongs to.</p>
+<ul>
+<li>Check if the asset has a class_id, if not - request asset_registry for id of the asset collection</li>
+<li>The request to asset_registry must include class_name</li>
+<li>asset_registry receives the request, checks if an asset collection exists for the given name. If not, the asset_registry creates an asset_class.</li>
+<li>client receives the class_id and top_hash from the asset_registry and updates the asset-manifest</li>
+<li>Asset is now eligible for upload</li>
+</ul>
+<h3 id="removing-files-from-an-asset">Removing files from an asset</h3>
+<pre class="code">
+cd your_dir
+ama remove file
+</pre>
+<p>The following steps are performed.</p>
+<div class="mermaid">flowchart TD
+    A{{remove command}} --&gt; B[Asset]
+    B --&gt; C{{Find objects matching file_path}}
+
+    %% Object stack connected to Asset and Find objects
+    J[Objects] -.- B
+    J -.-&gt; C
+
+    C --&gt; D[Objects]
+    D --&gt; E{{If multiple, remove last added Object}}
+    E --&gt; F{{Remove Object Reference from Content}}
+    E --&gt; G{{Link the previous Object to path, if any}}
+    G --&gt; F
+
+    %% Single Contents connected to Asset, Remove Object Reference, and Remove file
+    K[Contents] -.- B
+    K -.-&gt; F
+    F --&gt; K
+    K --&gt; I{{Remove file. If content-ref counter is 0, remove cached-file}}
+</div>
+<ul>
+<li>Normalize the user-input path to asset_repo dir</li>
+<li>Find all objects that match the path <code>asset.objects.filter(lambda x: x.path == path)</code></li>
+<li>Remove the object from asset, if multiple objects, we remove the last added object</li>
+<li>Remove the object reference from linked content, if ref count of content is 0 - remove the cached file pointed to by the content</li>
+<li>If multiple Objects were found earlier, and we had removed the last object then we link the previous object to the file-path</li>
+</ul>
+<h3 id="listing-files-in-asset">Listing Files in Asset</h3>
+<pre class="code">
+ama list
+</pre>
+<p>The following steps are performed.</p>
+<div class="mermaid">flowchart LR
+    A[list command] --&gt; B[Asset]
+    B --&gt; C[list objects]
+    C --&gt; D[get linked contents]
+
+    B -.- E[Objects]
+    B -.- F[Contents]
+    F -.-&gt; D
+
+    style A fill:#f9d54b,stroke:#333,polygon
+    style C fill:#f9d54b,stroke:#333,polygon
+    style D fill:#f9d54b,stroke:#333,polygon
+</div>
+<ul>
+<li>get the list of all objects in the asset <code>list(asset.objects)</code></li>
+<li>each object has a ref to its content i.e. <code>object.content</code> for each object, get the <code>content_hash</code>, <code>content_type</code></li>
+<li>list in table format</li>
+</ul>
+<h2 id="uploading-asset">Uploading Asset</h2>
+<div class="mermaid">flowchart LR
+subgraph CLIENT [CLIENT]
+        C1[Verify Asset-class]
+        C2[Contents to Upload]
+        C3[Upload to Staging]
+        C4[Staged content - linked objects]
+        C5[Commit asset]
+    end
+    subgraph SERVER [SERVER]
+        S1[Update seq_id/ver_id]
+        S2[Transfer from staging to remote]
+        S3[Create records in db]
+        S4[Write manifest.yml to bucket]
+        S5[Responds to Client commit-hash]
+    end
+
+
+
+    C1 --&gt; C2
+    C2 --&gt; C3
+    C3 --&gt; C4
+    C4 --&gt; C5
+    C5 --&gt; S1
+    S1 --&gt; S2
+    S2 --&gt; S3
+    S3 --&gt; S4
+    S4 --&gt; S5
+
+        SERVER -. Response from server .-&gt; CLIENT
+
+    %% Styling
+    classDef clientBox fill:#8BC34A,stroke:#333,color:black
+    classDef serverBox fill:#2196F3,stroke:#333,color:black
+    classDef clientNode fill:#FFC107,stroke:#333,color:black,shape:diamond
+    classDef serverNode fill:#FFC107,stroke:#333,color:black,shape:diamond
+
+    class CLIENT clientBox
+    class SERVER serverBox
+    class C1,C2,C3,C4,C5 clientNode
+    class S1,S2,S3,S4,S5 serverNode
+</div>
+<h4 id="create-asset-collection">Create Asset Collection</h4>
+<p>It's the asset collection that owns the storage location. So in order to be eligible for upload, an asset must have a valid
+class_id</p>
+<ul>
+<li>Check if the asset has a class_id, if not - request asset_registry for id of the asset collection</li>
+<li>The request to asset_registry must include class_name</li>
+<li>asset_registry receives the request, checks if an asset collection exists for the given name. If not, the asset_registry creates an asset_class.</li>
+<li>client receives the class_id and top_hash from the asset_registry and updates the asset-manifest</li>
+<li>Asset is now eligible for upload</li>
+</ul>
+<div class="mermaid">flowchart TD
+    AssetClient["Ama"] --&gt; RequestServer
+    RequestServer{"Request Server"} --&gt;|class_name| AssetServer["Ama-Server"]
+    AssetServer --&gt; CreateClass{"Create class record,
+    if not exists"}
+    CreateClass --&gt; DB[("Database")]
+    CreateClass -. class_id, top_hash .-&gt; AssetClient
+    DB -.- AssetServer
+
+    %% Styling
+    classDef client fill:white,stroke:#333,stroke-width:1px,color:black
+    classDef server fill:white,stroke:#333,stroke-width:1px,color:black
+    classDef decision fill:#FFC107,stroke:#333,stroke-width:1px,color:black,shape:diamond
+    classDef database fill:#f5f5f5,stroke:#333,stroke-width:1px,color:black
+
+    class AssetClient client
+    class AssetServer server
+    class RequestServer,CreateClass decision
+    class DB database
+</div>
+<p><br/></p>
+<h4 id="find-files-to-be-uploaded">Find Files to be Uploaded</h4>
+<p>Once we have the class_id and top_hash - the asset-contents can be uploaded to staging area. We now query the asset to get a list of files that
+require to be uploaded. To maintain data integrity, a file must meet the following conditions in order to be a
+candidate for upload.</p>
+<ul>
+<li>added by the user</li>
+<li>have not been deleted, modified or renamed</li>
+</ul>
+<div class="mermaid">flowchart TD
+    Content["Content"] --&gt; File["File"]
+    File --&gt; AddedByUser["Added by user"]
+    AddedByUser --&gt;|No| Ignore["ignore"]
+    AddedByUser --&gt;|Yes| IsDeleted["Is Deleted"]
+    IsDeleted --&gt;|Yes| AskRemove["Ask user to remove.   
+    'ama remove file'"]
+    IsDeleted --&gt;|No| IsModified["Is Modified"]
+    IsModified --&gt;|Yes| AskReAdd["Ask user to re-add.
+    'ama add file'"]
+    IsModified --&gt;|No| AddToUpload["Add to upload list"]
+    AddToUpload --&gt; UploadList["Upload list"]
+
+
+    %% Styling
+    classDef default fill:white,stroke:#333,stroke-width:1px,color:black
+    classDef decision fill:#FFC107,stroke:#333,stroke-width:1px,color:black,shape:diamond
+    classDef highlight fill:#FFC107,stroke:#333,stroke-width:1px,color:black,shape:diamond
+    classDef command fill:white,stroke:none,color:black
+    classDef list fill:white,stroke:#333,stroke-width:1px,color:black
+
+    class Content,File,Ignore,UploadList default
+    class AddedByUser,IsDeleted,IsModified,AddToUpload decision
+    class AskRemove,AskReAdd highlight
+    class Command1,Command2 command
+    class UploadList list
+</div>
+<p>Since the file sizes can be very large, in AMA, we took the approach of not copying files. Therefore,
+in order to accomplish the above requirements when a file is added to asset, we compute and store metadata about the file</p>
+<pre class="code">
+st_mtime: timestamp (last modified time of the file content) 
+st_nlink: int (# of hardlinks to the file)
+st_ctime: timestamp (last modified time of file meta data)
+st_ino: int (inode number i.e. disk storage pointer for the file)
+</pre>
+<p>Before uploading, we recompute the file metadata and compare with the stored values to identify if a file has been
+altered by the user after adding it to asset.</p>
+<h4 id="exclude-content-already-available-in-cloud">Exclude content already available in cloud</h4>
+<p>In AMA, we use the md5 hash of the files for storage and indexing. Its possible, that a user might be adding
+a file which already exists in the cloud and is indexed. In which case, the files need not be uploaded again. Therefore,
+after determining the list of files to be uploaded, we check if any of the files exist in the remote storage.</p>
+<p>If the file is already indexed it would exist in the remote repo, if another user is in the process of uploading the file
+and its yet to be indexed then it would exist in the staging area. Therefore, we check both remote-repo and staging-repos.</p>
+<div class="mermaid">
+graph TD
+    Content[("Content")]
+    CheckRemote["Check if exists"]
+    RemoteRepo[("Remote repo")] --&gt; CheckRemote
+    CheckRemote --&gt;|Yes| RemoveUpload["Remove from upload"]
+    RemoveUpload --&gt;Content
+    CheckRemote --&gt; CheckStaging["Check if exists + verify hash"]
+    StagingRepo[("Staging repo")] --&gt; CheckStaging
+    CheckStaging --&gt;|No| UploadList[("Upload list")]
+    CheckStaging --&gt;|Yes| RemoveUpload
+
+    %% Styling
+    classDef default fill:white,stroke:#333,stroke-width:1px,color:black
+    classDef decision fill:#FFC107,stroke:#333,stroke-width:1px,color:black,shape:diamond
+    classDef highlight fill:#FFC107,stroke:#333,stroke-width:1px,color:black,shape:diamond
+    classDef stacked fill:white,stroke:#333,stroke-width:1px,color:black
+
+    class Content,RemoteRepo,StagingRepo,UploadList stacked
+    class CheckRemote,CheckStaging,RemoveUpload decision
+</div>
+<h4 id="user-access">User access</h4>
+<p>Staging and remote buckets are separate by design to maintain data integrity. For staging buckets, individual user will have
+write acess where as for remote buckets, only the asset-server will have write-access. Individual users will have readonly-access
+to the remote bucket.</p>
+<div class="mermaid">graph TD
+    AssetServer["ama-Server"] --&gt; ReadWrite1["Read-Write"]
+    ReadWrite1 --&gt; RemoteRepo["Remote
+    repo"]
+    ReadWrite1 --&gt; StagingRepo["Staging
+    repo"]
+    RemoteRepo --&gt; ReadOnly["Read-only"]
+    StagingRepo --&gt; ReadWrite2["Read-Write"]
+    ReadOnly --&gt; User
+    ReadWrite2 --&gt; User
+
+    %% Styling
+    classDef server fill:white,stroke:#666,stroke-width:3px,color:black
+    classDef access fill:white,stroke:#333,stroke-width:1px,color:black
+    classDef repo fill:#f5f5f5,stroke:#333,stroke-width:1px,color:black
+    classDef user fill:#66B2A0,stroke:none,color:black
+
+    class AssetServer server
+    class ReadWrite1,ReadOnly,ReadWrite2 access
+    class RemoteRepo,StagingRepo repo
+    class User user
+</div>
+<h4 id="upload-files-to-staging">Upload Files to Staging</h4>
+<div class="mermaid">graph TD
+    Content[("Content")] --&gt; StartUpload["Start Upload"]
+    StartUpload --&gt; StagingRepo[("Staging repo")]
+    StartUpload --&gt; Staging["Staging"]
+    ChecksumValid["checksum-valid"]
+    StagingRepo-- Finish Upload --&gt;ChecksumValid --&gt;|Yes| Staged["Staged"]
+    Content --&gt; Pending["Pending"]
+    Pending --&gt; Staging
+    Staging --&gt; Staged
+    StartUpload --&gt; ChecksumValid
+
+    %% States subgraph
+    subgraph States
+    Pending
+    Staging
+    Staged
+    end
+
+    %% Styling
+    classDef default fill:white,stroke:#333,stroke-width:1px,color:black
+    classDef decision fill:#FFC107,stroke:#333,stroke-width:1px,color:black,shape:diamond
+    classDef stacked fill:white,stroke:#333,stroke-width:1px,color:black
+    classDef state fill:white,stroke:#333,stroke-width:1px,color:black
+
+    class Content stacked
+    class StagingRepo stacked
+    class StartUpload,ChecksumValid decision
+    class Pending,Staging,Staged state
+</div>
+<p>We use asyncio for fast concurrent network calls. The staging area is namespaced to the top-hash of the asset-class. </p>
+<h4 id="commit-asset">Commit Asset</h4>
+<div class="justified">
+After the files are successfully uploading to staging area, we identify the linked objects to those files. These objects
+can now be committed to the asset. The asset and object are committed together since they are inter-linked. 
+
+The Asset-commit process is a handoff to the asset-server which performs the following steps. The BaseAsset-server receives the request from asset-client. The payload is in the following format
+</div>
+<pre class="code">
+{
+  "class_id": 00000000-0000-0000-0000-000000000001
+  "parent_asset_id": 00000000-0000-0000-0000-000000000011,
+  "alias": "my_asset",
+  "objects": [...],
+  "patch": "...",
+}
+</pre>
+<p><br/></p>
+<h5 id="ensuring-atomicity-of-the-asset-commit-process">Ensuring Atomicity of the Asset-Commit process</h5>
+<p>Its possible, that the previous commit was interrupted and didn't go through. A few possible reasons could be</p>
+<ul>
+<li>
+<p><strong>Network failure with User</strong>: Content staging was successful, but a network error happened at the user-end during the commit process. In such a case
+  the asset-client will try to first complete the previous commit before initiating a new transaction. The server should 
+  expect to receive the same payload next-time since the transaction was not completed.</p>
+</li>
+<li>
+<p><strong>Network failure with Server</strong>: Similar issue as the above but this time, there was an error on the server-side in either gcs access or database access</p>
+</li>
+<li>
+<p><strong>User Interruption</strong>: i.e. ctrl + c</p>
+</li>
+</ul>
+<p>To ensure atomicity, we need to make sure the previous transaction was committed successfully. In order to achieve this we break down the
+asset-commit flow into 2 different stages. </p>
+<p><br/></p>
+<p><strong>Asset Commit flow - Stage 1</strong></p>
+<div class="mermaid">%% graph TD
+%%     AssetClient["A"] --&gt; AskForId["Ask for Id"]
+%%     AmaServer["ama-Server"]
+
+%%     AskForId --&gt;|"1 class_name, parent_id"| CreateRecord
+%%     CreateRecord --&gt;|2| AmaServer
+%%     CreateRecord --&gt;|" 3   asset_id"| AskForId
+%%     AskForId --&gt;|4| SaveAssetId["Save asset_id"]
+%%     SaveAssetId --&gt; Asset["Asset"]
+
+
+
+%%     class AssetClient client
+%%     class AssetServer server
+%%     class AskForId,CreateRecord,SaveAssetId decision
+%%     class Asset asset
+
+flowchart TD
+    AssetClient["Client"] --&gt; AskForId["Ask for Id"]
+    AssetServer["ama-Server"]
+    CreateRecord["Create record if not exists"]
+
+    AskForId --&gt;|"1 class_name, parent_id"| CreateRecord
+    CreateRecord --&gt;|2| AssetServer
+    CreateRecord --&gt;|"3 asset_id"| AskForId
+    AskForId --&gt;|4| SaveAssetId["Save asset_id"]
+    SaveAssetId --&gt; Asset["Asset"]
+
+    %% Styling
+    classDef client fill:#FFC107,stroke:#333,stroke-width:2px,color:black
+    classDef server fill:#FFC107,stroke:#333,stroke-width:2px,color:black
+    classDef decision fill:#FFC107,stroke:#333,stroke-width:1px,color:black,shape:diamond
+    classDef asset fill:white,stroke:#333,stroke-width:1px,color:black
+
+    class AssetClient client
+    class AssetServer server
+    class AskForId,CreateRecord,SaveAssetId decision
+    class Asset asset
+</div>
+<p>In stage-1 the <code>Asset-Client</code> checks if the asset to be committed has an id, if not, it requests for an id to the asset-server. The request payload
+contains the class_name, and the parent_asset_id (if asset inherits from a different asset). The <code>Asset-Server</code> receives the request, creates a record
+in the asset-table (with seq_id and version) and returns the asset_id to the Client. </p>
+<p><br/></p>
+<p><strong>Asset Commit flow - Stage 2</strong></p>
+<p>In stage-2, the asset-client requests for the asset to committed. The commit process involves the following steps.</p>
+<ul>
+<li>Transfer contents from staging area in to remote-repo, do checksum validation.</li>
+<li>Create records in Content table, if not exist already</li>
+<li>Create records in Objects table, if not exist already</li>
+<li>Create records in Asset-Objects join table</li>
+<li>Update asset-record with commit-hash</li>
+<li>Respond to client with commit-hash</li>
+</ul>
+<p>If the commit process is successful, the asset-server updates the asset-record with a commit-hash
+and returns the commit-hash to client. Any time, the asset-client initiates a commit, it first checks if the existing asset has a commit-hash, if it finds a commit-has
+this means the previous commit was successful, so the client then moves to follow the 2 stage process. 
+If the previous commit was unsuccessful, the client will initiate stage-2 again i.e. commit the previous asset along with new updates if any.</p>
+<p><br/></p>
+<p><strong>The Previous transaction got interrupted now user wants to add more files to assets</strong></p>
+<p>To verify, check if the previous record created by the same user with node_type and node_name
+    has a commit_hash. If commit_hash is missing - then we presume the current updates are also part of the
+    same commit, and we try to recommit.</p>
+<p><br/></p>
+<h2 id="downloading-asset">Downloading Asset</h2>
+<p><br/></p>
+<h2 id="state-management">State Management</h2>
+<h2 id="adding-references-to-an-asset">Adding references to an asset</h2>
+<p>You can add existing assets as a reference before committing a created asset. A typical flow would be</p>
+<p><code>ama init &lt;class_name</code>: creates asset
+<code>ama add refs --type input --asset &lt;name&gt;</code></p>
+<p>It's important to note that references are allowed only between root nodes.</p>
+<p><br/></p>
+<h2 id="storing-an-asset">Storing an Asset</h2>
+<h3 id="asset-storage-structure-in-bucket">Asset Storage Structure in Bucket</h3>
+<div class="mermaid">flowchart LR
+    Bucket["Bucket/"] --- assets["assets/"]
+    Bucket --- contents["contents/"]
+    assets --- asset_class["asset_class_id/"]
+    asset_class --- asset_id["asset_id/"]
+    asset_id --- yaml1["0.0.0.yaml"]
+    asset_id --- yaml2["0.0.1.yaml"]
+    asset_id --- yaml3["0.0.2.yaml"]
+    asset_id --- objects["objects.yaml"]
+    contents --- dots["..."]
+
+    %% Styling
+    classDef directory fill:white,stroke:#333,stroke-width:1px,color:black,rx:4,ry:4
+    classDef file fill:none,stroke:none,color:black
+
+    class Bucket,assets,asset_class,asset_id,contents,dots directory
+    class yaml1,yaml2,yaml3,objects file
+</div>
+<p><strong>assets</strong> is a directory inside the bucket. This directory holds a list of directories which are the ids of all the
+asset collections.</p>
+<p><strong>asset_class_id</strong> is a directory inside assets. This directory holds of list of directory, each of which are the
+ids of all the assets in that class</p>
+<p><strong>asset_id</strong> is a directory inside asset_class_id. This holds a list files</p>
+<ul>
+<li>objects.yaml: holds the list of all objects that the asset refers to</li>
+<li>asset.yaml: holds the root information of the asset, this is a yaml representation of the asset record from db</li>
+<li>version.yaml: holds the changes relevant to that version, this is a yaml representation of the version record from db</li>
+</ul>
+<p><br/></p>
+</div>
+</div><footer>
+<div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
+<a class="btn btn-neutral float-left" href="../architecture/" title="Architecture"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+</div>
+<hr/>
+<div role="contentinfo">
+<!-- Copyright etc -->
+</div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+</div>
+</div>
+</section>
+</div>
+<div aria-label="Versions" class="rst-versions" role="note">
+<span class="rst-current-version" data-toggle="rst-current-version">
+<span>
+<a class="fa fa-github" href="https://github.com/Roche-CSI/ama" style="color: #fcfcfc"> GitHub</a>
+</span>
+<span><a href="../architecture/" style="color: #fcfcfc">« Previous</a></span>
+</span>
+</div>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script>var base_url = "..";</script>
+<script src="../js/theme_extra.js"></script>
+<script src="../js/theme.js"></script>
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+<script src="../search/main.js"></script>
+<script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+<script>mermaid.initialize({});</script></body>
+</html>
