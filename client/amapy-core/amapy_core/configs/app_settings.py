@@ -108,6 +108,12 @@ class AppSettings:
         self._data = x
         FileUtils.write_json(data=self._data, abs_path=self.settings_file)
 
+    def set_data(self, x, persist=True):
+        self._data = x
+        if persist:
+            # update the settings file
+            FileUtils.write_json(data=self._data, abs_path=self.settings_file)
+
     @property
     def assets_home(self) -> str:
         try:
@@ -309,10 +315,14 @@ class AppSettings:
             self._active_project = self.data.get('active_project') or None  # default is null
             return self._active_project
 
-    @active_project.setter
-    def active_project(self, x: str):
-        self._active_project = x
-        self.data = utils.update_dict(self.data, {'active_project': self._active_project})
+    # @active_project.setter
+    # def active_project(self, x: str):
+    #     self._active_project = x
+    #     self.data = utils.update_dict(self.data, {'active_project': self._active_project})
+
+    def set_active_project(self, project_id: str, persist=True):
+        self._active_project = project_id
+        self.set_data(utils.update_dict(self.data, {'active_project': self._active_project}), persist)
 
     @property
     def active_project_data(self) -> dict:
