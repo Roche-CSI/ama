@@ -99,16 +99,14 @@ class AppSettings:
             return self._data
         except AttributeError:
             if os.path.exists(self.settings_file):
-                with utils.locked_file(self.settings_file):
-                    self._data = FileUtils.read_json(self.settings_file)
+                self._data = FileUtils.read_json(self.settings_file)
             self._data = self._data or {}
             return self._data
 
     @data.setter
     def data(self, x):
         self._data = x
-        with utils.locked_file(self.settings_file):
-            FileUtils.write_json(data=self._data, abs_path=self.settings_file)
+        FileUtils.write_json(data=self._data, abs_path=self.settings_file)
 
     @property
     def assets_home(self) -> str:
