@@ -13,7 +13,7 @@ class ProjectActivate(CliAction):
         if not args.target:
             self.user_log.message("project name is required", LogColors.INFO)
             return
-        SettingsAPI().set_active_project(project_name=args.target, )
+        SettingsAPI().set_active_project(project_name=args.target)
 
     def get_options(self):
         return [
