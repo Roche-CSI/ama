@@ -56,8 +56,9 @@ class Project(object):
             True if the project was successfully activated, False otherwise.
         """
         if persist:
-            logger.warning(
-                "The settings file will be modified. This can cause issues if multiple instances are running.")
+            logger.warning("The settings file will be modified. This can cause issues if you have "
+                           "multiple instances of AMA running on your machine.")
         else:
-            logger.warning("Activation is temporary and will not persist across sessions.")
+            logger.warning("Activation is temporary and will not persist across sessions. "
+                           "To make it permanent, set persist=True.")
         return self._api.set_active_project(project_name=project_name, persist=persist)
