@@ -1,6 +1,9 @@
+import logging
 from functools import cached_property
 
 from amapy_core.api.settings_api import SettingsAPI
+
+logger = logging.getLogger(__name__)
 
 
 class Project(object):
@@ -52,4 +55,9 @@ class Project(object):
         bool
             True if the project was successfully activated, False otherwise.
         """
+        if persist:
+            logger.warning(
+                "The settings file will be modified. This can cause issues if multiple instances are running.")
+        else:
+            logger.warning("Activation is temporary and will not persist across sessions.")
         return self._api.set_active_project(project_name=project_name, persist=persist)
