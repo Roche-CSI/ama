@@ -37,17 +37,19 @@ class Project(object):
         """
         return self._api.print_all_projects(jsonize=True)
 
-    def activate(self, project_name: str) -> bool:
+    def activate(self, project_name: str, persist=False) -> bool:
         """Activates a given project by name.
 
         Parameters
         ----------
         project_name : str
             The name of the project to activate.
+        persist : bool, optional
+            Set to True to make the activation persistent across sessions, by default False.
 
         Returns
         -------
         bool
             True if the project was successfully activated, False otherwise.
         """
-        return self._api.set_active_project(project_name=project_name)
+        return self._api.set_active_project(project_name=project_name, persist=persist)
