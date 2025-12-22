@@ -61,4 +61,5 @@ class Project(object):
         else:
             logger.warning("Activation is temporary and will not persist across sessions. "
                            "To make it permanent, set persist=True.")
+
         return self._api.set_active_project(project_name=project_name, persist=persist)
