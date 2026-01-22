@@ -2,8 +2,6 @@
 
 Welcome to the official documentation for **[AMA]**. This repository contains the source code and comprehensive guides for the asset management system.
 
-> **Note:** This documentation is structured as a portal. Click the links below to navigate to specific modules.
-
 ---
 
 ## 🚀 Getting Started
