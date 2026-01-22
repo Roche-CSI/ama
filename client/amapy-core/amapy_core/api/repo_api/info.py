@@ -1,5 +1,6 @@
 import json
 import os
+from urllib import parse
 
 from amapy_core.asset.asset_version import ROOT_VERSION_NUMBER
 from amapy_core.asset.refs import AssetRef
@@ -52,9 +53,16 @@ class InfoAPI(RepoAPI):
             e.logs.add("you must upload a file to get the url")
             raise e
 
-        object_url = os.path.join(Configs.shared().asset_home.dashboard_url,
-                                  "asset", self.project_id, self.asset.name,
-                                  f"files?version={self.asset.version.number}&object={asset_obj.id}")
+        base_url = parse.urljoin(
+            Configs.shared().asset_home.dashboard_url,
+            f"asset/{self.project_id}/{self.asset.name}/files"
+        )
+        params = {
+            "version": self.asset.version.number,
+            "object": asset_obj.id
+        }
+        object_url = f"{base_url}?{parse.urlencode(params)}"
+
         if jsonize:
             return object_url
 
