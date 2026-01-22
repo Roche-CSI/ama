@@ -1,6 +1,6 @@
 # AMA
 
-Welcome to the official documentation for **[AMA]**. This repository contains the source code and comprehensive guides for the asset management system.
+Welcome to the official documentation for **AMA**. This repository contains the source code and comprehensive guides for the asset management system.
 
 ---
 
