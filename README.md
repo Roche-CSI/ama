@@ -22,8 +22,8 @@ If you are new to the project, start here to get up and running.
 Understand the theory and design behind the code.
 
 * **[Architecture](docs/architecture.md)**: Diagrams and explanations of the system design.
-* **[Core Concepts](docs/concepts/index.md)**: Definitions of Assets, Objects, and the data model.
-* **[Case Studies](docs/case_studies/index.md)**: Real-world examples and model training scenarios.
+* **[Core Concepts](docs/concepts/asset.md)**: Definitions of Assets, Objects, and the data model.
+* **[Case Studies](docs/case_studies/model_training.md)**: Real-world examples and model training scenarios.
 
 ---
 
@@ -31,16 +31,36 @@ Understand the theory and design behind the code.
 
 Deep dives into specific modules and internal logic.
 
-### Asset Management
-* **[Asset Creation](docs/implementation/asset_create/index.md)**: Logic for initializing, listing, and adding assets.
-* **[Asset Upload](docs/implementation/asset_upload/index.md)**: Handling classes, commits, and staging content.
-* **[Asset Storage](docs/implementation/asset_storage/index.md)**: How we interact with bucket storage.
-* **[Asset Retrieval](docs/implementation/asset_download/index.md)**: Mechanisms for downloading assets.
+### Asset Creation & Lifecycle
+* **[Asset Init](docs/implementation/asset_create/asset_init.md)**: Procedures for initializing new asset repositories or local workspaces.
+* **[Asset Add](docs/implementation/asset_create/asset_add2.md)**: Workflows for registering new assets into the system.
+* **[Asset Upload](docs/implementation/asset_create/asset_upload.md)**: The specific mechanism for uploading asset binaries during creation.
+* **[Asset Remove](docs/implementation/asset_create/asset_remove.md)**: Commands and safety checks for deleting or deprecating assets.
+* **[Asset List](docs/implementation/asset_create/asset_list.md)**: Functionality for querying, listing, and filtering available assets.
+
+### Asset Upload & Version Control
+* **[Asset Upload Overview](docs/implementation/asset_upload/index.md)**: High-level guide to the upload lifecycle, classes, and commit strategies.
+* **[Asset Class Create](docs/implementation/asset_upload/asset_class_create.md)**: Defining and registering new asset classes (types/categories).
+* **[Stage Content](docs/implementation/asset_upload/stage_content.md)**: Preparing and staging data files prior to the final commit.
+* **[Asset Commit](docs/implementation/asset_upload/asset_commit.md)**: Finalizing changes and versioning the staged asset content.
+
+### Storage & Retrieval
+* **[Bucket Storage](docs/implementation/asset_storage/bucket_storage.md)**: Implementation details for interacting with S3/Blob bucket storage.
+* **[Asset Retrieval](docs/implementation/asset_download/index.md)**: Protocols and APIs for downloading and retrieving asset data.
+
 
 ### Internals
-* **[Data Structures](docs/implementation/data_structures/index.md)**: The classes defining `Asset`, `Content`, and `Object`.
-* **[Schema](docs/implementation/schema/index.md)**: Validation and database schemas.
-* **[State Management](docs/implementation/state_management/index.md)**: How the application maintains state.
+
+**Data Structures**
+* **[Overview](docs/implementation/data_structures/index.md)**: High-level summary of the core data models and class hierarchy.
+* **[Asset Class](docs/implementation/data_structures/asset_class.md)**: Definitions for asset categories, type configurations, and templates.
+* **[Asset](docs/implementation/data_structures/asset.md)**: The core `Asset` entity structure, including identification, versioning, and metadata.
+* **[Content](docs/implementation/data_structures/content.md)**: Data structures representing the physical files, payloads, or blobs attached to an asset.
+* **[Object](docs/implementation/data_structures/object.md)**: The base generic `Object` class containing shared properties used across the system.
+
+**System Logic**
+* **[Schema](docs/implementation/schema/index.md)**: definitions for data validation, serialization rules, and database schemas.
+* **[State Management](docs/implementation/state_management/index.md)**: Mechanisms for tracking application state, session context, and caching.
 
 ---
 
