@@ -58,10 +58,10 @@ For developers integrating this library into their own tools.
 
 A quick view of the top-level directory layout:
 
-* `/case_studies` - Example scenarios.
-* `/concepts` - Explanatory articles and diagrams.
-* `/implementation` - Source code documentation.
-* `/user_guide` - End-user tutorials.
+* `/client` - The client-side python component.
+* `/docs` - Explanatory articles and diagrams.
+* `/frontend` - [Docs](frontend/README.md) - The main codebase for all UI.
+* `/server` - [Docs](server/amapy-server/README.md) - The server-side component of the ama system.
 
 ---
 # Instructions
