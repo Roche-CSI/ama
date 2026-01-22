@@ -38,35 +38,39 @@ class InfoAPI(RepoAPI):
             self.user_log.message(UserCommands().inputs_info_remote())
             self.user_log.message(UserCommands().switch_asset_version())
 
-    def print_object_url(self, rel_file_path: str, jsonize=False):
-        """Prints the url of the object given the file path.
+    def print_asset_url(self, rel_file_path: str = None, jsonize=False):
+        """Prints the URL of the asset or a specific object on the dashboard.
 
-        The file path should be relative to the asset root.
+        The rel_file_path should be relative to the asset root.
+        If rel_file_path is provided, returns the object URL; otherwise, returns the asset URL.
         """
-        objects = self.asset.objects.filter(predicate=lambda x: x.path == rel_file_path)
-        if not objects:
-            raise exceptions.AssetException(msg=f"file not found: {rel_file_path}")
-
-        asset_obj = objects[0]
-        if not asset_obj.is_committed:
-            e = exceptions.AssetException(msg=f"file not uploaded yet: {rel_file_path}")
-            e.logs.add("you must upload a file to get the url")
+        if self.asset.is_temp:
+            e = exceptions.AssetException(msg="temporary asset, upload the asset to get file urls")
+            e.logs.add(UserCommands().upload_asset())
             raise e
+
+        params = {"version": self.asset.version.number}
+        if rel_file_path:
+            objects = self.asset.objects.filter(predicate=lambda x: x.path == rel_file_path)
+            if not objects:
+                raise exceptions.AssetException(msg=f"file not found: {rel_file_path}")
+            asset_obj = objects[0]
+            if not asset_obj.is_committed:
+                e = exceptions.AssetException(msg=f"file not uploaded yet: {rel_file_path}")
+                e.logs.add("you must upload a file to get the url")
+                raise e
+            params["object"] = asset_obj.id
 
         base_url = parse.urljoin(
             Configs.shared().asset_home.dashboard_url,
             f"asset/{self.project_id}/{self.asset.name}/files"
         )
-        params = {
-            "version": self.asset.version.number,
-            "object": asset_obj.id
-        }
-        object_url = f"{base_url}?{parse.urlencode(params)}"
+        asset_url = f"{base_url}?{parse.urlencode(params)}"
 
         if jsonize:
-            return object_url
+            return asset_url
 
-        print(object_url)
+        print(asset_url)
 
     @classmethod
     def list_remote_refs(cls, asset_name: str, project_id: str, jsonize=False):
