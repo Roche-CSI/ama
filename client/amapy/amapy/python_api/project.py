@@ -1,6 +1,9 @@
+import logging
 from functools import cached_property
 
 from amapy_core.api.settings_api import SettingsAPI
+
+logger = logging.getLogger(__name__)
 
 
 class Project(object):
@@ -37,17 +40,26 @@ class Project(object):
         """
         return self._api.print_all_projects(jsonize=True)
 
-    def activate(self, project_name: str) -> bool:
+    def activate(self, project_name: str, persist=False) -> bool:
         """Activates a given project by name.
 
         Parameters
         ----------
         project_name : str
             The name of the project to activate.
+        persist : bool, optional
+            Set to True to make the activation persistent across sessions, by default False.
 
         Returns
         -------
         bool
             True if the project was successfully activated, False otherwise.
         """
-        return self._api.set_active_project(project_name=project_name)
+        if persist:
+            logger.warning("The settings file will be modified. This can cause issues if you have multiple "
+                           "instances of AMA running on your machine or running AMA with multi-processing.")
+        else:
+            logger.warning("Activation is temporary and will not persist across sessions. "
+                           "To make it permanent, set persist=True.")
+
+        return self._api.set_active_project(project_name=project_name, persist=persist)
