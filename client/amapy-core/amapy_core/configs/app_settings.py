@@ -273,12 +273,12 @@ class AppSettings:
         # if there is one project, then we set it as active
         project_ids = list(self.projects.keys())
         if len(project_ids) == 1:
-            self.active_project = project_ids[0]
+            self.set_active_project(project_ids[0])
         else:
             # exclude default project
             if self.default_project:
                 project_ids.remove(self.default_project)
-            self.active_project = project_ids[0]
+            self.set_active_project(project_ids[0])
 
     def clear_user_data(self):
         self.data = utils.update_dict(self.data,

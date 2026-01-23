@@ -24,7 +24,10 @@ class AssetInfo(CliAction):
                 elif args.alias_name:
                     api.print_alias_name()
                 elif args.url:
-                    api.print_object_url(args.url)
+                    api.print_asset_url(args.url)
+                elif args.url is None:
+                    # flag passed without value
+                    api.print_asset_url()
                 elif args.hash:
                     api.print_hash()
                 elif args.metadata:
