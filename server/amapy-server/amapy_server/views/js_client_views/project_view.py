@@ -4,8 +4,7 @@ from flask import Blueprint, Response, request
 from peewee import DoesNotExist
 
 from amapy_pluggy.storage import BlobStoreURL
-from amapy_plugin_gcs.bucket_cors import update_cors_configuration as gcs_update_cors
-from amapy_plugin_s3.bucket_cors import set_bucket_cors as s3_update_cors
+from amapy_pluggy.storage.storage_factory import StorageFactory
 from amapy_server.configs import Configs
 from amapy_server.models.project import Project
 from amapy_server.models.role import Role
@@ -73,7 +72,7 @@ def create_project():
         # write to bucket and set cors
         try:
             created.write_to_bucket()
-            update_cors(data)
+            update_cors(created, data)
         except Exception as e:
             logger.error("error writing to bucket or update bucket cors: {}".format(e))
             res_code = 400
@@ -99,15 +98,14 @@ def create_project():
     return Response(json_encoder.to_json(result), mimetype="application/json", status=res_code)
 
 
-def update_cors(data: dict):
-    store_url = BlobStoreURL(url=data.get("remote_url"))
-    update_by_host_name = {"s3": s3_update_cors, "gs": gcs_update_cors}
-
-    host = store_url.host
-    host_update_cors = update_by_host_name[host]
-    host_update_cors(credentials=data.get("credentials_server"),
-                     bucket_name=store_url.bucket,
-                     origin_url=Configs.shared().frontend_url)
+def update_cors(created: Project, data: dict):
+    store_url=BlobStoreURL(url=data.get("remote_url"))
+    with created.storage(server=True):
+        remote_url = Configs.shared().get_storage_url() # get remote_url from the current project
+        storage = StorageFactory.storage_for_url(src_url=remote_url) #check the usage of this line, it returns the AssetStorage instance
+        storage.set_bucket_cors(credentials=data.get("credentials_server"),
+                        bucket_name=store_url.bucket,
+                        origin_url=Configs.shared().frontend_url)
 
 
 @project_view.route('/<id>', methods=['PUT'])

@@ -27,6 +27,7 @@ dependencies = [
     "amapy-pluggy==1.0.*",
     "amapy-plugin-gcs==1.0.*",
     "amapy-plugin-s3==1.0.*",
+    "amapy-plugin-minio==1.0.*",
     "amapy-utils==1.0.*",
     "elasticsearch==8.15.1",
     "google-auth-oauthlib==0.5.*",
