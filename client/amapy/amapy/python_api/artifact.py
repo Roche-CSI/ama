@@ -667,4 +667,10 @@ class Artifact:
 
         api = self._api.info
         with api.environment():
-            return api.print_object_url(rel_file_path=file_path, jsonize=True)
+            return api.print_asset_url(rel_file_path=file_path, jsonize=True)
+
+    def dashboard_url(self) -> str:
+        """Returns the dashboard URL of the asset."""
+        api = self._api.info
+        with api.environment():
+            return api.print_asset_url(jsonize=True)

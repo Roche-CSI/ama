@@ -400,10 +400,14 @@ class SettingsAPI(LoggingMixin):
             self.user_log.success("Success")
             self.user_log.info(f"removed asset-store and all its contents from: {self.settings.assets_home}")
 
-    def set_active_project(self, project_name: str):
+    def set_active_project(self, project_name: str, persist=True):
+        """Sets the active project by its name.
+
+        From the CLI persist is always True, from the API it's False by default.
+        """
         for project in self.settings.projects.values():
             if project.get("name") == project_name:
-                self.settings.active_project = project.get("id")
+                self.settings.set_active_project(project.get("id"), persist)
                 self.user_log.success("Success")
                 self.user_log.info(f"active project: {project_name}")
                 self.print_all_projects(show_help=False)
