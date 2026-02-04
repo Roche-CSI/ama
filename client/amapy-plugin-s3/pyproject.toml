@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "amapy-plugin-s3"
-version = "1.0.1"
+version = "1.0.2"
 description = "The S3 plugin for the ama project."
 readme = "README.md"
 authors = [
@@ -20,7 +20,8 @@ dependencies = [
     "amapy-contents==1.*",
     "amapy-pluggy==1.*",
     "amapy-utils==1.*",
-    "backoff==2.2.*"
+    "backoff==2.2.*",
+    "urllib3==1.26.19"
 ]
 
 [tool.setuptools.packages.find]

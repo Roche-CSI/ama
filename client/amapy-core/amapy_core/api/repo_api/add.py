@@ -29,26 +29,28 @@ class AddAPI(RepoAPI):
     def add_title(self, title: str):
         """Adds a title to the asset."""
         title = title.strip()
-        self.asset.title = title
+        # update the title property
+        self.asset.update_properties(title=title)
         self.user_log.info(f"added title: {title}")
         self.user_log.message(UserCommands().upload_asset())
 
     def add_description(self, description: str):
         """Adds a description to the asset."""
         description = description.strip()
-        self.asset.description = description
+        # update the description property
+        self.asset.update_properties(description=description)
         self.user_log.info(f"added description: {description}")
         self.user_log.message(UserCommands().upload_asset())
 
     def add_metadata(self, metadata: dict):
         """Adds metadata to the asset."""
-        self.asset.metadata = metadata
+        self.asset.update_properties(metadata=metadata)
         self.user_log.info(f"added metadata to the asset")
         self.user_log.message(UserCommands().upload_asset())
 
     def add_attributes(self, attributes: dict):
         """Adds attributes to the asset."""
-        self.asset.attributes = attributes
+        self.asset.update_properties(attributes=attributes)
         self.user_log.info(f"added attributes to the asset")
         self.user_log.message(UserCommands().upload_asset())
 
@@ -65,8 +67,9 @@ class AddAPI(RepoAPI):
         updated_tags = set(self.asset.tags).union(tags)
         if len(updated_tags) > MAX_ALLOWED_TAGS:
             raise exceptions.InvalidTagError(f"a maximum of {MAX_ALLOWED_TAGS} tags is allowed")
-        # update the asset tags
-        self.asset.tags = list(updated_tags)
+
+        # update the asset tags property
+        self.asset.update_properties(tags=list(updated_tags))
         self.user_log.info(f"asset tags: {self.asset.tags}")
         self.user_log.message(UserCommands().upload_asset())
 
@@ -247,7 +250,8 @@ class AddAPI(RepoAPI):
         alias = alias.strip()
         # check if the alias is valid
         self.validate_alias(alias)
-        self.asset.alias = alias
+        # update the alias property
+        self.asset.update_properties(alias=alias)
         InfoAPI(asset=self.asset).list_alias()
 
     def validate_alias(self, alias: str) -> None:

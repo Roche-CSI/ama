@@ -16,7 +16,7 @@ class RemoveAPI(RepoAPI):
             e.logs.add(UserCommands().alias_set())
             raise e
         # set the alias to None
-        self.asset.alias = None
+        self.asset.update_properties(alias=None)
         self.user_log.success("alias removed")
         self.user_log.message(UserCommands().upload_asset())
 
@@ -96,6 +96,6 @@ class RemoveAPI(RepoAPI):
         # remove the tags from existing tags
         existing_tags.difference_update(tags)
         # update the asset tags
-        self.asset.tags = list(existing_tags)
+        self.asset.update_properties(tags=list(existing_tags))
         self.user_log.info(f"asset tags: {self.asset.tags}")
         self.user_log.message(UserCommands().upload_asset())

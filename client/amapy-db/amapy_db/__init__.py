@@ -1,3 +1,4 @@
+from .asset_states_db import AssetStatesDB
 from .assets_db import AssetsDB
 from .file_db import FileDB
 from .manifest_db import ManifestDB

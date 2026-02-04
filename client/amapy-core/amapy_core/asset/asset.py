@@ -11,13 +11,13 @@ from cached_property import cached_property
 from amapy_core.objects.asset_object import AssetObject, ObjectViews
 from amapy_core.objects.object_factory import ObjectFactory
 from amapy_core.plugins import utils, FileUtils, Progress, exceptions
-from amapy_db import ManifestDB, FileDB, StatesDB, StoreFileDB
+from amapy_db import ManifestDB, FileDB, StatesDB, StoreFileDB, AssetStatesDB
 from amapy_utils.utils.path_utils import PathUtils
 from .asset_class import AssetClass
 from .asset_version import AssetVersion
 from .refs.asset_ref import AssetRef
 from .serializable_asset import SerializableAsset
-from .state import AssetState
+from .state import AssetState, EditStatus
 
 
 class Asset(SerializableAsset):
@@ -198,6 +198,10 @@ class Asset(SerializableAsset):
         return StatesDB(path=self.states_file)
 
     @property
+    def asset_states_db(self) -> AssetStatesDB:
+        return AssetStatesDB(path=self.asset_states_file)
+
+    @property
     def hash(self):
         # todo: implement
         raise NotImplementedError
@@ -231,6 +235,14 @@ class Asset(SerializableAsset):
         # reset the state to pending
         if self.get_state() != self.states.PENDING:
             self.set_state(self.states.PENDING, save=True)
+
+    def update_properties(self, **kwargs):
+        """Modifies the asset properties"""
+        for key, val in kwargs.items():
+            setattr(self, key, val)
+            # update the state of the property
+            self.asset_states_db.set_state(property_name=key,
+                                           state=EditStatus.MODIFIED)
 
     def create_and_add_objects(self,
                                data: dict,
@@ -446,6 +458,13 @@ class Asset(SerializableAsset):
         return self.__class__.states_path(repo=self.repo, asset_id=self.id, version=self.version.number)
 
     @property
+    def asset_states_file(self):
+        """Returns the path to the asset state file."""
+        if not self.id:
+            return None
+        return self.__class__.asset_states_path(repo=self.repo, asset_id=self.id)
+
+    @property
     def manifest_file(self):
         if not self.id or not self.repo or not self.version.number:
             return None
@@ -472,6 +491,11 @@ class Asset(SerializableAsset):
     @classmethod
     def states_path(cls, repo, asset_id, version):
         return os.path.join(repo.states_dir, asset_id, f"{version}.json")
+
+    @classmethod
+    def asset_states_path(cls, repo, asset_id):
+        """Returns the path to the asset states file."""
+        return os.path.join(repo.states_dir, asset_id, "asset.json")
 
     def cached_versions(self) -> list:
         """Returns a sorted list of all the versions of the asset."""
