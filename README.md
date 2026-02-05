@@ -286,3 +286,5 @@ A quick view of the top-level directory layout:
   - `mkdocs build`
 - Serve locally
   - `mkdocs serve -a localhost:8080`
+- Deploy on GitHub Pages
+  - `mkdocs gh-deploy --clean`
