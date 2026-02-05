@@ -5,6 +5,7 @@ from amapy_core.asset import AssetClass, Asset
 from amapy_core.asset.asset_diff import AssetDiff
 from amapy_core.asset.asset_snapshot import AssetSnapshot
 from amapy_core.asset.fetchers.asset_fetcher import AssetFetcher
+from amapy_core.asset.state import EditStatus
 from amapy_core.asset.status_enums import StatusEnums
 from amapy_core.configs import AppSettings
 from amapy_core.server import AssetServer
@@ -280,7 +281,7 @@ class AssetUploader(LoggingMixin):
 
     def update_asset_record(self, seq_id, freeze=False) -> bool:
         """Updates the asset for any changes in asset records or refs."""
-        record_changes = self._asset_record_changes(seq_id=seq_id, asset=self.asset)
+        record_changes = self._asset_record_changes(asset=self.asset)
         if record_changes or freeze:
             if not self.asset.version.commit_hash:
                 raise exceptions.AssetException("asset doesn't have any commits, can't be uploaded")
@@ -328,6 +329,8 @@ class AssetUploader(LoggingMixin):
             self._update_asset_list(fetcher=fetcher)
             # update the asset manifest file in asset store
             AssetDiff().create_cached_manifest_file(asset=self.asset, force=True)
+            # remove the states file, it will be recreated when needed
+            self.asset.asset_states_db.remove_states()
 
         return asset_updated
 
@@ -368,42 +371,15 @@ class AssetUploader(LoggingMixin):
 
         return response
 
-    def _asset_record_changes(self, seq_id, asset: Asset) -> dict:
+    def _asset_record_changes(self, asset: Asset) -> dict:
         """Check and track the asset records changes.
-        - alias
-        - title
-        - description
+        i.e. alias, title, description, tags, metadata, attributes.
         """
         changes = {}
-        if Asset.is_temp_seq_id(seq_id):
-            # local asset so check if records are set
-            if asset.alias:
-                changes["alias"] = asset.alias
-            if asset.title:
-                changes["title"] = asset.title
-            if asset.description:
-                changes["description"] = asset.description
-            if asset.metadata:
-                changes["metadata"] = asset.metadata
-            if asset.attributes:
-                changes["attributes"] = asset.attributes
-            if asset.tags:
-                changes["tags"] = asset.tags
-        else:
-            # compare with cache to find any changes
-            previous = self.asset.cached_asset_data() or {}
-            if previous.get("alias") != asset.alias:
-                changes["alias"] = asset.alias
-            if previous.get("title") != asset.title:
-                changes["title"] = asset.title
-            if previous.get("description") != asset.description:
-                changes["description"] = asset.description
-            if previous.get("metadata") != asset.metadata:
-                changes["metadata"] = asset.metadata
-            if previous.get("attributes") != asset.attributes:
-                changes["attributes"] = asset.attributes
-            if set(previous.get("tags", [])) != set(asset.tags or []):
-                changes["tags"] = asset.tags
+        # check the asset states db for changes
+        for record, state in asset.asset_states_db.data().items():
+            if state == EditStatus.MODIFIED:
+                changes[record] = getattr(asset, record)
 
         return changes
 
