@@ -1,0 +1,628 @@
+name: ci-amapy
+run-name: GROUP - ${{ github.workflow }}-${{ github.ref }}-${{ github.actor }}
+
+on:
+  push:
+    branches:
+      - '**'
+    tags:
+      - 'utils-v*.*.*'
+      - 'pluggy-v*.*.*'
+      - 'db-v*.*.*'
+      - 'contents-v*.*.*'
+      - 'core-v*.*.*'
+      - 'plugin-gcr-v*.*.*'
+      - 'plugin-gcs-v*.*.*'
+      - 'plugin-posix-v*.*.*'
+      - 'plugin-s3-v*.*.*'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}-${{ github.actor }}
+  cancel-in-progress: true
+
+jobs:
+  # Detect which packages changed
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      utils: ${{ steps.filter.outputs.utils }}
+      pluggy: ${{ steps.filter.outputs.pluggy }}
+      db: ${{ steps.filter.outputs.db }}
+      contents: ${{ steps.filter.outputs.contents }}
+      core: ${{ steps.filter.outputs.core }}
+      plugin-gcr: ${{ steps.filter.outputs.plugin-gcr }}
+      plugin-gcs: ${{ steps.filter.outputs.plugin-gcs }}
+      plugin-posix: ${{ steps.filter.outputs.plugin-posix }}
+      plugin-s3: ${{ steps.filter.outputs.plugin-s3 }}
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            utils:
+              - 'client/asset-utils/**'
+            pluggy:
+              - 'client/asset-pluggy/**'
+            db:
+              - 'client/asset-db/**'
+            contents:
+              - 'client/asset-contents/**'
+            core:
+              - 'client/asset-core/**'
+            plugin-gcr:
+              - 'client/asset-plugin-gcr/**'
+            plugin-gcs:
+              - 'client/asset-plugin-gcs/**'
+            plugin-posix:
+              - 'client/asset-plugin-posix/**'
+            plugin-s3:
+              - 'client/asset-plugin-s3/**'
+
+  ci-asset-utils:
+    needs: detect-changes
+    if: |
+      needs.detect-changes.outputs.utils == 'true' ||
+      startsWith(github.ref, 'refs/tags/utils-v')
+    runs-on: [ubuntu-latest]
+    timeout-minutes: 10
+    env:
+      PYTHON_VERSION: "3.10"
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Setup CI environment
+        working-directory: client
+        run: |
+          #!/usr/bin/env bash
+          set -x
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Install dependencies
+        working-directory: client/asset-utils
+        run: python -m pip install -e .
+
+      - name: Run flake8
+        continue-on-error: true
+        working-directory: client/asset-utils
+        run: flake8 .
+
+      - name: Run tests
+        continue-on-error: true
+        working-directory: client/asset-utils
+        run: pytest --cov=./ --cov-report=xml
+
+      - name: Build package
+        working-directory: client/asset-utils
+        run: python -m build
+
+      - name: Check package
+        working-directory: client/asset-utils
+        run: twine check dist/*
+
+      - name: Store built package
+        if: startsWith(github.ref, 'refs/tags/utils')
+        uses: actions/upload-artifact@v4
+        with:
+          name: asset-utils-dist
+          path: client/asset-utils/dist/
+
+      - name: Publish to PyPI
+        if: startsWith(github.ref, 'refs/tags/utils')
+        working-directory: client/asset-utils
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+        run: twine upload dist/*
+
+  ci-asset-pluggy:
+    needs: detect-changes
+    if: |
+      needs.detect-changes.outputs.pluggy == 'true' ||
+      startsWith(github.ref, 'refs/tags/pluggy-v')
+    runs-on: [ubuntu-latest]
+    timeout-minutes: 10
+    env:
+      PYTHON_VERSION: "3.10"
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Setup CI environment
+        working-directory: client
+        run: |
+          #!/usr/bin/env bash
+          set -x
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Install dependencies
+        working-directory: client/asset-pluggy
+        run: python -m pip install -e .
+
+      - name: Run flake8
+        continue-on-error: true
+        working-directory: client/asset-pluggy
+        run: flake8 .
+
+      - name: Run tests
+        continue-on-error: true
+        working-directory: client/asset-pluggy
+        run: pytest --cov=./ --cov-report=xml
+
+      - name: Build package
+        working-directory: client/asset-pluggy
+        run: python -m build
+
+      - name: Check package
+        working-directory: client/asset-pluggy
+        run: twine check dist/*
+
+      - name: Store built package
+        if: startsWith(github.ref, 'refs/tags/pluggy')
+        uses: actions/upload-artifact@v4
+        with:
+          name: asset-pluggy-dist
+          path: client/asset-pluggy/dist/
+
+      - name: Publish to PyPI
+        if: startsWith(github.ref, 'refs/tags/pluggy')
+        working-directory: client/asset-pluggy
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+        run: twine upload dist/*
+
+  ci-asset-db:
+    needs: detect-changes
+    if: |
+      needs.detect-changes.outputs.db == 'true' ||
+      startsWith(github.ref, 'refs/tags/db-v')
+    runs-on: [ubuntu-latest]
+    timeout-minutes: 10
+    env:
+      PYTHON_VERSION: "3.10"
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Setup CI environment
+        working-directory: client
+        run: |
+          #!/usr/bin/env bash
+          set -x
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Install dependencies
+        working-directory: client/asset-db
+        run: python -m pip install -e .
+
+      - name: Run flake8
+        continue-on-error: true
+        working-directory: client/asset-db
+        run: flake8 .
+
+      - name: Run tests
+        continue-on-error: true
+        working-directory: client/asset-db
+        run: pytest --cov=./ --cov-report=xml
+
+      - name: Build package
+        working-directory: client/asset-db
+        run: python -m build
+
+      - name: Check package
+        working-directory: client/asset-db
+        run: twine check dist/*
+
+      - name: Store built package
+        if: startsWith(github.ref, 'refs/tags/db')
+        uses: actions/upload-artifact@v4
+        with:
+          name: asset-db-dist
+          path: client/asset-db/dist/
+
+      - name: Publish to PyPI
+        if: startsWith(github.ref, 'refs/tags/db')
+        working-directory: client/asset-db
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+        run: twine upload dist/*
+
+  ci-asset-contents:
+    needs: detect-changes
+    if: |
+      needs.detect-changes.outputs.contents == 'true' ||
+      startsWith(github.ref, 'refs/tags/contents-v')
+    runs-on: [ubuntu-latest]
+    timeout-minutes: 10
+    env:
+      PYTHON_VERSION: "3.10"
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Setup CI environment
+        working-directory: client
+        run: |
+          #!/usr/bin/env bash
+          set -x
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Install dependencies
+        working-directory: client/asset-contents
+        run: python -m pip install -e .
+
+      - name: Run flake8
+        continue-on-error: true
+        working-directory: client/asset-contents
+        run: flake8 .
+
+      - name: Run tests
+        continue-on-error: true
+        working-directory: client/asset-contents
+        run: pytest --cov=./ --cov-report=xml
+
+      - name: Build package
+        working-directory: client/asset-contents
+        run: python -m build
+
+      - name: Check package
+        working-directory: client/asset-contents
+        run: twine check dist/*
+
+      - name: Store built package
+        if: startsWith(github.ref, 'refs/tags/contents')
+        uses: actions/upload-artifact@v4
+        with:
+          name: asset-contents-dist
+          path: client/asset-contents/dist/
+
+      - name: Publish to PyPI
+        if: startsWith(github.ref, 'refs/tags/contents')
+        working-directory: client/asset-contents
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+        run: twine upload dist/*
+
+  ci-asset-core:
+    needs: detect-changes
+    if: |
+      needs.detect-changes.outputs.core == 'true' ||
+      startsWith(github.ref, 'refs/tags/core-v')
+    runs-on: [ubuntu-latest]
+    timeout-minutes: 10
+    env:
+      PYTHON_VERSION: "3.10"
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Setup CI environment
+        working-directory: client
+        run: |
+          #!/usr/bin/env bash
+          set -x
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Install dependencies
+        working-directory: client/asset-core
+        run: python -m pip install -e .
+
+      - name: Run flake8
+        continue-on-error: true
+        working-directory: client/asset-core
+        run: flake8 .
+
+      - name: Run tests
+        continue-on-error: true
+        working-directory: client/asset-core
+        run: pytest --cov=./ --cov-report=xml
+
+      - name: Build package
+        working-directory: client/asset-core
+        run: python -m build
+
+      - name: Check package
+        working-directory: client/asset-core
+        run: twine check dist/*
+
+      - name: Store built package
+        if: startsWith(github.ref, 'refs/tags/core')
+        uses: actions/upload-artifact@v4
+        with:
+          name: asset-core-dist
+          path: client/asset-core/dist/
+
+      - name: Publish to PyPI
+        if: startsWith(github.ref, 'refs/tags/core')
+        working-directory: client/asset-core
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+        run: twine upload dist/*
+
+  ci-asset-plugin-gcr:
+    needs: detect-changes
+    if: |
+      needs.detect-changes.outputs.plugin-gcr == 'true' ||
+      startsWith(github.ref, 'refs/tags/plugin-gcr-v')
+    runs-on: [ubuntu-latest]
+    timeout-minutes: 10
+    env:
+      PYTHON_VERSION: "3.10"
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Setup CI environment
+        working-directory: client
+        run: |
+          #!/usr/bin/env bash
+          set -x
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Install dependencies
+        working-directory: client/asset-plugin-gcr
+        run: python -m pip install -e .
+
+      - name: Run flake8
+        continue-on-error: true
+        working-directory: client/asset-plugin-gcr
+        run: flake8 .
+
+      - name: Run tests
+        continue-on-error: true
+        working-directory: client/asset-plugin-gcr
+        run: pytest --cov=./ --cov-report=xml
+
+      - name: Build package
+        working-directory: client/asset-plugin-gcr
+        run: python -m build
+
+      - name: Check package
+        working-directory: client/asset-plugin-gcr
+        run: twine check dist/*
+
+      - name: Store built package
+        if: startsWith(github.ref, 'refs/tags/plugin-gcr')
+        uses: actions/upload-artifact@v4
+        with:
+          name: asset-plugin-gcr-dist
+          path: client/asset-plugin-gcr/dist/
+
+      - name: Publish to PyPI
+        if: startsWith(github.ref, 'refs/tags/plugin-gcr')
+        working-directory: client/asset-plugin-gcr
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+        run: twine upload dist/*
+
+  ci-asset-plugin-gcs:
+    needs: detect-changes
+    if: |
+      needs.detect-changes.outputs.plugin-gcs == 'true' ||
+      startsWith(github.ref, 'refs/tags/plugin-gcs-v')
+    runs-on: [ubuntu-latest]
+    timeout-minutes: 10
+    env:
+      PYTHON_VERSION: "3.10"
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Setup CI environment
+        working-directory: client
+        run: |
+          #!/usr/bin/env bash
+          set -x
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Install dependencies
+        working-directory: client/asset-plugin-gcs
+        run: python -m pip install -e .
+
+      - name: Run flake8
+        continue-on-error: true
+        working-directory: client/asset-plugin-gcs
+        run: flake8 .
+
+      - name: Run tests
+        continue-on-error: true
+        working-directory: client/asset-plugin-gcs
+        run: pytest --cov=./ --cov-report=xml
+
+      - name: Build package
+        working-directory: client/asset-plugin-gcs
+        run: python -m build
+
+      - name: Check package
+        working-directory: client/asset-plugin-gcs
+        run: twine check dist/*
+
+      - name: Store built package
+        if: startsWith(github.ref, 'refs/tags/plugin-gcs')
+        uses: actions/upload-artifact@v4
+        with:
+          name: asset-plugin-gcs-dist
+          path: client/asset-plugin-gcs/dist/
+
+      - name: Publish to PyPI
+        if: startsWith(github.ref, 'refs/tags/plugin-gcs')
+        working-directory: client/asset-plugin-gcs
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+        run: twine upload dist/*
+
+  ci-asset-plugin-posix:
+    needs: detect-changes
+    if: |
+      needs.detect-changes.outputs.plugin-posix == 'true' ||
+      startsWith(github.ref, 'refs/tags/plugin-posix-v')
+    runs-on: [ubuntu-latest]
+    timeout-minutes: 10
+    env:
+      PYTHON_VERSION: "3.10"
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Setup CI environment
+        working-directory: client
+        run: |
+          #!/usr/bin/env bash
+          set -x
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Install dependencies
+        working-directory: client/asset-plugin-posix
+        run: python -m pip install -e .
+
+      - name: Run flake8
+        continue-on-error: true
+        working-directory: client/asset-plugin-posix
+        run: flake8 .
+
+      - name: Run tests
+        continue-on-error: true
+        working-directory: client/asset-plugin-posix
+        run: pytest --cov=./ --cov-report=xml
+
+      - name: Build package
+        working-directory: client/asset-plugin-posix
+        run: python -m build
+
+      - name: Check package
+        working-directory: client/asset-plugin-posix
+        run: twine check dist/*
+
+      - name: Store built package
+        if: startsWith(github.ref, 'refs/tags/plugin-posix')
+        uses: actions/upload-artifact@v4
+        with:
+          name: asset-plugin-posix-dist
+          path: client/asset-plugin-posix/dist/
+
+      - name: Publish to PyPI
+        if: startsWith(github.ref, 'refs/tags/plugin-posix')
+        working-directory: client/asset-plugin-posix
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+        run: twine upload dist/*
+
+  ci-asset-plugin-s3:
+    needs: detect-changes
+    if: |
+      needs.detect-changes.outputs.plugin-s3 == 'true' ||
+      startsWith(github.ref, 'refs/tags/plugin-s3-v')
+    runs-on: [ubuntu-latest]
+    timeout-minutes: 10
+    env:
+      PYTHON_VERSION: "3.10"
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Setup CI environment
+        working-directory: client
+        run: |
+          #!/usr/bin/env bash
+          set -x
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Install dependencies
+        working-directory: client/asset-plugin-s3
+        run: python -m pip install -e .
+
+      - name: Run flake8
+        continue-on-error: true
+        working-directory: client/asset-plugin-s3
+        run: flake8 .
+
+      - name: Run tests
+        continue-on-error: true
+        working-directory: client/asset-plugin-s3
+        run: pytest --cov=./ --cov-report=xml
+
+      - name: Build package
+        working-directory: client/asset-plugin-s3
+        run: python -m build
+
+      - name: Check package
+        working-directory: client/asset-plugin-s3
+        run: twine check dist/*
+
+      - name: Store built package
+        if: startsWith(github.ref, 'refs/tags/plugin-s3')
+        uses: actions/upload-artifact@v4
+        with:
+          name: asset-plugin-s3-dist
+          path: client/asset-plugin-s3/dist/
+
+      - name: Publish to PyPI
+        if: startsWith(github.ref, 'refs/tags/plugin-s3')
+        working-directory: client/asset-plugin-s3
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+        run: twine upload dist/*
