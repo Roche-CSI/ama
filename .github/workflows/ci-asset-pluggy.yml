@@ -2,10 +2,6 @@ name: ci-asset-pluggy
 run-name: GROUP - ${{ github.workflow }}-${{ github.ref }}-${{ github.actor }}
 
 on:
-  workflow_run:
-    workflows: ["ci-asset-utils"]
-    types:
-      - completed
   push:
     branches:
       - '**'
