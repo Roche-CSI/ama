@@ -2,146 +2,146 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://github.com/Roche-CSI/ama/</loc>
-         <lastmod>2025-12-15</lastmod>
+         <lastmod>2026-02-05</lastmod>
     </url>
     <url>
          <loc>https://github.com/Roche-CSI/ama/architecture/</loc>
-         <lastmod>2025-12-15</lastmod>
+         <lastmod>2026-02-05</lastmod>
     </url>
     <url>
          <loc>https://github.com/Roche-CSI/ama/install/</loc>
-         <lastmod>2025-12-15</lastmod>
+         <lastmod>2026-02-05</lastmod>
     </url>
     <url>
          <loc>https://github.com/Roche-CSI/ama/overview/</loc>
-         <lastmod>2025-12-15</lastmod>
+         <lastmod>2026-02-05</lastmod>
     </url>
     <url>
          <loc>https://github.com/Roche-CSI/ama/quick_start/</loc>
-         <lastmod>2025-12-15</lastmod>
+         <lastmod>2026-02-05</lastmod>
     </url>
     <url>
          <loc>https://github.com/Roche-CSI/ama/case_studies/</loc>
-         <lastmod>2025-12-15</lastmod>
+         <lastmod>2026-02-05</lastmod>
     </url>
     <url>
          <loc>https://github.com/Roche-CSI/ama/case_studies/model_training/</loc>
-         <lastmod>2025-12-15</lastmod>
+         <lastmod>2026-02-05</lastmod>
     </url>
     <url>
          <loc>https://github.com/Roche-CSI/ama/concepts/</loc>
-         <lastmod>2025-12-15</lastmod>
+         <lastmod>2026-02-05</lastmod>
     </url>
     <url>
          <loc>https://github.com/Roche-CSI/ama/concepts/asset/</loc>
-         <lastmod>2025-12-15</lastmod>
+         <lastmod>2026-02-05</lastmod>
     </url>
     <url>
          <loc>https://github.com/Roche-CSI/ama/home/</loc>
-         <lastmod>2025-12-15</lastmod>
+         <lastmod>2026-02-05</lastmod>
     </url>
     <url>
          <loc>https://github.com/Roche-CSI/ama/home/about/</loc>
-         <lastmod>2025-12-15</lastmod>
+         <lastmod>2026-02-05</lastmod>
     </url>
     <url>
          <loc>https://github.com/Roche-CSI/ama/implementation/</loc>
-         <lastmod>2025-12-15</lastmod>
+         <lastmod>2026-02-05</lastmod>
     </url>
     <url>
          <loc>https://github.com/Roche-CSI/ama/implementation/asset_create/</loc>
-         <lastmod>2025-12-15</lastmod>
+         <lastmod>2026-02-05</lastmod>
     </url>
     <url>
          <loc>https://github.com/Roche-CSI/ama/implementation/asset_create/asset_add2/</loc>
-         <lastmod>2025-12-15</lastmod>
+         <lastmod>2026-02-05</lastmod>
     </url>
     <url>
          <loc>https://github.com/Roche-CSI/ama/implementation/asset_create/asset_init/</loc>
-         <lastmod>2025-12-15</lastmod>
+         <lastmod>2026-02-05</lastmod>
     </url>
     <url>
          <loc>https://github.com/Roche-CSI/ama/implementation/asset_create/asset_list/</loc>
-         <lastmod>2025-12-15</lastmod>
+         <lastmod>2026-02-05</lastmod>
     </url>
     <url>
          <loc>https://github.com/Roche-CSI/ama/implementation/asset_create/asset_remove/</loc>
-         <lastmod>2025-12-15</lastmod>
+         <lastmod>2026-02-05</lastmod>
     </url>
     <url>
          <loc>https://github.com/Roche-CSI/ama/implementation/asset_create/asset_upload/</loc>
-         <lastmod>2025-12-15</lastmod>
+         <lastmod>2026-02-05</lastmod>
     </url>
     <url>
          <loc>https://github.com/Roche-CSI/ama/implementation/asset_download/</loc>
-         <lastmod>2025-12-15</lastmod>
+         <lastmod>2026-02-05</lastmod>
     </url>
     <url>
          <loc>https://github.com/Roche-CSI/ama/implementation/asset_ref/</loc>
-         <lastmod>2025-12-15</lastmod>
+         <lastmod>2026-02-05</lastmod>
     </url>
     <url>
          <loc>https://github.com/Roche-CSI/ama/implementation/asset_storage/</loc>
-         <lastmod>2025-12-15</lastmod>
+         <lastmod>2026-02-05</lastmod>
     </url>
     <url>
          <loc>https://github.com/Roche-CSI/ama/implementation/asset_storage/bucket_storage/</loc>
-         <lastmod>2025-12-15</lastmod>
+         <lastmod>2026-02-05</lastmod>
     </url>
     <url>
          <loc>https://github.com/Roche-CSI/ama/implementation/asset_upload/</loc>
-         <lastmod>2025-12-15</lastmod>
+         <lastmod>2026-02-05</lastmod>
     </url>
     <url>
          <loc>https://github.com/Roche-CSI/ama/implementation/asset_upload/asset_class_create/</loc>
-         <lastmod>2025-12-15</lastmod>
+         <lastmod>2026-02-05</lastmod>
     </url>
     <url>
          <loc>https://github.com/Roche-CSI/ama/implementation/asset_upload/asset_commit/</loc>
-         <lastmod>2025-12-15</lastmod>
+         <lastmod>2026-02-05</lastmod>
     </url>
     <url>
          <loc>https://github.com/Roche-CSI/ama/implementation/asset_upload/stage_content/</loc>
-         <lastmod>2025-12-15</lastmod>
+         <lastmod>2026-02-05</lastmod>
     </url>
     <url>
          <loc>https://github.com/Roche-CSI/ama/implementation/data_structures/</loc>
-         <lastmod>2025-12-15</lastmod>
+         <lastmod>2026-02-05</lastmod>
     </url>
     <url>
          <loc>https://github.com/Roche-CSI/ama/implementation/data_structures/asset/</loc>
-         <lastmod>2025-12-15</lastmod>
+         <lastmod>2026-02-05</lastmod>
     </url>
     <url>
          <loc>https://github.com/Roche-CSI/ama/implementation/data_structures/asset_class/</loc>
-         <lastmod>2025-12-15</lastmod>
+         <lastmod>2026-02-05</lastmod>
     </url>
     <url>
          <loc>https://github.com/Roche-CSI/ama/implementation/data_structures/content/</loc>
-         <lastmod>2025-12-15</lastmod>
+         <lastmod>2026-02-05</lastmod>
     </url>
     <url>
          <loc>https://github.com/Roche-CSI/ama/implementation/data_structures/object/</loc>
-         <lastmod>2025-12-15</lastmod>
+         <lastmod>2026-02-05</lastmod>
     </url>
     <url>
          <loc>https://github.com/Roche-CSI/ama/implementation/schema/</loc>
-         <lastmod>2025-12-15</lastmod>
+         <lastmod>2026-02-05</lastmod>
     </url>
     <url>
          <loc>https://github.com/Roche-CSI/ama/implementation/state_management/</loc>
-         <lastmod>2025-12-15</lastmod>
+         <lastmod>2026-02-05</lastmod>
     </url>
     <url>
          <loc>https://github.com/Roche-CSI/ama/python_api/</loc>
-         <lastmod>2025-12-15</lastmod>
+         <lastmod>2026-02-05</lastmod>
     </url>
     <url>
          <loc>https://github.com/Roche-CSI/ama/user_guide/</loc>
-         <lastmod>2025-12-15</lastmod>
+         <lastmod>2026-02-05</lastmod>
     </url>
     <url>
          <loc>https://github.com/Roche-CSI/ama/user_guide/hello_world/</loc>
-         <lastmod>2025-12-15</lastmod>
+         <lastmod>2026-02-05</lastmod>
     </url>
 </urlset>
