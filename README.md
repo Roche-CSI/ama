@@ -2,6 +2,8 @@
 
 Welcome to the official documentation for **AMA**. This repository contains the source code and comprehensive guides for the asset management system.
 
+![Workflow](./docs/imgs/workflow.png)
+
 ---
 # Product Vision and Core Concepts
 
