@@ -10,6 +10,7 @@ SET_USER = {"cmd": "asset auth set --user <username>",
             "desc": "to set the user for asset (need to do this only once)"}
 
 FETCH_ASSET = {"cmd": "asset fetch", "desc": "to refresh the asset metadata from remote"}
+FETCH_ASSET_VERSIONS = {"cmd": "asset fetch --versions", "desc": "to refresh the asset versions from remote"}
 
 LIST_CLASS_ASSETS = {"cmd": "asset list --class <class-name>", "desc": "to list all the assets in a class"}
 FETCH_CLASS_ASSETS = {"cmd": "asset fetch --class <class-name>", "desc": "to refresh the assets from remote"}
@@ -114,6 +115,9 @@ class UserCommands:
 
     def fetch_asset(self, color=COMMAND_COLOR):
         return formatted(FETCH_ASSET, color=color)
+
+    def fetch_asset_versions(self, color=COMMAND_COLOR):
+        return formatted(FETCH_ASSET_VERSIONS, color=color)
 
     def fetch_assets(self, color=COMMAND_COLOR):
         return formatted(FETCH_CLASS_ASSETS, color)
