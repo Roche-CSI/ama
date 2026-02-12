@@ -278,7 +278,9 @@ class AssetFetcher(Fetcher):
         asset_cache_dir = self.store.asset_cache(class_id, seq_id)
         for blob in filtered_blobs:
             version_file = os.path.join(asset_cache_dir, blob.path_in_asset)
-            if force or not os.path.exists(version_file):
+            # check if the version file is already available and valid
+            version_available = os.path.exists(version_file) and bool(FileUtils.read_yaml(version_file))
+            if force or not version_available:
                 resource = transporter.get_download_resource(src=blob.url,
                                                              dst=version_file,
                                                              src_hash=blob.get_hash())
