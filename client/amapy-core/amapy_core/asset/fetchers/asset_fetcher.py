@@ -261,25 +261,12 @@ class AssetFetcher(Fetcher):
             # filter the blobs based on the window
             version_blobs = version_blobs[start_index:end_index]
 
-        transporter = storage.get_transporter()
-        # create a list of resources to download the version files
-        target_resources = []
-        asset_cache_dir = self.store.asset_cache(class_id, seq_id)
-        for blob in version_blobs:
-            version_file = os.path.join(asset_cache_dir, blob.path_in_asset)
-            if force or not os.path.exists(version_file):
-                resource = transporter.get_download_resource(src=blob.url,
-                                                             dst=version_file,
-                                                             src_hash=blob.get_hash())
-                target_resources.append(resource)
-
-        if not target_resources:
-            self.user_log.info("all necessary version files are available - skipping download")
-            return
-
-        self.perform_download(targets=target_resources,
-                              storage=storage,
-                              progress="downloading asset versions")
+        # download the versions from the filtered blobs list
+        self._download_versions_from_blobs(class_id=class_id,
+                                           seq_id=seq_id,
+                                           version_blobs=version_blobs,
+                                           storage=storage,
+                                           force=force)
 
     def download_snapshot_versions(self, class_id: str,
                                    seq_id: str,
@@ -302,27 +289,12 @@ class AssetFetcher(Fetcher):
         filtered_blobs = asset_snapshot.filter_version_blobs(blobs=version_blobs,
                                                              snapshot_version=snapshot_version,
                                                              target_version=target_version)
-        transporter = storage.get_transporter()
-        # create a list of resources to download the version files
-        target_resources = []
-        asset_cache_dir = self.store.asset_cache(class_id, seq_id)
-        for blob in filtered_blobs:
-            version_file = os.path.join(asset_cache_dir, blob.path_in_asset)
-            # check if the version file is already available and valid
-            version_available = os.path.exists(version_file) and bool(FileUtils.read_yaml(version_file))
-            if force or not version_available:
-                resource = transporter.get_download_resource(src=blob.url,
-                                                             dst=version_file,
-                                                             src_hash=blob.get_hash())
-                target_resources.append(resource)
-
-        if not target_resources:
-            self.user_log.info("all necessary version files are available - skipping download")
-            return
-
-        self.perform_download(targets=target_resources,
-                              storage=storage,
-                              progress="downloading asset versions")
+        # download the versions from the filtered blobs list
+        self._download_versions_from_blobs(class_id=class_id,
+                                           seq_id=seq_id,
+                                           version_blobs=filtered_blobs,
+                                           storage=storage,
+                                           force=force)
 
     def get_asset_class_id(self, class_name):
         class_id = AssetClass.active_classes(store=self.store).get(class_name)
