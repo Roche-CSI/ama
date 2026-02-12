@@ -12,6 +12,7 @@ from amapy_core.objects.asset_object import AssetObject, ObjectViews
 from amapy_core.objects.object_factory import ObjectFactory
 from amapy_core.plugins import utils, FileUtils, Progress, exceptions
 from amapy_db import ManifestDB, FileDB, StatesDB, StoreFileDB, AssetStatesDB
+from amapy_utils.common import user_commands
 from amapy_utils.utils.path_utils import PathUtils
 from .asset_class import AssetClass
 from .asset_version import AssetVersion
@@ -498,11 +499,31 @@ class Asset(SerializableAsset):
         return os.path.join(repo.states_dir, asset_id, "asset.json")
 
     def cached_versions(self) -> list:
-        """Returns a sorted list of all the versions of the asset."""
-        version_yamls = utils.list_files(root_dir=self.cache_dir, pattern="version*.yaml")
+        """Returns a sorted list of all the versions of the asset.
+
+        Raises
+        ------
+        InvalidVersionError
+            If any of the version files are corrupted or unreadable.
+        """
+        version_files = utils.list_files(root_dir=self.cache_dir, pattern="version*.yaml")
         data = []
-        for version in version_yamls:
-            data.append(FileUtils.read_yaml(version))
+        corrupted_versions = []
+
+        for filepath in version_files:
+            yaml_data = FileUtils.read_yaml(filepath)
+            if yaml_data:
+                data.append(yaml_data)
+            else:
+                corrupted_versions.append(os.path.basename(filepath))
+
+        if corrupted_versions:
+            e = exceptions.InvalidVersionError(f"corrupted version files: {', '.join(corrupted_versions)}")
+            e.logs.add("try fetching the asset versions or reclone the asset", e.log_colors.INFO)
+            e.logs.add(user_commands.UserCommands().fetch_asset_versions())
+            e.logs.add(user_commands.UserCommands().clone_asset())
+            raise e
+
         # sort by ascending i.e. earliest to latest
         data.sort(key=lambda x: x.get("id"))
         return data
