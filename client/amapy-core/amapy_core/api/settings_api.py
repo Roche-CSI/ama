@@ -202,8 +202,7 @@ class SettingsAPI(LoggingMixin):
 
             # print success message
             message = colored_string("Success\n", LogColors.SUCCESS)
-            message += colored_string("Signed in as: {}".format(colored_string(res.get("user").get("username"),
-                                                                               LogColors.INFO)))
+            message += colored_string(f"Signed in as: {colored_string(user.get('username'), LogColors.INFO)}")
             self.user_log.message(message)
 
             # set the dashboard url if available in the response
