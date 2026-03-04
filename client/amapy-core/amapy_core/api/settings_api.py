@@ -205,6 +205,16 @@ class SettingsAPI(LoggingMixin):
             message += colored_string("Signed in as: {}".format(colored_string(res.get("user").get("username"),
                                                                                LogColors.INFO)))
             self.user_log.message(message)
+
+            # set the dashboard url if available in the response
+            dashboard_url = res.get("dashboard_url")
+            if dashboard_url:
+                cfg = self.settings.shared().user_configs
+                cfg.update({"dashboard_url": dashboard_url})
+                cfg.save()
+
+                self.user_log.message(f"Dashboard url is set to: {dashboard_url}")
+
             if self.settings.active_project:
                 projects = self.print_all_projects(jsonize=jsonize)
                 if jsonize:
