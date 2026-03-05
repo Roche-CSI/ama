@@ -203,7 +203,7 @@ def get_login_info(token: str, credentials: bool = True):
             },
             "roles": user.get_roles(credentials=credentials),
             "default_project": str(default_project.id) if default_project else None,
-            "dashboard_url": dashboard_url if dashboard_url else None,
+            "dashboard_url": dashboard_url,
             "redirect_url": "/projects",
             "dashboard_settings": json.loads(asset_dashboard_settings.value) if asset_dashboard_settings else None
         }
