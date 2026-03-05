@@ -14,6 +14,7 @@ from .hash import ComputeHashAction
 from .history import AssetHistory
 from .info import AssetInfo
 from .init import InitAsset
+from .join import AssetJoin
 from .list import ListAssets
 from .pull import AssetPull
 from .remote import RemoteInfo
@@ -60,6 +61,7 @@ def get_actions():
         DebugAsset(),
         CopyObject(),
         AssetPull(),
+        AssetJoin(),
 
         # AssetDelete(),
         # AssetRestore()
