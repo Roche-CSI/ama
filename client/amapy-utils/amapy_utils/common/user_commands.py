@@ -92,6 +92,8 @@ SET_USER_CONFIGS = {"cmd": "asset config set --key <config_key> --value <config_
 RESET_USER_CONFIGS = {"cmd": "asset config reset --key <config_key>",
                       "desc": "to reset any configuration to factory defaults"}
 
+ASSET_JOIN = {"cmd": "asset join <server_url>", "desc": "to setup the server url"}
+
 
 def formatted(command: dict, color):
     return COMMAND_TEMPLATE.format(
@@ -275,3 +277,6 @@ class UserCommands:
 
     def alias_info(self, color=COMMAND_COLOR):
         return formatted(ALIAS_INFO, color)
+
+    def asset_join(self, color=COMMAND_COLOR):
+        return formatted(ASSET_JOIN, color)
