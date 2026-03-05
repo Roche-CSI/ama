@@ -61,8 +61,9 @@ def login_response(client_id: str, token: str) -> Response:
     if auth_utils.validate_user_data(data=user_info):
         # check if record exists
         user = models.user.User.get_if_exists(models.user.User.email == user_info.get("email"))
-        default_project = models.AssetSettings.default_project()
         if user:
+            default_project = models.AssetSettings.default_project()
+            dashboard_url = models.AssetSettings.dashboard_url()
             login_info = {
                 "user": {
                     "id": str(user.id),
@@ -77,6 +78,7 @@ def login_response(client_id: str, token: str) -> Response:
             login_info["roles"] = user.get_roles()
             login_info["user"]["token"] = jwt_token
             login_info["default_project"] = str(default_project.id) if default_project else None
+            login_info["dashboard_url"] = dashboard_url
         else:
             login_info = {
                 "error": {
