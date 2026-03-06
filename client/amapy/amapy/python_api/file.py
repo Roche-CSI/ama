@@ -18,4 +18,8 @@ class File(object):
 
     @contextlib.contextmanager
     def open(self, mode: str = "r"):
-        yield open(self.linked_path, mode=mode)
+        f = open(self.linked_path, mode=mode)
+        try:
+            yield f
+        finally:
+            f.close()
