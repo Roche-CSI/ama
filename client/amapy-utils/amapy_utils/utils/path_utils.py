@@ -19,7 +19,7 @@ class PathUtils:
 
     @staticmethod
     def remove(path):
-        logger.debug("removing '%s'", path)
+        logger.debug(f"removing {path}")
         try:
             if os.path.isdir(path):
                 shutil.rmtree(path, onerror=PathUtils._chmod)
