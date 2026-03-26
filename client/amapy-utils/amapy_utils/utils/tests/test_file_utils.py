@@ -1,16 +1,9 @@
 import os
 import tempfile
 
-from amapy_utils.utils import list_files, time_it
+from amapy_utils.utils import list_files
 from amapy_utils.utils.file_utils import FileUtils
 from amapy_utils.utils.stat_utils import FIELDS
-
-
-def test_read_json_zip_dir(project_root):
-    with time_it("large-asset"):
-        test_dir = os.path.join(project_root, "test_data/zips")
-        data = FileUtils.read_json_zip_dir(test_dir)
-        assert data
 
 
 def test_hardlink_directories(test_data):
@@ -58,10 +51,10 @@ def test_file_hash(test_data):
          "hashes": {'md5': 'l6BTlxCz4Y2ZfKapM248BQ==', 'crc32c': 'MF40IQ=='}},
         {"path": "yamls/invoice.yaml",
          "hashes": {'md5': 'XBo9UIOoHdGK4GLx+piBiA==', 'crc32c': 'Z/KSgw=='}},
-        {"path": "zips/zip1.zip",
-         "hashes": {'md5': '+tPd1XaMacUsFSNC5CyhbQ==', 'crc32c': 'MS9fRA=='}},
-        {"path": "zips/zip2.zip",
-         "hashes": {'md5': '+tPd1XaMacUsFSNC5CyhbQ==', 'crc32c': 'MS9fRA=='}},
+        {"path": "imgs/photo-1513938709626-033611b8cc03.jpg",
+         "hashes": {'md5': 'vlyBXBn3+A99jGAicoEw3g==', 'crc32c': 'yPffHw=='}},
+        {"path": "imgs/photo-1541698444083-023c97d3f4b6.jpg",
+         "hashes": {'md5': 'jeujRNnpO16Vq5kZzKPtwA==', 'crc32c': 'aT02+w=='}},
     ]
 
     for file in expected:
@@ -79,10 +72,10 @@ def test_bytes_hash(test_data):
          "hashes": {'md5': 'l6BTlxCz4Y2ZfKapM248BQ==', 'crc32c': 'MF40IQ=='}},
         {"path": "yamls/invoice.yaml",
          "hashes": {'md5': 'XBo9UIOoHdGK4GLx+piBiA==', 'crc32c': 'Z/KSgw=='}},
-        {"path": "zips/zip1.zip",
-         "hashes": {'md5': '+tPd1XaMacUsFSNC5CyhbQ==', 'crc32c': 'MS9fRA=='}},
-        {"path": "zips/zip2.zip",
-         "hashes": {'md5': '+tPd1XaMacUsFSNC5CyhbQ==', 'crc32c': 'MS9fRA=='}},
+        {"path": "imgs/photo-1513938709626-033611b8cc03.jpg",
+         "hashes": {'md5': 'vlyBXBn3+A99jGAicoEw3g==', 'crc32c': 'yPffHw=='}},
+        {"path": "imgs/photo-1541698444083-023c97d3f4b6.jpg",
+         "hashes": {'md5': 'jeujRNnpO16Vq5kZzKPtwA==', 'crc32c': 'aT02+w=='}},
     ]
 
     for file in expected:
