@@ -28,7 +28,7 @@ dependencies = [
     "ruamel.yaml==0.18.*",
     "speedtest-cli==2.1.*",
     "tabulate==0.9.*",
-    "tqdm==4.62.*"
+    "tqdm==4.66.*"
 ]
 
 [tool.setuptools.packages.find]
