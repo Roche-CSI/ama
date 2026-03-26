@@ -3,7 +3,6 @@ import logging
 import os
 import shutil
 import stat
-import sys
 
 logger = logging.getLogger(__file__)
 
@@ -22,7 +21,7 @@ class PathUtils:
         logger.debug(f"removing {path}")
         try:
             if os.path.isdir(path):
-                shutil.rmtree(path, onerror=PathUtils._chmod)
+                shutil.rmtree(path, onexc=PathUtils._chmod)
             else:
                 PathUtils._unlink(path, PathUtils._chmod)
         except OSError as exc:
@@ -30,7 +29,7 @@ class PathUtils:
                 raise
 
     @staticmethod
-    def _chmod(func, p, excinfo):  # pylint: disable=unused-argument
+    def _chmod(func, p, exc):  # pylint: disable=unused-argument
         perm = os.lstat(p).st_mode
         perm |= stat.S_IWRITE
 
@@ -46,8 +45,8 @@ class PathUtils:
     def _unlink(path, onerror):
         try:
             os.unlink(path)
-        except OSError:
-            onerror(os.unlink, path, sys.exc_info())
+        except OSError as exc:
+            onerror(os.unlink, path, exc)
 
     @staticmethod
     def path_link_type(path):
