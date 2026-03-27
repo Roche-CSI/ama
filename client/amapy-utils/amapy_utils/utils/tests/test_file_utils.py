@@ -17,9 +17,18 @@ def test_hardlink_directories(test_data):
 
 
 def test_mime_type():
-    path = "test_data/acm_data/wv1.4e14_0.0065/chunked_raw_data/chunk0000/raw/oc_calibration.h5"
-    mime = FileUtils.mime_type(path)
-    assert mime == 'application/x-hdf5'
+    expected_mimes = {
+        "data.json": "application/json",
+        "readme.txt": "text/plain",
+        "data.h5": "application/x-hdf5",
+        "data.yaml": "application/x-yaml",
+        "data.yml": "application/x-yaml",
+        "readme.md": "text/markdown",
+        "photo.jpg": "image/jpeg",
+    }
+    for filename, expected in expected_mimes.items():
+        mime = FileUtils.mime_type(filename)
+        assert mime == expected, f"Expected '{expected}' for '{filename}', got '{mime}'"
 
 
 def test_read_yaml_multi(test_data):

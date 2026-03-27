@@ -46,9 +46,7 @@ class FileUtils(LoggingMixin):
     @staticmethod
     def mime_type(src) -> str:
         """detect the mimetype of a file given its path"""
-        mime = mimetypes.guess_type(src)
-        if mime and len(mime) > 1:
-            mime = mime[0]
+        mime, _ = mimetypes.guess_type(src)
         # mimetypes doesn't work for yaml since
         # yaml is not yet in the IANA registry, so we need to manually plug it
         if not mime:
@@ -464,7 +462,7 @@ class FileUtils(LoggingMixin):
             css = Path(css_path).read_text()
             html = html.replace("{{styles}}", f"\n{css}")
         if js_path:
-            js = Path(css_path).read_text()
+            js = Path(js_path).read_text()
             html = html.replace("{{js}}", f"\n{js}")
 
         return html
