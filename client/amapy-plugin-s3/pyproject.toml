@@ -16,12 +16,12 @@ maintainers = [
 license = { text = "Copyright (c) 2024 Roche Diagnostics Computation Science & Informatics" }
 requires-python = ">=3.12,<3.13"  # "==3.12.*"
 dependencies = [
-    "aioboto3>=13.0,<16.0",
+    "aioboto3==15.5.*",
     "amapy-contents==1.*",
     "amapy-pluggy==1.*",
     "amapy-utils==1.*",
-    "backoff>=2.2,<3.0",
-    "urllib3>=2.0,<3.0"
+    "backoff==2.2.*",
+    "urllib3==2.6.*"
 ]
 
 [tool.setuptools.packages.find]
