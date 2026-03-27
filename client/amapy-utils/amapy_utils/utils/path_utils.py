@@ -42,11 +42,11 @@ class PathUtils:
         func(p)
 
     @staticmethod
-    def _unlink(path, onerror):
+    def _unlink(path, onexc):
         try:
             os.unlink(path)
         except OSError as exc:
-            onerror(os.unlink, path, exc)
+            onexc(os.unlink, path, exc)
 
     @staticmethod
     def path_link_type(path):
