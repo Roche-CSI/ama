@@ -25,7 +25,7 @@ dependencies = [
     "amapy-plugin-posix==1.0.1",
     "amapy-plugin-s3==1.0.2",
     "amapy-utils==1.0.1",
-    "markupsafe==3.0.*",
+    "markupsafe==2.1.*",
 ]
 
 [tool.setuptools.packages.find]

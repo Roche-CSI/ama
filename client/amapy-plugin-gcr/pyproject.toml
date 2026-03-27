@@ -20,8 +20,8 @@ dependencies = [
     "amapy-pluggy==1.*",
     "amapy-utils==1.*",
     "backoff==2.2.*",
-    "google-auth==2.49.*",
-    "pyopenssl==26.0.*",
+    "google-auth==2.27.*",
+    "pyopenssl==24.0.*",
     "speedtest-cli==2.1.*"
 ]
 
