@@ -200,21 +200,38 @@ class Asset(ReadWriteModel):
         return query.execute()
 
     @classmethod
-    def list_assets(cls, class_id: str, ids_only: bool = False, recurse: bool = False,
-                    seq_id: int = None, owner: str = None, alias: str = None, search_by: str = None,
-                    page_number: int = None, page_size: int = None):
+    def list_assets(
+        cls,
+        class_id: str,
+        ids_only: bool = False,
+        recurse: bool = False,
+        seq_id: int = None,
+        owner: str = None,
+        alias: str = None,
+        search_by: str = None,
+        page_number: int = None,
+        page_size: int = None,
+        order_by: str = None,
+        order_desc: bool = True,
+    ):
         from .version_counter import VersionCounter
         from .asset_version import AssetVersion
+
         query = Asset.select(Asset.id) if ids_only else Asset.select()
-        query = query.where(Asset.asset_class == class_id).order_by(Asset.seq_id.desc())
-        query = cls._append_list_asset_conditions(query=query, seq_id=seq_id, owner=owner, alias=alias,
-                                                  search_by=search_by)
+        query = query.where(Asset.asset_class == class_id)
+
+        # Determine ordering based on order_by parameter or default to seq_id
+        order_field = cls._get_order_field(order_by)
+        query = query.order_by(order_field.desc() if order_desc else order_field.asc())
+
+        query = cls._append_list_asset_conditions(
+            query=query, seq_id=seq_id, owner=owner, alias=alias, search_by=search_by
+        )
         query, page_count = Paginator.paginate(query, page_number, page_size)
         if recurse:
-            query \
-                .join(AssetClass, on=(Asset.asset_class == AssetClass.id)) \
-                .join(VersionCounter, on=(VersionCounter.asset == Asset.id)) \
-                .join(AssetVersion, on=VersionCounter.leaf_version == AssetVersion.id)
+            query.join(AssetClass, on=(Asset.asset_class == AssetClass.id)).join(
+                VersionCounter, on=(VersionCounter.asset == Asset.id)
+            ).join(AssetVersion, on=VersionCounter.leaf_version == AssetVersion.id)
         data = query.execute()
         return data, page_count
 
@@ -223,9 +240,34 @@ class Asset(ReadWriteModel):
         if not seq_id:
             raise Exception("missing required parameter: seq_id")
         if not class_id:
-            asset_class = AssetClass.get(AssetClass.project_id == project_id, AssetClass.name == class_name)
+            asset_class = AssetClass.get(
+                AssetClass.project_id == project_id, AssetClass.name == class_name
+            )
             class_id = str(asset_class.id)
         return cls.get_if_exists(cls.asset_class_id == class_id, cls.seq_id == seq_id)
+
+    @classmethod
+    def _get_order_field(cls, order_by: str = None):
+        """
+        Determine which field to order by.
+
+        Args:
+            order_by: Can be 'created_at', 'seq_id', 'date', or 'attributes.date'
+                     If None, defaults to 'seq_id'
+
+        Returns:
+            The Peewee field expression to use for ordering
+        """
+        if not order_by or order_by == "seq_id":
+            return Asset.seq_id
+        elif order_by == "created_at":
+            return Asset.created_at
+        elif order_by in ["date", "attributes.date"]:
+            # For JSON field, extract and cast to DATE for proper chronological ordering
+            # If attributes.date is NULL or doesn't exist, fallback to created_at
+            # SQL: ORDER BY COALESCE((attributes->>'date')::date, created_at::date)
+            # This ensures assets without a date attribute still get ordered by their creation date
+            return SQL("COALESCE((attributes->>'date')::date, created_at::date)")
 
     @staticmethod
     def _append_list_asset_conditions(query, seq_id, owner, alias, search_by):
