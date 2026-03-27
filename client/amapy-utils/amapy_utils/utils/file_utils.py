@@ -67,7 +67,7 @@ class FileUtils(LoggingMixin):
     def read_file_mime_type(path: str, mime_type):
         if mime_type == 'application/json':
             return FileUtils.read_json(path)
-        elif mime_type == 'application/x-yaml':
+        elif mime_type in ('application/yaml', 'application/x-yaml'):
             return FileUtils.read_yaml(path)
         elif mime_type == 'text/plain':
             return FileUtils.read_text(path)
