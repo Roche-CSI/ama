@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=68.0.0,<69.0.0"]
+requires = ["setuptools>=74.0.0,<75.0.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -14,15 +14,15 @@ maintainers = [
     { name = "Swarup Mahanti", email = "swarup.mahanti@roche.com" }
 ]
 license = { text = "Copyright (c) 2024 Roche Diagnostics Computation Science & Informatics" }
-requires-python = ">=3.10,<3.11"  # "==3.10.*"
+requires-python = ">=3.12,<3.13"  # "==3.12.*"
 dependencies = [
     "amapy-contents==1.*",
     "amapy-pluggy==1.*",
     "amapy-utils==1.*",
-    "backoff==2.2.*",
-    "google-auth==2.15.*",
-    "pyopenssl==24.0.*",
-    "speedtest-cli==2.1.*"
+    "backoff>=2.2,<3.0",
+    "google-auth>=2.35,<3.0",
+    "pyopenssl>=24.2,<27.0",
+    "speedtest-cli>=2.1,<3.0"
 ]
 
 [tool.setuptools.packages.find]

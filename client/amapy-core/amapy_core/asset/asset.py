@@ -6,7 +6,7 @@ import os
 import uuid
 from typing import Optional
 
-from cached_property import cached_property
+from functools import cached_property
 
 from amapy_core.objects.asset_object import AssetObject, ObjectViews
 from amapy_core.objects.object_factory import ObjectFactory

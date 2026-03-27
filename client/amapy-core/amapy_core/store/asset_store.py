@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import os
 
-from cached_property import cached_property
+from functools import cached_property
 
 from amapy_core.configs import Configs, AppSettings
 from amapy_db import AssetsDB, StoreDB

@@ -1,4 +1,4 @@
-import cached_property
+from functools import cached_property
 
 from amapy.commands import CliAction
 from amapy_core.api.store_api.list import ListAPI
@@ -17,6 +17,6 @@ class ListAssetClass(CliAction):
     def get_options(self):
         return []
 
-    @cached_property.cached_property
+    @cached_property
     def api(self):
         return ListAPI(store=self.asset_store, repo=self.repo)

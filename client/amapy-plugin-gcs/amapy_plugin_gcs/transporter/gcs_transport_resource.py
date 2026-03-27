@@ -1,6 +1,6 @@
 import os.path
 
-from cached_property import cached_property
+from functools import cached_property
 
 from amapy_pluggy.storage import BlobStoreURL
 from amapy_pluggy.storage.transporter import TransportResource
