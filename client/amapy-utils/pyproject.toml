@@ -22,7 +22,7 @@ dependencies = [
     "psutil==5.9.*",
     "pyopenssl==24.0.*",
     "pypager==3.0.1",
-    "pytz==2024.*",
+    "pytz==2024.2",
     "pyyaml==6.0.*",
     "requests==2.32.*",
     "ruamel.yaml==0.18.*",
