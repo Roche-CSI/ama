@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=70.0.0,<71.0.0"]
+requires = ["setuptools>=74.0.0,<75.0.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -14,16 +14,16 @@ maintainers = [
     { name = "Swarup Mahanti", email = "swarup.mahanti@roche.com" }
 ]
 license = { text = "Copyright (c) 2024 Roche Diagnostics Computation Science & Informatics" }
-requires-python = ">=3.12,<3.13"
+requires-python = ">=3.12,<3.13"  # "==3.12.*"
 dependencies = [
-    "aiofiles==23.1.*",
+    "aiofiles==24.1.*",
     "colorama==0.4.*",
     "crcmod==1.*",
     "psutil==5.9.*",
     "pyopenssl==24.0.*",
     "pypager==3.0.1",
     "pytz==2024.*",
-    "pyyaml>=6.0.1,<7.0",
+    "pyyaml==6.0.*",
     "requests==2.32.*",
     "ruamel.yaml==0.18.*",
     "speedtest-cli==2.1.*",
