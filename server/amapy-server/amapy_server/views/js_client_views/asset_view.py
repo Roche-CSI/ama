@@ -80,10 +80,33 @@ def get_assets(args: dict):
         seq_id = args.get("seq_id")
         alias = args.get("alias")
         owner = args.get("owner")
+
+        # Get asset class to check for custom ordering
+        asset_class = AssetClass.get_if_exists(AssetClass.id == args.get("class_id"))
+        order_by = 'seq_id'  # default
+        order_desc = True  # default to descending
+
+        if asset_class and asset_class.attributes:
+            # Check if class has custom order_by in attributes
+            class_order_by = asset_class.attributes.get('order_by')
+            if class_order_by:
+                order_by = class_order_by
+            # Check if class has custom order direction in attributes
+            class_order_desc = asset_class.attributes.get('order_desc')
+            if class_order_desc is not None:
+                order_desc = bool(class_order_desc)
+
+        # Allow override from query params
+        if args.get("order_by"):
+            order_by = args.get("order_by")
+        if args.get("order_desc") is not None:
+            order_desc = args.get("order_desc").lower() in ['true', '1', 'yes']
+
         data, page_count = Asset.list_assets(class_id=args.get("class_id"),
                                              seq_id=seq_id, alias=alias, owner=owner,
                                              page_number=page_number,
-                                             page_size=page_size, search_by=search_by, recurse=True)
+                                             page_size=page_size, search_by=search_by, recurse=True,
+                                             order_by=order_by, order_desc=order_desc)
         json_data = []
         for asset in data:
             data = asset.to_dict()
