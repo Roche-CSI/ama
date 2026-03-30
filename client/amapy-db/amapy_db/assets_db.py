@@ -32,9 +32,8 @@ class AssetsDB(Database):
             deleted = data.pop(path, None)
             if deleted:
                 pass
-                # logger.info("file {} removed.".format(id))
             else:
-                logger.info("file not added yet, ignoring remove for:{}".format(id))
+                logger.info(f"file not added yet, ignoring remove for: {path}")
         setattr(self, "_file_hashes", data)
         self._write_to_file(data)
 
