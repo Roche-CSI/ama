@@ -1,8 +1,4 @@
-import logging
-
 from amapy_db.db import Database
-
-logger = logging.getLogger(__name__)
 
 
 class AssetsDB(Database):
@@ -33,7 +29,7 @@ class AssetsDB(Database):
             if deleted:
                 pass
             else:
-                logger.info(f"file not added yet, ignoring remove for: {path}")
+                self.user_log.info(f"file not added yet, ignoring remove for: {path}")
         setattr(self, "_file_hashes", data)
         self._write_to_file(data)
 
