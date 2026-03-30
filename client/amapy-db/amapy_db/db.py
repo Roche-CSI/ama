@@ -1,6 +1,5 @@
 import logging
 import os
-from typing import List, AnyStr, Union
 
 from amapy_utils.utils import utils
 from amapy_utils.utils.file_utils import FileUtils
@@ -88,7 +87,7 @@ class Database:
         else:
             raise Exception("Unsupported DB format")
 
-    def retrieve(self, key: Union[AnyStr, List]):
+    def retrieve(self, key: str | list):
         """Retrieves specific values for specific keys from the json file.
            If keys are not found, the default value of None is returned.
         """
