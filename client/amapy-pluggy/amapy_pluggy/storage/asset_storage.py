@@ -1,6 +1,5 @@
 import abc
 import os
-from typing import Type, Union
 
 from amapy_pluggy.plugin.object_content import ObjectContent
 from amapy_pluggy.storage.blob import StorageData
@@ -13,7 +12,7 @@ from amapy_utils.utils.log_utils import LoggingMixin
 
 
 class AssetStorage(Singleton, LoggingMixin):
-    prefixes: [str] = []  # list of prefixes
+    prefixes: list[str] = []  # list of prefixes
     name: str = None
 
     def post_init(self):
@@ -63,11 +62,11 @@ class AssetStorage(Singleton, LoggingMixin):
         raise NotImplementedError
 
     @abc.abstractmethod
-    def list_blobs(self, url: Union[StorageURL, str], ignore: str = None) -> [StorageData]:
+    def list_blobs(self, url: StorageURL | str, ignore: str = None) -> list[StorageData]:
         raise NotImplementedError
 
     @abc.abstractmethod
-    def delete_blobs(self, url_strings: [str]) -> None:
+    def delete_blobs(self, url_strings: list[str]) -> None:
         """delete one or more blobs"""
         raise NotImplementedError
 
@@ -76,14 +75,14 @@ class AssetStorage(Singleton, LoggingMixin):
         raise NotImplementedError
 
     @abc.abstractmethod
-    def get_content_class(self) -> Type[ObjectContent]:
+    def get_content_class(self) -> type[ObjectContent]:
         raise NotImplementedError
 
     def parse_blobs_from_url(self,
                              repo_dir: str,
                              url_string: str,
                              ignore: str = None,
-                             dest_dir: str = None) -> [tuple]:
+                             dest_dir: str = None) -> list[tuple]:
         """parse the source of content creation
 
         Parameters
@@ -104,7 +103,7 @@ class AssetStorage(Singleton, LoggingMixin):
 
         """
         search_url: StorageURL = self.get_storage_url(url_string=url_string, ignore=ignore)
-        blobs: [StorageData] = self.list_blobs(url=search_url)
+        blobs: list[StorageData] = self.list_blobs(url=search_url)
         sources = []
         for blob in blobs:
             content_dst = self.get_object_path(asset_root=repo_dir, blob=blob, parent_url=search_url)
@@ -133,7 +132,7 @@ class AssetStorage(Singleton, LoggingMixin):
         raise NotImplementedError
 
     @abc.abstractmethod
-    def url_is_file(self, url: Union[StorageURL, str]):
+    def url_is_file(self, url: StorageURL | str):
         raise NotImplementedError
 
     # used in asset-server
