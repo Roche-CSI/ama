@@ -1,13 +1,11 @@
 # No usage of ObjectManager found in the project.
-from typing import Dict, Type
-
 from amapy_pluggy.plugin.asset_object import AssetObject
 from amapy_pluggy.plugin.plugin_manager import PluginManager
 from amapy_utils.common import exceptions, Singleton
 
 
 class ObjectManager(Singleton):
-    object_providers: Dict[str, Type[AssetObject]]
+    object_providers: dict[str, type[AssetObject]]
 
     def post_init(self):
         self.object_providers = {}
