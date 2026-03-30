@@ -1,16 +1,15 @@
-import logging
 import os
 
 from amapy_utils.utils import utils
 from amapy_utils.utils.file_utils import FileUtils
-
-logger = logging.getLogger(__name__)
+from amapy_utils.utils.log_utils import LoggingMixin
 
 DB_FILE = "json"  # yaml
 
 
-class Database:
+class Database(LoggingMixin):
     """Yaml wrapper to present a db like interface for writing to yaml files.
+
     Singleton, so make sure all DBs inherit directly from this class only
     Subclasses also behave as singletons
     """
@@ -45,7 +44,7 @@ class Database:
                         os.unlink(self.backup_path)  # delete existing
                         os.link(src=self.path, dst=self.backup_path)
                     except OSError as e:
-                        logger.warning(f"Backup not enabled because of OSError: {str(e)}")
+                        self.user_log.alert(f"Backup not enabled because of OSError: {e}")
 
     def copy_to(self, db):
         db.update(**self.data())
