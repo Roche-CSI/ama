@@ -1,7 +1,6 @@
 """Used only in asset-server"""
 import io
 import os
-from typing import Union
 
 from .file_utils import FileUtils
 from .in_memory_zip import InMemoryZip
@@ -12,7 +11,7 @@ DataFormats = {".json", ".yaml", ".yml"}
 
 class InMemoryFile:
     # create a file-like object in memory
-    file: Union[io.StringIO, io.BytesIO]
+    file: io.StringIO | io.BytesIO
     file_ext: str
 
     def __init__(self, file_ext: str, file_data=None):

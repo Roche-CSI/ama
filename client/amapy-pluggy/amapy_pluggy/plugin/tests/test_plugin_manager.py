@@ -1,5 +1,4 @@
 from abc import ABC
-from typing import Type
 
 from amapy_pluggy.plugin import hook_impl
 from amapy_pluggy.plugin.plugin_manager import PluginManager
@@ -12,7 +11,7 @@ def test_plugin_manager():
 
     class TestStoragePlugin:
         @hook_impl
-        def asset_storage_get(self) -> Type[AssetStorage]:
+        def asset_storage_get(self) -> type[AssetStorage]:
             return TestStorage
 
     plm = PluginManager.shared()

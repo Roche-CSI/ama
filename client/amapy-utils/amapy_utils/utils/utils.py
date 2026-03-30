@@ -6,12 +6,12 @@ import functools
 import os
 import pwd
 import re
+from collections.abc import Callable, Iterable
 from contextlib import contextmanager
 from functools import wraps
 from itertools import islice
 from os.path import expanduser
 from time import time
-from typing import Iterable, Union, List, Dict, Callable
 
 from pytz import utc, timezone
 
@@ -133,7 +133,7 @@ def env2bool(var, undefined=False) -> bool:
     return bool(re.search("1|y|yes|true", var, flags=re.I))
 
 
-def cast2list(item: Union[Iterable[str], str, None]) -> List[str]:
+def cast2list(item: Iterable[str] | str | None) -> list[str]:
     """takes single object or a collection and casts to List"""
     if item is None:
         return []
@@ -188,7 +188,7 @@ def find_pattern(string: str):
     return pattern
 
 
-def lowest_positive(numbers: []):
+def lowest_positive(numbers: list):
     lowest = -1
     for number in numbers:
         if number < 0:
@@ -312,7 +312,7 @@ def rgetattr(obj, attr, *args):
     return functools.reduce(_getattr, [obj] + attr.split('.'))
 
 
-def args_choices(choices: Dict[int or str, Iterable]) -> Callable:
+def args_choices(choices: dict[int | str, Iterable]) -> Callable:
     """decorator factory: force arguments of a func limited inside the given choices
 
     :param choices: a dict which describes the choices of arguments

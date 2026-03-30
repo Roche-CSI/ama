@@ -1,5 +1,5 @@
 import abc
-from typing import Callable
+from collections.abc import Callable
 
 from amapy_utils.utils.log_utils import LoggingMixin
 

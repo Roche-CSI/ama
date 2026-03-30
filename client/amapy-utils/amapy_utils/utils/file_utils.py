@@ -12,7 +12,6 @@ import subprocess
 import zipfile
 from json.decoder import JSONDecodeError
 from pathlib import Path
-from typing import Union
 
 import aiofiles
 import crcmod
@@ -104,7 +103,7 @@ class FileUtils(LoggingMixin):
             return data
 
     @staticmethod
-    def read_yamls_multi(paths: [str]):
+    def read_yamls_multi(paths: list[str]):
         batch_size = min(len(paths), FileUtils.max_concurrent_files_limit())
         data = {}
         for chunk in batch(paths, batch_size):
@@ -340,7 +339,7 @@ class FileUtils(LoggingMixin):
         return hash_crc32c.hexdigest()
 
     @staticmethod
-    def hex_to_base64(md5_hex: Union[bytes, str]):
+    def hex_to_base64(md5_hex: bytes | str):
         """base64 representation of the md5, we standardize it here to ensure
         that all asset-plugins follows the same protocol
         """
@@ -556,7 +555,7 @@ class FileUtils(LoggingMixin):
         return path
 
     @staticmethod
-    def print_file_tree(files: [str]):
+    def print_file_tree(files: list[str]):
         files = sorted(files)
         node = TreeNode.parse(paths=files)
         TreeNode.print_tree(node)
