@@ -138,7 +138,7 @@ class UserLog:
     def colorize(self, string: str, color):
         return colored_string(string=string, color=color)
 
-    def bulletize(self, items: [str]):
+    def bulletize(self, items: list[str]):
         return self.__bulleted_message(data=items)
 
     def dict_to_logs(self, data: dict) -> str:
