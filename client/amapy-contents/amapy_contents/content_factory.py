@@ -1,5 +1,4 @@
 from typing import TYPE_CHECKING
-from typing import Type
 
 from amapy_pluggy.storage.storage_factory import StorageFactory, AssetStorage
 from amapy_utils.utils import cast2list
@@ -31,7 +30,7 @@ SOURCES = {
 
 class ContentFactory:
     def compute_hash(self, src):
-        content_cls: Type[Content] = self.content_class(src_type=src_type(src))
+        content_cls: type[Content] = self.content_class(src_type=src_type(src))
         return content_cls.serialize_hash(*content_cls.compute_hash(src))
 
     def create(self, asset, **kwargs):
@@ -45,7 +44,7 @@ class ContentFactory:
         cls = self.content_class(src_type=src_type(kwargs.get("src")))
         return cls.create(asset, **kwargs)
 
-    def create_contents(self, source_data: dict, proxy: bool = False) -> [Content]:
+    def create_contents(self, source_data: dict, proxy: bool = False) -> list[Content]:
         """Creates Content objects from ObjectSource
 
         Parameters
@@ -61,8 +60,8 @@ class ContentFactory:
         """
         result = []
         for storage_name, object_sources in source_data.items():
-            storage_klass: Type[AssetStorage] = StorageFactory.storage_with_name(name=storage_name)
-            content_klass: Type[Content] = storage_klass.get_content_class()
+            storage_klass: type[AssetStorage] = StorageFactory.storage_with_name(name=storage_name)
+            content_klass: type[Content] = storage_klass.get_content_class()
             for object_src in object_sources:
                 object_src.content = content_klass.create(storage_name=storage_name,
                                                           blob=object_src.blob,
@@ -74,7 +73,7 @@ class ContentFactory:
         cls = self.content_class(recurse(data, "type"))
         return cls.de_serialize(asset=asset, data=data)
 
-    def content_class(self, src_type: str) -> Type[Content]:
+    def content_class(self, src_type: str) -> type[Content]:
         if not src_type:
             src_type = DEFAULT_OBJECT
         # legacy fix, the type in older projects is "gcs" - this is now changed to "gs"
@@ -92,7 +91,7 @@ class ContentFactory:
             sorted[src_type(src)].append(src)
         return sorted
 
-    def groups(self, contents: [Content]) -> dict:
+    def groups(self, contents: list[Content]) -> dict:
         groups = {}
         for obj in contents:
             seen = groups.get(obj.file_id, [])

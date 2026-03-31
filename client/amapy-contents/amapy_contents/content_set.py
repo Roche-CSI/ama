@@ -1,5 +1,5 @@
 import os
-from typing import Iterable, Callable
+from collections.abc import Iterable, Callable
 
 from amapy_utils import common
 from amapy_utils.utils import utils
@@ -33,7 +33,7 @@ class ContentSet(common.BetterSet):
             data_size += item.size
         return data_size
 
-    def filter(self, predicate: Callable = None) -> [Content]:
+    def filter(self, predicate: Callable = None) -> list[Content]:
         """Returns a dict of assets stored in asset-manifest
 
         Parameters:
