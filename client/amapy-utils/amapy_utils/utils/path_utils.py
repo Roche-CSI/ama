@@ -3,7 +3,6 @@ import logging
 import os
 import shutil
 import stat
-import sys
 
 logger = logging.getLogger(__file__)
 
@@ -19,35 +18,35 @@ class PathUtils:
 
     @staticmethod
     def remove(path):
-        logger.debug("removing '%s'", path)
+        logger.debug(f"removing {path}")
         try:
             if os.path.isdir(path):
-                shutil.rmtree(path, onerror=PathUtils._chmod)
+                shutil.rmtree(path, onexc=PathUtils._chmod)
             else:
                 PathUtils._unlink(path, PathUtils._chmod)
-        except OSError as exc:
-            if exc.errno != errno.ENOENT:
+        except OSError as e:
+            if e.errno != errno.ENOENT:
                 raise
 
     @staticmethod
-    def _chmod(func, p, excinfo):  # pylint: disable=unused-argument
+    def _chmod(func, p, exe):  # pylint: disable=unused-argument
         perm = os.lstat(p).st_mode
         perm |= stat.S_IWRITE
 
         try:
             os.chmod(p, perm)
-        except OSError as exc:
+        except OSError as e:
             # broken symlink or file is not owned by us
-            if exc.errno not in [errno.ENOENT, errno.EPERM]:
+            if e.errno not in [errno.ENOENT, errno.EPERM]:
                 raise
         func(p)
 
     @staticmethod
-    def _unlink(path, onerror):
+    def _unlink(path, onexc):
         try:
             os.unlink(path)
-        except OSError:
-            onerror(os.unlink, path, sys.exc_info())
+        except OSError as e:
+            onexc(os.unlink, path, e)
 
     @staticmethod
     def path_link_type(path):

@@ -12,7 +12,6 @@ import subprocess
 import zipfile
 from json.decoder import JSONDecodeError
 from pathlib import Path
-from typing import Union
 
 import aiofiles
 import crcmod
@@ -46,9 +45,7 @@ class FileUtils(LoggingMixin):
     @staticmethod
     def mime_type(src) -> str:
         """detect the mimetype of a file given its path"""
-        mime = mimetypes.guess_type(src)
-        if mime and len(mime) > 1:
-            mime = mime[0]
+        mime, _ = mimetypes.guess_type(src)
         # mimetypes doesn't work for yaml since
         # yaml is not yet in the IANA registry, so we need to manually plug it
         if not mime:
@@ -69,7 +66,7 @@ class FileUtils(LoggingMixin):
     def read_file_mime_type(path: str, mime_type):
         if mime_type == 'application/json':
             return FileUtils.read_json(path)
-        elif mime_type == 'application/x-yaml':
+        elif mime_type in ('application/yaml', 'application/x-yaml'):
             return FileUtils.read_yaml(path)
         elif mime_type == 'text/plain':
             return FileUtils.read_text(path)
@@ -106,7 +103,7 @@ class FileUtils(LoggingMixin):
             return data
 
     @staticmethod
-    def read_yamls_multi(paths: [str]):
+    def read_yamls_multi(paths: list[str]):
         batch_size = min(len(paths), FileUtils.max_concurrent_files_limit())
         data = {}
         for chunk in batch(paths, batch_size):
@@ -342,7 +339,7 @@ class FileUtils(LoggingMixin):
         return hash_crc32c.hexdigest()
 
     @staticmethod
-    def hex_to_base64(md5_hex: Union[bytes, str]):
+    def hex_to_base64(md5_hex: bytes | str):
         """base64 representation of the md5, we standardize it here to ensure
         that all asset-plugins follows the same protocol
         """
@@ -464,7 +461,7 @@ class FileUtils(LoggingMixin):
             css = Path(css_path).read_text()
             html = html.replace("{{styles}}", f"\n{css}")
         if js_path:
-            js = Path(css_path).read_text()
+            js = Path(js_path).read_text()
             html = html.replace("{{js}}", f"\n{js}")
 
         return html
@@ -558,7 +555,7 @@ class FileUtils(LoggingMixin):
         return path
 
     @staticmethod
-    def print_file_tree(files: [str]):
+    def print_file_tree(files: list[str]):
         files = sorted(files)
         node = TreeNode.parse(paths=files)
         TreeNode.print_tree(node)

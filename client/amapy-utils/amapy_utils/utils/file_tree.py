@@ -46,7 +46,7 @@ class TreeNode(object):
             cls.print_tree(child, marker_str, [*level_markers, not is_last])
 
     @classmethod
-    def parse(cls, paths: [str]):
+    def parse(cls, paths: list[str]):
         node = TreeNode()
         for path in paths:
             node.add_child(TreeNode(path))
