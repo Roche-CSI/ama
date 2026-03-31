@@ -1,9 +1,5 @@
-import logging
-
 from amapy_db.db import Database
 from amapy_utils.utils.file_utils import FileUtils
-
-logger = logging.getLogger(__name__)
 
 
 class AssetStatesDB(Database):

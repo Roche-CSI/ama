@@ -1,9 +1,5 @@
-import logging
-
 from amapy_db.db import Database
 from amapy_utils.utils import utils
-
-logger = logging.getLogger(__name__)
 
 
 class ManifestDB(Database):
@@ -66,7 +62,7 @@ class ManifestDB(Database):
             if deleted:
                 pass
             else:
-                logger.info("asset not added yet, ignoring remove for:{}".format(_id))
+                self.user_log.info(f"asset not added yet, ignoring remove for:{_id}")
         data["objects"] = objects
         self._write_to_file(data)
 
