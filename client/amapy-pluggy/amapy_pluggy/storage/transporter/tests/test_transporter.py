@@ -4,6 +4,20 @@ import pytest
 
 from amapy_pluggy.storage.transporter import Transporter
 
+
+class MockTransporter(Transporter):
+    """Concrete subclass of Transporter for testing."""
+
+    def upload(self, resources):
+        pass
+
+    def download(self, resources):
+        pass
+
+    def copy(self, resources):
+        pass
+
+
 GCS_1 = {
     "credentials": {
         "project_id": "general_random1_gcs",
@@ -44,11 +58,11 @@ S3_2 = {
 def test_transporter():
     assert_transporter(cred=GCS_1)
     # test with null credentials
-    Transporter.de_init()
+    MockTransporter.de_init()
     with pytest.raises(Exception) as e:
         assert_transporter(cred={})
     assert e
-    Transporter.de_init()
+    MockTransporter.de_init()
     # test credentials switch
     creds = [GCS_1, GCS_2]
     for cred in creds:
@@ -56,8 +70,8 @@ def test_transporter():
 
 
 def assert_transporter(cred: dict):
-    transport = Transporter.shared(credentials=cred.get("credentials"),
-                                   prefixes=cred.get("prefixes"),
-                                   validate=True)
+    transport = MockTransporter.shared(credentials=cred.get("credentials"),
+                                       prefixes=cred.get("prefixes"),
+                                       validate=True)
     assert transport and isinstance(transport, Transporter)
     assert json.dumps(transport.credentials) == json.dumps(cred.get("credentials"))

@@ -1,6 +1,5 @@
 import json
 import os
-from typing import Type
 
 from amapy_pluggy.plugin.storage_manager import StorageManager
 from amapy_pluggy.storage.asset_storage import AssetStorage
@@ -21,7 +20,7 @@ class StorageFactory:
 
     @classmethod
     def _add_storage(cls, prefix: str):
-        klass: Type[AssetStorage] = StorageManager.shared().get_storage(prefix=prefix)
+        klass: type[AssetStorage] = StorageManager.shared().get_storage(prefix=prefix)
         if not klass:
             raise exceptions.InvalidStorageBackendError(msg=f"{prefix} backend is not installed")
         storage = klass.shared()
@@ -119,7 +118,7 @@ class StorageFactory:
             if storage_klass.name == name:
                 return storage_klass
         # check in storage factory
-        klass: Type[AssetStorage] = StorageManager.shared().get_storage(prefix=None, name=name)
+        klass: type[AssetStorage] = StorageManager.shared().get_storage(prefix=None, name=name)
         if klass:
             return cls._add_storage(prefix=klass.prefixes[0])
         else:

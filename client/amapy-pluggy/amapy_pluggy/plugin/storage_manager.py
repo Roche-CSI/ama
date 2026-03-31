@@ -1,5 +1,3 @@
-from typing import Dict, Type
-
 from amapy_pluggy.plugin.plugin_manager import PluginManager
 from amapy_pluggy.storage.asset_storage import AssetStorage
 from amapy_utils.common.exceptions import AssetException
@@ -13,7 +11,7 @@ class AssetStorageConflictException(AssetException):
 
 
 class StorageManager(Singleton):
-    _storage_providers: Dict[str, Type[AssetStorage]]
+    _storage_providers: dict[str, type[AssetStorage]]
 
     def post_init(self, **kwargs):
         self._storage_providers = {}

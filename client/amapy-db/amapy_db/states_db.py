@@ -1,9 +1,6 @@
-import logging
 import os
 
 from amapy_db.db import Database
-
-logger = logging.getLogger(__name__)
 
 
 class StatesDB(Database):
@@ -65,9 +62,8 @@ class StatesDB(Database):
             deleted = states.pop(id, None)
             if deleted:
                 pass
-                # logger.info("asset {} removed.".format(id))
             else:
-                logger.warning("content not added yet, ignoring remove for:{}".format(id))
+                self.user_log.alert(f"content not added yet, ignoring remove for:{id}")
 
         data["content_states"] = states
         self._write_to_file(data=data)
@@ -86,9 +82,8 @@ class StatesDB(Database):
             deleted = states.pop(id, None)
             if deleted:
                 pass
-                # logger.info("asset {} removed.".format(id))
             else:
-                logger.warning("asset not added yet, ignoring remove for:{}".format(id))
+                self.user_log.alert(f"asset not added yet, ignoring remove for:{id}")
 
         data["object_states"] = states
         self._write_to_file(data=data)

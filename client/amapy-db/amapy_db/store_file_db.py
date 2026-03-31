@@ -1,9 +1,6 @@
-import logging
 import os
 
 from amapy_db.db import Database
-
-logger = logging.getLogger(__name__)
 
 
 class StoreFileDB(Database):
@@ -37,9 +34,8 @@ class StoreFileDB(Database):
             deleted = stats.pop(id, None)
             if deleted:
                 pass
-                # logger.info("object {} removed.".format(id))
             else:
-                logger.warning("object not added yet, ignoring remove for:{}".format(id))
+                self.user_log.alert(f"object not added yet, ignoring remove for:{id}")
 
         data["stats"] = stats
         self._write_to_file(data=data)
