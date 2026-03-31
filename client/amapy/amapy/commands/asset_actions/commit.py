@@ -1,4 +1,4 @@
-import cached_property
+from functools import cached_property
 
 from amapy.commands import CliAction, CliOption
 from amapy_core.api.repo_api import AssetAPI, AddAPI
@@ -8,7 +8,7 @@ class CommitMessage(CliAction):
     name = "commit"
     help_msg = "commit message for the changes"
 
-    @cached_property.cached_property
+    @cached_property
     def api(self) -> AddAPI:
         return AssetAPI(self.repo).add
 
