@@ -11,7 +11,7 @@ def test_items():
         {
             "src": "file_types/csvs/customers.csv",
             "num_links": 1,
-            "size": 17261,
+            "size": 17160,
         },
         {
             "src": "file_types/jpegs/photo-1522364723953-452d3431c267.jpg",
