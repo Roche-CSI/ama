@@ -1,12 +1,12 @@
 import os
 from collections.abc import Iterable, Callable
 
-from amapy_utils import common
+from amapy_utils.common import BetterSet
 from amapy_utils.utils import utils
 from .content import Content
 
 
-class ContentSet(common.BetterSet):
+class ContentSet(BetterSet):
     asset = None
 
     def __init__(self, *args, asset=None):
