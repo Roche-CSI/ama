@@ -54,7 +54,7 @@ class Transporter(Singleton):
         """Returns the batch size for upload, download and copy transactions."""
         return int(os.getenv("ASSET_BATCH_SIZE")) if os.getenv("ASSET_BATCH_SIZE") else DEFAULT_BATCH_SIZE
 
-    def transfer(self, resources: [TransportResource]):
+    def transfer(self, resources: list[TransportResource]):
         """Generic interface for transferring from one source to another.
         This is meant to be the first landing point for all upload, download or copy
         operations:
@@ -99,17 +99,17 @@ class Transporter(Singleton):
         return False
 
     @abc.abstractmethod
-    def upload(self, resources: [TransportResource]):
+    def upload(self, resources: list[TransportResource]):
         """upload resources from src to dst"""
         raise NotImplementedError
 
     @abc.abstractmethod
-    def download(self, resources: [TransportResource]):
+    def download(self, resources: list[TransportResource]):
         """download resources from src to dst"""
         raise NotImplementedError
 
     @abc.abstractmethod
-    def copy(self, resources: [TransportResource]):
+    def copy(self, resources: list[TransportResource]):
         """copy resources from src to dst"""
         raise NotImplementedError
 
@@ -118,7 +118,7 @@ class Transporter(Singleton):
         return DEFAULT_TIMEOUT
 
     # used in asset-server
-    def write_to_bucket(self, data: [dict]) -> None:
+    def write_to_bucket(self, data: list[dict]) -> None:
         """Write data directly to the bucket.
 
         Parameters
