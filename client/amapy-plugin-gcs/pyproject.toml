@@ -24,6 +24,11 @@ dependencies = [
     "google-cloud-storage==3.10.*"
 ]
 
+[project.optional-dependencies]
+test = [
+    "cloud-storage-mocker==0.3.*",
+]
+
 [tool.setuptools.packages.find]
 include = ["*"]
 namespaces = false
