@@ -1,5 +1,3 @@
-from typing import Type, Union
-
 from amapy_contents import DockerContent
 from amapy_pluggy.plugin import hook_impl
 from amapy_pluggy.plugin.object_content import ObjectContent
@@ -24,10 +22,10 @@ class GcrStorage(AssetStorage, GcrMixin):
     def get_storage_url(self, url_string: str, ignore: str = None) -> StorageURL:
         return GcrURL(url=url_string, ignore=ignore)
 
-    def get_transporter(self) -> Type[Transporter]:
+    def get_transporter(self) -> Transporter:
         return GcrTransporter.shared()
 
-    def get_content_class(self) -> Type[ObjectContent]:
+    def get_content_class(self) -> type[ObjectContent]:
         return DockerContent
 
     def get_object_path(self, asset_root: str, blob: GcrBlob, parent_url: StorageURL) -> str:
@@ -41,18 +39,18 @@ class GcrStorage(AssetStorage, GcrMixin):
     def blob_exists(self, url_string: str) -> bool:
         raise NotImplementedError
 
-    def list_blobs(self, url: Union[StorageURL, str], ignore: str = None) -> [StorageData]:
+    def list_blobs(self, url: StorageURL | str, ignore: str = None) -> list[StorageData]:
         if type(url) is str:
             url = GcrURL(url=url, ignore=ignore)
         data = self.get_gcr_blob(url=url)
         return [GcrBlob(data=data, url_object=url)]
 
-    def delete_blobs(self, url_strings: [str]) -> None:
+    def delete_blobs(self, url_strings: list[str]) -> None:
         # delete not allowed in gcr currently
         raise NotImplementedError
 
 
 class GcrStoragePlugin:
     @hook_impl
-    def asset_storage_get(self) -> Type[AssetStorage]:
+    def asset_storage_get(self) -> type[AssetStorage]:
         return GcrStorage
