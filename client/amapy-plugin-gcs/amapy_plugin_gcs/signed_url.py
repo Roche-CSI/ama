@@ -4,10 +4,9 @@ import collections
 import datetime
 import hashlib
 import sys
+from urllib.parse import quote
 
-import six
 from google.oauth2 import service_account
-from six.moves.urllib.parse import quote
 
 
 def generate_signed_url(bucket_name,
@@ -23,7 +22,8 @@ def generate_signed_url(bucket_name,
         print('Expiration Time can\'t be longer than 604800 seconds (7 days).')
         sys.exit(1)
 
-    escaped_object_name = quote(six.ensure_binary(object_name), safe=b'/~')
+    escaped_object_name = quote(object_name.encode('utf-8') if isinstance(object_name, str) else object_name,
+                                safe=b'/~')
     canonical_uri = '/{}'.format(escaped_object_name)
 
     datetime_now = datetime.datetime.now(tz=datetime.timezone.utc)
