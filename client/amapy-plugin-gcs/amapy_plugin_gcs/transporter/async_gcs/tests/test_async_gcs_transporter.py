@@ -40,7 +40,7 @@ def datetime_string(date: datetime):
     return date.strftime("%m-%d-%Y_%H-%M-%S")
 
 
-def test_download(project_root):
+def test_download(project_root, mock_gcs_credentials):
     urls = [
         "gs://test_bucket/sample_yamls/model.yml",
         "gs://test_bucket/sample_yamls/invoice.yaml",
@@ -57,7 +57,7 @@ def test_download(project_root):
         targets.append(res)
     # download with mock storage
     with patch("amapy_plugin_gcs.transporter.async_gcs.async_download.AsyncStorage", new=MockAsyncStorage):
-        transport = AsyncGcsTransporter.shared()
+        transport = AsyncGcsTransporter.shared(credentials=mock_gcs_credentials)
         transport.download(resources=targets)
     # verify
     for target in targets:
@@ -66,7 +66,7 @@ def test_download(project_root):
     shutil.rmtree(download_dir)
 
 
-def test_upload(project_root, mock_bucket):
+def test_upload(project_root, mock_bucket, mock_gcs_credentials):
     files = [
         "test_data/file_types/yamls/model.yml",
         "test_data/file_types/yamls/invoice.yaml",
@@ -83,7 +83,7 @@ def test_upload(project_root, mock_bucket):
         targets.append(res)
     # upload with mock storage
     with patch("amapy_plugin_gcs.transporter.async_gcs.async_upload.AsyncStorage", new=MockAsyncStorage):
-        transport = AsyncGcsTransporter.shared()
+        transport = AsyncGcsTransporter.shared(credentials=mock_gcs_credentials)
         transport.upload(resources=targets)
     # verify
     for target in targets:
@@ -93,7 +93,7 @@ def test_upload(project_root, mock_bucket):
     shutil.rmtree(os.path.join(mock_bucket, date_string))
 
 
-def test_copy(mock_bucket):
+def test_copy(mock_bucket, mock_gcs_credentials):
     urls = [
         "gs://test_bucket/sample_yamls/model.yml",
         "gs://test_bucket/sample_yamls/invoice.yaml",
@@ -110,7 +110,7 @@ def test_copy(mock_bucket):
         targets.append(res)
     # copy with mock storage
     with patch("amapy_plugin_gcs.transporter.async_gcs.async_copy.AsyncStorage", new=MockAsyncStorage):
-        transport = AsyncGcsTransporter.shared()
+        transport = AsyncGcsTransporter.shared(credentials=mock_gcs_credentials)
         transport.copy(resources=targets)
     # verify
     for target in targets:
