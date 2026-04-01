@@ -62,7 +62,7 @@ class GcsStorage(AssetStorage, GcsStorageMixin):
         list
             A list of GcsBlob instances.
         """
-        if type(url) is str:
+        if isinstance(url, str):
             url = BlobStoreURL(url=url, ignore=ignore)
         blob_list = self.fetch_blobs_list(url=url)
         return list(map(lambda x: GcsBlob(data=x, url_object=url), blob_list))
@@ -83,7 +83,7 @@ class GcsStorage(AssetStorage, GcsStorageMixin):
         bool
             True if the URL is a file, False otherwise.
         """
-        if type(url) is str:
+        if isinstance(url, str):
             url = BlobStoreURL(url=url)
         # Blobs are files, so if a blob exists then it's a file else either the url doesn't exist or it's a directory
         return self.blob_exists(url_string=url.url)

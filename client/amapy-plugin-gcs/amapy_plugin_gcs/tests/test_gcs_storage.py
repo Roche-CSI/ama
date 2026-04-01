@@ -123,7 +123,7 @@ def test_get_blob():
             blob = GcsStorage.shared().get_blob(url_string=url)
             exp = expected[idx]
             for key in exp:
-                if type(exp[key]) is dict:
+                if isinstance(exp[key], dict):
                     assert json.dumps(exp[key]) == json.dumps(getattr(blob, key))
                 else:
                     assert exp[key] == getattr(blob, key)
@@ -142,7 +142,7 @@ def test_list_blobs():
             blobs = GcsStorage.shared().list_blobs(url=item.get("url"))
             assert len(blobs) == item.get("count")
             for blob in blobs:
-                assert type(blob) is GcsBlob
+                assert isinstance(blob, GcsBlob)
                 assert blob.is_file
 
 
