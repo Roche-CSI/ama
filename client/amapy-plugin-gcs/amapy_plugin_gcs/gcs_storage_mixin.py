@@ -33,9 +33,9 @@ class GcsStorageMixin:
                                                  ignore=url.ignore)
 
     def fetch_blobs_list_from_bucket(self, bucket: str,
-                                     prefix: str = None,
-                                     pattern: str = None,
-                                     ignore: str = None) -> list:
+                                     prefix: str | None = None,
+                                     pattern: str | None = None,
+                                     ignore: str | None = None) -> list:
         """Fetches the list of blobs from the bucket.
 
         TODO: Use match_glob to filter the blobs based on the pattern.
@@ -50,5 +50,5 @@ class GcsStorageMixin:
                                           pattern=pattern,
                                           ignore=ignore)
 
-    def _delete_blob_urls(self, urls: [BlobStoreURL]):
+    def _delete_blob_urls(self, urls: list[BlobStoreURL]):
         async_delete.delete_urls(credentials=self.credentials, urls=urls)
