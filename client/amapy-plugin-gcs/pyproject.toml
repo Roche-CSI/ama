@@ -20,8 +20,8 @@ dependencies = [
     "amapy-pluggy==1.1.*",
     "amapy-utils==1.1.*",
     "backoff==2.2.*",
-    "gcloud-aio-storage==9.3.*",
-    "google-cloud-storage==2.18.*"
+    "gcloud-aio-storage==9.6.*",
+    "google-cloud-storage==3.10.*"
 ]
 
 [tool.setuptools.packages.find]
