@@ -49,6 +49,18 @@ class GcrStorage(AssetStorage, GcrMixin):
         # delete not allowed in gcr currently
         raise NotImplementedError
 
+    def url_is_file(self, url: StorageURL | str):
+        raise NotImplementedError
+
+    def signed_url_for_blob(self, blob_url: str):
+        raise NotImplementedError
+
+    def set_bucket_cors(self, bucket_url: str, origin_url):
+        raise NotImplementedError
+
+    def get_bucket_cors(self, bucket_url: str):
+        raise NotImplementedError
+
 
 class GcrStoragePlugin:
     @hook_impl
