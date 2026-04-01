@@ -49,8 +49,8 @@ class GcrMixin:
         for hash_name in image_data:
             data: dict = image_data.get(hash_name)
             if data and url.tag in data.get("tag"):
-                data['hash_type'], data['hash_value'] = hash_name.split(":")
-                data['name'] = url_data.get("name")
+                data["hash_type"], data["hash_value"] = hash_name.split(":")
+                data["name"] = url_data.get("name")
                 return data
 
     def _parse_sha_url_response(self, url: GcrURL, url_data: dict):
@@ -59,8 +59,8 @@ class GcrMixin:
         for hash_name in image_data:
             if hash_name == url.hash:
                 found = image_data.get(hash_name)
-                found['hash_type'], found['hash_value'] = hash_name.split(":")
-                found['name'] = url_data.get("name")
+                found["hash_type"], found["hash_value"] = hash_name.split(":")
+                found["name"] = url_data.get("name")
                 return found
 
     def _validate_response(self, data: dict, url: GcrURL):
@@ -90,7 +90,7 @@ class GcrMixin:
         """
         # TODO: return the token from the credentials after auth refactor
         credentials = Credentials.from_service_account_info(self.credentials,
-                                                            scopes=['https://www.googleapis.com/auth/cloud-platform'])
+                                                            scopes=["https://www.googleapis.com/auth/cloud-platform"])
 
         credentials.refresh(Request())
         return credentials.token
