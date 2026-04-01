@@ -79,7 +79,7 @@ def test_get_blob():
         {
             "bucket": "test_bucket",
             "name": "sample_yamls/invoice.yaml",
-            "content_type": "application/yaml",
+            "content_type": "application/x-yaml",
             "size": 547,
             "hashes": {"md5": "eyAkfZtBeaxG/cQFPiDbEg==", "crc32c": "MdRwiQ=="},
             "is_file": True
@@ -87,7 +87,7 @@ def test_get_blob():
         {
             "bucket": "test_bucket",
             "name": "sample_yamls/model.yml",
-            "content_type": "application/yaml",
+            "content_type": "application/x-yaml",
             "size": 483,
             "hashes": {"md5": "l6BTlxCz4Y2ZfKapM248BQ==", "crc32c": "MF40IQ=="},
             "is_file": True
@@ -95,7 +95,7 @@ def test_get_blob():
         {
             "bucket": "test_bucket",
             "name": "sample_yamls/sample3.yaml",
-            "content_type": "application/yaml",
+            "content_type": "application/x-yaml",
             "size": 5586,
             "hashes": {"md5": "Bm2PZKSCKZDk5ugeQAdBlA==", "crc32c": "IstUPQ=="},
             "is_file": True
