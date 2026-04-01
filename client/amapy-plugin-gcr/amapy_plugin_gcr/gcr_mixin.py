@@ -89,8 +89,9 @@ class GcrMixin:
             token
         """
         # TODO: return the token from the credentials after auth refactor
-        credentials = Credentials.from_service_account_info(self.credentials,
-                                                            scopes=["https://www.googleapis.com/auth/cloud-platform"])
-
+        credentials = Credentials.from_service_account_info(
+            self.credentials,
+            scopes=["https://www.googleapis.com/auth/cloud-platform"]
+        )
         credentials.refresh(Request())
         return credentials.token
