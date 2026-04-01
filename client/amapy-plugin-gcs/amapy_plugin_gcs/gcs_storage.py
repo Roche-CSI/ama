@@ -1,5 +1,4 @@
 import os
-from typing import Type, Union
 
 from amapy_contents import BlobStoreContent
 from amapy_pluggy.plugin import hook_impl
@@ -28,7 +27,7 @@ class GcsStorage(AssetStorage, GcsStorageMixin):
     def get_transporter(self) -> Transporter:
         return AsyncGcsTransporter.shared(credentials=self.credentials)
 
-    def get_content_class(self) -> Type[ObjectContent]:
+    def get_content_class(self) -> type[ObjectContent]:
         return BlobStoreContent
 
     def get_object_path(self, asset_root: str, blob: StorageData, parent_url: StorageURL) -> str:
@@ -36,7 +35,7 @@ class GcsStorage(AssetStorage, GcsStorageMixin):
             raise exceptions.InvalidObjectSourceError(f"{blob.name} is outside {parent_url.dir_name}")
         return os.path.relpath(blob.name, parent_url.dir_name)
 
-    def get_storage_url(self, url_string: str, ignore: str = None) -> StorageURL:
+    def get_storage_url(self, url_string: str, ignore: str | None = None) -> StorageURL:
         return BlobStoreURL(url=url_string, ignore=ignore)
 
     def get_blob(self, url_string: str) -> GcsBlob:
@@ -48,12 +47,12 @@ class GcsStorage(AssetStorage, GcsStorageMixin):
         """Checks if a blob exists at the given URL."""
         return self.check_if_blob_exists(url=BlobStoreURL(url=url_string))
 
-    def list_blobs(self, url: Union[StorageURL, str], ignore: str = None) -> [GcsBlob]:
+    def list_blobs(self, url: StorageURL | str, ignore: str | None = None) -> list[GcsBlob]:
         """Returns a list of GcsBlobs located at the url.
 
         Parameters
         ----------
-        url : Union[str, StorageURL]
+        url : str | StorageURL
             The URL.
         ignore : str, optional
             The ignore string.
@@ -68,15 +67,15 @@ class GcsStorage(AssetStorage, GcsStorageMixin):
         blob_list = self.fetch_blobs_list(url=url)
         return list(map(lambda x: GcsBlob(data=x, url_object=url), blob_list))
 
-    def delete_blobs(self, url_strings: [str]) -> None:
+    def delete_blobs(self, url_strings: list[str]) -> None:
         self._delete_blob_urls(urls=list(map(lambda x: BlobStoreURL(url=x), url_strings)))
 
-    def url_is_file(self, url: Union[StorageURL, str]) -> bool:
+    def url_is_file(self, url: StorageURL | str) -> bool:
         """Checks if the URL is a file.
 
         Parameters
         ----------
-        url : Union[StorageURL, str]
+        url : StorageURL | str
             The URL to check.
 
         Returns
@@ -89,7 +88,9 @@ class GcsStorage(AssetStorage, GcsStorageMixin):
         # Blobs are files, so if a blob exists then it's a file else either the url doesn't exist or it's a directory
         return self.blob_exists(url_string=url.url)
 
-    def filter_duplicate_blobs(self, src_blobs: [StorageData], dst_blobs: [StorageData]) -> (list, list):
+    def filter_duplicate_blobs(self,
+                               src_blobs: list[StorageData],
+                               dst_blobs: list[StorageData]) -> tuple[list, list]:
         """Filters the source blobs to determine which blobs are new and which need to be replaced in the destination.
 
         If a blob in `src_blobs` has the same path_in_asset as a blob in `dst_blobs`, it compares their hashes.
@@ -151,5 +152,5 @@ class GcsStorage(AssetStorage, GcsStorageMixin):
 
 class GcsStoragePlugin:
     @hook_impl
-    def asset_storage_get(self) -> Type[AssetStorage]:
+    def asset_storage_get(self) -> type[AssetStorage]:
         return GcsStorage

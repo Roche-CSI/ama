@@ -1,7 +1,6 @@
 # No usage of gcs_utils.py found in this project
 import logging
 import os
-from typing import Union
 
 from google.cloud import storage
 
@@ -33,7 +32,7 @@ def move_blob(src_url, dest_url):
         dst_bucket_name))
 
 
-def get_blob_name(blob: Union[storage.Blob, str]):
+def get_blob_name(blob: storage.Blob | str):
     """
     Gets blob name (last part of the path).
     :param blob: instance of :class:`google.cloud.storage.Blob`.
