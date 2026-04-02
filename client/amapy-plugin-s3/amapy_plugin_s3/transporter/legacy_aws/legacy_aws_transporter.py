@@ -18,3 +18,6 @@ class LegacyAwsTransporter(Transporter):
     def download(self, resources: list[TransportResource]) -> None:
         for chunk in utils.batch(resources, batch_size=self.batch_size):
             async_download.download_resources(credentials=self.credentials, resources=chunk)
+
+    def copy(self, resources: list[TransportResource]) -> None:
+        raise NotImplementedError
