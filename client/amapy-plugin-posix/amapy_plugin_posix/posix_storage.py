@@ -116,6 +116,15 @@ class PosixStorage(AssetStorage, PosixStorageMixin):
     def filter_duplicate_blobs(self, src_blobs: [StorageData], dst_blobs: [StorageData]):
         raise NotImplementedError
 
+    def signed_url_for_blob(self, blob_url: str):
+        raise NotImplementedError("signed URLs are not supported for POSIX storage")
+
+    def set_bucket_cors(self, bucket_url: str, origin_url):
+        raise NotImplementedError("CORS configuration is not supported for POSIX storage")
+
+    def get_bucket_cors(self, bucket_url: str):
+        raise NotImplementedError("CORS configuration is not supported for POSIX storage")
+
 
 class PosixStoragePlugin:
     @hook_impl
