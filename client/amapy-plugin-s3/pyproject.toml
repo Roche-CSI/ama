@@ -20,8 +20,7 @@ dependencies = [
     "amapy-contents==1.1.*",
     "amapy-pluggy==1.1.*",
     "amapy-utils==1.1.*",
-    "backoff==2.2.*",
-    "urllib3==2.2.*"
+    "backoff==2.2.*"
 ]
 
 [project.optional-dependencies]
