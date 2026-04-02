@@ -11,5 +11,5 @@ class AliasInfo(CliAction):
         with api.environment():
             api.list_alias()
 
-    def get_options(self) -> [CliOption]:
+    def get_options(self) -> list[CliOption]:
         return []

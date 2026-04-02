@@ -24,7 +24,7 @@ class AddToAsset(CliAction):
             if args.credentials:
                 os.unsetenv("ASSET_CREDENTIALS")
 
-    def get_options(self) -> [CliOption]:
+    def get_options(self) -> list[CliOption]:
         return [
             CliOption(
                 dest="target",

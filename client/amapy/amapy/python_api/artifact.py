@@ -194,7 +194,7 @@ class Artifact:
         from amapy import ArtifactInputs
         return ArtifactInputs(artifact=self)
 
-    def sanitize_targets(self, targets: [str], copy_to_asset: bool = False) -> [str]:
+    def sanitize_targets(self, targets: list[str], copy_to_asset: bool = False) -> list[str]:
         """
         Checks if the target files are within the asset directory, if not, then copies the files to the asset directory
         based on the force flag and returns the sanitized list of targets.
@@ -214,7 +214,7 @@ class Artifact:
             filtered_targets.append(target)
         return filtered_targets
 
-    def add(self, targets: [str], proxy: bool = False, copy_to_asset: bool = False, force: bool = False):
+    def add(self, targets: list[str], proxy: bool = False, copy_to_asset: bool = False, force: bool = False):
         """Adds files and directories to the asset.
 
         Parameters
@@ -242,7 +242,7 @@ class Artifact:
             with ch_dir(self.path):
                 api.add_files(targets=sanitized_targets, prompt_user=False, proxy=proxy, force=force)
 
-    def add_remote(self, targets: [str], credentials: str = None):
+    def add_remote(self, targets: list[str], credentials: str = None):
         """Adds remote files to the asset.
 
         Parameters

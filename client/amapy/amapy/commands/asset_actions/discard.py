@@ -18,7 +18,7 @@ class AssetDiscard(CliAction):
             else:
                 self.user_log.message("invalid command")
 
-    def get_options(self) -> [CliOption]:
+    def get_options(self) -> list[CliOption]:
         return [
             CliOption(
                 dest="all",
