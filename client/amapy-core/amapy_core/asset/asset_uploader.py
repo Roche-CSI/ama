@@ -503,7 +503,7 @@ class AssetUploader(LoggingMixin):
 
     def init_asset_class(self, asset) -> str:
         """Create asset class if not exists"""
-        self.user_log.info("creating asset class:{}".format(asset.asset_class.name))
+        self.user_log.info(f"creating asset class:{asset.asset_class.name}")
         if not asset.asset_class.project:
             raise exceptions.NoActiveProjectError()
         res = AssetServer().create_asset_class(class_name=asset.asset_class.name,
@@ -513,7 +513,7 @@ class AssetUploader(LoggingMixin):
         return res.get("id")
 
     def init_asset(self, asset):
-        self.user_log.info("creating a new asset for class:{}".format(asset.asset_class.name))
+        self.user_log.info(f"creating a new asset for class:{asset.asset_class.name}")
         res = AssetServer().create_asset(**{
             "class_id": asset.asset_class.id,
             "parent": asset.parent

@@ -58,7 +58,7 @@ class VersionAPI(RepoAPI):
             self.user_log.info("Use --all to display all the available versions")
         self.user_log.info(UserCommands().fetch_versions())
 
-    def filter_window_versions(self, versions: [dict], list_all: bool, window_size=None) -> [dict]:
+    def filter_window_versions(self, versions: list[dict], list_all: bool, window_size=None) -> list[dict]:
         """Filter the versions based on current version and window size."""
         window_size = window_size or DEFAULT_VERSION_LIST_WINDOW_SIZE
         if list_all or len(versions) <= window_size:
@@ -83,7 +83,7 @@ class VersionAPI(RepoAPI):
         # return the reversed window list
         return list(reversed(versions[start_index:end_index]))
 
-    def print_versions_summary(self, versions: [dict]):
+    def print_versions_summary(self, versions: list[dict]):
         """Prints a summary table of versions."""
         columns = {
             "version": "Version",
@@ -191,7 +191,7 @@ class VersionAPI(RepoAPI):
         self.user_log.info("Use --large to display a detailed history")
         self.user_log.info(UserCommands().fetch_versions())
 
-    def version_history_table(self, versions: [dict], large=False):
+    def version_history_table(self, versions: list[dict], large=False):
         """Prints a table of version history.
 
         Parameters

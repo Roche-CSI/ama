@@ -1,4 +1,4 @@
-from typing import Callable
+from collections.abc import Callable
 
 from amapy_contents import Content
 from amapy_pluggy.storage import StorageData

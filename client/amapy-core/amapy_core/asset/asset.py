@@ -4,8 +4,6 @@ import fnmatch
 import math
 import os
 import uuid
-from typing import Optional
-
 from functools import cached_property
 
 from amapy_core.objects.asset_object import AssetObject, ObjectViews
@@ -209,7 +207,7 @@ class Asset(SerializableAsset):
         # object_ids = list(map(lambda x: x.id, self.objects))
         # return FileUtils.string_md5(",".join(sorted(object_ids)))
 
-    def filter_objects(self, attr: str, values: list) -> [AssetObject]:
+    def filter_objects(self, attr: str, values: list) -> list[AssetObject]:
         """returns a dict of assets stored in asset-manifest
         Parameters:
             attr: attribute i.e. id, path, hash of the asset_object
@@ -535,7 +533,7 @@ class Asset(SerializableAsset):
         root.de_serialize(asset=self, data=self.cached_versions()[0])
         return root
 
-    def list_objects(self, ver_number: str = None, pattern: str = None) -> [AssetObject]:
+    def list_objects(self, ver_number: str = None, pattern: str = None) -> list[AssetObject]:
         if not ver_number or ver_number == self.version.number:
             objects = [obj for obj in self.objects]  # return from current version
         else:
@@ -562,7 +560,7 @@ class Asset(SerializableAsset):
         duplicate.top_hash = self.top_hash
         return duplicate
 
-    def get_object(self, object_path: str, ver_number: str) -> Optional[AssetObject]:
+    def get_object(self, object_path: str, ver_number: str) -> AssetObject | None:
         objects: [AssetObject] = self.list_objects(ver_number=ver_number)
         for obj in objects:
             if obj.path == object_path:

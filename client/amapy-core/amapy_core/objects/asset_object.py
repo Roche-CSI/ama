@@ -3,7 +3,7 @@ from __future__ import annotations
 import abc
 import enum
 import os
-from typing import Callable
+from collections.abc import Callable
 
 from amapy_contents.content import Content, HASH_SEP
 from amapy_contents.content_factory import ContentFactory
@@ -100,19 +100,19 @@ class AssetObject(LoggingMixin):
         return hash(self.unique_repr)
 
     def __repr__(self):
-        return '<{} {}>'.format(self.__class__.__name__, self.unique_repr)
+        return f"<{self.__class__.__name__} {self.unique_repr}>"
 
     @classmethod
     def bulk_create(cls,
                     factory,
-                    sources: [ObjectSource],
+                    sources: list[ObjectSource],
                     callback: Callable = None,
-                    repo_dir: str = None) -> [AssetObject]:
+                    repo_dir: str = None) -> list[AssetObject]:
         """
         Parameters
         ----------
         factory: ObjectFactory # todo: refactor such that there is no circular dependency if we import ObjectFactory
-        sources: [ObjectSource]
+        sources: list[ObjectSource]
         callback
         repo_dir
 

@@ -184,7 +184,7 @@ class SettingsAPI(LoggingMixin):
                 raise
 
         user_cfgs.save()
-        self.user_log.success("success: reset user-configs: {}".format(", ".join(keys)))
+        self.user_log.success(f"success: reset user-configs: {', '.join(keys)}")
         self.print_user_configs(show_help=False)
 
     def valid_email(self, email: str):
