@@ -16,7 +16,7 @@ class PosixStorageMixin:
         return self.get_file_data(path=url.url)
 
     def fetch_blobs_list(self, url: PosixURL) -> list:
-        ignore = f"{MUST_IGNORE}"
+        ignore = MUST_IGNORE
         if url.ignore:
             ignore += f",{url.ignore}"
 
