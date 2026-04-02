@@ -24,6 +24,11 @@ dependencies = [
     "urllib3==2.2.*"
 ]
 
+[project.optional-dependencies]
+test = [
+    "moto==5.0.18",
+]
+
 [tool.setuptools.packages.find]
 include = ["*"]
 namespaces = false
