@@ -1,5 +1,5 @@
 import os
-from typing import Type, Union
+
 
 from amapy_contents import PosixContent
 from amapy_pluggy.plugin import hook_impl
@@ -28,7 +28,7 @@ class PosixStorage(AssetStorage, PosixStorageMixin):
     def get_storage_url(self, url_string: str, ignore: str = None) -> PosixURL:
         return PosixURL(url=url_string, ignore=ignore)
 
-    def get_content_class(self) -> Type[ObjectContent]:
+    def get_content_class(self) -> type[ObjectContent]:
         return PosixContent
 
     def get_object_path(self, asset_root: str, blob: StorageData, parent_url: StorageURL) -> str:
@@ -73,12 +73,12 @@ class PosixStorage(AssetStorage, PosixStorageMixin):
     def blobs_exist(self, url_string: str) -> dict:
         raise NotImplementedError
 
-    def list_blobs(self, url: Union[str, StorageURL], ignore: str = None) -> [StorageData]:
+    def list_blobs(self, url: str | StorageURL, ignore: str = None) -> list[StorageData]:
         """List blobs from posix url
 
         Parameters
         ----------
-        url : Union[str, StorageURL]
+        url : str | StorageURL
             posix url
         ignore : str
             ignore pattern
@@ -96,12 +96,12 @@ class PosixStorage(AssetStorage, PosixStorageMixin):
     def delete_blobs(self, url_strings: [str]) -> None:
         self._delete_blob_urls(urls=list(map(lambda x: PosixURL(url=x), url_strings)))
 
-    def url_is_file(self, url: Union[str, StorageURL]) -> bool:
+    def url_is_file(self, url: str | StorageURL) -> bool:
         """Check if url is a file
 
         Parameters
         ----------
-        url : Union[str, StorageURL]
+        url : str | StorageURL
             posix url
 
         Returns
@@ -119,5 +119,5 @@ class PosixStorage(AssetStorage, PosixStorageMixin):
 
 class PosixStoragePlugin:
     @hook_impl
-    def asset_storage_get(self) -> Type[AssetStorage]:
+    def asset_storage_get(self) -> type[AssetStorage]:
         return PosixStorage
