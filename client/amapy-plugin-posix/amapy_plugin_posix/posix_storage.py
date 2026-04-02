@@ -87,7 +87,7 @@ class PosixStorage(AssetStorage, PosixStorageMixin):
         [StorageData]
             list of posix blobs
         """
-        if type(url) is str:
+        if isinstance(url, str):
             url = PosixURL(url=url, ignore=ignore)
         data: list = self.fetch_blobs_list(url=url)
         return list(map(lambda item: PosixBlob(data=item, url_object=url), data))
@@ -108,7 +108,7 @@ class PosixStorage(AssetStorage, PosixStorageMixin):
         bool
             True if url is a file, False otherwise
         """
-        if type(url) is str:
+        if isinstance(url, str):
             url = PosixURL(url=url)
         return os.path.isfile(url.url)
 
