@@ -33,7 +33,7 @@ class PosixStorageMixin:
     def check_if_blob_exists(self, url: PosixURL) -> bool:
         return os.path.exists(url.url)
 
-    def _delete_blob_urls(self, urls: [PosixURL]):
+    def _delete_blob_urls(self, urls: list[PosixURL]):
         for url in urls:
             if os.path.exists(url.url):
                 os.remove(url.url)

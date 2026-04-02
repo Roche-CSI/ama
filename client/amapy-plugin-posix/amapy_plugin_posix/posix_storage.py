@@ -1,6 +1,5 @@
 import os
 
-
 from amapy_contents import PosixContent
 from amapy_pluggy.plugin import hook_impl
 from amapy_pluggy.plugin.object_content import ObjectContent
@@ -93,7 +92,7 @@ class PosixStorage(AssetStorage, PosixStorageMixin):
         data: list = self.fetch_blobs_list(url=url)
         return list(map(lambda item: PosixBlob(data=item, url_object=url), data))
 
-    def delete_blobs(self, url_strings: [str]) -> None:
+    def delete_blobs(self, url_strings: list[str]) -> None:
         self._delete_blob_urls(urls=list(map(lambda x: PosixURL(url=x), url_strings)))
 
     def url_is_file(self, url: str | StorageURL) -> bool:
@@ -113,7 +112,7 @@ class PosixStorage(AssetStorage, PosixStorageMixin):
             url = PosixURL(url=url)
         return os.path.isfile(url.url)
 
-    def filter_duplicate_blobs(self, src_blobs: [StorageData], dst_blobs: [StorageData]):
+    def filter_duplicate_blobs(self, src_blobs: list[StorageData], dst_blobs: list[StorageData]):
         raise NotImplementedError
 
     def signed_url_for_blob(self, blob_url: str):
