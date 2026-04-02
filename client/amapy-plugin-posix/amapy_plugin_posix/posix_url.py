@@ -1,5 +1,5 @@
 import os
-from typing import Callable
+from collections.abc import Callable
 
 from amapy_pluggy.storage.urls.storage_url import StorageURL, PATH_SEPARATOR
 

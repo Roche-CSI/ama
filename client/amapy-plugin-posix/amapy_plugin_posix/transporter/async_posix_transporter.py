@@ -7,14 +7,14 @@ class AsyncPosixTransporter(Transporter):
     def validate(self, credentials: dict):
         pass
 
-    def transfer(self, resources: [TransportResource]):
+    def transfer(self, resources: list[TransportResource]):
         self.copy(resources=resources)
 
-    def copy(self, resources: [TransportResource]):
+    def copy(self, resources: list[TransportResource]):
         async_shutil.copy_resources(resources=resources)
 
-    def upload(self, resources: [TransportResource]):
+    def upload(self, resources: list[TransportResource]):
         async_shutil.copy_resources(resources=resources)
 
-    def download(self, resources: [TransportResource]):
+    def download(self, resources: list[TransportResource]):
         async_shutil.copy_resources(resources=resources)
