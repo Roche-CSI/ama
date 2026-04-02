@@ -46,7 +46,7 @@ class DbContent(Content):
         pass
 
     @classmethod
-    def bulk_create(cls, **kwargs) -> [Content]:
+    def bulk_create(cls, **kwargs) -> list[Content]:
         pass
 
     @classmethod
