@@ -1,10 +1,9 @@
 import os
 from functools import cached_property
 
-
 import boto3
 import botocore
-from botocore.errorfactory import ClientError
+from botocore.exceptions import ClientError
 
 from amapy_pluggy.storage import StorageData, StorageURL, BlobStoreURL
 from amapy_pluggy.storage import storage_utils
