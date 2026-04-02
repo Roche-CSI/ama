@@ -16,18 +16,18 @@ logger = get_logger(__name__)
 RETRIES = 5  # number of retries in the event of failure
 
 
-def upload_resources(credentials: dict, resources: [AwsUploadResource]):
+def upload_resources(credentials: dict, resources: list[AwsUploadResource]):
     return asyncio.run(__async_upload_resources(credentials=credentials, resources=resources))
 
 
-async def __async_upload_resources(credentials: dict, resources: [AwsUploadResource]):
+async def __async_upload_resources(credentials: dict, resources: list[AwsUploadResource]):
     """uploads a list of files to bucket
 
     Parameters
     ----------
     credentials: dict
         aws access credentials
-    resources: [GcsUploadResource]
+    resources: list[GcsUploadResource]
 
     Returns
     -------

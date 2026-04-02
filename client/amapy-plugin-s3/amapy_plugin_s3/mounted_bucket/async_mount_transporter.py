@@ -27,7 +27,7 @@ class AsyncMountTransporter(Transporter):
     def get_copy_resource(self, src: str, dst: str, src_hash: tuple, **kwargs) -> TransportResource:
         return AwsMountedResource(src=src, dst=dst, src_hash=src_hash, mount_cfg=self.mount_cfg, **kwargs)
 
-    def upload(self, resources: [TransportResource]) -> None:
+    def upload(self, resources: list[TransportResource]) -> None:
         try:
             for chunk in utils.batch(resources, batch_size=self.batch_size):
                 async_mount_copy.copy_resources(resources=chunk)
@@ -41,7 +41,7 @@ class AsyncMountTransporter(Transporter):
         except Exception as e:
             raise exceptions.AssetException("Error while uploading resources") from e
 
-    def download(self, resources: [TransportResource]) -> None:
+    def download(self, resources: list[TransportResource]) -> None:
         try:
             for chunk in utils.batch(resources, batch_size=self.batch_size):
                 async_mount_copy.copy_resources(resources=chunk)
@@ -50,7 +50,7 @@ class AsyncMountTransporter(Transporter):
                 raise exceptions.InvalidStorageCredentialsError("Credentials expired. Fetch Again.") from e
             raise exceptions.AssetException("Error while downloading resources") from e
 
-    def copy(self, resources: [TransportResource]) -> None:
+    def copy(self, resources: list[TransportResource]) -> None:
         try:
             for chunk in utils.batch(resources, batch_size=self.batch_size):
                 async_mount_copy.copy_resources(resources=chunk)

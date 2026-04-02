@@ -1,6 +1,6 @@
 import os
 from functools import cached_property
-from typing import Union
+
 
 from amapy_pluggy.storage import StorageData, StorageURL, BlobStoreURL, storage_utils
 from amapy_pluggy.storage.mount_config import MountConfig
@@ -59,7 +59,7 @@ class AwsMountHandler:
         mount_url = MountedBlobStoreURL(url=url_string, mount_cfg=self.mount_config)
         return os.path.exists(mount_url.posix_url)
 
-    def url_is_file(self, url: Union[StorageURL, str]) -> bool:
+    def url_is_file(self, url: StorageURL | str) -> bool:
         """Checks if the URL is a file.
 
         Instead of checking in the server, we check if the blob exists in the mounted directory.
@@ -69,7 +69,7 @@ class AwsMountHandler:
         mount_url = MountedBlobStoreURL(url=url, mount_cfg=self.mount_config)
         return os.path.isfile(mount_url.posix_url)
 
-    def list_blobs(self, url: Union[str, StorageURL], ignore: str = None) -> [AwsBlob]:
+    def list_blobs(self, url: str | StorageURL, ignore: str = None) -> list[AwsBlob]:
         """List the AwsBlob instances from the given URL.
 
         Fetch the list of blob data through asset server and convert to AwsBlob.
@@ -87,10 +87,10 @@ class AwsMountHandler:
         # pattern is already included in the url so just filter ignore
         return storage_utils.filter_blobs(blobs=blobs, name_key="name", ignore=url.ignore)
 
-    def delete_blobs(self, url_strings: [str]):
+    def delete_blobs(self, url_strings: list[str]):
         raise NotImplementedError
 
-    def filter_duplicate_blobs(self, src_blobs: [StorageData], dst_blobs: [StorageData]):
+    def filter_duplicate_blobs(self, src_blobs: list[StorageData], dst_blobs: list[StorageData]):
         # TODO: May be we can return everything as new blobs
         # since we can not check for duplicates in mounted directories.
         raise NotImplementedError

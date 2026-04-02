@@ -1,5 +1,5 @@
 import os
-from typing import Type
+
 
 from amapy_contents import BlobStoreContent
 from amapy_pluggy.plugin import hook_impl
@@ -16,7 +16,7 @@ class AwsStorage(AwsStorageMixin, AssetStorage):
     prefixes = ["s3://"]
     name = "s3"
 
-    def get_content_class(self) -> Type[ObjectContent]:
+    def get_content_class(self) -> type[ObjectContent]:
         """Returns the BlobStoreContent class."""
         return BlobStoreContent
 
@@ -52,6 +52,6 @@ class AwsStorage(AwsStorageMixin, AssetStorage):
 
 class AwsStoragePlugin:
     @hook_impl
-    def asset_storage_get(self) -> Type[AssetStorage]:
+    def asset_storage_get(self) -> type[AssetStorage]:
         """Returns the AwsStorage class."""
         return AwsStorage
