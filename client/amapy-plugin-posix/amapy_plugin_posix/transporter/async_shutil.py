@@ -4,7 +4,7 @@ import shutil
 from amapy_plugin_posix.transporter.posix_transport_resource import PosixTransportResource
 
 
-def copy_resources(resources: [PosixTransportResource]):
+def copy_resources(resources: list[PosixTransportResource]):
     # return asyncio.run(__async_copy_resources(resources=resources))
     # TODO: switch to async after creating conda package for aioshutil
     for resource in resources:

@@ -1,10 +1,10 @@
 [build-system]
-requires = ["setuptools>=68.0.0,<69.0.0"]
+requires = ["setuptools>=74.0.0,<75.0.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "amapy-plugin-posix"
-version = "1.0.1"
+version = "1.1.0"
 description = "The POSIX plugin for the ama project."
 readme = "README.md"
 authors = [
@@ -14,11 +14,11 @@ maintainers = [
     { name = "Swarup Mahanti", email = "swarup.mahanti@roche.com" }
 ]
 license = { text = "Copyright (c) 2024 Roche Diagnostics Computation Science & Informatics" }
-requires-python = ">=3.10,<3.11"  # "==3.10.*"
+requires-python = ">=3.12,<3.13"  # "==3.12.*"
 dependencies = [
-    "amapy-contents==1.*",
-    "amapy-pluggy==1.*",
-    "amapy-utils==1.*",
+    "amapy-contents==1.1.*",
+    "amapy-pluggy==1.1.*",
+    "amapy-utils==1.1.*",
 ]
 
 [tool.setuptools.packages.find]
