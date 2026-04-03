@@ -30,11 +30,10 @@ def pytest_sessionstart(session):
     Do teardown in `pytest_sessionfinish()`
     """
     logger.info("Pre-Session Setup..")
-    # set up mock credentials so GcsStorage and AsyncGcsTransporter
-    # don't fail with "missing storage credentials"
-    creds = StorageCredentials.shared()
-    creds.set_credentials(MOCK_GCS_CREDENTIALS)
-    creds.set_content_credentials(MOCK_GCS_CREDENTIALS)
+
+    os.environ["PROJECT_STORAGE_ID"] = "gs"
+    # set up mock credentials so GcsStorage and AsyncGcsTransporter don't fail with "missing storage credentials"
+    StorageCredentials.shared().set_credentials(cred=MOCK_GCS_CREDENTIALS)
 
 
 def pytest_sessionfinish(session, exitstatus):
