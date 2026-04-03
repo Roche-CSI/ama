@@ -16,7 +16,7 @@ def test_generate_signed_url():
     fixed_now = datetime.datetime(2026, 1, 15, 12, 0, 0, tzinfo=datetime.UTC)
 
     with patch("amapy_plugin_gcs.signed_url.service_account.Credentials") as mock_sa, \
-         patch("amapy_plugin_gcs.signed_url.datetime") as mock_dt:
+            patch("amapy_plugin_gcs.signed_url.datetime") as mock_dt:
         mock_sa.from_service_account_info.return_value = mock_creds
         mock_dt.datetime.now.return_value = fixed_now
         mock_dt.UTC = datetime.UTC
