@@ -20,7 +20,7 @@ dependencies = [
     "amapy-pluggy==1.1.*",
     "amapy-utils==1.1.*",
     "backoff==2.2.*",
-    "chardet==5.2.*", # explicit pin prevents resolver from pulling an incompatible version
+    "chardet==5.2.*", # explicit pin to prevent resolver from pulling an incompatible version
     "gcloud-aio-storage==9.4.*",
     "google-cloud-storage==3.0.*"
 ]
