@@ -1,6 +1,5 @@
 from functools import cached_property
 
-
 from amapy_pluggy.storage import StorageData, StorageURL
 from amapy_plugin_s3.aws_http_handler import AwsHttpHandler
 from amapy_plugin_s3.aws_mount_handler import AwsMountHandler

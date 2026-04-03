@@ -1,6 +1,5 @@
 import os
 
-
 from amapy_contents import BlobStoreContent
 from amapy_pluggy.plugin import hook_impl
 from amapy_pluggy.plugin.object_content import ObjectContent

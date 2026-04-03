@@ -1,7 +1,6 @@
 import os
 from functools import cached_property
 
-
 from amapy_pluggy.storage import StorageData, StorageURL, BlobStoreURL, storage_utils
 from amapy_pluggy.storage.mount_config import MountConfig
 from amapy_plugin_s3.aws_blob import AwsBlob
