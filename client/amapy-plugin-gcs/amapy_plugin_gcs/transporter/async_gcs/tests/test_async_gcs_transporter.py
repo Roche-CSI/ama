@@ -7,6 +7,7 @@ import google.cloud.storage  # type: ignore[import]
 from cloud_storage_mocker import Mount
 from cloud_storage_mocker import patch as gcs_patch
 
+from amapy_plugin_gcs.gcs_storage import GcsStorage
 from amapy_plugin_gcs.transporter import AsyncGcsTransporter
 from amapy_plugin_gcs.transporter.gcs_transport_resource import GcsDownloadResource, GcsUploadResource, GcsCopyResource
 
@@ -40,7 +41,7 @@ def datetime_string(date: datetime):
     return date.strftime("%m-%d-%Y_%H-%M-%S")
 
 
-def test_download(project_root, mock_gcs_credentials):
+def test_download(project_root):
     urls = [
         "gs://test_bucket/sample_yamls/model.yml",
         "gs://test_bucket/sample_yamls/invoice.yaml",
@@ -57,7 +58,7 @@ def test_download(project_root, mock_gcs_credentials):
         targets.append(res)
     # download with mock storage
     with patch("amapy_plugin_gcs.transporter.async_gcs.async_download.AsyncStorage", new=MockAsyncStorage):
-        transport = AsyncGcsTransporter.shared(credentials=mock_gcs_credentials)
+        transport = AsyncGcsTransporter.shared(credentials=GcsStorage.shared().credentials)
         transport.download(resources=targets)
     # verify
     for target in targets:
@@ -66,7 +67,7 @@ def test_download(project_root, mock_gcs_credentials):
     shutil.rmtree(download_dir)
 
 
-def test_upload(project_root, mock_bucket, mock_gcs_credentials):
+def test_upload(project_root, mock_bucket):
     files = [
         "test_data/file_types/yamls/model.yml",
         "test_data/file_types/yamls/invoice.yaml",
@@ -83,7 +84,7 @@ def test_upload(project_root, mock_bucket, mock_gcs_credentials):
         targets.append(res)
     # upload with mock storage
     with patch("amapy_plugin_gcs.transporter.async_gcs.async_upload.AsyncStorage", new=MockAsyncStorage):
-        transport = AsyncGcsTransporter.shared(credentials=mock_gcs_credentials)
+        transport = AsyncGcsTransporter.shared(credentials=GcsStorage.shared().credentials)
         transport.upload(resources=targets)
     # verify
     for target in targets:
@@ -93,7 +94,7 @@ def test_upload(project_root, mock_bucket, mock_gcs_credentials):
     shutil.rmtree(os.path.join(mock_bucket, date_string))
 
 
-def test_copy(mock_bucket, mock_gcs_credentials):
+def test_copy(mock_bucket):
     urls = [
         "gs://test_bucket/sample_yamls/model.yml",
         "gs://test_bucket/sample_yamls/invoice.yaml",
@@ -110,7 +111,7 @@ def test_copy(mock_bucket, mock_gcs_credentials):
         targets.append(res)
     # copy with mock storage
     with patch("amapy_plugin_gcs.transporter.async_gcs.async_copy.AsyncStorage", new=MockAsyncStorage):
-        transport = AsyncGcsTransporter.shared(credentials=mock_gcs_credentials)
+        transport = AsyncGcsTransporter.shared(credentials=GcsStorage.shared().credentials)
         transport.copy(resources=targets)
     # verify
     for target in targets:
