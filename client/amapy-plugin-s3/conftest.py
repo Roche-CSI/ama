@@ -3,7 +3,15 @@ import os
 
 import pytest
 
+from amapy_pluggy.storage.storage_credentials import StorageCredentials
+
 logger = logging.getLogger(__name__)
+
+MOCK_S3_CREDENTIALS = {
+    "aws_access_key_id": "mock_access_key",
+    "aws_secret_access_key": "mock_secret_key",
+    "region_name": "us-east-1"
+}
 
 
 def pytest_sessionstart(session):
@@ -17,6 +25,9 @@ def pytest_sessionstart(session):
     Do tear down in `pytest_sessionfinish()`
     """
     logger.info("Pre-Session Setup..")
+
+    # setup mock credentials
+    StorageCredentials.shared().set_credentials(cred=MOCK_S3_CREDENTIALS)
 
 
 def pytest_sessionfinish(session, exitstatus):
@@ -46,8 +57,4 @@ def copy_test_url():
 
 @pytest.fixture(scope="session")
 def aws_test_credentials():
-    return {
-        'aws_access_key_id': 'mock_access_key',
-        'aws_secret_access_key': 'mock_secret_key',
-        'region_name': 'us-east-1'
-    }
+    return MOCK_S3_CREDENTIALS
