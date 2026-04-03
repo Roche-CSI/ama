@@ -21,11 +21,11 @@ def get_upload_timeout() -> int:
     return DEFAULT_UPLOAD_TIMEOUT
 
 
-def upload_resources(credentials: dict, resources: [GcsUploadResource]):
+def upload_resources(credentials: dict, resources: list[GcsUploadResource]):
     return asyncio.run(__async_upload_resources(credentials=credentials, resources=resources))
 
 
-async def __async_upload_resources(credentials: dict, resources: [GcsUploadResource]) -> list:
+async def __async_upload_resources(credentials: dict, resources: list[GcsUploadResource]) -> list:
     """Uploads a list of files to a bucket.
 
     Parameters
