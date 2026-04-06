@@ -21,18 +21,7 @@ def upload_resources(credentials: dict, resources: list[AwsUploadResource]):
 
 
 async def __async_upload_resources(credentials: dict, resources: list[AwsUploadResource]):
-    """uploads a list of files to bucket
-
-    Parameters
-    ----------
-    credentials: dict
-        aws access credentials
-    resources: list[GcsUploadResource]
-
-    Returns
-    -------
-
-    """
+    """Uploads a list of files to a bucket."""
     session = get_session()
     async with session.create_client('s3',
                                      aws_access_key_id=credentials.get("aws_access_key_id"),

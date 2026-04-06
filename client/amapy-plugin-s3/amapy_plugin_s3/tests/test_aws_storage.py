@@ -171,8 +171,8 @@ def test_signed_url(mock_s3, mock_s3_credentials):
 
         for url in mock_s3:
             signed_url = AwsStorage.shared().signed_url_for_blob(blob_url=url)
-            gcs_url = BlobStoreURL(url=url)
-            assert gcs_url.path in signed_url
+            unsigned_url = BlobStoreURL(url=url)
+            assert unsigned_url.path in signed_url
 
 
 def test_get_bucket_cors(mock_s3, mock_s3_credentials):
