@@ -1,4 +1,4 @@
-from cached_property import cached_property
+from functools import cached_property
 
 from amapy_pluggy.storage.transporter import TransportResource
 from amapy_plugin_posix.posix_url import PosixURL

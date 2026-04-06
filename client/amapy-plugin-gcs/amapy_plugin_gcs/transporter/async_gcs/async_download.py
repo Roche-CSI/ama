@@ -34,7 +34,7 @@ def get_group_retries() -> int:
     return GROUP_RETRIES
 
 
-def download_resources(credentials: dict, resources: [GcsDownloadResource]) -> list:
+def download_resources(credentials: dict, resources: list[GcsDownloadResource]) -> list:
     """Downloads a list of files from a bucket with retries."""
     group_retries = get_group_retries()
     wait_generator = backoff.expo(base=4, factor=10)  # 10, 40, 160, 640, 2560...
@@ -61,7 +61,7 @@ def download_resources(credentials: dict, resources: [GcsDownloadResource]) -> l
     return result
 
 
-async def __async_download_resources(credentials: dict, resources: [GcsDownloadResource]):
+async def __async_download_resources(credentials: dict, resources: list[GcsDownloadResource]):
     """Downloads a list of files from a bucket.
 
     Parameters

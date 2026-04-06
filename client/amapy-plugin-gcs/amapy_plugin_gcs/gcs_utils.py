@@ -1,7 +1,6 @@
 # No usage of gcs_utils.py found in this project
 import logging
 import os
-from typing import Union
 
 from google.cloud import storage
 
@@ -27,13 +26,10 @@ def move_blob(src_url, dest_url):
     dst_bucket = storage_client.bucket(dst_bucket_name) if dst_bucket_name != src_bucket_name else src_bucket
     dst_blob = src_bucket.copy_blob(src_blob, dst_bucket, dst_blob_name)
     src_blob.delete()
-    logger.info("Blob {} moved to blob {} in bucket {}.".format(
-        src_blob_name,
-        dst_blob.name,
-        dst_bucket_name))
+    logger.info(f"Blob {src_blob_name} moved to blob {dst_blob.name} in bucket {dst_bucket_name}.")
 
 
-def get_blob_name(blob: Union[storage.Blob, str]):
+def get_blob_name(blob: storage.Blob | str):
     """
     Gets blob name (last part of the path).
     :param blob: instance of :class:`google.cloud.storage.Blob`.
@@ -50,7 +46,7 @@ def get_blob_name(blob: Union[storage.Blob, str]):
 def get_bucket(bucket_name):
     bucket = storage.Client().get_bucket(bucket_name)
     if not bucket:
-        raise Exception("bucket not found:{}".format(bucket_name))
+        raise Exception(f"bucket not found:{bucket_name}")
     return bucket
 
 
@@ -81,7 +77,7 @@ def add_cors_for_url(bucket_name, *urls):
 
     bucket.cors = [cors]
     bucket.patch()
-    logger.info("Set CORS policies for bucket {} is {}".format(bucket.name, bucket.cors))
+    logger.info(f"Set CORS policies for bucket {bucket.name} is {bucket.cors}")
     return bucket
 
 
@@ -94,5 +90,5 @@ def removed_cors_for_url(bucket_name, *urls):
     cors["origin"] = [x for x in cors["origin"] if x not in urls]
     bucket.cors = [cors]
     bucket.patch()
-    logger.info("Set CORS policies for bucket {} is {}".format(bucket.name, bucket.cors))
+    logger.info(f"Set CORS policies for bucket {bucket.name} is {bucket.cors}")
     return bucket

@@ -17,7 +17,7 @@ class AsyncGcsTransporter(Transporter):
     def get_copy_resource(self, src: str, dst: str, src_hash: tuple, **kwargs) -> TransportResource:
         return GcsCopyResource(src=src, dst=dst, hash=src_hash, **kwargs)
 
-    def upload(self, resources: [TransportResource]):
+    def upload(self, resources: list[TransportResource]):
         try:
             for chunk in utils.batch(resources, batch_size=self.batch_size):
                 async_upload.upload_resources(credentials=self.credentials, resources=chunk)
@@ -28,7 +28,7 @@ class AsyncGcsTransporter(Transporter):
                 raise exceptions.InvalidStorageCredentialsError() from e
             raise exceptions.AssetException("Error while uploading resources") from e
 
-    def download(self, resources: [TransportResource]):
+    def download(self, resources: list[TransportResource]):
         try:
             for chunk in utils.batch(resources, batch_size=self.batch_size):
                 async_download.download_resources(credentials=self.credentials, resources=chunk)
@@ -39,7 +39,7 @@ class AsyncGcsTransporter(Transporter):
                 raise exceptions.InvalidStorageCredentialsError() from e
             raise exceptions.AssetException("Error while downloading resources") from e
 
-    def copy(self, resources: [TransportResource]):
+    def copy(self, resources: list[TransportResource]):
         try:
             for chunk in utils.batch(resources, batch_size=self.batch_size):
                 async_copy.copy_resources(credentials=self.credentials, resources=chunk)
