@@ -112,12 +112,10 @@ def test_profile_list_blobs(mock_s3, mock_s3_credentials):
     with patch('amapy_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage:
         # Mock AwsStorage credentials
         mock_shared_storage.return_value.credentials = mock_s3_credentials
-        TIME_IT = True
-        if TIME_IT:
-            with time_it("aws_list_blobs"):
-                url = "s3://aws-test-bucket/00000000-0000-0000-0000-000000000001/" \
-                      "contents/00000000-0000-0000-0000-000000000001"
-                AwsStorage.shared().list_blobs(url=url)
+        with time_it("aws_list_blobs"):
+            url = "s3://aws-test-bucket/00000000-0000-0000-0000-000000000001/" \
+                  "contents/00000000-0000-0000-0000-000000000001"
+            AwsStorage.shared().list_blobs(url=url)
 
 
 def test_blob_exists(mock_s3, mock_s3_credentials):
