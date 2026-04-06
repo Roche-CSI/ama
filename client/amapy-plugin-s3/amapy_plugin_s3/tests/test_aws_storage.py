@@ -124,20 +124,20 @@ def test_blob_exists(mock_s3, mock_s3_credentials):
     with patch('amapy_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage:
         # Mock AwsStorage credentials
         mock_shared_storage.return_value.credentials = mock_s3_credentials
-        urls = [
-            ("s3://aws-test-bucket/test_data/sample_files/file1.yml", True),
-            ("s3://aws-test-bucket/test_data/sample_files/file2.yaml", True),
-            ("s3://aws-test-bucket/test_data/sample_files/file3.yml", True),
-            ("s3://aws-test-bucket/test_data/sample_files/file4.yml", True),
-            ("s3://aws-test-bucket/test_data/file5.yaml", False),
-            ("s3://aws-test-bucket/test_data/file6.yml", False),
-            ("s3://aws-test-bucket/test_data/file1.yml", False),
-            ("s3://aws-test-bucket/test_data/test.txt", False),
-            ("s3://aws-test-bucket/test_data/test.txt2", False)
-        ]
-        for data in urls:
-            exists = AwsStorage.shared().blob_exists(url_string=data[0])
-            assert exists == data[1]
+        url_exists_data = {
+            "s3://aws-test-bucket/test_data/sample_files/file1.yml": True,
+            "s3://aws-test-bucket/test_data/sample_files/file2.yaml": True,
+            "s3://aws-test-bucket/test_data/sample_files/file3.yml": True,
+            "s3://aws-test-bucket/test_data/sample_files/file4.yml": True,
+            "s3://aws-test-bucket/test_data/file5.yaml": False,
+            "s3://aws-test-bucket/test_data/file6.yml": False,
+            "s3://aws-test-bucket/test_data/file1.yml": False,
+            "s3://aws-test-bucket/test_data/test.txt": False,
+            "s3://aws-test-bucket/test_data/test.txt2": False,
+        }
+        for url, expected in url_exists_data.items():
+            exists = AwsStorage.shared().blob_exists(url_string=url)
+            assert exists == expected
 
 
 def test_delete_blobs(mock_s3, mock_s3_credentials):
