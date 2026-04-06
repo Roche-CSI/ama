@@ -56,5 +56,6 @@ def copy_test_url():
 
 
 @pytest.fixture(scope="session")
-def aws_test_credentials():
+def mock_s3_credentials():
+    """Mock AWS S3 credentials for tests"""
     return MOCK_S3_CREDENTIALS

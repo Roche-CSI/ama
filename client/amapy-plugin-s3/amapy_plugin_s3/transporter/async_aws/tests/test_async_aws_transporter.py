@@ -20,7 +20,7 @@ def mock_upload_file_response():
     return mock_response
 
 
-def test_upload(project_root: str, upload_test_url, aws_test_credentials):
+def test_upload(project_root: str, upload_test_url, mock_s3_credentials):
     with patch('amapy_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage, \
             patch('amapy_plugin_s3.aws_storage.AwsStorage.shared') as mock_Aws_Storage, \
             patch('aioboto3.Session.client') as mock_client:
@@ -28,8 +28,8 @@ def test_upload(project_root: str, upload_test_url, aws_test_credentials):
         mock_client.return_value = mock_s3_client
         mock_s3_client.upload_file = MagicMock(return_value=mock_upload_file_response())
         # Mock AwsStorage credentials
-        mock_Aws_Storage.return_value.credentials = aws_test_credentials
-        mock_shared_storage.return_value.credentials = aws_test_credentials
+        mock_Aws_Storage.return_value.credentials = mock_s3_credentials
+        mock_shared_storage.return_value.credentials = mock_s3_credentials
 
         files = [
             "test_data/file_types/csvs/customers.csv",
@@ -52,7 +52,7 @@ def test_upload(project_root: str, upload_test_url, aws_test_credentials):
         transport.upload(resources=targets)
 
 
-def test_upload_dir(project_root: str, upload_test_url: str, aws_test_credentials: dict):
+def test_upload_dir(project_root: str, upload_test_url: str, mock_s3_credentials: dict):
     with patch('amapy_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage, \
             patch('amapy_plugin_s3.aws_storage.AwsStorage.shared') as mock_Aws_Storage, \
             patch('aioboto3.Session.client') as mock_client:
@@ -60,8 +60,8 @@ def test_upload_dir(project_root: str, upload_test_url: str, aws_test_credential
         mock_client.return_value = mock_s3_client
         mock_s3_client.upload_file = MagicMock(return_value=mock_upload_file_response())
         # Mock AwsStorage credentials
-        mock_Aws_Storage.return_value.credentials = aws_test_credentials
-        mock_shared_storage.return_value.credentials = aws_test_credentials
+        mock_Aws_Storage.return_value.credentials = mock_s3_credentials
+        mock_shared_storage.return_value.credentials = mock_s3_credentials
 
         date_string = datetime_string(date=datetime.now())
         upload_url = upload_test_url.format(date_string=date_string)
@@ -77,12 +77,12 @@ def test_upload_dir(project_root: str, upload_test_url: str, aws_test_credential
         transport.upload(resources=targets)
 
 
-def test_download(project_root, aws_test_credentials):
+def test_download(project_root, mock_s3_credentials):
     with patch('amapy_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage, \
             patch('amapy_plugin_s3.aws_storage.AwsStorage.shared') as mock_Aws_Storage:
         # Mock AwsStorage credentials
-        mock_Aws_Storage.return_value.credentials = aws_test_credentials
-        mock_shared_storage.return_value.credentials = aws_test_credentials
+        mock_Aws_Storage.return_value.credentials = mock_s3_credentials
+        mock_shared_storage.return_value.credentials = mock_s3_credentials
         urls = [
             "s3://aws-test-bucket/test_data/sample_files/file1.yml",
             "s3://aws-test-bucket/test_data/sample_files/file2.yaml",
@@ -109,7 +109,7 @@ def test_download(project_root, aws_test_credentials):
         shutil.rmtree(download_dir)
 
 
-def test_copy(aws_test_credentials, copy_test_url):
+def test_copy(mock_s3_credentials, copy_test_url):
     with patch('amapy_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage, \
             patch('amapy_plugin_s3.aws_storage.AwsStorage.shared') as mock_Aws_Storage, \
             patch('aioboto3.Session.client') as mock_client, \
@@ -117,8 +117,8 @@ def test_copy(aws_test_credentials, copy_test_url):
         mock_s3_client = MagicMock()
         mock_client.return_value = mock_s3_client
         # Mock AwsStorage credentials
-        mock_Aws_Storage.return_value.credentials = aws_test_credentials
-        mock_shared_storage.return_value.credentials = aws_test_credentials
+        mock_Aws_Storage.return_value.credentials = mock_s3_credentials
+        mock_shared_storage.return_value.credentials = mock_s3_credentials
 
         async def mock_multi_part_copy_function(session, credentials, resource):
             # Simulate a successful response with a dummy upload_id
@@ -150,12 +150,12 @@ def test_copy(aws_test_credentials, copy_test_url):
         mock_multi_part_copy.assert_called()
 
 
-def test_update_multipart_blobs(aws_test_credentials):
+def test_update_multipart_blobs(mock_s3_credentials):
     with patch('amapy_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage, \
             patch('amapy_plugin_s3.aws_storage.AwsStorage.shared') as mock_Aws_Storage:
         # Mock AwsStorage credentials
-        mock_Aws_Storage.return_value.credentials = aws_test_credentials
-        mock_shared_storage.return_value.credentials = aws_test_credentials
+        mock_Aws_Storage.return_value.credentials = mock_s3_credentials
+        mock_shared_storage.return_value.credentials = mock_s3_credentials
         expected = {
             'file1.yaml': 2925,
             'file2.yml': 124,
