@@ -41,48 +41,41 @@ def test_get_blob(mock_s3, mock_s3_credentials):
         # Mock AwsStorage credentials
         mock_shared_storage.return_value.credentials = mock_s3_credentials
 
-        urls = [
-            "s3://aws-test-bucket/test_data/sample_files/file1.yml",
-            "s3://aws-test-bucket/test_data/sample_files/file2.yaml",
-            "s3://aws-test-bucket/test_data/sample_files/file3.yml",
-            "s3://aws-test-bucket/test_data/sample_files/file4.yml",
-        ]
-        expected = [
-            {
+        url_blob_data = {
+            "s3://aws-test-bucket/test_data/sample_files/file1.yml": {
                 "bucket": "aws-test-bucket",
                 "name": "test_data/sample_files/file1.yml",
                 "content_type": 'binary/octet-stream',
                 "size": 7,
                 "is_file": True
             },
-            {
+            "s3://aws-test-bucket/test_data/sample_files/file2.yaml": {
                 "bucket": "aws-test-bucket",
                 "name": "test_data/sample_files/file2.yaml",
                 "content_type": 'binary/octet-stream',
                 "size": 7,
                 "is_file": True
             },
-            {
+            "s3://aws-test-bucket/test_data/sample_files/file3.yml": {
                 "bucket": "aws-test-bucket",
                 "name": "test_data/sample_files/file3.yml",
                 "content_type": 'binary/octet-stream',
                 "size": 7,
                 "is_file": True
             },
-            {
+            "s3://aws-test-bucket/test_data/sample_files/file4.yml": {
                 "bucket": "aws-test-bucket",
                 "name": "test_data/sample_files/file4.yml",
                 "content_type": 'binary/octet-stream',
                 "size": 7,
                 "is_file": True
-            }
-        ]
+            },
+        }
 
-        for idx, url in enumerate(urls):
+        for url, blob_data in url_blob_data.items():
             blob: AwsBlob = AwsStorage.shared().get_blob(url_string=url)
-            exp = expected[idx]
-            for key in exp:
-                assert exp[key] == getattr(blob, key)
+            for key in blob_data:
+                assert getattr(blob, key) == blob_data[key]
 
 
 def test_list_blobs(mock_s3, mock_s3_credentials):
