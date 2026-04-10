@@ -1,5 +1,4 @@
 from abc import ABC
-from typing import Type
 
 from amapy_pluggy.plugin import hook_impl
 from amapy_pluggy.plugin.plugin_manager import PluginManager
@@ -19,17 +18,17 @@ def test_storage_manager():
 
     class AwsStorageTestPlugin:
         @hook_impl
-        def asset_storage_get(self) -> Type[AssetStorage]:
+        def asset_storage_get(self) -> type[AssetStorage]:
             return AwsStorageTest
 
     class GcsStorageTestPlugin:
         @hook_impl
-        def asset_storage_get(self) -> Type[AssetStorage]:
+        def asset_storage_get(self) -> type[AssetStorage]:
             return GcsStorageTest
 
     class GcrStorageTestPlugin:
         @hook_impl
-        def asset_storage_get(self) -> Type[AssetStorage]:
+        def asset_storage_get(self) -> type[AssetStorage]:
             return GcrStorageTest
 
     plm = PluginManager.shared()

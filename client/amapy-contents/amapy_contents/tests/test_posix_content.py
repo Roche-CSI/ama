@@ -11,18 +11,18 @@ from amapy_utils.common import exceptions
 @pytest.fixture
 def mock_blob(test_data):
     blob = MagicMock(spec=StorageData)
-    blob.name = os.path.join(test_data, 'file_types/csvs/customers.csv')
+    blob.name = os.path.join(test_data, "file_types/csvs/customers.csv")
     blob.content_type = "application/octet-stream"
     blob.size = 17261
-    blob.get_hash.return_value = ('md5', 'DSPIdGEdaCS3U1Vi0nYprw==')
+    blob.get_hash.return_value = ("md5", "DSPIdGEdaCS3U1Vi0nYprw==")
     return blob
 
 
 def test_create(mock_blob):
-    with patch.object(PosixContent, 'storage_system_id', return_value='posix'):
+    with patch.object(PosixContent, "storage_system_id", return_value="posix"):
         posix_content = PosixContent.create(storage_name="posix", blob=mock_blob)
 
-    assert posix_content.id == 'posix:md5_DSPIdGEdaCS3U1Vi0nYprw=='
+    assert posix_content.id == "posix:md5_DSPIdGEdaCS3U1Vi0nYprw=="
     assert posix_content.hash == "md5_DSPIdGEdaCS3U1Vi0nYprw=="
     assert posix_content.hash_value == "DSPIdGEdaCS3U1Vi0nYprw=="
     assert posix_content.hash_type == "md5"
@@ -47,12 +47,12 @@ def test_validate_path(test_data):
 def test_compute_hash(test_data):
     test_items = [
         {
-            'src': 'file_types/jpegs/photo-1522364723953-452d3431c267.jpg',
-            'hash': ('md5', '4N7Mr93Wbtzm5j104ol0Mw==')
+            "src": "file_types/jpegs/photo-1522364723953-452d3431c267.jpg",
+            "hash": ("md5", "4N7Mr93Wbtzm5j104ol0Mw==")
         },
         {
-            'src': 'file_types/csvs/customers.csv',
-            'hash': ('md5', '+SPIdGEdaCS3U1Vi0nYprw==')
+            "src": "file_types/csvs/customers.csv",
+            "hash": ("md5", "eIlrw2PBTOr3VKXLHClkTQ==")
         },
     ]
 

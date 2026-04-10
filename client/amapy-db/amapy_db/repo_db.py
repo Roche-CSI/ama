@@ -1,8 +1,4 @@
-import logging
-
 from amapy_db.db import Database
-
-logger = logging.getLogger(__name__)
 
 
 class RepoDB(Database):
@@ -32,9 +28,8 @@ class RepoDB(Database):
             deleted = data.pop(id, None)
             if deleted:
                 pass
-                # logger.info("asset {} removed.".format(id))
             else:
-                logger.info("asset not added yet, ignoring remove for:{}".format(id))
+                self.user_log.info(f"asset not added yet, ignoring remove for:{id}")
         self._write_to_file(data)
 
     def clear(self):

@@ -10,7 +10,7 @@ class InMemoryZip:
         # create a file-like object for the Zip file
         self.mem_zip = io.BytesIO()
 
-    def add_files(self, files: [tuple]):
+    def add_files(self, files: list[tuple]):
         """adds files to zip"""
         with zipfile.ZipFile(self.mem_zip, 'w') as zf:
             for file_name, file_data in files:

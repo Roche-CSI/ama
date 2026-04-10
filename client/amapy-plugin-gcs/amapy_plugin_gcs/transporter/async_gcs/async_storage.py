@@ -1,5 +1,5 @@
+from collections.abc import Callable
 from typing import Any
-from typing import Callable
 
 from aiofiles import open as file_open
 from gcloud.aio.storage import Storage

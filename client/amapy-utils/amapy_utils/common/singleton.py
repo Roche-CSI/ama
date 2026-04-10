@@ -1,8 +1,7 @@
 import abc
 
 
-class Singleton:
-    __metaclass__ = abc.ABCMeta
+class Singleton(metaclass=abc.ABCMeta):
 
     def __new__(cls):
         raise Exception("singleton, used class.shared() instead")

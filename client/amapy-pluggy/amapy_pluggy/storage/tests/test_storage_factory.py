@@ -45,6 +45,53 @@ def test_storage_for_url():
 
 class MockStorage(AssetStorage):
     prefixes = ["s3://", "gs://"]
+    name = "mock"
+
+    def post_init(self):
+        # skip validation that requires a real transporter
+        pass
+
+    def get_storage_url(self, url_string, ignore=None):
+        raise NotImplementedError
+
+    def allows_proxy(self):
+        return False
+
+    def allows_object_add(self):
+        return True
+
+    def get_blob(self, url_string):
+        raise NotImplementedError
+
+    def blob_exists(self, url_string):
+        return False
+
+    def list_blobs(self, url, ignore=None):
+        return []
+
+    def delete_blobs(self, url_strings):
+        pass
+
+    def get_transporter(self):
+        return None
+
+    def get_content_class(self):
+        return None
+
+    def get_object_path(self, asset_root, blob, parent_url):
+        return ""
+
+    def url_is_file(self, url):
+        return False
+
+    def signed_url_for_blob(self, blob_url):
+        return ""
+
+    def set_bucket_cors(self, bucket_url, origin_url):
+        pass
+
+    def get_bucket_cors(self, bucket_url):
+        return None
 
 
 class MockStorageManager(StorageManager):

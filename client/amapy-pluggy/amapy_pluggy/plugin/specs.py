@@ -1,5 +1,3 @@
-from typing import Type
-
 from amapy_pluggy.plugin import hook_spec
 from amapy_pluggy.plugin.asset_object import AssetObject
 from amapy_pluggy.storage.asset_storage import AssetStorage
@@ -9,7 +7,7 @@ class StoragePlugin:
     """Storage plugin interface which can be used to discover registered storage backends    """
 
     @hook_spec
-    def asset_storage_get(self) -> Type[AssetStorage]:
+    def asset_storage_get(self) -> type[AssetStorage]:
         """provides a storage backend to be used for storing asset data
         :return: AssetStorage compatible subclass
         """
@@ -18,7 +16,7 @@ class StoragePlugin:
 
 class ObjectPlugin:
     @hook_spec
-    def asset_object_get(self) -> Type[AssetObject]:
+    def asset_object_get(self) -> type[AssetObject]:
         """provides a Object type for any custom handling of data being added to asset"""
         pass
 

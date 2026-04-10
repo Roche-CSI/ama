@@ -1,13 +1,11 @@
 """Used only in asset-server"""
 import binascii
-import collections
 import datetime
 import hashlib
 import sys
+from urllib.parse import quote
 
-import six
 from google.oauth2 import service_account
-from six.moves.urllib.parse import quote
 
 
 def generate_signed_url(bucket_name,
@@ -23,10 +21,11 @@ def generate_signed_url(bucket_name,
         print('Expiration Time can\'t be longer than 604800 seconds (7 days).')
         sys.exit(1)
 
-    escaped_object_name = quote(six.ensure_binary(object_name), safe=b'/~')
-    canonical_uri = '/{}'.format(escaped_object_name)
+    escaped_object_name = quote(object_name.encode('utf-8') if isinstance(object_name, str) else object_name,
+                                safe=b'/~')
+    canonical_uri = f'/{escaped_object_name}'
 
-    datetime_now = datetime.datetime.now(tz=datetime.timezone.utc)
+    datetime_now = datetime.datetime.now(tz=datetime.UTC)
     request_timestamp = datetime_now.strftime('%Y%m%dT%H%M%SZ')
     datestamp = datetime_now.strftime('%Y%m%d')
 
@@ -38,25 +37,25 @@ def generate_signed_url(bucket_name,
             service_account_json)
 
     client_email = google_credentials.service_account_email
-    credential_scope = '{}/auto/storage/goog4_request'.format(datestamp)
-    credential = '{}/{}'.format(client_email, credential_scope)
+    credential_scope = f'{datestamp}/auto/storage/goog4_request'
+    credential = f'{client_email}/{credential_scope}'
 
     if headers is None:
         headers = dict()
-    host = '{}.storage.googleapis.com'.format(bucket_name)
+    host = f'{bucket_name}.storage.googleapis.com'
     headers['host'] = host
 
     canonical_headers = ''
-    ordered_headers = collections.OrderedDict(sorted(headers.items()))
+    ordered_headers = dict(sorted(headers.items()))
     for k, v in ordered_headers.items():
         lower_k = str(k).lower()
         strip_v = str(v).lower()
-        canonical_headers += '{}:{}\n'.format(lower_k, strip_v)
+        canonical_headers += f'{lower_k}:{strip_v}\n'
 
     signed_headers = ''
     for k, _ in ordered_headers.items():
         lower_k = str(k).lower()
-        signed_headers += '{};'.format(lower_k)
+        signed_headers += f'{lower_k};'
     signed_headers = signed_headers[:-1]  # remove trailing ';'
 
     if query_parameters is None:
@@ -70,12 +69,11 @@ def generate_signed_url(bucket_name,
         query_parameters[subresource] = ''
 
     canonical_query_string = ''
-    ordered_query_parameters = collections.OrderedDict(
-        sorted(query_parameters.items()))
+    ordered_query_parameters = dict(sorted(query_parameters.items()))
     for k, v in ordered_query_parameters.items():
         encoded_k = quote(str(k), safe='')
         encoded_v = quote(str(v), safe='')
-        canonical_query_string += '{}={}&'.format(encoded_k, encoded_v)
+        canonical_query_string += f'{encoded_k}={encoded_v}&'
     canonical_query_string = canonical_query_string[:-1]  # remove trailing '&'
 
     canonical_request = '\n'.join([http_method,
@@ -98,8 +96,7 @@ def generate_signed_url(bucket_name,
         google_credentials.signer.sign(string_to_sign)
     ).decode()
 
-    scheme_and_host = '{}://{}'.format('https', host)
-    signed_url = '{}{}?{}&x-goog-signature={}'.format(
-        scheme_and_host, canonical_uri, canonical_query_string, signature)
+    scheme_and_host = f'https://{host}'
+    signed_url = f'{scheme_and_host}{canonical_uri}?{canonical_query_string}&x-goog-signature={signature}'
 
     return signed_url

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "amapy-utils"
-version = "1.0.1"
+version = "1.1.0"
 description = "A utility package that provides common functionality shared across the ama ecosystem."
 readme = "README.md"
 authors = [
@@ -22,7 +22,7 @@ dependencies = [
     "psutil==5.9.*",
     "pyopenssl==24.0.*",
     "pypager==3.0.1",
-    "pytz==2024.1",
+    "pytz==2024.2",
     "pyyaml==6.0.*",
     "requests==2.32.*",
     "ruamel.yaml==0.18.*",

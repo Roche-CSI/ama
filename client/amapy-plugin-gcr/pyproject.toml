@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "amapy-plugin-gcr"
-version = "1.0.1"
+version = "1.1.0"
 description = "The GCR plugin for the ama project."
 readme = "README.md"
 authors = [
@@ -16,13 +16,10 @@ maintainers = [
 license = { text = "Copyright (c) 2024 Roche Diagnostics Computation Science & Informatics" }
 requires-python = ">=3.12,<3.13"  # "==3.12.*"
 dependencies = [
-    "amapy-contents==1.*",
-    "amapy-pluggy==1.*",
-    "amapy-utils==1.*",
-    "backoff==2.2.*",
-    "google-auth==2.27.*",
-    "pyopenssl==24.0.*",
-    "speedtest-cli==2.1.*"
+    "amapy-contents==1.1.*",
+    "amapy-pluggy==1.1.*",
+    "amapy-utils==1.1.*",
+    "google-auth==2.37.*"
 ]
 
 [tool.setuptools.packages.find]
