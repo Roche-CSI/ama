@@ -1,6 +1,6 @@
 import os
 import tempfile
-from typing import Iterable, List
+from collections.abc import Iterable
 
 from packaging.version import Version
 
@@ -438,7 +438,7 @@ class AssetFetcher(Fetcher):
         StorageCredentials.shared().use_content_credentials = False
         return True
 
-    def copy_objects(self, objects: List[AssetObject], dst_url: str, desc: str = None):
+    def copy_objects(self, objects: list[AssetObject], dst_url: str, desc: str = None):
         # collect urls
         targets = [obj for obj in objects if obj.content.can_download]
         if not targets:

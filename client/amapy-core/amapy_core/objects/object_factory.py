@@ -1,4 +1,4 @@
-from typing import Type, Callable
+from collections.abc import Callable
 
 from amapy_contents.content_factory import StorageFactory
 from amapy_core.objects.asset_object import AssetObject
@@ -12,7 +12,7 @@ class ObjectFactory:
                     proxy: bool = False,
                     object_type: str = None,
                     callback: Callable = None,
-                    repo_dir: str = None) -> [AssetObject]:
+                    repo_dir: str = None) -> list[AssetObject]:
         """Creates and returns list of object
 
         Parameters
@@ -42,7 +42,7 @@ class ObjectFactory:
                                         callback=callback,
                                         repo_dir=repo_dir)
 
-    def get_object_class(self, object_type: str = None) -> Type[AssetObject]:
+    def get_object_class(self, object_type: str = None) -> type[AssetObject]:
         # todo: refactor into plugins
         for klass in self.object_klasses():
             if klass.object_type and klass.object_type == object_type:
@@ -53,7 +53,7 @@ class ObjectFactory:
     def object_klasses(self):
         return [Object, GroupObject]
 
-    def create_contents(self, source_data: dict, proxy: bool = False) -> [ObjectSource]:
+    def create_contents(self, source_data: dict, proxy: bool = False) -> list[ObjectSource]:
         result = []
         for storage_name, object_sources in source_data.items():
             storage_klass = StorageFactory.storage_with_name(name=storage_name)

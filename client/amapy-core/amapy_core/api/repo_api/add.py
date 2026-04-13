@@ -54,7 +54,7 @@ class AddAPI(RepoAPI):
         self.user_log.info(f"added attributes to the asset")
         self.user_log.message(UserCommands().upload_asset())
 
-    def add_tags(self, tags: [str]):
+    def add_tags(self, tags: list[str]):
         """Adds tags to the asset tags list.
         - allow max 10 tags
         """

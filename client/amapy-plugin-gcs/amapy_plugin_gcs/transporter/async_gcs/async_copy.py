@@ -14,11 +14,11 @@ RETRIES = 5  # number of retries in the event of failure
 COPY_TIMEOUT = 600  # 10 minutes
 
 
-def copy_resources(credentials: dict, resources: [GcsCopyResource]) -> list:
+def copy_resources(credentials: dict, resources: list[GcsCopyResource]) -> list:
     return asyncio.run(__async_copy_resources(credentials=credentials, resources=resources))
 
 
-async def __async_copy_resources(credentials: dict, resources: [GcsCopyResource]) -> list:
+async def __async_copy_resources(credentials: dict, resources: list[GcsCopyResource]) -> list:
     """Copies a list of files to a bucket.
 
     Parameters

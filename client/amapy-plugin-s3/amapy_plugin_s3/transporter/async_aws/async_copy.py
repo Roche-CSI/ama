@@ -15,11 +15,11 @@ logger = get_logger(__name__)
 RETRIES = 5  # number of retries in the event of failure
 
 
-def copy_resources(credentials: dict, resources: [AwsCopyResource]) -> list:
+def copy_resources(credentials: dict, resources: list[AwsCopyResource]) -> list:
     return asyncio.run(__async_copy_resources(credentials=credentials, resources=resources))
 
 
-async def __async_copy_resources(credentials: dict, resources: [AwsCopyResource]) -> list:
+async def __async_copy_resources(credentials: dict, resources: list[AwsCopyResource]) -> list:
     result = []
     cred = Credentials(access_key=credentials.get("aws_access_key_id"),
                        secret_key=credentials.get("aws_secret_access_key"))
@@ -141,8 +141,7 @@ def convert_url(blob_url) -> str:
     --------
     https://aws-example-bucket.s3.amazonaws.com/asset_tool/test_data/asset_client/sample_files/model.yml
     """
-    url_format = "https://{}.{}.amazonaws.com/{}"
-    return url_format.format(blob_url.bucket, blob_url.host, blob_url.path)
+    return f"https://{blob_url.bucket}.{blob_url.host}.amazonaws.com/{blob_url.path}"
 
 
 def get_multipart_copy_tasks(credentials, resource, session, upload_id):

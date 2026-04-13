@@ -14,7 +14,7 @@ RETRIES = 5  # number of retries in the event of failure
 DEFAULT_UPLOAD_TIMEOUT = 3600  # 1 hr per file
 
 
-def upload_resources(credentials: dict, resources: [AwsUploadResource]):
+def upload_resources(credentials: dict, resources: list[AwsUploadResource]):
     return asyncio.run(__async_upload_resources(credentials=credentials, resources=resources))
 
 
@@ -24,7 +24,7 @@ def get_upload_timeout() -> int:
     return DEFAULT_UPLOAD_TIMEOUT
 
 
-async def __async_upload_resources(credentials: dict, resources: [AwsUploadResource]) -> list:
+async def __async_upload_resources(credentials: dict, resources: list[AwsUploadResource]) -> list:
     file_timout = get_upload_timeout()
     session_timout = max(file_timout * len(resources), file_timout)
     session = aioboto3.Session()

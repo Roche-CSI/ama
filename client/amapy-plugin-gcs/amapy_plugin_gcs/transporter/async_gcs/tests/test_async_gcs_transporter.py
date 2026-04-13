@@ -7,6 +7,7 @@ import google.cloud.storage  # type: ignore[import]
 from cloud_storage_mocker import Mount
 from cloud_storage_mocker import patch as gcs_patch
 
+from amapy_plugin_gcs.gcs_storage import GcsStorage
 from amapy_plugin_gcs.transporter import AsyncGcsTransporter
 from amapy_plugin_gcs.transporter.gcs_transport_resource import GcsDownloadResource, GcsUploadResource, GcsCopyResource
 
@@ -57,7 +58,7 @@ def test_download(project_root):
         targets.append(res)
     # download with mock storage
     with patch("amapy_plugin_gcs.transporter.async_gcs.async_download.AsyncStorage", new=MockAsyncStorage):
-        transport = AsyncGcsTransporter.shared()
+        transport = AsyncGcsTransporter.shared(credentials=GcsStorage.shared().credentials)
         transport.download(resources=targets)
     # verify
     for target in targets:
@@ -83,7 +84,7 @@ def test_upload(project_root, mock_bucket):
         targets.append(res)
     # upload with mock storage
     with patch("amapy_plugin_gcs.transporter.async_gcs.async_upload.AsyncStorage", new=MockAsyncStorage):
-        transport = AsyncGcsTransporter.shared()
+        transport = AsyncGcsTransporter.shared(credentials=GcsStorage.shared().credentials)
         transport.upload(resources=targets)
     # verify
     for target in targets:
@@ -110,7 +111,7 @@ def test_copy(mock_bucket):
         targets.append(res)
     # copy with mock storage
     with patch("amapy_plugin_gcs.transporter.async_gcs.async_copy.AsyncStorage", new=MockAsyncStorage):
-        transport = AsyncGcsTransporter.shared()
+        transport = AsyncGcsTransporter.shared(credentials=GcsStorage.shared().credentials)
         transport.copy(resources=targets)
     # verify
     for target in targets:

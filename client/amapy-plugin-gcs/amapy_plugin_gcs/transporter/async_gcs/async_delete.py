@@ -14,11 +14,11 @@ RETRIES = 5  # number of retries in the event of failure
 DELETE_TIMEOUT = 60  # 10 minutes
 
 
-def delete_urls(credentials: dict, urls: [BlobStoreURL]):
+def delete_urls(credentials: dict, urls: list[BlobStoreURL]):
     return asyncio.run(__async_delete_urls(credentials=credentials, urls=urls))
 
 
-async def __async_delete_urls(credentials: dict, urls: [BlobStoreURL]):
+async def __async_delete_urls(credentials: dict, urls: list[BlobStoreURL]):
     """deletes a list of files from bucket
 
     Parameters
