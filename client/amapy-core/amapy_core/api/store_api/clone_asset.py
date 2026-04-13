@@ -4,7 +4,6 @@ import shutil
 import tempfile
 from time import time
 
-
 from amapy_core.api.repo_api.info import InfoAPI
 from amapy_core.asset.asset import Asset
 from amapy_core.asset.asset_class import AssetClass
@@ -108,7 +107,7 @@ class CloneAssetAPI(StoreAPI):
         self.user_log.info(f"asset cloned at {remote_url}")
 
     def filter_remote_objects(self, objects: list[AssetObject],
-                              url: str) -> (list[AssetObject], list[AssetObject]):
+                              url: str) -> tuple[list[AssetObject], list[AssetObject]]:
         # TODO: aws blobs don't have md5 hash, need to find a way to compare
         remote_url = url + "/" if not url.endswith("/") else url  # make sure url ends with '/' for path comparison
         storage = StorageFactory.storage_for_url(src_url=remote_url)
