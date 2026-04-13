@@ -21,7 +21,7 @@ logger.setLevel(logging.CRITICAL)
 # https://stackoverflow.com/questions/44915400/how-to-use-asyncio-to-download-files-on-s3-bucket
 
 # TODO: add group retries similar to GCS
-def download_resources(credentials: dict, resources: [AwsDownloadResource]):
+def download_resources(credentials: dict, resources: list[AwsDownloadResource]):
     return asyncio.run(__async_download_resources(credentials=credentials, resources=resources))
 
 
@@ -31,7 +31,7 @@ def get_download_timeout() -> int:
     return DEFAULT_DOWNLOAD_TIMEOUT
 
 
-async def __async_download_resources(credentials: dict, resources: [AwsDownloadResource]):
+async def __async_download_resources(credentials: dict, resources: list[AwsDownloadResource]):
     file_timeout = get_download_timeout()
     session_timeout = max(file_timeout * len(resources), file_timeout)
     timeout = aiohttp.ClientTimeout(total=session_timeout)

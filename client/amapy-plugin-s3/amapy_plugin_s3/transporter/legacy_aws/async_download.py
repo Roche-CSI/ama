@@ -18,23 +18,12 @@ logger = get_logger(__name__)
 RETRIES = 5  # number of retries in the event of failure
 
 
-def download_resources(credentials: dict, resources: [AwsDownloadResource]):
+def download_resources(credentials: dict, resources: list[AwsDownloadResource]):
     return asyncio.run(__async_download_resources(credentials=credentials, resources=resources))
 
 
-async def __async_download_resources(credentials: dict, resources: [AwsDownloadResource]) -> list:
-    """Downloads a list of files from bucket
-
-    Parameters
-    ----------
-    resources: [GcsDownloadResource]
-
-    Returns
-    -------
-    list:
-        list of filepaths downloaded
-
-    """
+async def __async_download_resources(credentials: dict, resources: list[AwsDownloadResource]) -> list:
+    """Downloads a list of files from bucket."""
     session = get_session()
     async with session.create_client('s3',
                                      aws_access_key_id=credentials.get("aws_access_key_id"),
