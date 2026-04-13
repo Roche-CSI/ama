@@ -217,7 +217,7 @@ class Asset(SerializableAsset):
             return []
         return [obj for obj in self.objects if getattr(obj, attr) in values]
 
-    def remove_objects(self, targets: [AssetObject], delete=False):
+    def remove_objects(self, targets: list[AssetObject], delete=False):
         """Deletes a given list of objects
         1. remove from asset-manifest
         2. delete from the directory, the default behaviour is objects are removed from the asset only
