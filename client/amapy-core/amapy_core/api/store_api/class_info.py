@@ -14,8 +14,7 @@ class ClassInfoAPI(StoreAPI):
 
     def create_asset_class(self):
         create_route = f"asset_class?action=create&project_id={self.store.project_id}"
-        url = os.path.join(Configs.shared().asset_home.dashboard_url,
-                           create_route)
+        url = os.path.join(Configs.shared().asset_home.dashboard_url, create_route)
         self.user_log.info("opening asset-create page in dashboard")
         open_in_browser(url)
 
