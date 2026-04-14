@@ -6,6 +6,7 @@ from unittest.mock import MagicMock
 
 import pytest
 
+from amapy.app import register_plugins
 from amapy_core.asset import Asset
 from amapy_core.configs import Configs
 from amapy_core.configs.app_settings import AppSettings
@@ -30,6 +31,7 @@ def pytest_sessionstart(session):
     logger.info("Pre-Session Setup..")
     Configs.de_init()  # cleanup existing settings if any
     Configs.shared(mode=Configs.modes.UNIT_TEST)  # all tests to use test_settings only
+    register_plugins()
 
 
 def pytest_sessionfinish(session, exitstatus):
