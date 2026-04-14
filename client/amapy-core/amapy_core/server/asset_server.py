@@ -22,7 +22,7 @@ class AssetServer:
 
     @property
     def headers(self):
-        bearer_token = AppSettings.shared().user.get('token')
+        bearer_token = AppSettings.shared().user.get("token")
         return {
             "Authorization": f"Bearer {bearer_token}",
         }
@@ -95,14 +95,14 @@ class AssetServer:
         if not project_id:
             raise exceptions.NoActiveProjectError()
 
-        data = {'project_id': project_id}
+        data = {"project_id": project_id}
         if version_names:
-            data['version_names'] = version_names
+            data["version_names"] = version_names
         if class_name:
-            data['class_name'] = class_name
+            data["class_name"] = class_name
         if commit_hash:
-            data['commit_hash'] = commit_hash
-            data['name'] = True
+            data["commit_hash"] = commit_hash
+            data["name"] = True
         if not version_names and not commit_hash:
             raise exceptions.InvalidArgumentError("missing required parameter: hash")
 
@@ -193,4 +193,4 @@ class AssetServer:
         """
         if response.status_code < 200:
             # print the warning message is in the response header
-            UserLog().alert(response.headers.get('Warning', 'Missing warning message from server'))
+            UserLog().alert(response.headers.get("Warning", "Missing warning message from server"))
