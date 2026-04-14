@@ -38,14 +38,14 @@ def test_bulk_create_gcs(empty_asset, mock_gcs_blob):
     factory = ObjectFactory()
     os.environ["ASSET_PROJECT_STORAGE_ID"] = "gs"
     StorageCredentials.shared().set_credentials(MOCK_GCS_CREDENTIALS)
-    with patch.object(GcsStorage, 'list_blobs', return_value=[mock_gcs_blob]):
+    with patch.object(GcsStorage, "list_blobs", return_value=[mock_gcs_blob]):
         sources = factory.parse_sources(repo_dir=empty_asset.repo_dir, targets=[mock_gcs_blob.url])
 
     objects = factory.bulk_create(source_data=sources, proxy=True)
     assert len(objects) == 1
     assert type(objects[0]) is Object
     content = objects[0].content
-    assert content.id == 'gs:proxy_md5_HHf38PoTxw3ja++ikBY4Vg=='
+    assert content.id == "gs:proxy_md5_HHf38PoTxw3ja++ikBY4Vg=="
     assert content.size == 12853831
     assert content.meta.get("proxy") is True
     assert content.meta.get("type") == "gs"
@@ -56,14 +56,14 @@ def test_bulk_create_s3(empty_asset, mock_s3_blob):
     factory = ObjectFactory()
     os.environ["ASSET_PROJECT_STORAGE_ID"] = "s3"
     StorageCredentials.shared().set_credentials(MOCK_S3_CREDENTIALS)
-    with patch.object(AwsStorage, 'list_blobs', return_value=[mock_s3_blob]):
+    with patch.object(AwsStorage, "list_blobs", return_value=[mock_s3_blob]):
         sources = factory.parse_sources(repo_dir=empty_asset.repo_dir, targets=[mock_s3_blob.url])
 
     objects = factory.bulk_create(source_data=sources, proxy=False)
     assert len(objects) == 1
     assert type(objects[0]) is Object
     content = objects[0].content
-    assert content.id == 's3:md5_eIlrw2PBTOr3VKXLHClkTQ=='
+    assert content.id == "s3:md5_eIlrw2PBTOr3VKXLHClkTQ=="
     assert content.size == 17160
     assert content.meta.get("proxy") is False
     assert content.meta.get("type") == "s3"
@@ -74,15 +74,15 @@ def test_bulk_create_gcr(empty_asset, mock_gcr_blob):
     factory = ObjectFactory()
     os.environ["ASSET_PROJECT_STORAGE_ID"] = "gs"
     StorageCredentials.shared().set_credentials(MOCK_GCS_CREDENTIALS)
-    with patch.object(GcrStorage, 'validate'), \
-            patch.object(GcrStorage, 'list_blobs', return_value=[mock_gcr_blob]):
+    with patch.object(GcrStorage, "validate"), \
+            patch.object(GcrStorage, "list_blobs", return_value=[mock_gcr_blob]):
         sources = factory.parse_sources(repo_dir=empty_asset.repo_dir, targets=[mock_gcr_blob.url])
 
     objects = factory.bulk_create(source_data=sources, proxy=True)
     assert len(objects) == 1
     assert type(objects[0]) is Object
     content = objects[0].content
-    assert content.id == 'gcr:proxy_md5_YQ4XfTQ0xDljPZuNX2uLzQ=='
+    assert content.id == "gcr:proxy_md5_YQ4XfTQ0xDljPZuNX2uLzQ=="
     assert content.size == 2391153464
     assert content.meta.get("proxy") is True
     assert content.meta.get("type") == "gcr"
@@ -91,7 +91,7 @@ def test_bulk_create_gcr(empty_asset, mock_gcr_blob):
 
 def test_get_object_class():
     factory = ObjectFactory()
-    assert factory.get_object_class('group') == GroupObject
+    assert factory.get_object_class("group") == GroupObject
     assert factory.get_object_class() == Object
 
 
@@ -110,38 +110,38 @@ def test_parse_sources_posix(empty_asset, test_data):
     factory = ObjectFactory()
     sources = factory.parse_sources(repo_dir=empty_asset.repo_dir, targets=[test_data])
     assert len(sources) == 1
-    assert len(sources['posix']) == 2
+    assert len(sources["posix"]) == 2
 
 
 def test_parse_sources_gcs(empty_asset, mock_gcs_blob):
     factory = ObjectFactory()
     StorageCredentials.shared().set_credentials(MOCK_GCS_CREDENTIALS)
-    with patch.object(GcsStorage, 'list_blobs', return_value=[mock_gcs_blob]):
+    with patch.object(GcsStorage, "list_blobs", return_value=[mock_gcs_blob]):
         sources = factory.parse_sources(repo_dir=empty_asset.repo_dir, targets=[mock_gcs_blob.url])
         assert len(sources) == 1
-        assert len(sources['gs']) == 1
-        source = sources['gs'].pop()
-        assert source.path_in_asset == 'photo-1522364723953-452d3431c267.jpg'
+        assert len(sources["gs"]) == 1
+        source = sources["gs"].pop()
+        assert source.path_in_asset == "photo-1522364723953-452d3431c267.jpg"
 
 
 def test_parse_sources_s3(empty_asset, mock_s3_blob):
     factory = ObjectFactory()
     StorageCredentials.shared().set_credentials(MOCK_S3_CREDENTIALS)
-    with patch.object(AwsStorage, 'list_blobs', return_value=[mock_s3_blob]):
+    with patch.object(AwsStorage, "list_blobs", return_value=[mock_s3_blob]):
         sources = factory.parse_sources(repo_dir=empty_asset.repo_dir, targets=[mock_s3_blob.url])
         assert len(sources) == 1
-        assert len(sources['s3']) == 1
-        source = sources['s3'].pop()
-        assert source.path_in_asset == 'customers.csv'
+        assert len(sources["s3"]) == 1
+        source = sources["s3"].pop()
+        assert source.path_in_asset == "customers.csv"
 
 
 def test_parse_sources_gcr(empty_asset, mock_gcr_blob):
     factory = ObjectFactory()
     StorageCredentials.shared().set_credentials(MOCK_GCS_CREDENTIALS)
-    with patch.object(GcrStorage, 'validate'), \
-            patch.object(GcrStorage, 'list_blobs', return_value=[mock_gcr_blob]):
+    with patch.object(GcrStorage, "validate"), \
+            patch.object(GcrStorage, "list_blobs", return_value=[mock_gcr_blob]):
         sources = factory.parse_sources(repo_dir=empty_asset.repo_dir, targets=[mock_gcr_blob.url])
         assert len(sources) == 1
-        assert len(sources['gcr']) == 1
-        source = sources['gcr'].pop()
-        assert source.path_in_asset == 'my-test-project-my-test-image-sha256-1234567890abcdef1234567890abcdef1234567890abcdef1234567890'
+        assert len(sources["gcr"]) == 1
+        source = sources["gcr"].pop()
+        assert source.path_in_asset == "my-test-project-my-test-image-sha256-1234567890abcdef1234567890abcdef1234567890abcdef1234567890"
