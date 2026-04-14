@@ -96,7 +96,7 @@ class Asset(SerializableAsset):
         asset.seq_id = seq_id
         asset.asset_class = asset_class
         cached = asset.cached_asset_data()
-        cached.pop('asset_class')
+        cached.pop("asset_class")
         asset.de_serialize(data=cached)
         # reassign, serialization
         if not asset.id:

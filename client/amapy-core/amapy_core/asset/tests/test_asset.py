@@ -20,7 +20,7 @@ def test_data_types(asset):
     data = asset.db.data()
     for key in Asset.serialize_fields():
         if data[key]:
-            if key != 'seq_id':
+            if key != "seq_id":
                 assert type(data[key]) is Asset.serialize_fields()[key]
             else:
                 assert Asset.is_temp_seq_id(data[key])

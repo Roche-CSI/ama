@@ -164,7 +164,7 @@ class AssetDiff:
         """
         if versions and not ver_number:
             # sort by version number from earliest to latest
-            versions.sort(key=lambda v: list(map(int, v["number"].split('.'))))
+            versions.sort(key=lambda v: list(map(int, v["number"].split("."))))
             # return the latest
             return versions[len(versions) - 1]
 
