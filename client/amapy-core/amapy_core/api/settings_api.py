@@ -218,7 +218,7 @@ class SettingsAPI(LoggingMixin):
                 projects = self.print_all_projects(jsonize=jsonize)
                 if jsonize:
                     for project in projects:
-                        project['active'] = bool(self.settings.active_project == project["id"])
+                        project["active"] = bool(self.settings.active_project == project["id"])
                         project.pop("id")  # remove id, user shouldn't need it
                     return {
                         "username": user.get("username"),
@@ -233,8 +233,8 @@ class SettingsAPI(LoggingMixin):
                            LogColors.INFO)
                 raise e
         else:
-            error: dict = res.get('error')
-            error = error.get('value') if isinstance(error, dict) else error
+            error: dict = res.get("error")
+            error = error.get("value") if isinstance(error, dict) else error
             e = exceptions.InvalidCredentialError(msg=error)
             e.logs.add(user_commands.UserCommands().user_login())
             e.logs.add(user_commands.UserCommands().user_signup())
@@ -285,7 +285,7 @@ class SettingsAPI(LoggingMixin):
             e.logs.add(color=None, message=UserCommands().user_login())
             raise e
 
-        result = {"token": settings.user.get('token')}
+        result = {"token": settings.user.get("token")}
         if jsonize:
             return result
         else:
