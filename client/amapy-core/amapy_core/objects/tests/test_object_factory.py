@@ -4,9 +4,27 @@ from unittest.mock import patch
 from amapy_core.objects.group.group_object import GroupObject
 from amapy_core.objects.object import Object
 from amapy_core.objects.object_factory import ObjectFactory
+from amapy_pluggy.storage.storage_credentials import StorageCredentials
 from amapy_plugin_gcr.gcr_storage import GcrStorage
 from amapy_plugin_gcs.gcs_storage import GcsStorage
 from amapy_plugin_s3.aws_storage import AwsStorage
+
+MOCK_GCS_CREDENTIALS = {
+    "type": "service_account",
+    "project_id": "test-project",
+    "private_key_id": "key-id",
+    "private_key": "-----BEGIN RSA PRIVATE KEY-----\nMIIEowIhbe73bcieucjbceuebcjdjcn\n-----END RSA PRIVATE KEY-----\n",
+    "client_email": "test@test-project.iam.gserviceaccount.com",
+    "client_id": "123456789",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+}
+
+MOCK_S3_CREDENTIALS = {
+    "aws_access_key_id": "mock_access_key",
+    "aws_secret_access_key": "mock_secret_key",
+    "region_name": "us-east-1"
+}
 
 
 def test_bulk_create_posix(empty_asset, test_data):
@@ -19,6 +37,7 @@ def test_bulk_create_posix(empty_asset, test_data):
 def test_bulk_create_gcs(empty_asset, mock_gcs_blob):
     factory = ObjectFactory()
     os.environ["ASSET_PROJECT_STORAGE_ID"] = "gs"
+    StorageCredentials.shared().set_credentials(MOCK_GCS_CREDENTIALS)
     with patch.object(GcsStorage, 'list_blobs', return_value=[mock_gcs_blob]):
         sources = factory.parse_sources(repo_dir=empty_asset.repo_dir, targets=[mock_gcs_blob.url])
 
@@ -36,6 +55,7 @@ def test_bulk_create_gcs(empty_asset, mock_gcs_blob):
 def test_bulk_create_s3(empty_asset, mock_s3_blob):
     factory = ObjectFactory()
     os.environ["ASSET_PROJECT_STORAGE_ID"] = "s3"
+    StorageCredentials.shared().set_credentials(MOCK_S3_CREDENTIALS)
     with patch.object(AwsStorage, 'list_blobs', return_value=[mock_s3_blob]):
         sources = factory.parse_sources(repo_dir=empty_asset.repo_dir, targets=[mock_s3_blob.url])
 
@@ -53,7 +73,9 @@ def test_bulk_create_s3(empty_asset, mock_s3_blob):
 def test_bulk_create_gcr(empty_asset, mock_gcr_blob):
     factory = ObjectFactory()
     os.environ["ASSET_PROJECT_STORAGE_ID"] = "gs"
-    with patch.object(GcrStorage, 'list_blobs', return_value=[mock_gcr_blob]):
+    StorageCredentials.shared().set_credentials(MOCK_GCS_CREDENTIALS)
+    with patch.object(GcrStorage, 'validate'), \
+            patch.object(GcrStorage, 'list_blobs', return_value=[mock_gcr_blob]):
         sources = factory.parse_sources(repo_dir=empty_asset.repo_dir, targets=[mock_gcr_blob.url])
 
     objects = factory.bulk_create(source_data=sources, proxy=True)
@@ -93,6 +115,7 @@ def test_parse_sources_posix(empty_asset, test_data):
 
 def test_parse_sources_gcs(empty_asset, mock_gcs_blob):
     factory = ObjectFactory()
+    StorageCredentials.shared().set_credentials(MOCK_GCS_CREDENTIALS)
     with patch.object(GcsStorage, 'list_blobs', return_value=[mock_gcs_blob]):
         sources = factory.parse_sources(repo_dir=empty_asset.repo_dir, targets=[mock_gcs_blob.url])
         assert len(sources) == 1
@@ -103,6 +126,7 @@ def test_parse_sources_gcs(empty_asset, mock_gcs_blob):
 
 def test_parse_sources_s3(empty_asset, mock_s3_blob):
     factory = ObjectFactory()
+    StorageCredentials.shared().set_credentials(MOCK_S3_CREDENTIALS)
     with patch.object(AwsStorage, 'list_blobs', return_value=[mock_s3_blob]):
         sources = factory.parse_sources(repo_dir=empty_asset.repo_dir, targets=[mock_s3_blob.url])
         assert len(sources) == 1
@@ -113,7 +137,9 @@ def test_parse_sources_s3(empty_asset, mock_s3_blob):
 
 def test_parse_sources_gcr(empty_asset, mock_gcr_blob):
     factory = ObjectFactory()
-    with patch.object(GcrStorage, 'list_blobs', return_value=[mock_gcr_blob]):
+    StorageCredentials.shared().set_credentials(MOCK_GCS_CREDENTIALS)
+    with patch.object(GcrStorage, 'validate'), \
+            patch.object(GcrStorage, 'list_blobs', return_value=[mock_gcr_blob]):
         sources = factory.parse_sources(repo_dir=empty_asset.repo_dir, targets=[mock_gcr_blob.url])
         assert len(sources) == 1
         assert len(sources['gcr']) == 1
