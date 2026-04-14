@@ -80,9 +80,9 @@ class UserSettings:
                 if isinstance(attr, SettingsProp):
                     attr.value = attr.validate(kwargs.get(key))  # will raise exception if invalid
                 else:
-                    raise exceptions.AssetException("Invalid config_key: {}".format(key))
+                    raise exceptions.AssetException(f"Invalid config_key: {key}")
             else:
-                raise exceptions.AssetException("Invalid config_key: {}".format(key))
+                raise exceptions.AssetException(f"Invalid config_key: {key}")
 
     def reset(self, key: str):
         if hasattr(self, key):
@@ -90,9 +90,9 @@ class UserSettings:
             if isinstance(attr, SettingsProp):
                 setattr(self, key, getattr(UserSettings.default(), key))
             else:
-                raise exceptions.AssetException("Invalid config_key: {}".format(key))
+                raise exceptions.AssetException(f"Invalid config_key: {key}")
         else:
-            raise exceptions.AssetException("Invalid config_key: {}".format(key))
+            raise exceptions.AssetException(f"Invalid config_key: {key}")
 
     def validate(self):
         for key in dir(self):
@@ -100,9 +100,9 @@ class UserSettings:
             if isinstance(attr, SettingsProp):
                 if attr.unit is None:
                     # null value is permitted
-                    raise ValueError("Missing unit for {}".format(key))
+                    raise ValueError(f"Missing unit for {key}")
                 if attr.name is None:
-                    raise ValueError("Missing environment variable name for {}".format(key))
+                    raise ValueError(f"Missing environment variable name for {key}")
 
     def activate(self):
         for key in dir(self):

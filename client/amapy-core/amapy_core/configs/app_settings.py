@@ -353,7 +353,7 @@ class AppSettings:
             if not data.get(field, None):
                 missing.append(field)
         if missing:
-            raise Exception("missing required fields:{}".format(",".join(missing)))
+            raise Exception(f"missing required fields:{','.join(missing)}")
 
         project = data.get("projects").get(data.get("active_project"))
         if not project:
