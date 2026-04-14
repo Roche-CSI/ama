@@ -42,8 +42,8 @@ class InitAssetAPI(RepoAPI):
             # Case 3: the target directory has an existing asset, did not create new repo
             e = exceptions.DuplicateRepoError()
             if repo:
-                asset_name = os.path.join(repo.current_asset['asset_class']['name'],
-                                          str(repo.current_asset['seq_id']))
+                asset_name = os.path.join(repo.current_asset["asset_class"]["name"],
+                                          str(repo.current_asset["seq_id"]))
                 e.msg = f"Unable to initialize, found existing asset: {asset_name}"
                 e.logs.add(colored_string(f"{repo.fs_path}", LogColors.INFO))
             else:
@@ -101,7 +101,7 @@ class InitAssetAPI(RepoAPI):
             if os.path.samefile(repo_dir, user_home_dir()):
                 message = "initializing asset in the home directory which is not recommended, do you wish to continue?"
                 user_input = self.user_log.ask_user(question=message, options=["y", "n"], default="y")
-                if user_input and user_input.lower() != 'y':
+                if user_input and user_input.lower() != "y":
                     return None, False
             # create the new repo
             repo = Repo.create_repo(root_dir=repo_dir)

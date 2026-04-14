@@ -404,7 +404,7 @@ class AddAPI(RepoAPI):
         # ask for user feedback
         message = f"this will add {count} files to the asset, do you wish to continue?"
         user_input: str = self.user_log.ask_user(question=message, options=["y", "n"], default="y")
-        if user_input and user_input.lower() == 'y':
+        if user_input and user_input.lower() == "y":
             return count
         else:
             self.user_log.info("aborted")
