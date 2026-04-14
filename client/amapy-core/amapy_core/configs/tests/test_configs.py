@@ -16,7 +16,7 @@ def test_remote_configs():
 
 def test_server_configs():
     config = Configs.shared()
-    assert config.server.server_url == "http://localhost:5000"
+    assert config.server.server_url == "http://localhost:8000"
     assert config.server.asset_route == "asset"
     assert config.server.asset_class_route == "asset_class"
     assert config.server.asset_commit_route == "asset_commit"

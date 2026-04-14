@@ -234,7 +234,7 @@ class SettingsAPI(LoggingMixin):
                 raise e
         else:
             error: dict = res.get('error')
-            error = error.get('value') if type(error) is dict else error
+            error = error.get('value') if isinstance(error, dict) else error
             e = exceptions.InvalidCredentialError(msg=error)
             e.logs.add(user_commands.UserCommands().user_login())
             e.logs.add(user_commands.UserCommands().user_signup())

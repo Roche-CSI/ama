@@ -6,6 +6,7 @@ from unittest.mock import MagicMock
 
 import pytest
 
+from amapy.app import register_plugins
 from amapy_core.asset import Asset
 from amapy_core.configs import Configs
 from amapy_core.configs.app_settings import AppSettings
@@ -30,6 +31,7 @@ def pytest_sessionstart(session):
     logger.info("Pre-Session Setup..")
     Configs.de_init()  # cleanup existing settings if any
     Configs.shared(mode=Configs.modes.UNIT_TEST)  # all tests to use test_settings only
+    register_plugins()
 
 
 def pytest_sessionfinish(session, exitstatus):
@@ -162,7 +164,7 @@ def mock_gcs_blob():
     blob.size = 12853831
     blob.name = "file_types/jpegs/photo-1522364723953-452d3431c267.jpg"
     blob.url = "gs://test_bucket/file_types/jpegs/photo-1522364723953-452d3431c267.jpg"
-    blob.get_hash.return_value = ('md5', '4N7Mr93Wbtzm5j104ol0Mw==')
+    blob.get_hash.return_value = ("md5", "4N7Mr93Wbtzm5j104ol0Mw==")
     return blob
 
 
@@ -173,19 +175,19 @@ def mock_s3_blob():
     blob.size = 17160
     blob.name = "file_types/csvs/customers.csv"
     blob.url = "s3://test_bucket/file_types/csvs/customers.csv"
-    blob.get_hash.return_value = ('md5', 'eIlrw2PBTOr3VKXLHClkTQ==')
+    blob.get_hash.return_value = ("md5", "eIlrw2PBTOr3VKXLHClkTQ==")
     return blob
 
 
 @pytest.fixture(scope="session")
 def mock_gcr_blob():
     blob = MagicMock(spec=StorageData)
-    blob.name = 'my-test-project/my-test-image'
-    blob.content_type = 'application/vnd.docker.distribution.manifest.v2+json'
+    blob.name = "my-test-project/my-test-image"
+    blob.content_type = "application/vnd.docker.distribution.manifest.v2+json"
     blob.size = 2391153464
-    blob.host = 'gcr.io'
-    blob.tag = ['latest']
-    blob.path_in_asset = 'my-test-project/my-test-image'
-    blob.url = 'gcr.io/my-test-project/my-test-image@sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890'
-    blob.get_hash.return_value = ('sha256', '1234567890abcdef1234567890abcdef1234567890abcdef1234567890')
+    blob.host = "gcr.io"
+    blob.tag = ["latest"]
+    blob.path_in_asset = "my-test-project/my-test-image"
+    blob.url = "gcr.io/my-test-project/my-test-image@sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890"
+    blob.get_hash.return_value = ("sha256", "1234567890abcdef1234567890abcdef1234567890abcdef1234567890")
     return blob
