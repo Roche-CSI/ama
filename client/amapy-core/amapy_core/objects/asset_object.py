@@ -435,11 +435,11 @@ class AssetObject(LoggingMixin):
 
         # if time has changed, then lets compare size
         if stored_stats.size != current_stats.size:
-            self.log.info("size comparison: {}".format(self.path))
+            self.log.info(f"size comparison: {self.path}")
             return True
 
         # if time has changed, but size is same - then we have to compare hashes
-        self.log.info("hash comparison: {}".format(self.path))
+        self.log.info(f"hash comparison: {self.path}")
         hash_type, new_hash = self.content.__class__.compute_hash(src=self.linked_path)
         return self.content.hash_value != new_hash or self.content.hash_type != hash_type
 
