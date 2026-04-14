@@ -40,7 +40,7 @@ class AppSettings:
         FileUtils.set_max_concurrent_files(num_files=self.max_concurrent_files_limit)
 
     def __init__(self):
-        raise RuntimeError('Call shared() instead')
+        raise RuntimeError("Call shared() instead")
 
     def __repr__(self):
         return self.settings_file
@@ -68,7 +68,7 @@ class AppSettings:
 
     def extract_version(self, string):
         # Get rid of .dev from the version string
-        pattern = r'^\d+\.\d+\.\d+'
+        pattern = r"^\d+\.\d+\.\d+"
         match = re.match(pattern, string)
 
         if match:
@@ -123,13 +123,13 @@ class AppSettings:
             # this way, the user has the option to temporarily switch to a new store
             # without affecting the permanent asset store
             # self._assets_home = os.getenv('ASSET_HOME') or self.data.get('assets_home')
-            self._assets_home = self.data.get('assets_home')
+            self._assets_home = self.data.get("assets_home")
             return self._assets_home
 
     @assets_home.setter
     def assets_home(self, x):
         self._assets_home = x
-        self.data = utils.update_dict(self.data, {'assets_home': x})
+        self.data = utils.update_dict(self.data, {"assets_home": x})
 
     @property
     def max_concurrent_files_limit(self):
@@ -141,15 +141,15 @@ class AppSettings:
             return self._user
         except AttributeError:
             # default to machine user id
-            self._user = self.data.get('user')  # or get_user_id()
+            self._user = self.data.get("user")  # or get_user_id()
             return self._user
 
     @user.setter
     def user(self, x):
         self._user = x
         # set to null to avoid data structure conflicts
-        self.data = utils.update_dict(self.data, {'user': None})
-        self.data = utils.update_dict(self.data, {'user': self._user})
+        self.data = utils.update_dict(self.data, {"user": None})
+        self.data = utils.update_dict(self.data, {"user": self._user})
 
     @contextlib.contextmanager
     def project_environment(self, project_id: str):
@@ -233,13 +233,13 @@ class AppSettings:
             return self._default_project
         except AttributeError:
             # default to machine user id
-            self._default_project = self.data.get('default_project')  # or get_user_id()
+            self._default_project = self.data.get("default_project")  # or get_user_id()
             return self._default_project
 
     @default_project.setter
     def default_project(self, x: str):
         self._default_project = x
-        self.data = utils.update_dict(self.data, {'default_project': self._default_project})
+        self.data = utils.update_dict(self.data, {"default_project": self._default_project})
 
     def set_roles(self, roles: list, append: bool = True):
         """translates roles into project and access type
@@ -283,11 +283,11 @@ class AppSettings:
     def clear_user_data(self):
         self.data = utils.update_dict(self.data,
                                       {
-                                          'projects': None,
-                                          'auth': None,
-                                          'active_project': None,
-                                          'user': None,
-                                          'default_project': None
+                                          "projects": None,
+                                          "auth": None,
+                                          "active_project": None,
+                                          "user": None,
+                                          "default_project": None
                                       })
         # delete credential files
         credential_files = utils.list_files(root_dir=self.settings_dir, pattern="credential_*.json")
@@ -299,25 +299,25 @@ class AppSettings:
         try:
             return self._projects
         except AttributeError:
-            self._projects = self.data.get('projects') or {}  # default is empty dict
+            self._projects = self.data.get("projects") or {}  # default is empty dict
             return self._projects
 
     @projects.setter
     def projects(self, x: dict):
         self._projects = x
-        self.data = utils.update_dict(self.data, {'projects': self._projects})
+        self.data = utils.update_dict(self.data, {"projects": self._projects})
 
     @property
     def active_project(self) -> str:
         try:
             return self._active_project
         except AttributeError:
-            self._active_project = self.data.get('active_project') or None  # default is null
+            self._active_project = self.data.get("active_project") or None  # default is null
             return self._active_project
 
     def set_active_project(self, project_id: str, persist=True):
         self._active_project = project_id
-        self.set_data(utils.update_dict(self.data, {'active_project': self._active_project}), persist)
+        self.set_data(utils.update_dict(self.data, {"active_project": self._active_project}), persist)
 
     @property
     def active_project_data(self) -> dict:
@@ -337,13 +337,13 @@ class AppSettings:
         try:
             return self._user_prompt
         except AttributeError:
-            self._user_prompt = self.data.get('user_prompt') or True  # default is true
+            self._user_prompt = self.data.get("user_prompt") or True  # default is true
             return self._user_prompt
 
     @user_prompt.setter
     def user_prompt(self, x):
         self._user_prompt = x
-        self.data = utils.update_dict(self.data, {'user_prompt': self._auth})
+        self.data = utils.update_dict(self.data, {"user_prompt": self._auth})
 
     @classmethod
     def validate(cls, data: dict):

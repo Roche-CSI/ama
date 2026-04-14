@@ -13,7 +13,7 @@ class UserSettings:
         self.pre_init()
         if app_settings:
             self.app_settings = app_settings
-            self.update(app_settings.data.get('user_configs') or {})
+            self.update(app_settings.data.get("user_configs") or {})
 
     @classmethod
     def default(cls):
@@ -144,4 +144,4 @@ class UserSettings:
         return data
 
     def save(self):
-        self.app_settings.data = update_dict(self.app_settings.data, {'user_configs': self.serialize()})
+        self.app_settings.data = update_dict(self.app_settings.data, {"user_configs": self.serialize()})

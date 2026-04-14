@@ -30,7 +30,7 @@ class Configs(LoggingMixin):
     _instance = None
 
     def __init__(self):
-        raise RuntimeError('Call initialize() instead')
+        raise RuntimeError("Call initialize() instead")
 
     @property
     def docs_url(self):
@@ -94,11 +94,11 @@ declare all project specific settings here
 
 
 class ProdConfigs(Configs):
-    MODE = 'PRODUCTION'
+    MODE = "PRODUCTION"
 
 
 class DevConfigs(Configs):
-    MODE = 'DEV'
+    MODE = "DEV"
 
 
 # class SandboxConfigs(Configs):
@@ -106,8 +106,8 @@ class DevConfigs(Configs):
 
 
 class UserTestConfigs(Configs):
-    MODE = 'USER_TEST'
+    MODE = "USER_TEST"
 
 
 class UnitTestConfigs(Configs):
-    MODE = 'UNIT_TEST'
+    MODE = "UNIT_TEST"
