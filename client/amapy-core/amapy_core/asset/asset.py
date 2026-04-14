@@ -599,15 +599,15 @@ class Asset(SerializableAsset):
 
     @classmethod
     def is_temp_seq_id(cls, seq_id):
-        if type(seq_id) is int:
+        if isinstance(seq_id, int):
             return False
-        if type(seq_id) is str and str(seq_id).startswith(cls.TEMP_SEQ_PREFIX):
+        if isinstance(seq_id, str) and str(seq_id).startswith(cls.TEMP_SEQ_PREFIX):
             return True
         return False
 
     @classmethod
     def is_valid_seq_id(cls, seq_id):
-        return bool(type(seq_id) is int or str(seq_id).isnumeric())
+        return bool(isinstance(seq_id, int) or str(seq_id).isnumeric())
 
     @property
     def is_temp(self):
