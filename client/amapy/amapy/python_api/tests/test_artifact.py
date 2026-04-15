@@ -73,13 +73,13 @@ def test_files(asset):
         assert isinstance(item, File)
 
 
-def test_read_file():
-    path = "/Users/mahantis/am_demo/dsaswe_test/24"
-    artifact = Artifact(path=path)
-    file: File = artifact.files.get("info-test.txt")
-    with file.open() as f:
-        contents = f.read()
-        print(contents)
+def test_read_file(asset):
+    artifact = Artifact(path=asset.repo.fs_path)
+    files = artifact.files
+    for item in files.values():
+        with item.open() as f:
+            file_contents = f.read()
+            assert file_contents is not None
 
 
 def test_find_alias():
