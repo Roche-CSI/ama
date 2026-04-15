@@ -1,3 +1,6 @@
+import os
+import tempfile
+
 import pytest
 
 from amapy.python_api.artifact import Artifact, File
@@ -49,17 +52,18 @@ def test_versions(asset):
     assert versions is None  # local asset
 
 
-def test_history(asset_path, asset):
-    artifact = Artifact(path=str(asset.repo))
-    versions = artifact.history
-    print(versions)
+def test_history(asset):
+    artifact = Artifact(path=asset.repo.fs_path)
+    history = artifact.history
+    assert history is None  # local asset
 
 
 def test_status(asset):
-    # path = "/Users/mahantis/am_demo/dsaswe_test/24"
-    artifact = Artifact(path=str(asset.repo))
+    artifact = Artifact(path=asset.repo.fs_path)
     status = artifact.status
-    print(status)
+    status_keys = ["staged_changes", "unstaged_changes", "untracked_changes"]
+    for key in status_keys:
+        assert key in status
 
 
 def test_files(asset):
