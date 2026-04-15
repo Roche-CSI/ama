@@ -39,7 +39,7 @@ class AssetVersion(LoggingMixin, Serializable):
         for key in kwargs:
             setattr(self, key, kwargs.get(key))
 
-    def de_serialize(self, asset, data: dict, fields=None) -> AssetVersion:
+    def de_serialize(self, asset, data: dict, fields=None) -> AssetVersion | None:
         """Deserializes version data into an AssetVersion object.
 
         Parameters
@@ -63,11 +63,11 @@ class AssetVersion(LoggingMixin, Serializable):
         fields = fields or self.__class__.serialize_fields()
         for key in fields:
             val = data.get(key)
-            if type(val) is datetime:
+            if isinstance(val, datetime):
                 val = utils.convert_to_pst(val)
             setattr(self, key, val)
 
-        if self.parent and type(self.parent) is dict:
+        if self.parent and isinstance(self.parent, dict):
             parent = AssetVersion()
             parent.de_serialize(asset=None, data=self.parent)
             self.parent = parent
@@ -89,7 +89,7 @@ class AssetVersion(LoggingMixin, Serializable):
         """
         fields = fields or self.__class__.serialize_fields()
         result = {key: getattr(self, key) for key in fields}
-        if "parent" in fields and type(result.get("parent")) is AssetVersion:
+        if "parent" in fields and isinstance(result.get("parent"), AssetVersion):
             result["parent"] = self.parent.serialize()
         return result
 
@@ -116,9 +116,9 @@ class AssetVersion(LoggingMixin, Serializable):
         Any
             The default value for the key.
         """
-        if type(getattr(self, key)) is dict:
+        if isinstance(getattr(self, key), dict):
             return {}
-        elif type(getattr(self, key)) is list:
+        elif isinstance(getattr(self, key), list):
             return []
         else:
             return None
@@ -185,7 +185,7 @@ class AssetVersion(LoggingMixin, Serializable):
             True if the version is temporary, False otherwise.
         """
         number = number or cls.parse_name(name=name).get("version")
-        if type(number) is str and number.startswith("temp_"):
+        if isinstance(number, str) and number.startswith("temp_"):
             return True
         return False
 

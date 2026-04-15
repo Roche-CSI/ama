@@ -164,7 +164,7 @@ class AssetDiff:
         """
         if versions and not ver_number:
             # sort by version number from earliest to latest
-            versions.sort(key=lambda v: list(map(int, v["number"].split('.'))))
+            versions.sort(key=lambda v: list(map(int, v["number"].split("."))))
             # return the latest
             return versions[len(versions) - 1]
 
@@ -261,10 +261,10 @@ class AssetDiff:
         to_objects = to_objects or set()
 
         # allow for lists also
-        if type(from_objects) is list:
+        if isinstance(from_objects, list):
             from_objects = set(from_objects)
 
-        if type(to_objects) is list:
+        if isinstance(to_objects, list):
             to_objects = set(to_objects)
 
         removed = []

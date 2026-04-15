@@ -31,7 +31,7 @@ def test_download_asset_class(store):
         class_yaml = fetcher.download_asset_class(class_id)
     assert os.path.exists(class_yaml)
     data = FileUtils.read_yaml(class_yaml)
-    assert data.get('id') == class_id
+    assert data.get("id") == class_id
 
 
 @pytest.fixture
@@ -40,7 +40,7 @@ def mock_alias_blobs():
     blob.content_type = "yaml"
     blob.size = 310
     blob.name = "1234567-6f0b-4405-a452-270d24e374d5__1__test_mock_alias.yaml"
-    blob.get_hash.return_value = ('md5', '1234567890amazing==')
+    blob.get_hash.return_value = ("md5", "1234567890amazing==")
     return [blob]
 
 

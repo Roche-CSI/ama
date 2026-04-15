@@ -110,7 +110,7 @@ class AssetClass(LoggingMixin, Serializable):
     @classmethod
     def list_classes(cls, store) -> dict:
         classes_dir = store.asset_classes_dir
-        cls.logger().info("class-dir:{}".format(classes_dir))
+        cls.logger().info(f"class-dir:{classes_dir}")
         if not os.path.exists(classes_dir):
             return {}
         class_files = FileUtils.read_yamls_multi(cls.all_class_files(store=store))

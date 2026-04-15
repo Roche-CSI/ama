@@ -160,13 +160,13 @@ class SerializableAsset(BaseAsset, Serializable):
     def default_value(self, key):
         if key == "owner":
             return self.repo.store.user_id
-        elif type(getattr(self, key)) is dict:
+        elif isinstance(getattr(self, key), dict):
             return {}
-        elif type(getattr(self, key)) is list:
+        elif isinstance(getattr(self, key), list):
             return []
-        elif type(getattr(self, key)) is ObjectSet:
+        elif isinstance(getattr(self, key), ObjectSet):
             return []
-        elif type(getattr(self, key)) is bool:
+        elif isinstance(getattr(self, key), bool):
             return False
         else:
             return None

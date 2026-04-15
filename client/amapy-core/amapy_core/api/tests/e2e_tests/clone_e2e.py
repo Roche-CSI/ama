@@ -9,7 +9,7 @@ from amapy_core.api.tests.e2e_tests.base_e2e import BaseE2ETest
 def get_git_root():
     try:
         # Run git command to get top-level directory
-        result = subprocess.run(['git', 'rev-parse', '--show-toplevel'],
+        result = subprocess.run(["git", "rev-parse", "--show-toplevel"],
                                 stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                                 universal_newlines=True, check=True)
         # The output will be in result.stdout

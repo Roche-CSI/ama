@@ -66,10 +66,10 @@ class FetchAPI(StoreAPI):
 
     def fetch_versions(self, asset_data: dict):
         fetcher = AssetFetcher(store=self.store)
-        fetcher.download_window_versions(class_id=asset_data['asset_class']['id'],
-                                         seq_id=asset_data['seq_id'],
-                                         target_version=asset_data['version']['number'],
+        fetcher.download_window_versions(class_id=asset_data["asset_class"]["id"],
+                                         seq_id=asset_data["seq_id"],
+                                         target_version=asset_data["version"]["number"],
                                          window_size=DEFAULT_VERSION_WINDOW_SIZE)
-        fetcher.download_asset_objects(class_id=asset_data['asset_class']['id'],
-                                       seq_id=asset_data['seq_id'])
+        fetcher.download_asset_objects(class_id=asset_data["asset_class"]["id"],
+                                       seq_id=asset_data["seq_id"])
         self.user_log.message(UserCommands().list_versions())

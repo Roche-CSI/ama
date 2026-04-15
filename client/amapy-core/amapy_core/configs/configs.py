@@ -7,8 +7,8 @@ from .config_modes import ConfigModes
 from .remote_config import RemoteConfig
 from .server_config import ServerConfig
 
-DOCS_URL = None
-GITHUB_URL = "https://github.com/Roche-CSI/asset-manager"
+DOCS_URL = "https://roche-csi.github.io/ama"
+GITHUB_URL = "https://github.com/Roche-CSI/ama"
 
 """CHANGE TO SANDBOX / PRODUCTION WHEN deploying"""
 DEFAULT_MODE = ConfigModes.DEV
@@ -30,7 +30,7 @@ class Configs(LoggingMixin):
     _instance = None
 
     def __init__(self):
-        raise RuntimeError('Call initialize() instead')
+        raise RuntimeError("Call initialize() instead")
 
     @property
     def docs_url(self):
@@ -94,20 +94,20 @@ declare all project specific settings here
 
 
 class ProdConfigs(Configs):
-    MODE = 'PRODUCTION'
+    MODE = "PRODUCTION"
 
 
 class DevConfigs(Configs):
-    MODE = 'DEV'
+    MODE = "DEV"
 
 
 # class SandboxConfigs(Configs):
-#     MODE = 'SANDBOX'
+#     MODE = "SANDBOX"
 
 
 class UserTestConfigs(Configs):
-    MODE = 'USER_TEST'
+    MODE = "USER_TEST"
 
 
 class UnitTestConfigs(Configs):
-    MODE = 'UNIT_TEST'
+    MODE = "UNIT_TEST"

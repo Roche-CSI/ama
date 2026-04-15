@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import os
 
-from cached_property import cached_property
+from functools import cached_property
 
 from amapy_core.configs import Configs, AppSettings
 from amapy_db import AssetsDB, StoreDB
@@ -13,14 +13,14 @@ from amapy_utils.utils.file_utils import FileUtils
 from amapy_utils.utils.log_utils import LoggingMixin, LogColors
 
 # this will eventually be the group_id / project_id
-STORE_ID = '.be34edd1-844a-4f16-972f-b2a32a5bf63d'
+STORE_ID = ".be34edd1-844a-4f16-972f-b2a32a5bf63d"
 
 
 class AssetStore(LoggingMixin):
     _instance = None
 
     def __init__(self):
-        raise RuntimeError('Call shared() instead')
+        raise RuntimeError("Call shared() instead")
 
     def __repr__(self):
         return self.home_dir
@@ -268,14 +268,14 @@ class AssetStore(LoggingMixin):
         return Configs.shared().remote.assets_url.format(storage_url=self.storage_url())
 
     def class_assets_url(self, class_id):
-        return os.path.join(self.assets_url, class_id, '')
+        return os.path.join(self.assets_url, class_id, "")
 
     def asset_url(self, class_id, seq_id):
         # add a trailing slash otherwise it messes up gcs lookup with prefix, since
         # gcs doesn't have any concept of directories.
         # for example rnn_model/1 returns all blobs
         # with prefix 1, instead we want to be looking only at blobs that are inside
-        return os.path.join(self.class_assets_url(class_id), str(seq_id), '')
+        return os.path.join(self.class_assets_url(class_id), str(seq_id), "")
 
     def asset_file_url(self, class_id, seq_id):
         return os.path.join(self.asset_url(class_id, seq_id), self.asset_file_name)

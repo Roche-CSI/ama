@@ -1,4 +1,4 @@
-from typing import Callable
+from collections.abc import Callable
 
 from amapy_core.asset.asset_version import AssetVersion
 from amapy_core.plugins import utils, exceptions
@@ -14,7 +14,7 @@ class AssetRefSet(BetterSet):
         super().__init__(*args)
         self.asset = asset
 
-    def filter(self, predicate: Callable = None) -> [AssetRef]:
+    def filter(self, predicate: Callable = None) -> list[AssetRef]:
         """returns a dict of assets stored in asset-manifest
         Parameters:
             predicate: lambda function
@@ -87,7 +87,7 @@ class AssetRefSet(BetterSet):
         updates = {ref.unique_repr: ref.get_state() for ref in refs}
         self.set_states(utils.update_dict(self.get_states(), updates), save)
 
-    def find(self, asset_names: list) -> [AssetRef]:
+    def find(self, asset_names: list) -> list[AssetRef]:
         """Finds refs corresponding to the asset_names
         Parameters
         ----------

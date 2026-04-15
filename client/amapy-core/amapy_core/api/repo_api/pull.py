@@ -36,7 +36,7 @@ class AssetPullAPI(RepoAPI):
             "version": "Version",
             "commit_hash": "Commit",
         }
-        data = [{'version': version.get('number'),
-                 'commit_hash': version.get('commit_hash')}
+        data = [{"version": version.get("number"),
+                 "commit_hash": version.get("commit_hash")}
                 for version in versions]
         self.user_log.table(columns=columns, rows=data, table_fmt="simple")

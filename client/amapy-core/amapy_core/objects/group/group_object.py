@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import json
 import os
-from typing import Callable, List
+from collections.abc import Callable
 
 from amapy_contents.content import Content
 from amapy_core.objects.group.member_object import GroupMemberObject
@@ -32,9 +32,9 @@ class GroupObject(Object):
     @classmethod
     def bulk_create(cls,
                     factory,
-                    sources: [ObjectSource],
+                    sources: list[ObjectSource],
                     callback: Callable = None,
-                    repo_dir: str = None) -> [Object]:
+                    repo_dir: str = None) -> list[Object]:
         if not sources:
             return []
 
@@ -138,7 +138,7 @@ class GroupObject(Object):
 
         return members
 
-    def load_members(self) -> List[GroupMemberObject]:
+    def load_members(self) -> list[GroupMemberObject]:
         raw_data = self._read_raw_file()
         filename, ext = os.path.splitext(os.path.basename(self.path))
         member_data: dict = json.loads(raw_data[filename])

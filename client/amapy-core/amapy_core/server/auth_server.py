@@ -78,7 +78,7 @@ class AuthServer(BaseServer):
         # add this redirect uri to the url
         parsed_url = urlparse(url)
         query_params = parse_qs(parsed_url.query)
-        query_params['redirect_uri'] = redirect_uri
+        query_params["redirect_uri"] = redirect_uri
 
         # reconstruct the query string
         query_string = urlencode(query_params, doseq=True)

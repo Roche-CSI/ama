@@ -54,7 +54,7 @@ class AddAPI(RepoAPI):
         self.user_log.info(f"added attributes to the asset")
         self.user_log.message(UserCommands().upload_asset())
 
-    def add_tags(self, tags: [str]):
+    def add_tags(self, tags: list[str]):
         """Adds tags to the asset tags list.
         - allow max 10 tags
         """
@@ -404,7 +404,7 @@ class AddAPI(RepoAPI):
         # ask for user feedback
         message = f"this will add {count} files to the asset, do you wish to continue?"
         user_input: str = self.user_log.ask_user(question=message, options=["y", "n"], default="y")
-        if user_input and user_input.lower() == 'y':
+        if user_input and user_input.lower() == "y":
             return count
         else:
             self.user_log.info("aborted")

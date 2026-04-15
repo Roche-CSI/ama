@@ -130,10 +130,10 @@ class BaseAsset(LoggingMixin):
         return f"temp_{math.floor(utils.time_now().timestamp())}"
 
     @classmethod
-    def is_temp_seq_id(cls, seq_id):
-        if type(seq_id) is int:
+    def is_temp_seq_id(cls, seq_id) -> bool:
+        if isinstance(seq_id, int):
             return False
-        if type(seq_id) is str and str(seq_id).startswith("temp_"):
+        if isinstance(seq_id, str) and str(seq_id).startswith("temp_"):
             return True
         return False
 
