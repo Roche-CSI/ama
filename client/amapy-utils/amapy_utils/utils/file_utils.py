@@ -35,6 +35,7 @@ class NoAliasDumper(yaml.SafeDumper):
 
 """extra mimetypes not yet added to mimetypes library"""
 EXTRA_MIMES = {
+    'application/x-yaml': ['.yaml', '.yml'],
     'application/x-hdf5': ['.h5']
 }
 
