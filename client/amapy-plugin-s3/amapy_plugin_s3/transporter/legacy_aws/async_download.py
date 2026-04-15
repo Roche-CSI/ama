@@ -25,7 +25,7 @@ def download_resources(credentials: dict, resources: list[AwsDownloadResource]):
 async def __async_download_resources(credentials: dict, resources: list[AwsDownloadResource]) -> list:
     """Downloads a list of files from bucket."""
     session = get_session()
-    async with session.create_client('s3',
+    async with session.create_client("s3",
                                      aws_access_key_id=credentials.get("aws_access_key_id"),
                                      aws_secret_access_key=credentials.get("aws_secret_access_key"),
                                      region_name=credentials.get("region_name")) as s3_client:
@@ -43,7 +43,7 @@ def get_s3_bj(client, s3_bucket, s3_key):
         Bucket=s3_bucket,
         Key=s3_key
     )
-    obj = resp['Body'].read()
+    obj = resp["Body"].read()
     return obj
 
 
@@ -53,7 +53,7 @@ async def __async_download_resource(s3_client, resource: AwsDownloadResource, re
     response = await s3_client.get_object(Bucket=resource.src_url.bucket, Key=resource.src_url.path)
     os.makedirs(os.path.dirname(resource.dst), exist_ok=True)
     FileUtils.create_file_if_not_exists(path=resource.dst)
-    with open(resource.dst, 'wb') as file:
+    with open(resource.dst, "wb") as file:
         # TODO: evaluate hash calculation during bytes streaming
         data = await response["Body"].read()
         file.write(data)
