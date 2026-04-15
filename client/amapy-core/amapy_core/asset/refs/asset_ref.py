@@ -41,7 +41,7 @@ class AssetRef(LoggingMixin):
     def validate(self):
         # TODO: check for self-refs
         # label is required
-        if not hasattr(self, 'label') or not self.label:
+        if not hasattr(self, "label") or not self.label:
             raise exceptions.InvalidRefError("required param can not be null: label")
         # both src and dst version are required
         if not self.src_version or not self.dst_version:
@@ -112,7 +112,7 @@ class AssetRef(LoggingMixin):
     def _update_in_remote(cls, asset, ref: AssetRef):
         add_data = {
             "src_version": ref.src_version.get("id"),
-            "dst_version": ref.dst_version.get('id'),
+            "dst_version": ref.dst_version.get("id"),
             "label": ref.label,
             "properties": ref.properties
         }
@@ -194,7 +194,7 @@ class AssetRef(LoggingMixin):
             if asset_name_with_version not in versions:
                 raise exceptions.InvalidVersionError(
                     f"unable to create refs, asset not found: {asset_name_with_version}")
-            return asset_name_with_version, versions[asset_name_with_version].get('id')
+            return asset_name_with_version, versions[asset_name_with_version].get("id")
         except requests.ConnectionError as e:
             # its possible user could be adding refs while offline
             if force:
@@ -227,7 +227,7 @@ class AssetRef(LoggingMixin):
             # create refs for versions that exist
             for version_name in src_names:
                 if version_name in versions:
-                    src_data[version_name] = versions[version_name].get('id')
+                    src_data[version_name] = versions[version_name].get("id")
                 else:
                     missing.append(version_name)
         except requests.ConnectionError as e:

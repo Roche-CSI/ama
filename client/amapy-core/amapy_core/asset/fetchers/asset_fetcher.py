@@ -104,7 +104,7 @@ class AssetFetcher(Fetcher):
         def get_version_blob(blobs_list: list, version: str):
             if version:
                 for blob in blobs_list:
-                    blob_version = ".".join(os.path.basename(blob.name).split('_')[1].split('.')[:-1])
+                    blob_version = ".".join(os.path.basename(blob.name).split("_")[1].split(".")[:-1])
                     if blob_version == ver_number:
                         return blob
                 raise exceptions.InvalidVersionError(f"version:{ver_number} not found in bucket")
@@ -112,7 +112,7 @@ class AssetFetcher(Fetcher):
                 # return latest
                 return \
                     sorted(blobs_list,
-                           key=lambda x: list(map(int, os.path.basename(x.name).split('_')[1].split('.')[:-1])),
+                           key=lambda x: list(map(int, os.path.basename(x.name).split("_")[1].split(".")[:-1])),
                            reverse=True)[0]
 
         def read_blob(blob: StorageData, asset_storage: AssetStorage):

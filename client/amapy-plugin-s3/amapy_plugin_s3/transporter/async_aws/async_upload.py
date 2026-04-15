@@ -28,7 +28,7 @@ async def __async_upload_resources(credentials: dict, resources: list[AwsUploadR
     file_timout = get_upload_timeout()
     session_timout = max(file_timout * len(resources), file_timout)
     session = aioboto3.Session()
-    async with session.client(service_name='s3',
+    async with session.client(service_name="s3",
                               config=AioConfig(connect_timeout=session_timout),
                               aws_access_key_id=credentials.get("aws_access_key_id"),
                               aws_secret_access_key=credentials.get("aws_secret_access_key"),

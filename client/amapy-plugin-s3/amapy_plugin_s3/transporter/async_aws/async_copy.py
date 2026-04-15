@@ -93,7 +93,7 @@ async def __multi_part_copy(session, credentials: Credentials, resource: AwsCopy
     """
     # TODO: add the `multipart_size` to the copy object metadata to be used for ETag calculation
     # start the multipart copy
-    params = {'uploads': ''}
+    params = {"uploads": ""}
     signed_headers = create_complete_headers(credentials=credentials,
                                              resource=resource,
                                              params=params)
@@ -101,7 +101,7 @@ async def __multi_part_copy(session, credentials: Credentials, resource: AwsCopy
                             params=params,
                             headers=signed_headers) as response:
         content = await response.content.read()
-        root = ET.fromstring(content.decode('UTF-8'))
+        root = ET.fromstring(content.decode("UTF-8"))
         upload_id = root.findtext("{*}UploadId")
 
     # copy all the parts
@@ -113,7 +113,7 @@ async def __multi_part_copy(session, credentials: Credentials, resource: AwsCopy
 
     # end the multipart copy
     data = multipart_xml_data(copy_responses)
-    params = {'uploadId': upload_id}
+    params = {"uploadId": upload_id}
     signed_headers = create_complete_headers(credentials=credentials,
                                              resource=resource,
                                              params=params,
@@ -167,7 +167,7 @@ def get_multipart_copy_tasks(credentials, resource, session, upload_id):
     for part_number in range(1, math.ceil(resource.size / resource.multipart_size) + 1):
         first_byte = resource.multipart_size * (part_number - 1)
         last_byte = min(resource.multipart_size * part_number - 1, resource.size - 1)
-        params = {'partNumber': str(part_number), 'uploadId': upload_id}
+        params = {"partNumber": str(part_number), "uploadId": upload_id}
         source_range = f"bytes={first_byte}-{last_byte}"
         signed_headers = part_copy_headers(credentials=credentials,
                                            params=params,
@@ -239,11 +239,11 @@ def part_copy_headers(credentials: Credentials, resource, params: dict = None, s
         url=convert_url(resource.dst_url),
         params=params,
         headers={
-            'x-amz-copy-source': convert_url(resource.src_url),
-            'x-amz-content-sha256': 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855',
+            "x-amz-copy-source": convert_url(resource.src_url),
+            "x-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         })
     if source_range:
-        request.headers['x-amz-copy-source-range'] = source_range
+        request.headers["x-amz-copy-source-range"] = source_range
     AwsAuth(credentials, service_name="s3", region_name="us-east-1").add_auth(request)
     return request.headers
 
@@ -263,9 +263,9 @@ def multipart_xml_data(xml_responses: list) -> bytes:
     """
     output_root = ET.Element("CompleteMultipartUpload")
     for i, xml_response in enumerate(xml_responses):
-        root = ET.fromstring(xml_response.decode('UTF-8'))
+        root = ET.fromstring(xml_response.decode("UTF-8"))
         e_tag = root.findtext("{*}ETag")
         part = ET.SubElement(output_root, "Part")
         ET.SubElement(part, "PartNumber").text = str(i + 1)
         ET.SubElement(part, "ETag").text = e_tag
-    return ET.tostring(output_root, encoding='utf8', method='xml')
+    return ET.tostring(output_root, encoding="utf8", method="xml")

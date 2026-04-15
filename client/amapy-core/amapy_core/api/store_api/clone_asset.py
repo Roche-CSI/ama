@@ -112,7 +112,7 @@ class CloneAssetAPI(StoreAPI):
         remote_url = url + "/" if not url.endswith("/") else url  # make sure url ends with '/' for path comparison
         storage = StorageFactory.storage_for_url(src_url=remote_url)
         remote_blobs = storage.list_blobs(url=remote_url)
-        blob_hashes = {blob.path_in_asset: blob.hashes.get('md5') for blob in remote_blobs}
+        blob_hashes = {blob.path_in_asset: blob.hashes.get("md5") for blob in remote_blobs}
         new_objects, replace_objects = [], []
         for obj in objects:
             if obj.path not in blob_hashes:

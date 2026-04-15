@@ -11,7 +11,7 @@ def test_remote_configs():
     config = Configs.shared()
     assert config.remote.contents_url(staging=False) == "{storage_url}/contents"
     assert config.remote.contents_url(staging=True) == "{storage_url}/contents"
-    assert config.remote.assets_url == '{storage_url}/assets'
+    assert config.remote.assets_url == "{storage_url}/assets"
 
 
 def test_server_configs():

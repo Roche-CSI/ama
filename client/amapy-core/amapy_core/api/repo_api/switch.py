@@ -40,7 +40,7 @@ class SwitchAssetAPI(RepoAPI):
         if not latest_version:
             raise exceptions.AssetNotFoundError(f"can not find version data for asset: {self.asset.name}")
 
-        latest_version_num = latest_version.get('number')
+        latest_version_num = latest_version.get("number")
         self.user_log.info(f"latest version of asset: {self.asset.name} is: {latest_version_num}")
         if self.asset.version.number == latest_version_num:
             self.user_log.info("latest version is already active, nothing to pull")
@@ -209,13 +209,13 @@ class SwitchAssetAPI(RepoAPI):
         msg = "please choose: \n"
         msg += "1 continue (I am fine with losing the changes)\n"
         msg += "2 abort \n"
-        user_input = self.user_log.ask_user(question=msg, options=['1', '2'], default='1',
+        user_input = self.user_log.ask_user(question=msg, options=["1", "2"], default="1",
                                             ask_confirmation=ask_confirmation)
-        if not user_input or user_input not in ['1', '2']:
-            self.user_log.error('invalid option')
+        if not user_input or user_input not in ["1", "2"]:
+            self.user_log.error("invalid option")
             return False
-        if user_input == '2':
-            self.user_log.info('aborted')
+        if user_input == "2":
+            self.user_log.info("aborted")
             return False
 
         return True

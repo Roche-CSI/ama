@@ -68,11 +68,11 @@ class AwsHttpHandler:
 
     @property
     def s3_client(self):
-        return boto3.client('s3', **self.credentials)
+        return boto3.client("s3", **self.credentials)
 
     @property
     def s3_resource(self):
-        return boto3.resource('s3', **self.credentials)
+        return boto3.resource("s3", **self.credentials)
 
     def get_storage_url(self, url_string: str, ignore: str = None) -> StorageURL:
         return BlobStoreURL(url=url_string, ignore=ignore)
@@ -148,9 +148,10 @@ class AwsHttpHandler:
     def batch_delete_s3(self, s3_client, bucket: str, keys_list: list):
         for batch in utils.batch(keys_list, batch_size=100):
             batch_to_delete = list(map(lambda x: {"Key": x}, batch))
-            s3_client.delete_objects(Bucket=bucket, Delete={'Objects': batch_to_delete, 'Quiet': True})
+            s3_client.delete_objects(Bucket=bucket, Delete={"Objects": batch_to_delete, "Quiet": True})
 
-    def filter_duplicate_blobs(self, src_blobs: list[StorageData], dst_blobs: list[StorageData]) -> (list, list):
+    def filter_duplicate_blobs(self, src_blobs: list[StorageData],
+                               dst_blobs: list[StorageData]) -> tuple[list, list]:
         """Filters the source blobs to determine which blobs are new and which need to be replaced in the destination.
 
         If a blob in `src_blobs` has the same path_in_asset as a blob in `dst_blobs`, it compares their hashes.

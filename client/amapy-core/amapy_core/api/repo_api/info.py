@@ -346,7 +346,7 @@ class InfoAPI(RepoAPI):
             col_align = ["left", "left", "right", "right"]
 
         # sort the objects by path for before printing the table
-        objects_data = sorted(objects_data, key=lambda x: x['path'])
+        objects_data = sorted(objects_data, key=lambda x: x["path"])
 
         has_proxy = False
         # modify the data rows for better readability

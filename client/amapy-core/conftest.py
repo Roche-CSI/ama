@@ -151,7 +151,7 @@ def __setup_store(environment):
 def __setup_repo(store, dir):
     # initialize assets
     repo = Repo.create_repo(root_dir=dir)
-    logger.info("setting up, created assets repo at:{}".format(repo))
+    logger.info(f"setting up, created assets repo at:{repo}")
     # make sure it got created
     assert os.path.exists(os.path.join(str(repo), Repo.asset_dir()))
     return repo

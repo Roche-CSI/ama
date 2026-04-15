@@ -221,7 +221,7 @@ class FindAPI(StoreAPI):
             return asset_size
 
         # CLI invoked, so we need to print in user-friendly manner
-        asset_name = '/'.join([comps.get('class_name'), comps.get('seq_id'), version_data.get('number')])
+        asset_name = "/".join([comps.get("class_name"), comps.get("seq_id"), version_data.get("number")])
         if not comps.get("version"):
             asset_name = f"{asset_name} (latest)"  # tell the user that this is the latest version
         if asset_size is None:

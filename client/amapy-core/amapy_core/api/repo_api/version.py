@@ -66,7 +66,7 @@ class VersionAPI(RepoAPI):
             return list(reversed(versions))
 
         # find the index of the target version
-        target_index = next((i for i, item in enumerate(versions) if item['number'] == self.active_version()), None)
+        target_index = next((i for i, item in enumerate(versions) if item["number"] == self.active_version()), None)
         if target_index is None:
             return []
 
@@ -92,17 +92,17 @@ class VersionAPI(RepoAPI):
         }
         rows = [
             {
-                'version': self.active_version_color(
-                    version_number=version.get('number'),
-                    data=version.get('number')
+                "version": self.active_version_color(
+                    version_number=version.get("number"),
+                    data=version.get("number")
                 ),
-                'commit_hash': self.active_version_color(
-                    version_number=version.get('number'),
-                    data=version.get('commit_hash')
+                "commit_hash": self.active_version_color(
+                    version_number=version.get("number"),
+                    data=version.get("commit_hash")
                 ),
-                'size': self.active_version_color(
-                    version_number=version.get('number'),
-                    data=version.get('size')
+                "size": self.active_version_color(
+                    version_number=version.get("number"),
+                    data=version.get("size")
                 ),
             } for version in versions]
         self.user_log.table(columns=columns, rows=rows, table_fmt="simple")

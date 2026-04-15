@@ -19,7 +19,7 @@ def temp_files():
         ]
         os.makedirs(os.path.join(temp_dir, "dir1"), exist_ok=True)
         for file_path in file_paths:
-            with open(file_path, 'w') as f:
+            with open(file_path, "w") as f:
                 f.write("test content")
         yield file_paths, temp_dir
 
@@ -34,7 +34,7 @@ def test_filtered_paths(temp_files):
 
     # Test With Ignore Patterns
     ignore_file_path = os.path.join(temp_dir, ".assetignore")
-    with open(ignore_file_path, 'w') as f:
+    with open(ignore_file_path, "w") as f:
         f.write("*.txt\n")  # Ignore all .txt files
     asset_ignore = AssetIgnore(temp_dir)
     result = asset_ignore.filtered_paths(file_paths)
@@ -52,7 +52,7 @@ def test_ignored_paths(temp_files):
 
     # Test With Ignore Patterns
     ignore_file_path = os.path.join(temp_dir, ".assetignore")
-    with open(ignore_file_path, 'w') as f:
+    with open(ignore_file_path, "w") as f:
         f.write("*.txt\n")  # Ignore all .txt files
     asset_ignore = AssetIgnore(temp_dir)
     result = asset_ignore.ignored_paths(file_paths)

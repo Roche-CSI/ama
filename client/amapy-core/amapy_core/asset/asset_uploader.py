@@ -81,7 +81,7 @@ class AssetUploader(LoggingMixin):
     def ask_user_for_commit(self, existing_msg: str = None):
         message = f"commit-message: {existing_msg or 'missing'}, proceed?"
         user_input = self.user_log.ask_user(question=message,
-                                            options=['<new-message + enter>', '<enter>'],
+                                            options=["<new-message + enter>", "<enter>"],
                                             default="")
         return user_input or existing_msg
 
@@ -344,16 +344,16 @@ class AssetUploader(LoggingMixin):
         """Updates the asset inputs on the server and prints updates."""
         add_data = [
             {
-                "src_version": item.get('src_version').get('id'),
-                "dst_version": item.get('dst_version').get('id'),
+                "src_version": item.get("src_version").get("id"),
+                "dst_version": item.get("dst_version").get("id"),
                 "label": item.get("label"),
                 "properties": item.get("properties")
             } for item in added]
         remove_data = [
             {
-                "id": item.get('id'),
-                "src_version": item.get('src_version').get('id'),
-                "dst_version": item.get('dst_version').get('id')
+                "id": item.get("id"),
+                "src_version": item.get("src_version").get("id"),
+                "dst_version": item.get("dst_version").get("id")
             } for item in removed]
 
         # update the asset inputs on the server
@@ -363,10 +363,10 @@ class AssetUploader(LoggingMixin):
 
         # print the inputs updates
         if added:
-            updated_inputs = [item['src_version']['name'] for item in added]
+            updated_inputs = [item["src_version"]["name"] for item in added]
             self.user_log.message(f"added inputs: {', '.join(updated_inputs)}")
         if removed:
-            updated_inputs = [item['src_version']['name'] for item in removed]
+            updated_inputs = [item["src_version"]["name"] for item in removed]
             self.user_log.message(f"removed inputs: {', '.join(updated_inputs)}")
 
         return response

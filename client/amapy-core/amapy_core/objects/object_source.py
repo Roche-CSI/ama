@@ -32,4 +32,4 @@ class ObjectSource:
         return hash(self.path_in_asset)
 
     def __repr__(self):
-        return '<{} {}>'.format(self.__class__.__name__, self.path_in_asset)
+        return f"<{self.__class__.__name__} {self.path_in_asset}>"

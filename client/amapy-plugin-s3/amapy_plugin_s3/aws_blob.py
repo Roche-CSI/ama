@@ -26,7 +26,7 @@ class AwsBlob(BlobData):
             if type(self._aws_obj) is dict:  # json data from S3Proxy
                 self._initialize_from_dict(data=self._aws_obj)
                 return
-            elif hasattr(self._aws_obj, 'content_type'):  # s3.Object
+            elif hasattr(self._aws_obj, "content_type"):  # s3.Object
                 self._initialize_from_s3_object(s3_obj=self._aws_obj)
             else:
                 self._initialize_from_s3_summary_object(s3_summary_obj=self._aws_obj)
@@ -63,7 +63,7 @@ class AwsBlob(BlobData):
             self.hashes["sha256"] = getattr(s3_obj, "checksum_sha256")
 
         self.hashes["etag"] = s3_obj.e_tag
-        if '-' in s3_obj.e_tag and self._parse_etag(s3_obj.e_tag)[1] == '1':
+        if "-" in s3_obj.e_tag and self._parse_etag(s3_obj.e_tag)[1] == "1":
             # if number of parts is 1, then self.size is the multipart size
             self._multipart_size = self.size
 
@@ -85,7 +85,7 @@ class AwsBlob(BlobData):
         # etag has 2 parts separated by "-", first part is the md5,
         # second part is the number of parts in which the file was uploaded
         self.hashes["etag"] = s3_summary_obj.e_tag
-        if '-' in s3_summary_obj.e_tag and self._parse_etag(s3_summary_obj.e_tag)[1] == '1':
+        if "-" in s3_summary_obj.e_tag and self._parse_etag(s3_summary_obj.e_tag)[1] == "1":
             # if number of parts is 1, then self.size is the multipart size
             self._multipart_size = self.size
 
@@ -120,8 +120,8 @@ class AwsBlob(BlobData):
         str
             The content type of the blob.
         """
-        if hasattr(self._aws_obj, 'content_type'):  # s3.Object
-            return getattr(self._aws_obj, 'content_type')
+        if hasattr(self._aws_obj, "content_type"):  # s3.Object
+            return getattr(self._aws_obj, "content_type")
         else:
             # note: this is refactored into a separate property for better list-blobs performance,
             # self._parse_content_type(obj=s3_summary_obj)
@@ -145,7 +145,7 @@ class AwsBlob(BlobData):
         aws returns files + directory unlike gs which returns only files.
         """
         # self.is_file = bool(self.content_type != 'application/x-directory')
-        return bool(self.content_type != 'application/x-directory')
+        return bool(self.content_type != "application/x-directory")
 
     @property
     def multipart_size(self) -> int:
@@ -187,7 +187,7 @@ class AwsBlob(BlobData):
         bool
             True if the blob is a multipart upload, False otherwise.
         """
-        return bool('-' in self.hashes.get("etag", ""))
+        return bool("-" in self.hashes.get("etag", ""))
 
     def _parse_etag(self, etag: str) -> list:
         """Parse the ETag of the blob if it is multipart.
@@ -219,7 +219,7 @@ class AwsBlob(BlobData):
             The content-type of the S3 object summary.
         """
         try:
-            return obj.get()['ContentType']
+            return obj.get()["ContentType"]
         except Exception as e:
             self.log.info(str(e))
             return None
