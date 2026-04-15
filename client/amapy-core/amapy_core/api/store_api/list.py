@@ -109,7 +109,7 @@ class ListAPI(StoreAPI):
     def parse_seq_id(self, seq_id):
         if not seq_id:
             raise exceptions.AssetException("seq_id can not be null")
-        if type(seq_id) is int:
+        if isinstance(seq_id, int):
             return seq_id
         parsed = int(seq_id[len("temp_"):])
         return parsed

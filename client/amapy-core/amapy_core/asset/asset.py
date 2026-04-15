@@ -4,8 +4,6 @@ import fnmatch
 import math
 import os
 import uuid
-from typing import Optional
-
 from functools import cached_property
 
 from amapy_core.objects.asset_object import AssetObject, ObjectViews
@@ -98,7 +96,7 @@ class Asset(SerializableAsset):
         asset.seq_id = seq_id
         asset.asset_class = asset_class
         cached = asset.cached_asset_data()
-        cached.pop('asset_class')
+        cached.pop("asset_class")
         asset.de_serialize(data=cached)
         # reassign, serialization
         if not asset.id:
@@ -209,7 +207,7 @@ class Asset(SerializableAsset):
         # object_ids = list(map(lambda x: x.id, self.objects))
         # return FileUtils.string_md5(",".join(sorted(object_ids)))
 
-    def filter_objects(self, attr: str, values: list) -> [AssetObject]:
+    def filter_objects(self, attr: str, values: list) -> list[AssetObject]:
         """returns a dict of assets stored in asset-manifest
         Parameters:
             attr: attribute i.e. id, path, hash of the asset_object
@@ -219,7 +217,7 @@ class Asset(SerializableAsset):
             return []
         return [obj for obj in self.objects if getattr(obj, attr) in values]
 
-    def remove_objects(self, targets: [AssetObject], delete=False):
+    def remove_objects(self, targets: list[AssetObject], delete=False):
         """Deletes a given list of objects
         1. remove from asset-manifest
         2. delete from the directory, the default behaviour is objects are removed from the asset only
@@ -535,7 +533,7 @@ class Asset(SerializableAsset):
         root.de_serialize(asset=self, data=self.cached_versions()[0])
         return root
 
-    def list_objects(self, ver_number: str = None, pattern: str = None) -> [AssetObject]:
+    def list_objects(self, ver_number: str = None, pattern: str = None) -> list[AssetObject]:
         if not ver_number or ver_number == self.version.number:
             objects = [obj for obj in self.objects]  # return from current version
         else:
@@ -562,7 +560,7 @@ class Asset(SerializableAsset):
         duplicate.top_hash = self.top_hash
         return duplicate
 
-    def get_object(self, object_path: str, ver_number: str) -> Optional[AssetObject]:
+    def get_object(self, object_path: str, ver_number: str) -> AssetObject | None:
         objects: [AssetObject] = self.list_objects(ver_number=ver_number)
         for obj in objects:
             if obj.path == object_path:
@@ -601,15 +599,15 @@ class Asset(SerializableAsset):
 
     @classmethod
     def is_temp_seq_id(cls, seq_id):
-        if type(seq_id) is int:
+        if isinstance(seq_id, int):
             return False
-        if type(seq_id) is str and str(seq_id).startswith(cls.TEMP_SEQ_PREFIX):
+        if isinstance(seq_id, str) and str(seq_id).startswith(cls.TEMP_SEQ_PREFIX):
             return True
         return False
 
     @classmethod
     def is_valid_seq_id(cls, seq_id):
-        return bool(type(seq_id) is int or str(seq_id).isnumeric())
+        return bool(isinstance(seq_id, int) or str(seq_id).isnumeric())
 
     @property
     def is_temp(self):

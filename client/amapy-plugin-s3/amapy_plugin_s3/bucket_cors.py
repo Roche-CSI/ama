@@ -24,17 +24,17 @@ def get_bucket_cors(credentials: dict, bucket_name: str):
         configuration exists, return empty list. If error, return None.
     """
     # Retrieve the CORS configuration
-    s3 = boto3.client('s3', **credentials)
+    s3 = boto3.client("s3", **credentials)
     try:
         response = s3.get_bucket_cors(Bucket=bucket_name)
     except ClientError as e:
-        if e.response['Error']['Code'] == 'NoSuchCORSConfiguration':
+        if e.response["Error"]["Code"] == "NoSuchCORSConfiguration":
             return []
         else:
             # AllAccessDisabled error == bucket not found
             logging.error(e)
             return None
-    return response['CORSRules']
+    return response["CORSRules"]
 
 
 def set_bucket_cors(credentials: dict, bucket_name: str, origin_url: str):
@@ -53,15 +53,15 @@ def set_bucket_cors(credentials: dict, bucket_name: str, origin_url: str):
     """
     # Define the configuration rules
     cors_configuration = {
-        'CORSRules': [{
-            'AllowedHeaders': ['Authorization'],
-            'AllowedMethods': ['GET'],
-            'AllowedOrigins': [origin_url],
-            'ExposeHeaders': ['ETag', 'x-amz-request-id'],
-            'MaxAgeSeconds': 3000
+        "CORSRules": [{
+            "AllowedHeaders": ["Authorization"],
+            "AllowedMethods": ["GET"],
+            "AllowedOrigins": [origin_url],
+            "ExposeHeaders": ["ETag", "x-amz-request-id"],
+            "MaxAgeSeconds": 3000
         }]
     }
 
     # Set the CORS configuration
-    s3 = boto3.client('s3', **credentials)
+    s3 = boto3.client("s3", **credentials)
     s3.put_bucket_cors(Bucket=bucket_name, CORSConfiguration=cors_configuration)

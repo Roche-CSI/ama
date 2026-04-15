@@ -1,10 +1,9 @@
 import os
 from functools import cached_property
-from typing import Union
 
 import boto3
 import botocore
-from botocore.errorfactory import ClientError
+from botocore.exceptions import ClientError
 
 from amapy_pluggy.storage import StorageData, StorageURL, BlobStoreURL
 from amapy_pluggy.storage import storage_utils
@@ -69,11 +68,11 @@ class AwsHttpHandler:
 
     @property
     def s3_client(self):
-        return boto3.client('s3', **self.credentials)
+        return boto3.client("s3", **self.credentials)
 
     @property
     def s3_resource(self):
-        return boto3.resource('s3', **self.credentials)
+        return boto3.resource("s3", **self.credentials)
 
     def get_storage_url(self, url_string: str, ignore: str = None) -> StorageURL:
         return BlobStoreURL(url=url_string, ignore=ignore)
@@ -90,7 +89,7 @@ class AwsHttpHandler:
     def fetch_data_from_bucket(self, bucket_name, blob_name):
         return self.s3_resource.Object(bucket_name, blob_name)
 
-    def url_is_file(self, url: Union[StorageURL, str]) -> bool:
+    def url_is_file(self, url: StorageURL | str) -> bool:
         """Checks if the URL is a file.
 
         Blobs are files, so if a blob exists then it's a file
@@ -114,7 +113,7 @@ class AwsHttpHandler:
         except ClientError:
             return False
 
-    def list_blobs(self, url: Union[str, StorageURL], ignore: str = None) -> [StorageData]:
+    def list_blobs(self, url: str | StorageURL, ignore: str = None) -> list[StorageData]:
         """Returns a list of AwsBlobs located at the url."""
         if type(url) is str:
             url = BlobStoreURL(url=url, ignore=ignore)
@@ -131,11 +130,11 @@ class AwsHttpHandler:
                                           pattern=url.pattern,
                                           ignore=url.ignore)
 
-    def delete_blobs(self, url_strings: [str]) -> None:
+    def delete_blobs(self, url_strings: list[str]) -> None:
         """Deletes blobs at the given URLs."""
         self.delete_blob_urls(urls=list(map(lambda x: BlobStoreURL(url=x), url_strings)))
 
-    def delete_blob_urls(self, urls: [BlobStoreURL]):
+    def delete_blob_urls(self, urls: list[BlobStoreURL]):
         # group by bucket
         groups = {}
         for url in urls:
@@ -149,9 +148,10 @@ class AwsHttpHandler:
     def batch_delete_s3(self, s3_client, bucket: str, keys_list: list):
         for batch in utils.batch(keys_list, batch_size=100):
             batch_to_delete = list(map(lambda x: {"Key": x}, batch))
-            s3_client.delete_objects(Bucket=bucket, Delete={'Objects': batch_to_delete, 'Quiet': True})
+            s3_client.delete_objects(Bucket=bucket, Delete={"Objects": batch_to_delete, "Quiet": True})
 
-    def filter_duplicate_blobs(self, src_blobs: [StorageData], dst_blobs: [StorageData]) -> (list, list):
+    def filter_duplicate_blobs(self, src_blobs: list[StorageData],
+                               dst_blobs: list[StorageData]) -> tuple[list, list]:
         """Filters the source blobs to determine which blobs are new and which need to be replaced in the destination.
 
         If a blob in `src_blobs` has the same path_in_asset as a blob in `dst_blobs`, it compares their hashes.

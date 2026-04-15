@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "amapy-plugin-s3"
-version = "1.0.2"
+version = "1.1.0"
 description = "The S3 plugin for the ama project."
 readme = "README.md"
 authors = [
@@ -16,12 +16,16 @@ maintainers = [
 license = { text = "Copyright (c) 2024 Roche Diagnostics Computation Science & Informatics" }
 requires-python = ">=3.12,<3.13"  # "==3.12.*"
 dependencies = [
-    "aioboto3==13.0.*",
-    "amapy-contents==1.*",
-    "amapy-pluggy==1.*",
-    "amapy-utils==1.*",
-    "backoff==2.2.*",
-    "urllib3==2.2.*"
+    "aioboto3==13.3.*",
+    "amapy-contents==1.1.*",
+    "amapy-pluggy==1.1.*",
+    "amapy-utils==1.1.*",
+    "backoff==2.2.*"
+]
+
+[project.optional-dependencies]
+test = [
+    "moto==5.0.*",
 ]
 
 [tool.setuptools.packages.find]

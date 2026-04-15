@@ -2,12 +2,12 @@ from amapy_utils.utils import rgetattr
 
 
 def asset_desc(asset):
-    desc_keys = [{'name': 'asset'},
-                 {'id': 'id'},
-                 {'created_at': 'created_at'},
-                 {'created_by': 'created_by'},
-                 {'latest_version': 'version.number'},
-                 {'alias': 'alias'}]
+    desc_keys = [{"name": "asset"},
+                 {"id": "id"},
+                 {"created_at": "created_at"},
+                 {"created_by": "created_by"},
+                 {"latest_version": "version.number"},
+                 {"alias": "alias"}]
 
     # heading1 = f"asset: {asset.name}, " + \
     #            f"id: {asset.id}, " + \

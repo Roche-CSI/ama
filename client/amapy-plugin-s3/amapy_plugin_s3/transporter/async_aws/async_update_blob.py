@@ -6,7 +6,7 @@ from amapy_plugin_s3.aws_blob import AwsBlob
 from amapy_utils.common import exceptions
 
 
-def update_multipart_sizes(credentials: dict, blobs: [AwsBlob]):
+def update_multipart_sizes(credentials: dict, blobs: list[AwsBlob]):
     # filter out multipart blobs
     multipart_blobs = []
     for blob in blobs:
@@ -17,9 +17,9 @@ def update_multipart_sizes(credentials: dict, blobs: [AwsBlob]):
     return asyncio.run(_async_update_multipart_sizes(credentials=credentials, blobs=multipart_blobs))
 
 
-async def _async_update_multipart_sizes(credentials: dict, blobs: [AwsBlob]):
+async def _async_update_multipart_sizes(credentials: dict, blobs: list[AwsBlob]):
     session = aioboto3.Session()
-    async with session.client(service_name='s3', **credentials) as s3_client:
+    async with session.client(service_name="s3", **credentials) as s3_client:
         updated_blobs = []
         await asyncio.gather(*[
             _async_update_multipart_size(client=s3_client,
@@ -33,5 +33,5 @@ async def _async_update_multipart_size(client, blob: AwsBlob, updated: list):
     first_part = await client.head_object(Bucket=blob.bucket,
                                           Key=blob.name,
                                           PartNumber=1)
-    blob.multipart_size = first_part['ContentLength']
+    blob.multipart_size = first_part["ContentLength"]
     updated.append(blob)

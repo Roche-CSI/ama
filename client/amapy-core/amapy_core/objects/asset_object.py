@@ -3,7 +3,7 @@ from __future__ import annotations
 import abc
 import enum
 import os
-from typing import Callable
+from collections.abc import Callable
 
 from amapy_contents.content import Content, HASH_SEP
 from amapy_contents.content_factory import ContentFactory
@@ -100,19 +100,19 @@ class AssetObject(LoggingMixin):
         return hash(self.unique_repr)
 
     def __repr__(self):
-        return '<{} {}>'.format(self.__class__.__name__, self.unique_repr)
+        return f"<{self.__class__.__name__} {self.unique_repr}>"
 
     @classmethod
     def bulk_create(cls,
                     factory,
-                    sources: [ObjectSource],
+                    sources: list[ObjectSource],
                     callback: Callable = None,
-                    repo_dir: str = None) -> [AssetObject]:
+                    repo_dir: str = None) -> list[AssetObject]:
         """
         Parameters
         ----------
         factory: ObjectFactory # todo: refactor such that there is no circular dependency if we import ObjectFactory
-        sources: [ObjectSource]
+        sources: list[ObjectSource]
         callback
         repo_dir
 
@@ -435,11 +435,11 @@ class AssetObject(LoggingMixin):
 
         # if time has changed, then lets compare size
         if stored_stats.size != current_stats.size:
-            self.log.info("size comparison: {}".format(self.path))
+            self.log.info(f"size comparison: {self.path}")
             return True
 
         # if time has changed, but size is same - then we have to compare hashes
-        self.log.info("hash comparison: {}".format(self.path))
+        self.log.info(f"hash comparison: {self.path}")
         hash_type, new_hash = self.content.__class__.compute_hash(src=self.linked_path)
         return self.content.hash_value != new_hash or self.content.hash_type != hash_type
 

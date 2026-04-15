@@ -1,5 +1,4 @@
 import os
-
 from functools import cached_property
 
 from amapy_pluggy.storage import BlobStoreURL

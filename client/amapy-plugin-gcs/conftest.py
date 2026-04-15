@@ -31,7 +31,6 @@ def pytest_sessionstart(session):
     """
     logger.info("Pre-Session Setup..")
 
-    os.environ["PROJECT_STORAGE_ID"] = "gs"
     # set up mock credentials so GcsStorage and AsyncGcsTransporter don't fail with "missing storage credentials"
     StorageCredentials.shared().set_credentials(cred=MOCK_GCS_CREDENTIALS)
 

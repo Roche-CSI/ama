@@ -1,6 +1,5 @@
 import os.path
-from collections.abc import Callable
-from typing import Iterable
+from collections.abc import Callable, Iterable
 
 from amapy_core.objects.asset_object import AssetObject
 from amapy_core.objects.object_factory import ObjectFactory
@@ -151,7 +150,7 @@ class ObjectSet(BetterSet, LoggingMixin):
         else:
             return None
 
-    def filter(self, predicate: Callable = None) -> [AssetObject]:
+    def filter(self, predicate: Callable = None) -> list[AssetObject]:
         """returns a dict of assets stored in asset-manifest
         Parameters:
             predicate: lambda function
@@ -218,7 +217,7 @@ class ObjectSet(BetterSet, LoggingMixin):
         rel_paths = [os.path.relpath(path=os.path.abspath(src), start=self.asset.repo.fs_path)
                      for src in source_paths]
         result = self.filter(predicate=lambda x: x.path in rel_paths)
-        self.log.info("results:{}".format(result))
+        self.log.info(f"results:{result}")
         return result
 
     def save(self):

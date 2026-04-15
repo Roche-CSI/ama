@@ -1,6 +1,6 @@
 import json
 from dataclasses import dataclass
-from typing import Any, Type
+from typing import Any
 
 from amapy_utils.common import exceptions
 from amapy_utils.utils import is_integer
@@ -11,7 +11,7 @@ class SettingsProp:
     """Settings property class to hold the settings for the application"""
 
     value: Any = None  # bool | str | int | float
-    data_type: Type = str  # default is string
+    data_type: type = str  # default is string
     unit: str = None  # seconds, bool, bytes, etc
     name: str = None  # environment variable name
     help: str = None  # help message
@@ -19,7 +19,7 @@ class SettingsProp:
     def description(self, is_default=None):
         return f"{self.value}: {self.unit} [{'factory' if is_default else 'user-defined'}] - {self.help}"
 
-    def validate(self, value: Any, data_type: Type = None):
+    def validate(self, value: Any, data_type: type = None):
         """validate the value against the data type"""
         data_type = data_type or self.data_type
         if data_type is int:

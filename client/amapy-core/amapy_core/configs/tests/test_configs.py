@@ -11,12 +11,12 @@ def test_remote_configs():
     config = Configs.shared()
     assert config.remote.contents_url(staging=False) == "{storage_url}/contents"
     assert config.remote.contents_url(staging=True) == "{storage_url}/contents"
-    assert config.remote.assets_url == '{storage_url}/assets'
+    assert config.remote.assets_url == "{storage_url}/assets"
 
 
 def test_server_configs():
     config = Configs.shared()
-    assert config.server.server_url == "http://localhost:5000"
+    assert config.server.server_url == "http://localhost:8000"
     assert config.server.asset_route == "asset"
     assert config.server.asset_class_route == "asset_class"
     assert config.server.asset_commit_route == "asset_commit"
