@@ -4,21 +4,13 @@ from amapy.python_api.artifact import Artifact, File
 from amapy_utils.common import exceptions
 
 
-@pytest.fixture(scope="module")
-def asset_path():
-    return "/Users/mahantis/am_demo/acap_e2e_assets/1"
-
-
 def test_fixtures(asset_root, repo, asset, store, empty_asset):
-    print(asset_root)
-    print(repo)
-    print(asset)
-    print(store)
-    print(empty_asset)
-
-    artifact = Artifact(path=repo.fs_path)
-    info = artifact.info
-    print(info)
+    """Verify that all conftest fixtures are created properly."""
+    assert asset_root and os.path.isdir(asset_root)
+    assert repo is not None
+    assert asset is not None
+    assert store is not None
+    assert empty_asset is not None
 
 
 def test_init():
@@ -28,22 +20,27 @@ def test_init():
     assert e.type == exceptions.AssetException
 
     # also raise exception if not a valid repo
-    with pytest.raises(Exception) as e:
-        Artifact(path="/Users/mahantis")
-    assert e.type == exceptions.NotAssetRepoError
+    temp_dir = tempfile.mkdtemp()
+    try:
+        with pytest.raises(Exception) as e:
+            Artifact(path=temp_dir)
+        assert e.type == exceptions.NotAssetRepoError
+    finally:
+        os.rmdir(temp_dir)
 
 
 def test_info(asset):
     artifact = Artifact(path=asset.repo.fs_path)
-    expected = ["asset", "objects"]
-    for key in expected:
-        assert key in artifact.info
+    info = artifact.info
+    info_keys = ["asset", "objects"]
+    for key in info_keys:
+        assert key in info
 
     # objects
     object_keys = ["linked_path", "path", "size", "cloned"]
-    for item in artifact.info.get("objects"):
+    for object in info.get("objects"):
         for key in object_keys:
-            assert key in item
+            assert key in object
 
 
 def test_versions(asset):
