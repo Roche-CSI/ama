@@ -102,7 +102,7 @@ class DevConfigs(Configs):
 
 
 # class SandboxConfigs(Configs):
-#     MODE = 'SANDBOX'
+#     MODE = "SANDBOX"
 
 
 class UserTestConfigs(Configs):
