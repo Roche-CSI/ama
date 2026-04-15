@@ -8,7 +8,7 @@ from .remote_config import RemoteConfig
 from .server_config import ServerConfig
 
 DOCS_URL = None
-GITHUB_URL = "https://github.com/Roche-CSI/asset-manager"
+GITHUB_URL = "https://github.com/Roche-CSI/ama"
 
 """CHANGE TO SANDBOX / PRODUCTION WHEN deploying"""
 DEFAULT_MODE = ConfigModes.DEV
