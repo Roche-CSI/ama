@@ -187,7 +187,7 @@ class Artifact:
     @property
     def is_temp(self) -> bool:
         """Returns True if the asset is temporary."""
-        return self.info.get('asset').get('cloning') == (False, "temp_asset")
+        return self.info.get("asset").get("cloning") == (False, "temp_asset")
 
     @cached_property
     def inputs(self) -> ArtifactInputs:
@@ -608,7 +608,7 @@ class Artifact:
         # Custom key function to sort by integer id and then version
         def sort_key(name):
             # Split the string by '/' and extract parts
-            parts = name.split('/')
+            parts = name.split("/")
             return parts[0], int(parts[1]), tuple(map(int, parts[2].split(".")))
 
         # Sort the existing assets by the custom key function

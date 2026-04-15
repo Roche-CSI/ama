@@ -4,7 +4,7 @@ from amapy.python_api.artifact import Artifact, File
 from amapy_utils.common import exceptions
 
 
-@pytest.fixture(scope='module')
+@pytest.fixture(scope="module")
 def asset_path():
     return "/Users/mahantis/am_demo/acap_e2e_assets/1"
 
@@ -103,7 +103,7 @@ def test_sort_key():
 
     def sort_key(name):
         # Split the string by '/' and extract parts
-        parts = name.split('/')
+        parts = name.split("/")
         return parts[0], int(parts[1]), tuple(map(int, parts[2].split(".")))
 
     asset_names.sort(key=sort_key)

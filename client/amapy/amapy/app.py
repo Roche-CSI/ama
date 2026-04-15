@@ -14,5 +14,5 @@ def run():
     get_parser(mode=ACTIVE_CONFIG_MODE).run(sys.argv[1:])
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     run()
