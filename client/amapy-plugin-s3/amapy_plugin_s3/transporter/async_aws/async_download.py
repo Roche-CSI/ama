@@ -21,7 +21,7 @@ logger.setLevel(logging.CRITICAL)
 # https://stackoverflow.com/questions/44915400/how-to-use-asyncio-to-download-files-on-s3-bucket
 
 # TODO: add group retries similar to GCS
-def download_resources(credentials: dict, resources: [AwsDownloadResource]):
+def download_resources(credentials: dict, resources: list[AwsDownloadResource]):
     return asyncio.run(__async_download_resources(credentials=credentials, resources=resources))
 
 
@@ -31,13 +31,13 @@ def get_download_timeout() -> int:
     return DEFAULT_DOWNLOAD_TIMEOUT
 
 
-async def __async_download_resources(credentials: dict, resources: [AwsDownloadResource]):
+async def __async_download_resources(credentials: dict, resources: list[AwsDownloadResource]):
     file_timeout = get_download_timeout()
     session_timeout = max(file_timeout * len(resources), file_timeout)
     timeout = aiohttp.ClientTimeout(total=session_timeout)
     session = aiohttp.client.ClientSession(connector=aiohttp.TCPConnector(ssl=False),
                                            timeout=timeout)
-    s3_client = boto3.client('s3', **credentials)
+    s3_client = boto3.client("s3", **credentials)
     result = []
     await asyncio.gather(*[__async_download_resource(s3=s3_client,
                                                      session=session,
@@ -54,15 +54,15 @@ async def __async_download_resource(s3,
                                     resource: AwsDownloadResource,
                                     result: list
                                     ):
-    request_url = s3.generate_presigned_url('get_object', {
-        'Bucket': resource.src_url.bucket,
-        'Key': resource.src_url.path
+    request_url = s3.generate_presigned_url("get_object", {
+        "Bucket": resource.src_url.bucket,
+        "Key": resource.src_url.path
     })
     os.makedirs(os.path.dirname(resource.dst), exist_ok=True)
     FileUtils.create_file_if_not_exists(path=resource.dst)
 
     async with session.get(URL(request_url, encoded=True)) as response:
-        with open(resource.dst, 'wb') as file:
+        with open(resource.dst, "wb") as file:
             # TODO: evaluate hash calculation during bytes streaming
             data = await response.read()
             file.write(data)

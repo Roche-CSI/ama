@@ -11,12 +11,12 @@ logger = get_logger(__name__)
 RETRIES = 5  # number of retries in the event of failure
 
 
-def copy_resources(resources: [AwsMountedResource]) -> list:
+def copy_resources(resources: list[AwsMountedResource]) -> list:
     """Function to copy resources."""
     return asyncio.run(__async_copy_resources(resources=resources))
 
 
-async def __async_copy_resources(resources: [AwsMountedResource]) -> list:
+async def __async_copy_resources(resources: list[AwsMountedResource]) -> list:
     """Asynchronous function to copy resources."""
     result = []
     max_workers = 10

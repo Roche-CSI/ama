@@ -18,7 +18,7 @@ class AsyncAwsTransporter(Transporter):
     def get_copy_resource(self, src: str, dst: str, src_hash: tuple, **kwargs) -> TransportResource:
         return AwsCopyResource(src=src, dst=dst, hash=src_hash, **kwargs)
 
-    def upload(self, resources: [TransportResource]) -> None:
+    def upload(self, resources: list[TransportResource]) -> None:
         try:
             for chunk in utils.batch(resources, batch_size=self.batch_size):
                 async_upload.upload_resources(credentials=self.credentials, resources=chunk)
@@ -31,7 +31,7 @@ class AsyncAwsTransporter(Transporter):
         except Exception as e:
             raise exceptions.AssetException("Error while uploading resources") from e
 
-    def download(self, resources: [TransportResource]) -> None:
+    def download(self, resources: list[TransportResource]) -> None:
         try:
             for chunk in utils.batch(resources, batch_size=self.batch_size):
                 async_download.download_resources(credentials=self.credentials, resources=chunk)
@@ -40,7 +40,7 @@ class AsyncAwsTransporter(Transporter):
                 raise exceptions.InvalidStorageCredentialsError("Credentials expired. Fetch Again.") from e
             raise exceptions.AssetException("Error while downloading resources") from e
 
-    def copy(self, resources: [TransportResource]) -> None:
+    def copy(self, resources: list[TransportResource]) -> None:
         # update multipart sizes of resource if it has a blob
         self.update_multipart_sizes(resources=resources)
         try:
@@ -51,7 +51,7 @@ class AsyncAwsTransporter(Transporter):
                 raise exceptions.InvalidStorageCredentialsError("Credentials expired. Fetch Again.") from e
             raise exceptions.AssetException("Error while copying resources") from e
 
-    def update_multipart_sizes(self, resources: [AwsCopyResource]) -> None:
+    def update_multipart_sizes(self, resources: list[AwsCopyResource]) -> None:
         blobs = [resource.blob for resource in resources if hasattr(resource, "blob") and resource.blob.is_multipart]
         if not blobs:
             return

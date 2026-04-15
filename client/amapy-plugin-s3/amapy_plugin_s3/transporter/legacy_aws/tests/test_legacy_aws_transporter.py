@@ -25,16 +25,16 @@ def mock_async_upload_resource(mock_upload):
     return inner
 
 
-def test_upload(project_root: str, upload_test_url: str, aws_test_credentials: dict):
-    with patch('amapy_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage, \
-            patch('amapy_plugin_s3.aws_storage.AwsStorage.shared') as mock_Aws_Storage, \
-            patch('aioboto3.Session.client') as mock_client, \
-            patch('amapy_plugin_s3.transporter.legacy_aws.async_upload.async_upload_resource') as mock_upload:
+def test_upload(project_root: str, upload_test_url: str, mock_s3_credentials: dict):
+    with patch("amapy_pluggy.storage.storage_credentials.StorageCredentials.shared") as mock_shared_storage, \
+            patch("amapy_plugin_s3.aws_storage.AwsStorage.shared") as mock_Aws_Storage, \
+            patch("aioboto3.Session.client") as mock_client, \
+            patch("amapy_plugin_s3.transporter.legacy_aws.async_upload.async_upload_resource") as mock_upload:
         mock_s3_client = MagicMock()
         mock_client.return_value = mock_s3_client
         # Mock AwsStorage credentials
-        mock_Aws_Storage.return_value.credentials = aws_test_credentials
-        mock_shared_storage.return_value.credentials = aws_test_credentials
+        mock_Aws_Storage.return_value.credentials = mock_s3_credentials
+        mock_shared_storage.return_value.credentials = mock_s3_credentials
         mock_upload.side_effect = mock_async_upload_resource(mock_upload)
 
         files = [
@@ -59,16 +59,16 @@ def test_upload(project_root: str, upload_test_url: str, aws_test_credentials: d
         mock_upload.assert_called()
 
 
-def test_upload_dir(project_root: str, upload_test_url: str, aws_test_credentials: dict):
-    with patch('amapy_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage, \
-            patch('amapy_plugin_s3.aws_storage.AwsStorage.shared') as mock_Aws_Storage, \
-            patch('aioboto3.Session.client') as mock_client, \
-            patch('amapy_plugin_s3.transporter.legacy_aws.async_upload.async_upload_resource') as mock_upload:
+def test_upload_dir(project_root: str, upload_test_url: str, mock_s3_credentials: dict):
+    with patch("amapy_pluggy.storage.storage_credentials.StorageCredentials.shared") as mock_shared_storage, \
+            patch("amapy_plugin_s3.aws_storage.AwsStorage.shared") as mock_Aws_Storage, \
+            patch("aioboto3.Session.client") as mock_client, \
+            patch("amapy_plugin_s3.transporter.legacy_aws.async_upload.async_upload_resource") as mock_upload:
         mock_s3_client = MagicMock()
         mock_client.return_value = mock_s3_client
         # Mock AwsStorage credentials
-        mock_Aws_Storage.return_value.credentials = aws_test_credentials
-        mock_shared_storage.return_value.credentials = aws_test_credentials
+        mock_Aws_Storage.return_value.credentials = mock_s3_credentials
+        mock_shared_storage.return_value.credentials = mock_s3_credentials
         mock_upload.side_effect = mock_async_upload_resource(mock_upload)
 
         date_string = datetime_string(date=datetime.now())
@@ -97,17 +97,17 @@ def mock_download_resource(mock_async_download):
     return inner
 
 
-def test_download(project_root, aws_test_credentials):
-    with patch('amapy_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage, \
-            patch('amapy_plugin_s3.aws_storage.AwsStorage.shared') as mock_Aws_Storage, \
-            patch('aioboto3.Session.client') as mock_client, \
+def test_download(project_root, mock_s3_credentials):
+    with patch("amapy_pluggy.storage.storage_credentials.StorageCredentials.shared") as mock_shared_storage, \
+            patch("amapy_plugin_s3.aws_storage.AwsStorage.shared") as mock_Aws_Storage, \
+            patch("aioboto3.Session.client") as mock_client, \
             patch(
-                'amapy_plugin_s3.transporter.legacy_aws.async_download.__async_download_resource') as mock_async_download:
+                "amapy_plugin_s3.transporter.legacy_aws.async_download.__async_download_resource") as mock_async_download:
         mock_s3_client = MagicMock()
         mock_client.return_value = mock_s3_client
         # Mock AwsStorage credentials
-        mock_Aws_Storage.return_value.credentials = aws_test_credentials
-        mock_shared_storage.return_value.credentials = aws_test_credentials
+        mock_Aws_Storage.return_value.credentials = mock_s3_credentials
+        mock_shared_storage.return_value.credentials = mock_s3_credentials
         mock_async_download.side_effect = mock_download_resource(mock_async_download)
 
         urls = [

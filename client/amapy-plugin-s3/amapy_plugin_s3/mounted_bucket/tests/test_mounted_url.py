@@ -19,7 +19,7 @@ def mount_config():
 
 @pytest.fixture
 def mock_blob_store_url(monkeypatch):
-    monkeypatch.setattr('amapy_plugin_s3.mounted_bucket.mounted_url.MountedBlobStoreURL', MockBlobStoreURL)
+    monkeypatch.setattr("amapy_plugin_s3.mounted_bucket.mounted_url.MountedBlobStoreURL", MockBlobStoreURL)
 
 
 @pytest.mark.usefixtures("mock_blob_store_url")
