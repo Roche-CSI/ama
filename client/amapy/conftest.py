@@ -124,12 +124,6 @@ def asset(repo, test_data):
     return asset
 
 
-@pytest.fixture(scope="session")
-def empty_asset(repo):
-    asset = Asset.create_new(repo=repo, class_id="123e4567-e89b-12d3-a456-426614174000", class_name="myclass")
-    return asset
-
-
 def __setup_repo(store, dir):
     # initialize assets
     repo = Repo.create_repo(root_dir=dir)

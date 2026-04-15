@@ -7,13 +7,12 @@ from amapy.python_api.artifact import Artifact, File
 from amapy_utils.common import exceptions
 
 
-def test_fixtures(asset_root, repo, asset, store, empty_asset):
+def test_fixtures(asset_root, repo, asset, store):
     """Verify that all conftest fixtures are created properly."""
     assert asset_root and os.path.isdir(asset_root)
     assert repo is not None
     assert asset is not None
     assert store is not None
-    assert empty_asset is not None
 
 
 def test_init():
