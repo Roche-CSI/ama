@@ -85,7 +85,7 @@ def test_list_blobs(mock_s3, mock_s3_credentials):
 
         data = [
             ("s3://aws-test-bucket/test_data/sample_files/", "AWS_DP_CREDENTIALS", 4,
-             "application/yaml"),
+             "application/x-yaml"),
         ]
         prev = StorageCredentials.shared().credentials
         for url, cred_file, count, content_type in data:
