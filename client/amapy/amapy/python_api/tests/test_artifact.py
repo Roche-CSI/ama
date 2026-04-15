@@ -41,9 +41,9 @@ def test_info(asset):
 
     # objects
     object_keys = ["linked_path", "path", "size", "cloned"]
-    for object in info.get("objects"):
+    for item in info.get("objects"):
         for key in object_keys:
-            assert key in object
+            assert key in item
 
 
 def test_versions(asset):
@@ -67,10 +67,10 @@ def test_status(asset):
 
 
 def test_files(asset):
-    # path = "/Users/mahantis/am_demo/dsaswe_test/24"
-    artifact = Artifact(path=str(asset.repo))
+    artifact = Artifact(path=asset.repo.fs_path)
     files = artifact.files
-    print(files)
+    for item in files.values():
+        assert isinstance(item, File)
 
 
 def test_read_file():
