@@ -16,7 +16,9 @@ class S3Proxy:
         self.asset_backend_url = asset_backend_url
         self.route = "bucket_proxy"
 
-    def _make_request(self, endpoint: str, method: str = 'GET',
+    def _make_request(self,
+                      endpoint: str,
+                      method: str = "GET",
                       data: dict[str, Any] | None = None) -> requests.Response:
         """Make a request to the asset-backend."""
         url = os.path.join(self.asset_backend_url, self.route, endpoint)
