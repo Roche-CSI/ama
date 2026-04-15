@@ -1,4 +1,4 @@
-from amapy.commands import CliAction, CliOption
+from amapy.commands import CliAction
 from amapy_utils.common.user_commands import UserCommands
 
 
@@ -13,5 +13,5 @@ class AliasHelp(CliAction):
         msg += f"{UserCommands().alias_info()}\n"
         self.user_log.message(msg)
 
-    def get_options(self) -> list[CliOption]:
+    def get_options(self):
         return []

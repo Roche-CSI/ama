@@ -1,4 +1,4 @@
-from amapy.commands import CliAction, CliOption
+from amapy.commands import CliAction
 from amapy_core.api.repo_api import AssetAPI
 
 
@@ -11,5 +11,5 @@ class AliasInfo(CliAction):
         with api.environment():
             api.list_alias()
 
-    def get_options(self) -> list[CliOption]:
+    def get_options(self):
         return []
