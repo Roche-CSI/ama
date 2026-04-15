@@ -12,15 +12,15 @@ from amapy_plugin_s3.aws_storage import AwsStorage
 from amapy_utils.utils import time_it
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope="function")
 def mock_s3():
     with moto.mock_aws():
         # Set up mock S3 client
-        s3 = boto3.client('s3', region_name='us-east-1',
-                          aws_access_key_id='mock_access_key',
-                          aws_secret_access_key='mock_secret_key')
+        s3 = boto3.client("s3", region_name="us-east-1",
+                          aws_access_key_id="mock_access_key",
+                          aws_secret_access_key="mock_secret_key")
         # Create a test bucket and upload test objects
-        bucket_name = 'aws-test-bucket'
+        bucket_name = "aws-test-bucket"
         s3.create_bucket(Bucket=bucket_name)
 
         urls = [
@@ -31,13 +31,13 @@ def mock_s3():
         ]
         for url in urls:
             _, key = url.replace("s3://", "").split("/", 1)
-            s3.put_object(Bucket=bucket_name, Key=key, Body=b'content')
+            s3.put_object(Bucket=bucket_name, Key=key, Body=b"content")
 
         yield urls  # Provide URLs for tests
 
 
 def test_get_blob(mock_s3, mock_s3_credentials):
-    with patch('amapy_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage:
+    with patch("amapy_pluggy.storage.storage_credentials.StorageCredentials.shared") as mock_shared_storage:
         # Mock AwsStorage credentials
         mock_shared_storage.return_value.credentials = mock_s3_credentials
 
@@ -45,28 +45,28 @@ def test_get_blob(mock_s3, mock_s3_credentials):
             "s3://aws-test-bucket/test_data/sample_files/file1.yml": {
                 "bucket": "aws-test-bucket",
                 "name": "test_data/sample_files/file1.yml",
-                "content_type": 'binary/octet-stream',
+                "content_type": "binary/octet-stream",
                 "size": 7,
                 "is_file": True
             },
             "s3://aws-test-bucket/test_data/sample_files/file2.yaml": {
                 "bucket": "aws-test-bucket",
                 "name": "test_data/sample_files/file2.yaml",
-                "content_type": 'binary/octet-stream',
+                "content_type": "binary/octet-stream",
                 "size": 7,
                 "is_file": True
             },
             "s3://aws-test-bucket/test_data/sample_files/file3.yml": {
                 "bucket": "aws-test-bucket",
                 "name": "test_data/sample_files/file3.yml",
-                "content_type": 'binary/octet-stream',
+                "content_type": "binary/octet-stream",
                 "size": 7,
                 "is_file": True
             },
             "s3://aws-test-bucket/test_data/sample_files/file4.yml": {
                 "bucket": "aws-test-bucket",
                 "name": "test_data/sample_files/file4.yml",
-                "content_type": 'binary/octet-stream',
+                "content_type": "binary/octet-stream",
                 "size": 7,
                 "is_file": True
             },
@@ -79,7 +79,7 @@ def test_get_blob(mock_s3, mock_s3_credentials):
 
 
 def test_list_blobs(mock_s3, mock_s3_credentials):
-    with patch('amapy_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage:
+    with patch("amapy_pluggy.storage.storage_credentials.StorageCredentials.shared") as mock_shared_storage:
         # Mock AwsStorage credentials
         mock_shared_storage.return_value.credentials = mock_s3_credentials
 
@@ -109,7 +109,7 @@ def test_list_blobs(mock_s3, mock_s3_credentials):
 
 
 def test_profile_list_blobs(mock_s3, mock_s3_credentials):
-    with patch('amapy_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage:
+    with patch("amapy_pluggy.storage.storage_credentials.StorageCredentials.shared") as mock_shared_storage:
         # Mock AwsStorage credentials
         mock_shared_storage.return_value.credentials = mock_s3_credentials
         with time_it("aws_list_blobs"):
@@ -119,7 +119,7 @@ def test_profile_list_blobs(mock_s3, mock_s3_credentials):
 
 
 def test_blob_exists(mock_s3, mock_s3_credentials):
-    with patch('amapy_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage:
+    with patch("amapy_pluggy.storage.storage_credentials.StorageCredentials.shared") as mock_shared_storage:
         # Mock AwsStorage credentials
         mock_shared_storage.return_value.credentials = mock_s3_credentials
         url_exists_data = {
@@ -139,7 +139,7 @@ def test_blob_exists(mock_s3, mock_s3_credentials):
 
 
 def test_delete_blobs(mock_s3, mock_s3_credentials):
-    with patch('amapy_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage:
+    with patch("amapy_pluggy.storage.storage_credentials.StorageCredentials.shared") as mock_shared_storage:
         # Mock AwsStorage credentials
         mock_shared_storage.return_value.credentials = mock_s3_credentials
         urls = [
@@ -156,7 +156,7 @@ def test_delete_blobs(mock_s3, mock_s3_credentials):
 
 
 def test_signed_url(mock_s3, mock_s3_credentials):
-    with patch('amapy_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage:
+    with patch("amapy_pluggy.storage.storage_credentials.StorageCredentials.shared") as mock_shared_storage:
         # Mock AwsStorage credentials
         mock_shared_storage.return_value.credentials = mock_s3_credentials
 
@@ -167,7 +167,7 @@ def test_signed_url(mock_s3, mock_s3_credentials):
 
 
 def test_get_bucket_cors(mock_s3, mock_s3_credentials):
-    with patch('amapy_pluggy.storage.storage_credentials.StorageCredentials.shared') as mock_shared_storage:
+    with patch("amapy_pluggy.storage.storage_credentials.StorageCredentials.shared") as mock_shared_storage:
         # Mock AwsStorage credentials
         mock_shared_storage.return_value.credentials = mock_s3_credentials
 

@@ -18,7 +18,7 @@ def get_aws_id_k_date() -> dict:
         the k_date hex string
     """
     secret_key = StorageCredentials.shared().credentials.get("aws_secret_access_key")
-    today = datetime.now(timezone.utc).strftime('%Y%m%d')  # always use the UTC time for k_date
+    today = datetime.now(timezone.utc).strftime("%Y%m%d")  # always use the UTC time for k_date
     hex_k_date = hmac.new(f"AWS4{secret_key}".encode("utf-8"), today.encode("utf-8"), sha256).hexdigest()
     return {"aws_access_key_id": StorageCredentials.shared().credentials.get("aws_access_key_id"),
             "k_date": hex_k_date}
