@@ -51,16 +51,6 @@ def project_root():
 
 
 @pytest.fixture(scope="session")
-def upload_test_url():
-    return "gs://my-bucket/test/client/upload_tests/{date_string}"
-
-
-@pytest.fixture(scope="session")
-def copy_test_url():
-    return "gs://my-bucket/test/client/copy_tests/{date_string}"
-
-
-@pytest.fixture(scope="session")
 def testing_home():
     return os.path.abspath(tempfile.mkdtemp())
 
