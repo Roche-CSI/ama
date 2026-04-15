@@ -11,5 +11,5 @@ class RemoveAlias(CliAction):
         with api.environment():
             api.remove_alias()
 
-    def get_options(self) -> [CliOption]:
+    def get_options(self) -> list[CliOption]:
         return []

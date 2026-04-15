@@ -13,5 +13,5 @@ class AliasHelp(CliAction):
         msg += f"{UserCommands().alias_info()}\n"
         self.user_log.message(msg)
 
-    def get_options(self) -> [CliOption]:
+    def get_options(self) -> list[CliOption]:
         return []

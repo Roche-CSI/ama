@@ -16,7 +16,7 @@ class AddAlias(CliAction):
         with api.environment():
             api.add_alias(args.target)
 
-    def get_options(self) -> [CliOption]:
+    def get_options(self) -> list[CliOption]:
         return [
             CliOption(
                 dest="target",

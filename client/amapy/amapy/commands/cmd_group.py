@@ -36,8 +36,8 @@ class CommandGroup(BaseAction):
                                               description=self.description,
                                               formatter_class=parent.formatter_class,
                                               )
-        cmd_sub_parser = group_parser.add_subparsers(metavar='actions',
-                                                     dest='action')
+        cmd_sub_parser = group_parser.add_subparsers(metavar="actions",
+                                                     dest="action")
         for action in self.actions.values():
             action.add_parser(sub_parsers=cmd_sub_parser)
 

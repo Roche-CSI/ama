@@ -7,7 +7,7 @@ from amapy_utils.utils.log_utils import LoggingMixin
 class DefaultHelpParser(ArgumentParser):
 
     def error(self, message):
-        sys.stderr.write('error in command: %s\n' % message)
+        sys.stderr.write("error in command: %s\n" % message)
         self.print_help()
         sys.exit(2)
 
@@ -40,7 +40,7 @@ class DefaultHelpParser(ArgumentParser):
 class NewLineFormatter(RawTextHelpFormatter):
     def _split_lines(self, text: str, width):
         # print(f"splitting lines: {text}")
-        if text.endswith('\n'):
+        if text.endswith("\n"):
             return text[2:].splitlines()
         return super()._split_lines(text, width=width)
 
@@ -60,10 +60,10 @@ class CommandParser(LoggingMixin):
             description=self.user_log.colorize("Asset Manager Command Line Tool",
                                                color=self.user_log.colors.cyan),
             formatter_class=NewLineFormatter,
-            epilog=self.user_log.colorize('Command Line tool for interacting with assets',
+            epilog=self.user_log.colorize("Command Line tool for interacting with assets",
                                           color=self.user_log.colors.cyan)
         )
-        sub_parsers = self.parser.add_subparsers(metavar='groups', dest='group')
+        sub_parsers = self.parser.add_subparsers(metavar="groups", dest="group")
         sub_parsers.required = True
         self.sub_parsers = sub_parsers
 
