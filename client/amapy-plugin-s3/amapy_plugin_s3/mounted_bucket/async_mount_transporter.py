@@ -12,7 +12,7 @@ class AsyncMountTransporter(Transporter):
 
     @classmethod
     def shared(cls, mount_cfg=None, **kwargs):
-        if not hasattr(cls, 'instance'):
+        if not hasattr(cls, "instance"):
             instance = super(AsyncMountTransporter, cls).shared(**kwargs)
             instance.mount_cfg = mount_cfg
             cls.instance = instance
