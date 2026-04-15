@@ -7,7 +7,7 @@ from .config_modes import ConfigModes
 from .remote_config import RemoteConfig
 from .server_config import ServerConfig
 
-DOCS_URL = None
+DOCS_URL = "https://roche-csi.github.io/ama"
 GITHUB_URL = "https://github.com/Roche-CSI/ama"
 
 """CHANGE TO SANDBOX / PRODUCTION WHEN deploying"""
