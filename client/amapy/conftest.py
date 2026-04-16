@@ -51,13 +51,21 @@ def project_root():
 
 @pytest.fixture(scope="session")
 def asset_root():
-    os.environ["ASSET_ROOT"] = os.path.realpath(tempfile.mkdtemp())  # .asset-manager
-    os.environ["ASSET_HOME"] = os.environ.get("ASSET_ROOT")  # .assets
-    return os.environ.get("ASSET_ROOT")
+    root_dir = os.path.realpath(tempfile.mkdtemp())
+    os.environ["ASSET_ROOT"] = root_dir  # .asset-manager
+    os.environ["ASSET_HOME"] = root_dir  # .assets
+    # Re-initialize assets_home on the singleton in case it was cached from another package's fixture
+    settings = AppSettings.shared()
+    settings.assets_home = root_dir
+    yield root_dir
+    if os.path.exists(root_dir):
+        shutil.rmtree(root_dir)
 
 
 @pytest.fixture(scope="session")
 def test_environment(asset_root):
+    # Ensure the asset_root directory exists
+    os.makedirs(asset_root, exist_ok=True)
     return {
         "auth": "/Users/google.json",
         "assets_home": asset_root,
@@ -106,16 +114,7 @@ def store(asset_root, test_environment):
 
 @pytest.fixture(scope="session")
 def repo(asset_root, store):
-    """
-    creates a temporary assets repo and makes it available
-    cleans up the repo after work is done
-    """
-    # temp_dir = os.path.realpath(tempfile.mkdtemp())
     yield __setup_repo(store=store, dir=asset_root)
-
-    logger.info("tearing down")
-    if os.path.exists(asset_root):
-        shutil.rmtree(path=asset_root)
 
 
 @pytest.fixture(scope="session")
@@ -126,14 +125,12 @@ def test_data(repo):
     """
     project_dir = os.path.abspath(os.path.dirname(__file__))
     test_data_dir = f"{project_dir}/test_data"
-
     # copy files to repo
     target = os.path.join(repo.fs_path, test_data_dir)
     # make dir if not exists
     os.makedirs(target, exist_ok=True)
     target = os.path.join(repo.fs_path, "test_data")
     shutil.copytree(test_data_dir, target)
-
     return target
 
 
