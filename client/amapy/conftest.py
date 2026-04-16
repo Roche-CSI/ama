@@ -30,7 +30,6 @@ def pytest_sessionstart(session):
     Configs.de_init()  # cleanup existing settings if any
     Configs.shared(mode=Configs.modes.UNIT_TEST)  # all tests to use test_settings only
     register_plugins()
-    logger.info("Pre-Session Setup..")
 
 
 def pytest_sessionfinish(session, exitstatus):
@@ -47,38 +46,62 @@ def pytest_sessionfinish(session, exitstatus):
 
 @pytest.fixture(scope="session")
 def project_root():
-    return os.path.abspath(tempfile.mkdtemp())
+    return os.path.abspath(os.path.dirname(__file__))
 
 
 @pytest.fixture(scope="session")
-def testing_home():
-    return os.path.abspath(tempfile.mkdtemp())
+def asset_root():
+    os.environ["ASSET_ROOT"] = os.path.realpath(tempfile.mkdtemp())  # .asset-manager
+    os.environ["ASSET_HOME"] = os.environ.get("ASSET_ROOT")  # .assets
+    return os.environ.get("ASSET_ROOT")
 
 
 @pytest.fixture(scope="session")
-def asset_root(testing_home):
-    root = os.path.realpath(testing_home)
-    os.environ["ASSET_ROOT"] = os.path.join(root, "asset_root")  # parent of .asset-manager
-    os.environ["ASSET_HOME"] = os.path.join(root, "asset_store")  # parent of .assets
-
-    # set up app settings
-    # set a separate settings for testing
-    settings = AppSettings.shared()
-    settings.data = test_globals_json(asset_home=root)
-
-    return os.getenv("ASSET_HOME")
+def test_environment(asset_root):
+    return {
+        "auth": "/Users/google.json",
+        "assets_home": asset_root,
+        "user": {
+            "id": "111a1111-1111-1111-1111-111111111111",
+            "username": "test_user",
+            "email": "test_user@blah.com",
+            "token": None
+        },
+        "projects": {
+            "222b2222-2222-2222-2222-222222222222": {
+                "id": "222b2222-2222-2222-2222-222222222222",
+                "name": "asset-project-2",
+                "description": "Test project 2",
+                "is_active": True,
+                "staging_url": "gs://test_bucket/assets/staging",
+                "remote_url": "gs://test_bucket/assets/remote",
+                "can_edit": True,
+                "can_read": True,
+                "can_delete": False,
+                "credentials_user": "test_user",
+            },
+            "333c3333-3333-3333-3333-333333333333": {
+                "id": "333c3333-3333-3333-3333-333333333333",
+                "name": "asset-project-3",
+                "description": "Test project 3",
+                "is_active": True,
+                "staging_url": "gs://test_bucket/assets/staging",
+                "remote_url": "gs://test_bucket/assets/remote",
+                "can_edit": True,
+                "can_read": True,
+                "can_delete": False,
+                "credentials_user": "test_user",
+            }
+        },
+        "active_project": "222b2222-2222-2222-2222-222222222222"
+    }
 
 
 @pytest.fixture(scope="session")
-def store(asset_root):
-    settings = AppSettings.shared()
-    # settings.data = AppSettings.validate(data=environment)
-    settings.set_project_environment(project_id=settings.active_project)
-    # settings.auth = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
-    store = AssetStore.create_store()
-    yield store
+def store(asset_root, test_environment):
+    yield __setup_store(environment=test_environment)
     logger.info("tearing down")
-    # shutil.rmtree(path=asset_root)
+    shutil.rmtree(path=asset_root)
 
 
 @pytest.fixture(scope="session")
@@ -119,20 +142,34 @@ def asset(repo, test_data):
     files = list_files(root_dir=test_data)
     sources: dict = ObjectFactory().parse_sources(repo_dir=repo.fs_path,
                                                   targets=files)
-    asset = Asset.create_new(repo=repo, class_id="123e4567-e89b-12d3-a456-426614174000", class_name="myclass")
+    asset = Asset.create_new(repo=repo,
+                             class_id="123a4567-89ab-cdef-0123-456789abcdef",
+                             class_name="test_class")
     asset.create_and_add_objects(sources)
     return asset
+
+
+def __setup_store(environment):
+    # initialize store
+    settings = AppSettings.shared()
+    settings.data = AppSettings.validate(data=environment)
+    settings.set_project_environment(project_id=settings.active_project)
+    store = AssetStore.create_store()
+    # copy test asset_classes into the store's asset_classes_dir
+    project_dir = os.path.abspath(os.path.dirname(__file__))
+    src = os.path.join(project_dir, "test_data", "asset_classes")
+    dst = store.asset_classes_dir
+    os.makedirs(dst, exist_ok=True)
+    for item in os.listdir(src):
+        shutil.copy2(os.path.join(src, item), dst)
+    return store
 
 
 def __setup_repo(store, dir):
     # initialize assets
     repo = Repo.create_repo(root_dir=dir)
     repo.store = store
-    logger.info("setting up, created assets repo at:{}".format(repo))
+    logger.info(f"setting up, created assets repo at:{repo}")
     # make sure it got created
     assert os.path.exists(os.path.join(str(repo), Repo.asset_dir()))
     return repo
-
-
-def test_globals_json(asset_home):
-    raise NotImplementedError("add a test globals.json dictionary here")
