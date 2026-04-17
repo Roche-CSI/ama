@@ -32,7 +32,7 @@ class AddRef(CliAction):
             self.user_log.message(UserCommands().inputs_add())
             self.user_log.message(UserCommands().inputs_add_remote())
 
-    def get_options(self) -> [CliOption]:
+    def get_options(self) -> list[CliOption]:
         return [
             CliOption(
                 dest="input_asset",

@@ -1,10 +1,10 @@
 [build-system]
-requires = ["setuptools>=68.0.0,<69.0.0"]
+requires = ["setuptools>=74.0.0,<75.0.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "amapy"
-version = "1.0.2"
+version = "1.1.0"
 description = "The client side tool for ama project."
 readme = "README.md"
 authors = [
@@ -14,18 +14,17 @@ maintainers = [
     { name = "Swarup Mahanti", email = "swarup.mahanti@roche.com" }
 ]
 license = { text = "Copyright (c) 2024 Roche Diagnostics Computation Science & Informatics" }
-requires-python = ">=3.10,<3.11"  # "==3.10.*"
+requires-python = ">=3.12,<3.13"  # "==3.12.*"
 dependencies = [
-    "amapy-contents==1.0.1",
-    "amapy-core==1.0.2",
-    "amapy-db==1.0.2",
-    "amapy-pluggy==1.0.1",
-    "amapy-plugin-gcr==1.0.1",
-    "amapy-plugin-gcs==1.0.1",
-    "amapy-plugin-posix==1.0.1",
-    "amapy-plugin-s3==1.0.2",
-    "amapy-utils==1.0.1",
-    "markupsafe==2.1.*",
+    "amapy-contents==1.1.0",
+    "amapy-core==1.1.0",
+    "amapy-db==1.1.0",
+    "amapy-pluggy==1.1.0",
+    "amapy-plugin-gcr==1.1.0",
+    "amapy-plugin-gcs==1.1.0",
+    "amapy-plugin-posix==1.1.0",
+    "amapy-plugin-s3==1.1.0",
+    "amapy-utils==1.1.0"
 ]
 
 [tool.setuptools.packages.find]

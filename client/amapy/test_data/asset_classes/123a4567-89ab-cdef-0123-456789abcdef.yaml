@@ -1,0 +1,13 @@
+id: 123a4567-89ab-cdef-0123-456789abcdef
+created_at: 2024/08/06 15-11-08 -0700
+created_by: user1
+modified_at: null
+modified_by: null
+project: 333c3333-3333-3333-3333-333333333333
+name: group_test
+counter: 0
+owner: dhars9
+title: Group Test
+description: Group Asset testing
+readme: null
+class_type: general

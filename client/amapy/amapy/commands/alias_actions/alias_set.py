@@ -8,13 +8,13 @@ class SetAlias(CliAction):
 
     def run(self, args):
         if not args.alias:
-            self.user_log.error("missing the alias")
+            self.user_log.error("missing required parameter <alias>")
             return
         api = AssetAPI(self.repo).add
         with api.environment():
             api.add_alias(args.alias)
 
-    def get_options(self) -> [CliOption]:
+    def get_options(self) -> list[CliOption]:
         return [
             CliOption(
                 dest="alias",

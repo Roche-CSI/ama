@@ -11,7 +11,7 @@ class CliOption:
     default: list = None
     positional: bool = False
     is_boolean: bool = False
-    bool_action: str = 'store_true'
+    bool_action: str = "store_true"
 
     def __post_init__(self):
         self.default = self.default or []

@@ -14,7 +14,7 @@ class UpdateAsset(CliAction):
             else:
                 api.update_objects(args.target, prompt_user=(not args.yes))
 
-    def get_options(self) -> [CliOption]:
+    def get_options(self) -> list[CliOption]:
         return [
             CliOption(
                 dest="all",

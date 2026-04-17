@@ -1,8 +1,0 @@
-event:
-  name: Conference
-  date: 2024-05-15
-  location: Convention Center
-  speakers:
-    - Speaker A
-    - Speaker B
-  attendees: 500
