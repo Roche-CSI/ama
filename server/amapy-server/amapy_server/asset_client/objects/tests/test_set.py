@@ -1,5 +1,6 @@
 import pytest
-from src.utils.better_set import BetterSet
+
+from amapy_server.utils.better_set import BetterSet
 
 
 @pytest.fixture(scope="module")
