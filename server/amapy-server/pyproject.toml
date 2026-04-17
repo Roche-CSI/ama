@@ -29,14 +29,12 @@ dependencies = [
     "sentence-transformers==3.4.*",
     "wtf-peewee==3.0.*",
     # Flask related packages
-    "Flask==2.1.1",
-    "Flask-Admin==1.6.0",
+    "Flask==3.0.3",
+    "Flask-Admin==2.0.*",
     "flask-cors==3.0.10",
     "Flask-Dance==7.0.0",
     "Flask-Login==0.6.3",
-    "Jinja2==3.1.*", # amapy-core
-    "Werkzeug==2.0.1",
-    "gunicorn==20.1.*",
+    "gunicorn==20.1.*"
 ]
 
 [tool.setuptools]
