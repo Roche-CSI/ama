@@ -68,5 +68,5 @@ class AddToAsset(CliAction):
                 is_boolean=True,
                 short_name="f",
                 full_name="force"
-            ),
+            )
         ]
