@@ -22,7 +22,7 @@ dependencies = [
     "amapy-plugin-gcs==1.1.*",
     "amapy-plugin-s3==1.1.*",
     "amapy-utils==1.1.*",
-    "elasticsearch==8.15.1",
+    "elasticsearch==8.17.*",
     "Flask==2.1.1",
     "Flask-Admin==1.6.0",
     "flask-cors==3.0.10",
@@ -32,11 +32,11 @@ dependencies = [
     "gunicorn==20.1.*",
     "Jinja2==3.1.*", # amapy-core
     "packaging==24.*", # amapy-core
-    "peewee==3.14.*",
-    "psycopg2==2.9.2",
-    "sentence-transformers==3.2.1",
+    "peewee==3.17.*",
+    "psycopg2==2.9.*",
+    "sentence-transformers==3.4.*",
     "Werkzeug==2.0.1",
-    "wtf-peewee==3.0.3",
+    "wtf-peewee==3.0.*",
 ]
 
 [tool.setuptools]
