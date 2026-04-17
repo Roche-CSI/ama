@@ -34,7 +34,7 @@ dependencies = [
     "flask-cors==4.0.*",
     "Flask-Dance==7.1.*",
     "Flask-Login==0.6.*",
-    "gunicorn==20.1.*"
+    "gunicorn==23.0.*"
 ]
 
 [tool.setuptools]
