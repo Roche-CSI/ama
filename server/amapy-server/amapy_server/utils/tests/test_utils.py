@@ -1,4 +1,4 @@
-from utils import string_to_timestamp
+from amapy_server.utils import string_to_timestamp
 
 
 def test_string_to_timestamp():

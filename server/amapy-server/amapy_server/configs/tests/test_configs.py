@@ -1,5 +1,6 @@
 import pytest
-from asset_client.configs.configs import Configs
+
+from amapy_server.configs.configs import Configs
 
 
 @pytest.fixture(scope="module")
