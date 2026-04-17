@@ -1,10 +1,9 @@
 import os
 
-from asset_client.asset import Asset
-from asset_client.dict_diff import compute_dict_patch
-from deepdiff import Delta, DeepDiff
+from deepdiff import DeepDiff
 
-from utils.file_utils import FileUtils
+from amapy_server.asset_client.asset import Asset
+from amapy_server.utils.file_utils import FileUtils
 
 
 def assets_data():
