@@ -17,25 +17,25 @@ license = { text = "Copyright (c) 2024 Roche Diagnostics Computation Science & I
 requires-python = ">=3.12,<3.13"
 
 dependencies = [
+    "aioshutil==1.3",
     "amapy-pluggy==1.1.*",
     "amapy-plugin-gcs==1.1.*",
     "amapy-plugin-s3==1.1.*",
     "amapy-utils==1.1.*",
+    "elasticsearch==8.15.1",
+    "Flask==2.1.1",
     "Flask-Admin==1.6.0",
-    "Flask-Cors==3.0.10",
+    "flask-cors==3.0.10",
     "Flask-Dance==7.0.0",
     "Flask-Login==0.6.3",
-    "Flask==2.1.1",
-    "Jinja2==3.0.*",
-    "Werkzeug==2.0.1",
-    "aioshutil==1.3",
-    "elasticsearch==8.15.1",
     "google-auth-oauthlib==0.5.*",
     "gunicorn==20.1.*",
+    "Jinja2==3.0.*",
     "packaging==23.1.*",
     "peewee==3.14.*",
     "psycopg2==2.9.2",
     "sentence-transformers==3.2.1",
+    "Werkzeug==2.0.1",
     "wtf-peewee==3.0.3",
 ]
 
