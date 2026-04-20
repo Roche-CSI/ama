@@ -3,8 +3,8 @@ import os
 
 import pytest
 
-from amapy_server.utils import time_it
 from amapy_server.utils.file_utils import FileUtils
+from amapy_utils.utils.utils import time_it
 
 
 @pytest.fixture(scope="module")
