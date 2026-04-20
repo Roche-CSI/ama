@@ -81,7 +81,7 @@ class ElasticVectorSearch(Singleton):
             print(f"Error indexing document {document.get('title', 'unknown')}: {str(e)}")
             raise
 
-    def update_document(self, index_name, document: Dict, upsert=False):
+    def update_document(self, index_name, document: dict, upsert=False):
         """Update a single document with vector embedding and prepared metadata
         If upsert is True, the document will be created if it does not exist
         """
