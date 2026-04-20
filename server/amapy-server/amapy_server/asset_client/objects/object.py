@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from amapy_server.asset_client.contents.content import Content
-from amapy_server.utils.logging import LoggingMixin
+from amapy_utils.utils.log_utils import LoggingMixin
 
 
 class Object(LoggingMixin):

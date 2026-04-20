@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from amapy_server.utils.logging import LoggingMixin
+from amapy_utils.utils.log_utils import LoggingMixin
 from .serializable import Serializable
 
 
