@@ -5,7 +5,7 @@ from amapy_server.configs.configs import Configs
 
 @pytest.fixture(scope="module")
 def config():
-    return Configs.shared(test=True)
+    return Configs.shared(mode=Configs.modes.TEST)
 
 
 def test_instance_creation(config: Configs):

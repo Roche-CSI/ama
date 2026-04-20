@@ -36,6 +36,7 @@ def pytest_sessionstart(session):
     Do teardown in `pytest_sessionfinish()`
     """
     logger.info("Pre-Session Setup..")
+    os.environ.setdefault("APP_SECRET", "test-secret-key-for-unit-tests")
     Configs.de_init()  # cleanup existing settings if any
     Configs.shared(mode=Configs.modes.TEST)  # all tests to use test_settings only
     StorageCredentials.shared().set_credentials(cred=MOCK_GCS_CREDENTIALS)
