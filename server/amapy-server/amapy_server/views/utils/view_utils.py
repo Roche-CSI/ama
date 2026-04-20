@@ -1,11 +1,11 @@
 import gzip
 import json
-from typing import Dict, Any
+from typing import Any
 
 from flask import Request, g
 
 
-def data_from_request(request: Request) -> Dict[str, Any]:
+def data_from_request(request: Request) -> dict[str, Any]:
     """
     Parse data from both request.args and request.data, combining them into a single dictionary.
     If user is present in g (extracted from authorization token), add user to the data.

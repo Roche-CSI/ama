@@ -4,8 +4,8 @@ import datetime
 import functools
 import os
 import pwd
+from collections.abc import Iterable
 from time import time
-from typing import Iterable, Union, List
 
 from pytz import utc, timezone
 
@@ -38,7 +38,7 @@ def time_it_wrapper(f):
     return wrap
 
 
-def cast2list(item: Union[Iterable[str], str, None]) -> List[str]:
+def cast2list(item: Iterable[str] | str | None) -> list[str]:
     """takes single object or a collection and casts to List"""
     if item is None:
         return []

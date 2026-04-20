@@ -1,6 +1,5 @@
 import datetime
 import json
-from typing import Optional
 
 import google
 import jwt
@@ -113,7 +112,7 @@ def generate_token_with_expiry(user: dict, expiry: datetime):
         return jwt_token
 
 
-def get_user_from_token(token: str) -> Optional[models.user.User]:
+def get_user_from_token(token: str) -> models.user.User | None:
     """
     Decode JWT token and return corresponding user.
     """
