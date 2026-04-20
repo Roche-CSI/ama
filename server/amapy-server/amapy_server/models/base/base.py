@@ -11,8 +11,8 @@ from playhouse.shortcuts import model_to_dict
 
 from amapy_server.configs import Configs
 from amapy_server.models import utils
-from amapy_server.utils.logging import LoggingMixin
 from amapy_server.utils import convert_to_pst
+from amapy_server.utils.logging import LoggingMixin
 from .status_enums import StatusEnums
 
 #: placeholder so that we can change database config in runtime
