@@ -201,18 +201,18 @@ class Asset(ReadWriteModel):
 
     @classmethod
     def list_assets(
-        cls,
-        class_id: str,
-        ids_only: bool = False,
-        recurse: bool = False,
-        seq_id: int = None,
-        owner: str = None,
-        alias: str = None,
-        search_by: str = None,
-        page_number: int = None,
-        page_size: int = None,
-        order_by: str = None,
-        order_desc: bool = True,
+            cls,
+            class_id: str,
+            ids_only: bool = False,
+            recurse: bool = False,
+            seq_id: int = None,
+            owner: str = None,
+            alias: str = None,
+            search_by: str = None,
+            page_number: int = None,
+            page_size: int = None,
+            order_by: str = None,
+            order_desc: bool = True,
     ):
         from .version_counter import VersionCounter
         from .asset_version import AssetVersion
