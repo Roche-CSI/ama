@@ -3,6 +3,7 @@ import os
 
 import pytest
 
+from amapy_pluggy.storage.storage_credentials import StorageCredentials
 from amapy_server.app import create_app
 from amapy_server.asset_client.asset import Asset
 from amapy_server.configs import Configs
@@ -11,6 +12,17 @@ from amapy_server.plugins import register_plugins
 from amapy_server.utils.file_utils import FileUtils
 
 logger = logging.getLogger(__name__)
+
+MOCK_GCS_CREDENTIALS = {
+    "type": "service_account",
+    "project_id": "test-project",
+    "private_key_id": "key-id",
+    "private_key": "-----BEGIN RSA PRIVATE KEY-----\nMIIEowIhbe73bcieucjbceuebcjdjcn\n-----END RSA PRIVATE KEY-----\n",
+    "client_email": "test@test-project.iam.gserviceaccount.com",
+    "client_id": "123456789",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+}
 
 
 def pytest_sessionstart(session):
@@ -23,12 +35,10 @@ def pytest_sessionstart(session):
 
     Do teardown in `pytest_sessionfinish()`
     """
-    if not os.getenv("GOOGLE_APPLICATION_CREDENTIALS"):
-        raise Exception("missing required environemnt variable: GOOGLE_APPLICATION_CREDENTIALS")
-
     logger.info("Pre-Session Setup..")
     Configs.de_init()  # cleanup existing settings if any
     Configs.shared(mode=Configs.modes.TEST)  # all tests to use test_settings only
+    StorageCredentials.shared().set_credentials(cred=MOCK_GCS_CREDENTIALS)
     register_plugins()
 
 
