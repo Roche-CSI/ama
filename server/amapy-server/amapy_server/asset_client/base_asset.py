@@ -1,7 +1,7 @@
 import abc
 from collections import OrderedDict
 
-from amapy_utils.utils.log_utils import LoggingMixin
+from amapy_server.utils.logging import LoggingMixin
 from .asset_class import AssetClass
 from .asset_version import AssetVersion
 from .contents.content_set import ContentSet

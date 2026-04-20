@@ -2,7 +2,7 @@ from amapy_pluggy.storage.storage_factory import StorageFactory
 from amapy_pluggy.storage.transporter import Transporter
 from amapy_server import models
 from amapy_utils.utils.in_memory_file import InMemoryFile
-from amapy_utils.utils.utils import time_it
+from amapy_server.utils import time_it
 
 
 class CommitData:

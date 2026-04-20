@@ -6,7 +6,7 @@ from amapy_server.models.utils import delete_records, delete_records_with_ids
 from amapy_server.utils.file_utils import FileUtils
 from amapy_server.views.utils.asset_commit import AssetCommit
 from amapy_server.views.utils.commit_data import CommitData
-from amapy_utils.utils.utils import time_it
+from amapy_server.utils import time_it
 
 
 def data():

@@ -10,7 +10,7 @@ from amapy_server.models.asset import Asset as AssetModel
 from amapy_server.utils.json_encoder import to_json
 from amapy_server.views.utils.asset_commit import AssetCommit, CommitData
 from amapy_server.views.utils.view_utils import data_from_request
-from amapy_utils.utils.utils import time_it
+from amapy_server.utils import time_it
 
 logger = logging.getLogger(__file__)
 
