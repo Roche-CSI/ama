@@ -7,10 +7,10 @@ from packaging import version
 from amapy_server import models
 from amapy_server.asset_client.asset_writer import AssetWriter
 from amapy_server.models.asset import Asset as AssetModel
-from amapy_server.utils import time_it
 from amapy_server.utils.json_encoder import to_json
 from amapy_server.views.utils.asset_commit import AssetCommit, CommitData
 from amapy_server.views.utils.view_utils import data_from_request
+from amapy_utils.utils.utils import time_it
 
 logger = logging.getLogger(__file__)
 
@@ -121,6 +121,7 @@ def validate(data: dict) -> tuple:
         return False, f"unsupported cli-version for {package_name}, you must have version: {supported_version} or greater"
 
     return True, None
+
 
 def parse_cli_version(cli_version: str) -> tuple:
     """Extracts the package name and version number from the cli_version string.
