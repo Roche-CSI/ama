@@ -1,4 +1,4 @@
-from asset_client.versioning import increment_version
+from amapy_server.asset_client.versioning import increment_version
 
 
 def test_increment_version():

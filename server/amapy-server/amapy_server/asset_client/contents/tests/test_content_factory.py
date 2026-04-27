@@ -1,4 +1,4 @@
-from asset_client.contents import ContentFactory as Factory
+from amapy_server.asset_client.contents import ContentFactory as Factory
 
 
 def test_sort():

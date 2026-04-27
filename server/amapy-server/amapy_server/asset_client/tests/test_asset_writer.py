@@ -2,18 +2,18 @@ import os
 import uuid
 
 import pytest
-from asset_client.asset import Asset
-from asset_client.asset_writer import AssetWriter
-from models.asset import Asset as AssetModel
-from models.asset_class import AssetClass as AssetClassModel
-from models.asset_class_content_relations import AssetClassContentRelations
-from models.asset_object_relations import AssetObjectRelations
-from models.content import Content as ContentModel
-from models.object import Object as ObjectModel
-from models.utils import delete_records
-from models.version_counter import VersionCounter
 
-from utils.file_utils import FileUtils
+from amapy_server.asset_client.asset import Asset
+from amapy_server.asset_client.asset_writer import AssetWriter
+from amapy_server.models.asset import Asset as AssetModel
+from amapy_server.models.asset_class import AssetClass as AssetClassModel
+from amapy_server.models.asset_class_content_relations import AssetClassContentRelations
+from amapy_server.models.asset_object_relations import AssetObjectRelations
+from amapy_server.models.content import Content as ContentModel
+from amapy_server.models.object import Object as ObjectModel
+from amapy_server.models.utils import delete_records
+from amapy_server.models.version_counter import VersionCounter
+from amapy_server.utils.file_utils import FileUtils
 
 
 @pytest.fixture(scope="module")
