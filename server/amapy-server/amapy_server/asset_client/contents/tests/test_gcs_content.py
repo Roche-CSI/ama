@@ -1,4 +1,4 @@
-from amapy_server.asset_client.contents.gcs_content import GcsContent
+from asset_client.contents.gcs_content import GcsContent
 
 DATA = {
     "id": "gs:md5_placeholder_md5_000==",

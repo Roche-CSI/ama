@@ -1,7 +1,7 @@
 import fnmatch
 import os
 
-from amapy_server.asset_client.objects.object import Object
+from src.asset.objects import Object
 
 
 def test_get_element(asset):

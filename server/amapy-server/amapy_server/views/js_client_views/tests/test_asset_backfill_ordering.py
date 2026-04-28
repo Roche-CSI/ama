@@ -8,10 +8,9 @@ This test verifies:
 4. AssetClass configuration controls default ordering behavior
 """
 
-import time
 from datetime import datetime
-
 from amapy_server.models import Asset, AssetClass, Project
+import time
 
 
 def test_date_ordering_with_coalesce():
@@ -449,3 +448,4 @@ def run_all_tests():
 
 if __name__ == "__main__":
     run_all_tests()
+

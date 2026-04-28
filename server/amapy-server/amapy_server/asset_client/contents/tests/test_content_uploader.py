@@ -2,10 +2,9 @@ import uuid
 from unittest.mock import patch
 
 import pytest
-
-from amapy_server.asset_client.asset import Asset
-from amapy_server.asset_client.contents import Content
-from amapy_server.asset_client.contents import ContentUploader
+from asset_client.asset import Asset
+from asset_client.contents import Content
+from asset_client.contents import ContentUploader
 
 
 @pytest.fixture(scope="module")
