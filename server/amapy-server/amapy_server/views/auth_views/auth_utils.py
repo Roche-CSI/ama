@@ -189,25 +189,27 @@ def home_page_user():
 
 def get_login_info(token: str, credentials: bool = True):
     user = models.user.User.get_if_exists(models.user.User.token == token)
-    default_project = models.AssetSettings.default_project()
-    dashboard_url = models.AssetSettings.dashboard_url()
-    asset_dashboard_settings = models.AssetSettings.get_if_exists(models.AssetSettings.name == "dashboard_settings")
-    if user:
-        login_info = {
-            "user": {
-                "id": str(user.id),
-                "username": str(user.username),
-                "email": str(user.email),
-                "token": user.token,
-            },
-            "roles": user.get_roles(credentials=credentials),
-            "default_project": str(default_project.id) if default_project else None,
-            "dashboard_url": dashboard_url,
-            "redirect_url": "/projects",
-            "dashboard_settings": json.loads(asset_dashboard_settings.value) if asset_dashboard_settings else None
-        }
-    else:
-        login_info = {
+    if not user:
+        return {
             "error": "invalid user"
         }
-    return login_info
+
+    default_project = models.AssetSettings.default_project()
+    default_credentials = default_project.credentials_user if default_project else None
+    dashboard_url = models.AssetSettings.dashboard_url()
+    dashboard_settings = models.AssetSettings.get_if_exists(models.AssetSettings.name == "dashboard_settings")
+
+    return {
+        "user": {
+            "id": str(user.id),
+            "username": str(user.username),
+            "email": str(user.email),
+            "token": user.token,
+        },
+        "roles": user.get_roles(credentials=credentials),
+        "default_project": str(default_project.id) if default_project else None,
+        "default_credentials": default_credentials,
+        "dashboard_url": dashboard_url,
+        "redirect_url": "/projects",
+        "dashboard_settings": json.loads(dashboard_settings.value) if dashboard_settings else None
+    }
