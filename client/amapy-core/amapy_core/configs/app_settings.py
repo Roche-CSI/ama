@@ -242,13 +242,15 @@ class AppSettings:
         self.data = utils.update_dict(self.data, {"default_project": self._default_project})
 
     def set_roles(self, roles: list, append: bool = True):
-        """translates roles into project and access type
-        and saves to settings db
+        """Translates roles into project and access type and saves to settings db.
+
         Parameters
         ----------
-        roles
+        roles: list
+            A list of role dictionaries, each containing role permissions (can_edit, can_read,
+            can_delete, can_admin_project) and an associated project dict with project metadata.
         append: bool
-                if true, then we add to existing roles else, we replace any existing roles data
+            if true, then we add to existing roles else, we replace any existing roles data
         Returns
         -------
         """
@@ -266,19 +268,18 @@ class AppSettings:
             projects[project_id] = project
 
         if not append:
-            # do a clean-up of previous roles
+            # do a cleanup of previous roles
             self.projects = None
         self.projects = projects
 
-        # if there is one project, then we set it as active
-        project_ids = list(self.projects.keys())
-        if len(project_ids) == 1:
-            self.set_active_project(project_ids[0])
+        if not self.projects:
+            raise exceptions.InvalidProjectError("No projects found in roles")
+
+        # set default project as active if exists
+        if self.default_project and self.default_project in projects:
+            self.set_active_project(self.default_project)
         else:
-            # exclude default project
-            if self.default_project:
-                project_ids.remove(self.default_project)
-            self.set_active_project(project_ids[0])
+            self.set_active_project(next(iter(self.projects)))
 
     def clear_user_data(self):
         self.data = utils.update_dict(self.data,
