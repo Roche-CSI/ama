@@ -35,5 +35,5 @@ def data_from_request(request: Request) -> dict[str, Any]:
         return {'user': g.user} if hasattr(g, 'user') else {}
 
 
-def compress_data(data: any):
+def compress_data(data: Any):
     return gzip.compress(json.dumps(data).encode('utf-8'), 5)
