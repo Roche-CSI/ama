@@ -16,7 +16,7 @@ class AssetClass(LoggingMixin, Serializable):
         self.project = project
         self.asset = asset
 
-    def de_serialize(self, asset, data: dict) -> AssetClass:
+    def de_serialize(self, asset, data: dict):
         if not data:
             return None
         self.auto_save = False
