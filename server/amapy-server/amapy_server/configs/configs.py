@@ -5,7 +5,7 @@ import json
 import logging
 import os
 
-from amapy_server.utils.file_utils import FileUtils
+from amapy_utils.utils.file_utils import FileUtils
 from amapy_utils.utils.log_utils import LoggingMixin
 
 logger = logging.getLogger(__file__)
