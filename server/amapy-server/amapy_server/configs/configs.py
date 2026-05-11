@@ -101,7 +101,7 @@ class Configs(LoggingMixin):
         return os.path.join(self.bucket_url(staging), self.contents_dir)
 
     @property
-    def storage_credentials(self) -> dict:
+    def storage_credentials(self) -> dict | None:
         """gcp/aws storage credentials"""
         try:
             return self._storage_credentials
