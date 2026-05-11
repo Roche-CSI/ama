@@ -1,18 +1,18 @@
 from amapy_pluggy.storage.storage_factory import StorageFactory
 from amapy_pluggy.storage.transporter import Transporter
 from amapy_server import models
-from amapy_utils.utils.utils import time_it
 from amapy_utils.utils.in_memory_file import InMemoryFile
+from amapy_utils.utils.utils import time_it
 
 
 class CommitData:
     asset_class: models.AssetClass
     asset: models.Asset
     version: models.AssetVersion
-    content_ids: [str]
-    content_rel_ids: [str]  # asset_class_content_relations
-    object_ids: [str]
-    object_rel_ids: [str]  # asset_object_relations
+    content_ids: list[str]
+    content_rel_ids: list[str]  # asset_class_content_relations
+    object_ids: list[str]
+    object_rel_ids: list[str]  # asset_object_relations
 
     def __init__(self,
                  asset_cls=None,
@@ -94,47 +94,6 @@ class CommitData:
         storage = StorageFactory.storage_for_url(src_url=storage_url)
         transporter: Transporter = storage.get_transporter()
         transporter.write_to_bucket(data=self.bucket_data)
-
-    # def write_to_bucket(self, storage_url: str, data: dict = None):
-    #     """Writes data in yaml format to bucket
-    #
-    #     Parameters
-    #     ----------
-    #     storage_url
-    #     data
-    #
-    #     Returns
-    #     -------
-    #
-    #     """
-    #     with tempfile.TemporaryDirectory() as temp_dir:
-    #         resources = []
-    #         for value in data:
-    #             dst = value["url"]
-    #             file_name = os.path.basename(dst)
-    #             _, ext = os.path.splitext(file_name)
-    #             path = os.path.join(temp_dir, file_name)
-    #             if ext in ".yaml":
-    #                 FileUtils.write_yaml(abs_path=path, data=value["data"])
-    #             elif ext == ".json":
-    #                 FileUtils.write_json(abs_path=path, data=value["data"])
-    #             elif ext == ".zip":
-    #                 zip_info = value["data"][0]
-    #                 _, info_ext = os.path.splitext(zip_info)
-    #                 if info_ext == ".json":
-    #                     zip_data = FileUtils.json_serialize(data=value["data"][1])
-    #                 elif info_ext == ".yaml":
-    #                     zip_data = FileUtils.yaml_serialize(data=value["data"][1])
-    #                 else:
-    #                     raise Exception("unsupported file format")
-    #                 FileUtils.generate_zip(files=[(zip_info, zip_data)], dest=path)
-    #             resources.append(TransportResource(src=path, dst=value["url"]))
-    #
-    #         for res in resources:
-    #             print(res.dst)
-    #         storage = StorageFactory.storage_for_url(src_url=storage_url)
-    #         transporter: Transporter = storage.get_transporter()
-    #         transporter.upload(resources=resources)
 
     def update_object_rels(self):
         with time_it("updating object_rels"):
