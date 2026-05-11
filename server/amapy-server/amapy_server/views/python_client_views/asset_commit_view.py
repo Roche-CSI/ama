@@ -27,11 +27,12 @@ def list_assets():
 def get_update_asset(id: str):
     if request.method == "PUT":
         data = data_from_request(request)
-        return commit_asset(user=data.get("user"),
-                            data=data.get("payload"),
-                            message=data.get("message"),
-                            bucket_sync=data.get("bucket_sync", True)
-                            )
+        return commit_asset(
+            user=data.get("user"),
+            data=data.get("payload"),
+            message=data.get("message"),
+            bucket_sync=data.get("bucket_sync", True)
+        )
     else:
         asset = AssetModel.get_if_exists(AssetModel.id == id)
         return Response(to_json(AssetWriter().retrieve_from_db(asset)), mimetype="application/json", status=200)
