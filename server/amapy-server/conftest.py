@@ -8,7 +8,7 @@ from amapy_server.asset_client.asset import Asset
 from amapy_server.configs import Configs
 from amapy_server.models import delete_tables, create_tables, User, Project, AssetClass
 from amapy_server.plugins import register_plugins
-from amapy_server.utils.file_utils import FileUtils
+from amapy_utils.utils.file_utils import FileUtils
 
 logger = logging.getLogger(__name__)
 
