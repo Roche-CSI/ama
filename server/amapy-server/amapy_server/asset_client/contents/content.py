@@ -9,7 +9,7 @@ import backoff
 from amapy_server.asset_client.state import ContentState
 from amapy_server.configs import Configs
 from amapy_server.gcp import parse_gcp_url
-from amapy_server.utils.file_utils import FileUtils
+from amapy_utils.utils.file_utils import FileUtils
 from amapy_utils.utils.log_utils import LoggingMixin
 
 HASH_SEP = "_"
