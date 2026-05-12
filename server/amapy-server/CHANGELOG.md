@@ -19,7 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Migrated all internal utility imports to `amapy_utils` equivalents (`FileUtils`, `BetterSet`, `string_to_timestamp`,
-  `time_it`, `cast2list`, `convert_to_pst`, `LoggingMixin`)
+  `time_it`, `cast2list`, `convert_to_pst`, `LoggingMixin`) ([#73](https://github.com/Roche-CSI/ama/pull/73))
 - Upgraded Python requirement to **3.12** ([#72](https://github.com/Roche-CSI/ama/pull/72))
 - Modernized all `typing` imports to use built-in generics (`list`, `dict`, `tuple`, `type`) per PEP 585 / Python 3.12
   style
