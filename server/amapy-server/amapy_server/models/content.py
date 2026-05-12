@@ -6,7 +6,7 @@ from peewee import *
 from playhouse.postgres_ext import JSONField
 
 from amapy_server.configs import Configs
-from amapy_server.utils.file_utils import FileUtils
+from amapy_utils.utils.file_utils import FileUtils
 from .base.read_only import ReadOnlyModel
 
 HASH_SEP = "_"

@@ -2,9 +2,9 @@ import os
 from collections.abc import Callable
 
 from amapy_server.asset_client.objects.object import Object
-from amapy_server.utils import string_to_timestamp
-from amapy_server.utils.better_set import BetterSet
-from amapy_server.utils.file_utils import FileUtils
+from amapy_utils.common.better_set import BetterSet
+from amapy_utils.utils.file_utils import FileUtils
+from amapy_utils.utils.utils import string_to_timestamp
 
 
 class ObjectSet(BetterSet):
@@ -46,7 +46,7 @@ class ObjectSet(BetterSet):
     def serialize(self) -> list:
         return [obj.serialize() for obj in self]
 
-    def filter(self, predicate: Callable = None) -> [Object]:
+    def filter(self, predicate: Callable = None) -> list[Object]:
         """returns a dict of assets stored in asset-manifest
         Parameters:
             predicate: lambda function

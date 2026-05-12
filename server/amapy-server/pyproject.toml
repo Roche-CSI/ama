@@ -16,7 +16,6 @@ maintainers = [
 license = { text = "Copyright (c) 2024 Roche Diagnostics Computation Science & Informatics" }
 requires-python = ">=3.12,<3.13"  # "==3.12.*"
 dependencies = [
-    "aioshutil==1.5",
     "amapy-pluggy==1.1.*",
     "amapy-plugin-gcs==1.1.*",
     "amapy-plugin-s3==1.1.*",

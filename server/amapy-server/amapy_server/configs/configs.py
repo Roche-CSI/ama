@@ -5,8 +5,8 @@ import json
 import logging
 import os
 
-from amapy_server.utils.file_utils import FileUtils
-from amapy_server.utils.logging import LoggingMixin
+from amapy_utils.utils.file_utils import FileUtils
+from amapy_utils.utils.log_utils import LoggingMixin
 
 logger = logging.getLogger(__file__)
 
@@ -101,7 +101,7 @@ class Configs(LoggingMixin):
         return os.path.join(self.bucket_url(staging), self.contents_dir)
 
     @property
-    def storage_credentials(self) -> dict:
+    def storage_credentials(self) -> dict | None:
         """gcp/aws storage credentials"""
         try:
             return self._storage_credentials

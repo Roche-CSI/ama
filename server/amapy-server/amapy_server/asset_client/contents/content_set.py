@@ -1,7 +1,7 @@
 import os
 from collections.abc import Callable
 
-from amapy_server.utils.better_set import BetterSet
+from amapy_utils.common.better_set import BetterSet
 from .content import Content
 from .content_factory import ContentFactory
 
@@ -21,7 +21,7 @@ class ContentSet(BetterSet):
     def remote_url(self):
         return os.path.join(self.asset.configs.contents_url(staging=False), self.asset.asset_class.id)
 
-    def filter(self, predicate: Callable = None) -> [Content]:
+    def filter(self, predicate: Callable = None) -> list:
         """returns a dict of assets stored in asset-manifest
         Parameters:
             predicate: lambda function

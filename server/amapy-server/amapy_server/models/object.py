@@ -5,7 +5,7 @@ import os
 from peewee import ForeignKeyField, CharField, DoesNotExist, BigIntegerField
 from playhouse.postgres_ext import JSONField
 
-from amapy_server.utils.file_utils import FileUtils
+from amapy_utils.utils.file_utils import FileUtils
 from .base.read_only import ReadOnlyModel
 from .content import Content
 
