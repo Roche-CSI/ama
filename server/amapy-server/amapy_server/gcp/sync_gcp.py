@@ -1,6 +1,5 @@
 import logging
 import os
-from typing import Union
 
 from google.cloud import storage
 
@@ -65,7 +64,7 @@ def get_blob_from_url(gs_url):
 
 def get_blob_contents(blob) -> str:
     contents = blob.download_as_string()
-    if type(contents) != str:
+    if not isinstance(contents, str):
         contents = contents.decode("ascii")
     return contents
 
@@ -109,7 +108,7 @@ def move_blob(src_url, dest_url):
         dst_bucket_name))
 
 
-def get_blob_name(blob: Union[storage.Blob, str]):
+def get_blob_name(blob: storage.Blob | str):
     """
     Gets blob name (last part of the path).
     :param blob: instance of :class:`google.cloud.storage.Blob`.

@@ -1,6 +1,5 @@
 import datetime
 import json
-from typing import Optional
 
 import google
 import jwt
@@ -83,7 +82,7 @@ def get_flow(configs: dict = None, redirect_uri: str = None):
 def login_required(function):
     def wrapper(*args, **kwargs):
         encoded_jwt = request.headers.get("Authorization").split("Bearer ")[1]
-        if encoded_jwt == None:
+        if encoded_jwt is None:
             return abort(401)
         else:
             return function()
@@ -96,7 +95,7 @@ def generate_jwt(payload):
     return encoded_jwt
 
 
-def generate_token_with_expiry(user: dict, expiry: datetime):
+def generate_token_with_expiry(user: dict, expiry: datetime.datetime):
     current_user = models.user.User.get_if_exists(models.user.User.email == user.get("email"))
     if user:
         login_info = {
@@ -113,7 +112,7 @@ def generate_token_with_expiry(user: dict, expiry: datetime):
         return jwt_token
 
 
-def get_user_from_token(token: str) -> Optional[models.user.User]:
+def get_user_from_token(token: str) -> models.user.User | None:
     """
     Decode JWT token and return corresponding user.
     """

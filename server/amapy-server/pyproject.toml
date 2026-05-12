@@ -1,10 +1,10 @@
 [build-system]
-requires = ["setuptools>=68.0.0,<69.0.0"]
+requires = ["setuptools>=74.0.0,<75.0.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "amapy-server"
-version = "1.0.2"
+version = "1.1.0"
 description = "The server-side component of the ama project."
 readme = "README.md"
 authors = [
@@ -14,28 +14,26 @@ maintainers = [
     { name = "Swarup Mahanti", email = "swarup.mahanti@roche.com" }
 ]
 license = { text = "Copyright (c) 2024 Roche Diagnostics Computation Science & Informatics" }
-requires-python = "==3.10.*"
+requires-python = ">=3.12,<3.13"  # "==3.12.*"
 dependencies = [
-    "Flask-Admin==1.6.0",
-    "Flask-Cors==3.0.10",
-    "Flask-Dance==7.0.0",
-    "Flask-Login==0.6.3",
-    "Flask==2.1.1",
-    "Jinja2==3.0.*",
-    "Werkzeug==2.0.1",
-    "aioshutil==1.3",
-    "amapy-pluggy==1.0.*",
-    "amapy-plugin-gcs==1.0.*",
-    "amapy-plugin-s3==1.0.*",
-    "amapy-utils==1.0.*",
-    "elasticsearch==8.15.1",
-    "google-auth-oauthlib==0.5.*",
-    "gunicorn==20.1.*",
-    "packaging==23.1.*",
-    "peewee==3.14.*",
-    "psycopg2==2.9.2",
-    "sentence-transformers==3.2.1",
-    "wtf-peewee==3.0.3",
+    "aioshutil==1.5",
+    "amapy-pluggy==1.1.*",
+    "amapy-plugin-gcs==1.1.*",
+    "amapy-plugin-s3==1.1.*",
+    "amapy-utils==1.1.*",
+    "elasticsearch==8.17.*",
+    "google-auth-oauthlib==1.2.*", # same as amapy-core
+    "peewee==3.17.*",
+    "psycopg2==2.9.*",
+    "sentence-transformers==3.4.*",
+    "wtf-peewee==3.0.*",
+    # Flask related packages
+    "Flask==3.0.3",
+    "Flask-Admin==2.0.*",
+    "flask-cors==4.0.*",
+    "Flask-Dance==7.1.*",
+    "Flask-Login==0.6.*",
+    "gunicorn==23.0.*"
 ]
 
 [tool.setuptools]

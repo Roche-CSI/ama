@@ -3,7 +3,7 @@ import weakref
 from collections import OrderedDict
 from datetime import datetime, timedelta
 from threading import Lock
-from typing import Dict, Optional, Any, List
+from typing import Any
 
 import numpy as np
 
@@ -25,7 +25,7 @@ class SimpleCache:
             expiry = datetime.now() + timedelta(seconds=ttl)
             self.cache[key] = (value, expiry)
 
-    def get(self, key: str) -> Optional[Any]:
+    def get(self, key: str) -> Any | None:
         with self.lock:
             if key not in self.cache:
                 return None
@@ -50,7 +50,7 @@ class LRUCache:
         self.max_size = max_size
         self.lock = Lock()
 
-    def get(self, key: str) -> Optional[Any]:
+    def get(self, key: str) -> Any | None:
         with self.lock:
             if key not in self.cache:
                 return None
@@ -80,7 +80,7 @@ class WeakRefCache:
         with self.lock:
             self.cache[key] = value
 
-    def get(self, key: str) -> Optional[Any]:
+    def get(self, key: str) -> Any | None:
         with self.lock:
             return self.cache.get(key)
 
@@ -96,18 +96,18 @@ class VectorSearchCache:
         # Cache for search results
         self.result_cache = SimpleCache(result_cache_size)
 
-    def get_embedding(self, text: str) -> Optional[np.ndarray]:
+    def get_embedding(self, text: str) -> np.ndarray | None:
         return self.embedding_cache.get(text)
 
     def set_embedding(self, text: str, embedding: np.ndarray):
         self.embedding_cache.set(text, embedding)
 
-    def get_search_results(self, query: str) -> Optional[List[Dict]]:
+    def get_search_results(self, query: str) -> list[dict] | None:
         return self.result_cache.get(query)
 
     def set_search_results(self,
                            query: str,
-                           results: List[Dict],
+                           results: list[dict],
                            ttl: int = 3600):
         self.result_cache.set(query, results, ttl)
 

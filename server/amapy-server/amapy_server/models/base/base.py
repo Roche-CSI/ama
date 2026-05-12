@@ -61,9 +61,9 @@ class BaseModel(LoggingMixin, Model):
         # remove private fields from dict
         for key in result:
             val = result.get(key)
-            if type(val) == datetime:
+            if isinstance(val, datetime):
                 result[key] = convert_to_pst(val)
-            if type(val) == uuid.UUID:
+            if isinstance(val, uuid.UUID):
                 result[key] = str(val)
 
         if not fields:
