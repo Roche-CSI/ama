@@ -10,7 +10,7 @@ from amapy_server.configs import Configs
 from amapy_server.elastic.asset_entry import AssetEntry
 from amapy_server.elastic.vector_search import ElasticVectorSearch
 from amapy_server.models.asset import Asset
-from amapy_server.utils.file_utils import FileUtils
+from amapy_utils.utils.file_utils import FileUtils
 
 
 def datetime_converter(obj):

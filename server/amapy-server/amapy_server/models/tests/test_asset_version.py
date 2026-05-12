@@ -9,7 +9,7 @@ from amapy_server.models.asset_class import AssetClass
 from amapy_server.models.asset_version import AssetVersion
 from amapy_server.models.utils import delete_records
 from amapy_server.models.version_counter import VersionCounter
-from amapy_server.utils.file_utils import FileUtils
+from amapy_utils.utils.file_utils import FileUtils
 
 
 @pytest.fixture(scope="module")
