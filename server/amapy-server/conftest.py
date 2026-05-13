@@ -37,6 +37,8 @@ def pytest_sessionstart(session):
     """
     logger.info("Pre-Session Setup..")
     os.environ.setdefault("APP_SECRET", "test-secret-key-for-unit-tests")
+    os.environ.setdefault("remote_url", "gs://test-bucket/test")
+    os.environ.setdefault("staging_url", "gs://test-bucket/staging")
     Configs.de_init()  # cleanup existing settings if any
     Configs.shared(mode=Configs.modes.TEST)  # all tests to use test_settings only
     StorageCredentials.shared().set_credentials(cred=MOCK_GCS_CREDENTIALS)
@@ -52,6 +54,8 @@ def pytest_sessionfinish(session, exitstatus):
     """
     logger.info("\nPost-session Teardown..")
     Configs.de_init()  # cleanup
+    os.environ.pop("remote_url", None)
+    os.environ.pop("staging_url", None)
 
 
 @pytest.fixture(scope="session")
