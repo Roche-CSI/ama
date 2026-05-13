@@ -11,7 +11,7 @@ from amapy_utils.utils.utils import time_it
 
 def data():
     """need the test_app fixture for making db transactions"""
-    path = os.path.join(os.path.dirname(__file__), "from_client.json")
+    path = os.path.join(os.path.dirname(__file__), "asset_data.json")
     return FileUtils.read_json(path)
 
 
