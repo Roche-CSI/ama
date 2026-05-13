@@ -5,7 +5,7 @@ from flask import flash
 from flask_admin.actions import action
 from flask_admin.contrib.peewee import ModelView
 from flask_admin.model import typefmt
-from jinja2 import Markup
+from markupsafe import Markup
 
 
 def json_formatter(view, value):

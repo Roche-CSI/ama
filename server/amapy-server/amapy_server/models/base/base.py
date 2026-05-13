@@ -11,8 +11,8 @@ from playhouse.shortcuts import model_to_dict
 
 from amapy_server.configs import Configs
 from amapy_server.models import utils
-from amapy_server.utils import convert_to_pst
-from amapy_server.utils.logging import LoggingMixin
+from amapy_utils.utils.log_utils import LoggingMixin
+from amapy_utils.utils.utils import convert_to_pst
 from .status_enums import StatusEnums
 
 #: placeholder so that we can change database config in runtime
@@ -61,9 +61,9 @@ class BaseModel(LoggingMixin, Model):
         # remove private fields from dict
         for key in result:
             val = result.get(key)
-            if type(val) == datetime:
+            if isinstance(val, datetime):
                 result[key] = convert_to_pst(val)
-            if type(val) == uuid.UUID:
+            if isinstance(val, uuid.UUID):
                 result[key] = str(val)
 
         if not fields:

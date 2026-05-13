@@ -3,7 +3,7 @@ import os
 from peewee import ModelTupleCursorWrapper
 
 from amapy_server import models
-from amapy_server.utils.file_utils import FileUtils
+from amapy_utils.utils.file_utils import FileUtils
 
 
 def data():

@@ -1,11 +1,11 @@
 import gzip
 import json
-from typing import Dict, Any
+from typing import Any
 
 from flask import Request, g
 
 
-def data_from_request(request: Request) -> Dict[str, Any]:
+def data_from_request(request: Request) -> dict[str, Any]:
     """
     Parse data from request,
     if request is GET, parse data from request.args
@@ -35,5 +35,5 @@ def data_from_request(request: Request) -> Dict[str, Any]:
         return {'user': g.user} if hasattr(g, 'user') else {}
 
 
-def compress_data(data: any):
+def compress_data(data: Any):
     return gzip.compress(json.dumps(data).encode('utf-8'), 5)

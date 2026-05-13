@@ -1,5 +1,5 @@
 import json
-from typing import Any, Dict, Union, List
+from typing import Any
 
 
 class StringifyDict(dict):
@@ -9,7 +9,7 @@ class StringifyDict(dict):
     """
 
     @staticmethod
-    def _prepare_value(value: Any) -> Union[str, List, Dict, None]:
+    def _prepare_value(value: Any) -> str | list | dict | None:
         """
         Prepare a single value for indexing by converting to appropriate types.
 
@@ -31,7 +31,7 @@ class StringifyDict(dict):
             return str(value)
 
     @staticmethod
-    def _remove_null(data: Union[Dict, List]) -> Union[Dict, List]:
+    def _remove_null(data: dict | list) -> dict | list:
         """
         Remove null values from data structure and clean nested structures.
         Handles both dictionaries and lists.
@@ -40,7 +40,7 @@ class StringifyDict(dict):
             data: Dictionary or list to clean
 
         Returns:
-            Union[Dict, List]: Cleaned data structure with null values removed
+            Cleaned data structure with null values removed
         """
         if isinstance(data, dict):
             if not data:

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import os
 
-from amapy_server.utils.logging import LoggingMixin
+from amapy_utils.utils.log_utils import LoggingMixin
 from .serializable import Serializable
 
 
@@ -27,7 +27,7 @@ class AssetVersion(LoggingMixin, Serializable):
             return None
         return os.path.join(self.asset.remote_url, f"version_{self.number}.yaml")
 
-    def de_serialize(self, asset, data: dict) -> AssetVersion:
+    def de_serialize(self, asset, data: dict):
         if not data:
             return None
         self.auto_save = False

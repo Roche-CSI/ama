@@ -1,6 +1,6 @@
 import time
 from datetime import datetime
-from typing import Any, Dict, Optional, List
+from typing import Any
 
 from amapy_server.elastic.deep_compare_dict import DeepCompareDict
 from amapy_server.elastic.vector_search import ElasticVectorSearch
@@ -158,18 +158,18 @@ class ElasticMixin:
 
         return value
 
-    def to_dict(self, fields: Optional[List[str]] = None) -> Dict[str, Any]:
+    def to_dict(self, fields: list[str] | None = None) -> dict[str, Any]:
         """
         Convert object to dictionary with proper timestamp handling.
 
         Parameters
         ----------
-        fields : Optional[List[str]]
+        fields : list[str] | None
             List of fields to include in the output. If None, includes all fields.
 
         Returns
         -------
-        Dict[str, Any]
+        dict[str, Any]
             Dictionary representation of the object with converted values
 
         Examples

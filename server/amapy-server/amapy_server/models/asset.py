@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 import os
 from functools import reduce
-from typing import Dict, Any, Optional
+from typing import Any
 
 from peewee import *
 from peewee import operator
@@ -107,7 +107,7 @@ class Asset(ReadWriteModel):
         return super().save(user=user, force_insert=force_insert, only=only)
 
     @staticmethod
-    def parse_metadata_string(json_str: str) -> Optional[Dict[str, Any]]:
+    def parse_metadata_string(json_str: str) -> dict[str, Any] | None:
         """
         Parse a potentially malformed JSON string into a dictionary.
 
@@ -201,18 +201,18 @@ class Asset(ReadWriteModel):
 
     @classmethod
     def list_assets(
-        cls,
-        class_id: str,
-        ids_only: bool = False,
-        recurse: bool = False,
-        seq_id: int = None,
-        owner: str = None,
-        alias: str = None,
-        search_by: str = None,
-        page_number: int = None,
-        page_size: int = None,
-        order_by: str = None,
-        order_desc: bool = True,
+            cls,
+            class_id: str,
+            ids_only: bool = False,
+            recurse: bool = False,
+            seq_id: int = None,
+            owner: str = None,
+            alias: str = None,
+            search_by: str = None,
+            page_number: int = None,
+            page_size: int = None,
+            order_by: str = None,
+            order_desc: bool = True,
     ):
         from .version_counter import VersionCounter
         from .asset_version import AssetVersion

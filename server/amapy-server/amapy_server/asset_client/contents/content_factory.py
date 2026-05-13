@@ -1,6 +1,6 @@
 from google.cloud.storage.blob import Blob
 
-from amapy_server.utils import cast2list
+from amapy_utils.utils.utils import cast2list
 from .content import Content
 from .db_content import DbContent
 from .docker_content import DockerContent
