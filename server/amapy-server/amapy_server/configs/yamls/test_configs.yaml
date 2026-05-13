@@ -1,5 +1,5 @@
 DATABASE:
-  database: assets_db_test
+  database: asset_sandbox
   user: postgres
   password: postgres
   host: localhost
