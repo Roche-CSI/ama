@@ -110,9 +110,9 @@ def test_project(test_user, test_app):
 @pytest.fixture(scope="session")
 def test_asset_class(test_user, test_project):
     # test_app fixture required for db transactions
-    asset_cls = AssetClass.get_or_none(AssetClass.name == "gene_data", AssetClass.project == test_project)
+    asset_cls = AssetClass.get_or_none(AssetClass.name == "test_class", AssetClass.project == test_project)
     if not asset_cls:
-        asset_cls = AssetClass.create(name="gene_data", project=test_project, user=test_user.username)
+        asset_cls = AssetClass.create(name="test_class", project=test_project, user=test_user.username)
     yield asset_cls
     asset_cls.delete_instance(user=test_user, permanently=True)
     assert AssetClass.get_if_exists(AssetClass.id == asset_cls.id, include_deleted_records=True) is None
