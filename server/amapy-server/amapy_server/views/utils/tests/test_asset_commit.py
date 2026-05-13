@@ -16,7 +16,7 @@ def data():
 
 
 def large_asset_data():
-    objects_data = FileUtils.read_json(os.path.join(os.path.dirname(__file__), "genia_data.json"))
+    objects_data = FileUtils.read_json(os.path.join(os.path.dirname(__file__), "objects_data.json"))
     asset_data = data()
     asset_data["objects"] = objects_data
     return asset_data
