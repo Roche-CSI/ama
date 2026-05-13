@@ -2,7 +2,7 @@ import os
 
 from amapy_server.asset_client.asset import Asset
 from amapy_server.asset_client.objects.objects_diff import ObjectsDiff
-from amapy_server.utils.file_utils import FileUtils
+from amapy_utils.utils.file_utils import FileUtils
 
 
 def assets_data():
