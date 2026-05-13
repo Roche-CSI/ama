@@ -1,10 +1,31 @@
 from amapy_server.asset_client.objects.object import Object
 from amapy_server.asset_client.objects.object_set import ObjectSet
 
+OBJ_DATA = [
+    {
+        "id": "gs:md5$placeholder_id_001==::example_data/parameters.json",
+        "url_id": None,
+        "created_by": "user1",
+        "created_at": "2022/01/01 00-00-00 -0700",
+        "content": {
+            "id": "gs:md5$placeholder_id_content_001==",
+            "mime_type": "application/json",
+            "size": 6148,
+            "meta": {},
+            "created_by": None,
+            "created_at": None
+        }
+    },
+]
+
 
 def test_de_serialize(client_asset):
     """de_serialize populates the set with Object instances sorted by created_at."""
-    pass
+    obj_set = ObjectSet(asset=client_asset)
+    obj_set.de_serialize(OBJ_DATA)
+    assert len(obj_set) == len(OBJ_DATA)
+    assert all(isinstance(o, Object) for o in obj_set)
+
 
 def test_serialize(client_asset):
     """serialize() returns a list of dicts, one per object."""
