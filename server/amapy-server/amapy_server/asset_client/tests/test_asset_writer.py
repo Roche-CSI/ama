@@ -13,7 +13,7 @@ from amapy_server.models.content import Content as ContentModel
 from amapy_server.models.object import Object as ObjectModel
 from amapy_server.models.utils import delete_records
 from amapy_server.models.version_counter import VersionCounter
-from amapy_server.utils.file_utils import FileUtils
+from amapy_utils.utils.file_utils import FileUtils
 
 
 @pytest.fixture(scope="module")

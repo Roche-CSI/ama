@@ -6,7 +6,7 @@ from amapy_server.asset_client.asset import Asset
 from amapy_server.asset_client.asset_class import AssetClass
 from amapy_server.asset_client.contents import ContentSet
 from amapy_server.asset_client.objects import ObjectSet
-from amapy_server.utils.file_utils import FileUtils
+from amapy_utils.utils.file_utils import FileUtils
 
 
 @pytest.fixture(scope="module")
