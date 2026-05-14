@@ -47,6 +47,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Fixed unit tests by updating old-style relative imports (`from asset_client.`, `from src.`, `from utils.`,
+  `from views.`, `from models.`) to `amapy_server.*` import paths ([#74](https://github.com/Roche-CSI/ama/pull/74))
 - Removed unnecessary `template_mode` parameter in Flask-Admin setup
 - Corrected `None` checks and type hint in `auth_utils.py`
 - Fixed type hint for `compress_data` function
