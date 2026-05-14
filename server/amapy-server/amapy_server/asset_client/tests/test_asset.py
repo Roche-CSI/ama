@@ -1,12 +1,12 @@
 import os
 
 import pytest
-from asset_client.asset import Asset
-from asset_client.asset_class import AssetClass
-from asset_client.contents import ContentSet
-from asset_client.objects import ObjectSet
 
-from utils.file_utils import FileUtils
+from amapy_server.asset_client.asset import Asset
+from amapy_server.asset_client.asset_class import AssetClass
+from amapy_server.asset_client.contents import ContentSet
+from amapy_server.asset_client.objects import ObjectSet
+from amapy_utils.utils.file_utils import FileUtils
 
 
 @pytest.fixture(scope="module")
