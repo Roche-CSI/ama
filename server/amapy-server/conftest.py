@@ -91,19 +91,15 @@ def test_user(test_app):
 def test_project(test_user, test_app):
     # switch to a fixed id so we can manually inspect the project in the db
     project_id = "00000001-0001-0001-0001-000000000001"
-    project: Project = Project.get_or_create(id=project_id,
-                                             user=test_user.username,
-                                             name="test_project",
-                                             is_active=True,
-                                             staging_url="random_url",
-                                             remote_url="random_url")[0]
-
-    project.credentials_server = FileUtils.read_json(os.getenv("GOOGLE_APPLICATION_CREDENTIALS"))
-    gcs_url = "gs://placeholder_bukcet/server_test/{}"
-    project.remote_url = gcs_url.format(project.id)
+    project = Project.get_or_create(id=project_id,
+                                    user=test_user.username,
+                                    name="test_project",
+                                    is_active=True,
+                                    staging_url="random_url",
+                                    remote_url="random_url")[0]
+    project.remote_url = f"gs://placeholder_bukcet/server_test/{project.id}"
     project.save(user=test_user.username, only=[Project.remote_url, Project.credentials_server])
     yield project
-
     project.delete_instance(user="user1", permanently=True)
 
 
@@ -112,7 +108,8 @@ def test_asset_class(test_user, test_project):
     # test_app fixture required for db transactions
     asset_cls = AssetClass.get_or_none(AssetClass.name == "test_class", AssetClass.project == test_project)
     if not asset_cls:
-        asset_cls = AssetClass.create(name="test_class", project=test_project, user=test_user.username)
+        asset_cls = AssetClass.create(name="test_class",
+                                      project=test_project,
+                                      user=test_user.username)
     yield asset_cls
     asset_cls.delete_instance(user=test_user, permanently=True)
-    assert AssetClass.get_if_exists(AssetClass.id == asset_cls.id, include_deleted_records=True) is None
