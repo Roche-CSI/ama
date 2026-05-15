@@ -196,8 +196,9 @@ class SettingsAPI(LoggingMixin):
         user = res.get("user") if res else None
         if user and user.get("id"):
             # save to settings
-            self.settings.default_project = res.get("default_project", None)
             self.settings.user = res.get("user")
+            self.settings.default_project = res.get("default_project")
+            self.settings.active_project_credentials = res.get("default_credentials")
             self.settings.set_roles(res.get("roles"), append=False)
 
             # print success message
@@ -211,7 +212,6 @@ class SettingsAPI(LoggingMixin):
                 cfg = self.settings.shared().user_configs
                 cfg.update({"dashboard_url": dashboard_url})
                 cfg.save()
-
                 self.user_log.message(f"Dashboard url is set to: {dashboard_url}")
 
             if self.settings.active_project:
