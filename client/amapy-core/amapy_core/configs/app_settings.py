@@ -230,8 +230,7 @@ class AppSettings:
         try:
             return self._default_project
         except AttributeError:
-            # default to machine user id
-            self._default_project = self.data.get("default_project")  # or get_user_id()
+            self._default_project = self.data.get("default_project")
             return self._default_project
 
     @default_project.setter
@@ -321,6 +320,19 @@ class AppSettings:
     @property
     def active_project_data(self) -> dict:
         return self.projects.get(self.active_project)
+
+    @property
+    def active_project_credentials(self) -> dict:
+        try:
+            return self._active_project_credentials
+        except AttributeError:
+            self._active_project_credentials = self.data.get("active_project_credentials") or {}
+            return self._active_project_credentials
+
+    @active_project_credentials.setter
+    def active_project_credentials(self, x: dict):
+        self._active_project_credentials = x
+        self.data = utils.update_dict(self.data, {"active_project_credentials": self._active_project_credentials})
 
     @property
     def user_configs(self) -> UserSettings:
