@@ -168,7 +168,7 @@ class SettingsAPI(LoggingMixin):
         self.print_user_configs(show_help=False)
         self.user_log.message(user_commands.UserCommands().reset_user_configs())
 
-    def reset_user_configs(self, keys: [str]):
+    def reset_user_configs(self, keys: list[str]):
         if not keys:
             e = exceptions.AssetException(msg="missing config keys, you must pass the key you want to reset")
             e.logs.add(user_commands.UserCommands().reset_user_configs())
