@@ -173,9 +173,8 @@ class AppSettings:
         os.environ["ASSET_PROJECT_ID"] = project_id
 
         # set the credentials from the project
-        credentials_project = project.get("credentials_user")
-        StorageCredentials.shared().set_credentials(cred=credentials_project)
-        StorageCredentials.shared().set_content_credentials(cred=credentials_project)
+        StorageCredentials.shared().set_credentials(cred=self.active_project_credentials)
+        StorageCredentials.shared().set_content_credentials(cred=self.active_project_credentials)
 
         # user provides an overriding credentials
         user_credentials = os.environ.get("ASSET_CREDENTIALS")
