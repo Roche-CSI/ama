@@ -210,14 +210,12 @@ class AppSettings:
             os.environ.update(self._prev_environs.pop())
 
     def set_plugin_env(self):
-        """sets the necessary environment variables for the plugins to work
-        """
+        """Sets the necessary environment variables for the plugins to work."""
         if not os.getenv("ASSET_SERVER_URL", None):
             os.environ["ASSET_SERVER_URL"] = Configs.shared().server.server_url
 
     def unset_plugin_env(self):
-        """unsets the necessary environment variables for the plugins
-        """
+        """Unsets the necessary environment variables for the plugins."""
         os.environ.pop("ASSET_SERVER_URL", None)
 
     def storage_url(self, staging=False):
