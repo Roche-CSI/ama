@@ -172,7 +172,7 @@ class AppSettings:
         project = self.projects.get(project_id)
         os.environ["ASSET_PROJECT_ID"] = project_id
 
-        # set the credentials from the project
+        # set the credentials of the active project
         StorageCredentials.shared().set_credentials(cred=self.active_project_credentials)
         StorageCredentials.shared().set_content_credentials(cred=self.active_project_credentials)
 
