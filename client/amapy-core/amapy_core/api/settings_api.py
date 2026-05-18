@@ -429,7 +429,7 @@ class SettingsAPI(LoggingMixin):
                 self.settings.set_active_project(project.get("id"), persist)
                 # fetch the project credentials from server and apply them
                 project_credentials = self.get_project_credentials(project.get("id"))
-                self.settings.set_active_project_credentials(project_credentials)
+                self.settings.set_active_project_credentials(project_credentials, persist)
                 self.user_log.success("Success")
                 self.user_log.info(f"active project: {project_name}")
                 self.print_all_projects(show_help=False)
