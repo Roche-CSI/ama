@@ -325,10 +325,10 @@ class AppSettings:
             self._active_project_credentials = self.data.get("active_project_credentials") or {}
             return self._active_project_credentials
 
-    @active_project_credentials.setter
-    def active_project_credentials(self, x: dict):
+    def set_active_project_credentials(self, x: dict, persist=True):
         self._active_project_credentials = x
-        self.data = utils.update_dict(self.data, {"active_project_credentials": self._active_project_credentials})
+        self.set_data(utils.update_dict(self.data, {"active_project_credentials": self._active_project_credentials}),
+                      persist)
 
     @property
     def user_configs(self) -> UserSettings:
