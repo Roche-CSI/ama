@@ -6,7 +6,7 @@ import shutil
 
 from amapy_core.configs import Configs
 from amapy_core.configs.app_settings import AppSettings, UserSettings
-from amapy_core.server import AuthServer
+from amapy_core.server import AuthServer, AssetServer
 from amapy_core.server import base_server
 from amapy_core.store.asset_store import AssetStore
 from amapy_utils.common import user_commands, exceptions
@@ -409,18 +409,37 @@ class SettingsAPI(LoggingMixin):
             self.user_log.success("Success")
             self.user_log.info(f"removed asset-store and all its contents from: {self.settings.assets_home}")
 
+    def get_project_credentials(self, project_id: str):
+        """Retrieves the project credentials from the server."""
+        with self.user_settings():
+            project_credentials = AssetServer().get_project_credentials(project_id)
+            if project_credentials:
+                from amapy_pluggy.storage.storage_credentials import StorageCredentials
+                StorageCredentials.shared().set_credentials(project_credentials)
+                StorageCredentials.shared().set_content_credentials(project_credentials)
+            return project_credentials
+
     def set_active_project(self, project_name: str, persist=True):
         """Sets the active project by its name.
 
         From the CLI persist is always True, from the API it's False by default.
         """
+        if project_name == self.settings.active_project_data.get("name"):
+            self.user_log.info(f"{project_name}: already set as active")
+            self.print_all_projects(show_help=False)
+            return True
+
         for project in self.settings.projects.values():
             if project.get("name") == project_name:
+                # fetch the project credentials from server
+                project_credentials = self.get_project_credentials(project.get("id"))
+                print(project_credentials)
                 self.settings.set_active_project(project.get("id"), persist)
                 self.user_log.success("Success")
                 self.user_log.info(f"active project: {project_name}")
                 self.print_all_projects(show_help=False)
                 return True
+
         raise exceptions.AssetException(f"project: {project_name} not found")
 
     def print_project_list_table(self, projects=[], jsonize=False):
