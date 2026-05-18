@@ -413,10 +413,6 @@ class SettingsAPI(LoggingMixin):
         """Retrieves the project credentials from the server."""
         with self.user_settings():
             project_credentials = AssetServer().get_project_credentials(project_id)
-            if project_credentials:
-                from amapy_pluggy.storage.storage_credentials import StorageCredentials
-                StorageCredentials.shared().set_credentials(project_credentials)
-                StorageCredentials.shared().set_content_credentials(project_credentials)
             return project_credentials
 
     def set_active_project(self, project_name: str, persist=True):
@@ -431,9 +427,8 @@ class SettingsAPI(LoggingMixin):
 
         for project in self.settings.projects.values():
             if project.get("name") == project_name:
-                # fetch the project credentials from server
+                # fetch the project credentials from server and apply them
                 project_credentials = self.get_project_credentials(project.get("id"))
-                print(project_credentials)
                 self.settings.set_active_project(project.get("id"), persist)
                 self.user_log.success("Success")
                 self.user_log.info(f"active project: {project_name}")

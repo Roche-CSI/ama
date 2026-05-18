@@ -35,10 +35,9 @@ class Project(ReadWriteModel):
     def yaml_fields(cls):
         raise NotImplementedError()
 
-    def storage_token(self, server=False):
-        with self.storage(server=server):
-            return "to be implemented"
-            # return get_aio_token(self.credentials_server)
+    def user_credentials(self):
+        """Returns the user-facing storage credentials for this project."""
+        return self.credentials_user
 
     @contextlib.contextmanager
     def storage(self, server=True):
