@@ -20,4 +20,4 @@ def index():
 def get_token():
     project_id = request.args.get("project_id")
     project = models.Project.get(models.Project.id == project_id)
-    return Response(to_json(project.user_credentials()), mimetype="application/json", status=200)
+    return Response(to_json(project.credentials_user), mimetype="application/json", status=200)

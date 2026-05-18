@@ -35,10 +35,6 @@ class Project(ReadWriteModel):
     def yaml_fields(cls):
         raise NotImplementedError()
 
-    def user_credentials(self):
-        """Returns the user-facing storage credentials for this project."""
-        return self.credentials_user
-
     @contextlib.contextmanager
     def storage(self, server=True):
         # set credentials
