@@ -54,6 +54,9 @@ class AssetServer:
     def _find_ref_route(self):
         return os.path.join(self.url, self.configs.find_ref_route)
 
+    def _project_token_route(self):
+        return os.path.join(self.url, self.configs.project_token_route)
+
     def create_asset(self, **kwargs):
         return self.parse(self.post(url=self._asset_route(), data=kwargs))
 
