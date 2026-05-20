@@ -44,7 +44,7 @@ def move_from_staging(objects):
     asyncio.run(_move_objects(objects))
 
 
-async def _move_objects(objects: list[AssetObject]):
+async def _move_objects(objects: [AssetObject]):
     """Uploads a list of files to bucket
     Parameters:
         objects: list of AssetObject
