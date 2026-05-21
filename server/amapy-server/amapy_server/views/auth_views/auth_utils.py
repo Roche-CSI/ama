@@ -197,7 +197,6 @@ def get_login_info(token: str, credentials: bool = True):
     default_project = models.AssetSettings.default_project()
     dashboard_url = models.AssetSettings.dashboard_url()
     dashboard_settings = models.AssetSettings.get_if_exists(models.AssetSettings.name == "dashboard_settings")
-
     return {
         "user": {
             "id": str(user.id),
