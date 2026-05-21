@@ -195,7 +195,6 @@ def get_login_info(token: str, credentials: bool = True):
         }
 
     default_project = models.AssetSettings.default_project()
-    default_credentials = default_project.credentials_user if default_project else None
     dashboard_url = models.AssetSettings.dashboard_url()
     dashboard_settings = models.AssetSettings.get_if_exists(models.AssetSettings.name == "dashboard_settings")
 
@@ -208,7 +207,7 @@ def get_login_info(token: str, credentials: bool = True):
         },
         "roles": user.get_roles(credentials=credentials),
         "default_project": str(default_project.id) if default_project else None,
-        "default_credentials": default_credentials,
+        "default_token": default_project.storage_token() if default_project else None,
         "dashboard_url": dashboard_url,
         "redirect_url": "/projects",
         "dashboard_settings": json.loads(dashboard_settings.value) if dashboard_settings else None
