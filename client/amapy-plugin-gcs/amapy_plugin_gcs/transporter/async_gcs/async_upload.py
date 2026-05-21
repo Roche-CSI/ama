@@ -4,7 +4,7 @@ import os
 import aiohttp
 import backoff
 
-from amapy_plugin_gcs.transporter.async_gcs.async_storage import AsyncStorage, build_async_storage
+from amapy_plugin_gcs.transporter.async_gcs.async_storage import AsyncStorage
 from amapy_plugin_gcs.transporter.gcs_transport_resource import GcsUploadResource
 from amapy_utils.utils.log_utils import get_logger
 
