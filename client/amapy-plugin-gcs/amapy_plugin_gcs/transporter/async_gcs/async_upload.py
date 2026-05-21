@@ -1,12 +1,10 @@
 import asyncio
-import io
-import json
 import os
 
 import aiohttp
 import backoff
 
-from amapy_plugin_gcs.transporter.async_gcs.async_storage import AsyncStorage
+from amapy_plugin_gcs.transporter.async_gcs.async_storage import AsyncStorage, build_async_storage
 from amapy_plugin_gcs.transporter.gcs_transport_resource import GcsUploadResource
 from amapy_utils.utils.log_utils import get_logger
 
@@ -45,8 +43,7 @@ async def __async_upload_resources(credentials: dict, resources: list[GcsUploadR
     timeout = aiohttp.ClientTimeout(total=session_timeout)
     async with aiohttp.ClientSession(connector=aiohttp.TCPConnector(ssl=False),
                                      timeout=timeout) as session:
-        async_client = AsyncStorage(session=session,
-                                    service_file=io.StringIO(json.dumps(credentials)))
+        async_client = AsyncStorage(session=session, credentials=credentials)
         # deactivate ssl verification, throws error in some macs otherwise
         result = []
         await asyncio.gather(*[__async_upload_resource(async_client=async_client,

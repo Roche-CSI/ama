@@ -1,11 +1,9 @@
 import asyncio
-import io
-import json
 
 import aiohttp
 import backoff
 
-from amapy_plugin_gcs.transporter.async_gcs.async_storage import AsyncStorage
+from amapy_plugin_gcs.transporter.async_gcs.async_storage import AsyncStorage, build_async_storage
 from amapy_plugin_gcs.transporter.gcs_transport_resource import GcsCopyResource
 from amapy_utils.utils.log_utils import get_logger
 
@@ -34,8 +32,7 @@ async def __async_copy_resources(credentials: dict, resources: list[GcsCopyResou
         A list of results from the copy operations.
     """
     async with aiohttp.ClientSession(connector=aiohttp.TCPConnector(ssl=False)) as session:
-        async_client = AsyncStorage(session=session,
-                                    service_file=io.StringIO(json.dumps(credentials)))
+        async_client = AsyncStorage(session=session, credentials=credentials)
         # deactivate ssl verification, throws error in some macs otherwise
         result = []
         await asyncio.gather(*[__async_copy_resource(async_client=async_client,
