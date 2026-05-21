@@ -312,8 +312,8 @@ class AppSettings:
         self.data = utils.update_dict(self.data,
                                       {
                                           "projects": None,
-                                          "auth": None,
                                           "active_project": None,
+                                          "active_project_credentials": None,
                                           "user": None,
                                           "default_project": None
                                       })
@@ -361,8 +361,10 @@ class AppSettings:
 
     def set_active_project_credentials(self, x: dict, persist=True):
         self._active_project_credentials = x
-        self.set_data(utils.update_dict(self.data, {"active_project_credentials": self._active_project_credentials}),
-                      persist)
+        self.set_data(
+            utils.update_dict(self.data, {"active_project_credentials": self._active_project_credentials}),
+            persist
+        )
 
     @property
     def user_configs(self) -> UserSettings:

@@ -198,7 +198,7 @@ class SettingsAPI(LoggingMixin):
             # save to settings
             self.settings.user = res.get("user")
             self.settings.default_project = res.get("default_project")
-            self.settings.set_active_project_credentials(res.get("default_credentials"))
+            self.settings.set_active_project_credentials(res.get("default_token"))
             self.settings.set_roles(res.get("roles"), append=False)
 
             # print success message
