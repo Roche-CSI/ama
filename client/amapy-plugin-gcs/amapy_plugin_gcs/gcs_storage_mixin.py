@@ -1,15 +1,14 @@
-from google.cloud import storage as gcs
-
 from amapy_pluggy.storage import BlobStoreURL
 from amapy_pluggy.storage import storage_utils
+from amapy_plugin_gcs.gcs_client import GcsClient
 from amapy_plugin_gcs.transporter.async_gcs import async_delete
 
 
 class GcsStorageMixin:
 
     @property
-    def gcs_client(self) -> gcs.Client:
-        return gcs.Client.from_service_account_info(self.credentials)
+    def gcs_client(self):
+        return GcsClient.get_client(self.credentials)
 
     def fetch_blob_data(self, url: BlobStoreURL):
         return self.fetch_data_from_bucket(bucket_name=url.bucket,
