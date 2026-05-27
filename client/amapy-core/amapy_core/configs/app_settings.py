@@ -4,8 +4,10 @@ import contextlib
 import copy
 import os
 import re
+import time
 from importlib.metadata import version, PackageNotFoundError
 
+from amapy_core.api.settings_api import SettingsAPI
 from amapy_core.configs.configs import Configs
 from amapy_core.configs.user_settings import UserSettings
 from amapy_pluggy.storage.storage_credentials import StorageCredentials
@@ -176,9 +178,6 @@ class AppSettings:
             Either an access-token dict ``{"access_token": ..., "expires_at": ..., "acquired_at": ...}``
             or a legacy service-account dict.
         """
-        import time
-        from amapy_core.server.asset_server import AssetServer
-
         creds = self.active_project_credentials
         # Legacy service-account JSON — no expiry concept, return as-is
         if not creds or "access_token" not in creds:
@@ -187,7 +186,7 @@ class AppSettings:
         expires_at = creds.get("expires_at", 0)
         # Refresh if expired or within a 5-minute (300 s) safety buffer
         if time.time() >= expires_at - 300:
-            creds = AssetServer().get_project_credentials(project_id=project_id)
+            creds = SettingsAPI().get_project_credentials(project_id=project_id)
             self.set_active_project_credentials(creds)
         return creds
 
