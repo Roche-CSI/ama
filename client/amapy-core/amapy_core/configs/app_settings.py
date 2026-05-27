@@ -7,7 +7,6 @@ import re
 import time
 from importlib.metadata import version, PackageNotFoundError
 
-from amapy_core.api.settings_api import SettingsAPI
 from amapy_core.configs.configs import Configs
 from amapy_core.configs.user_settings import UserSettings
 from amapy_pluggy.storage.storage_credentials import StorageCredentials
@@ -178,6 +177,8 @@ class AppSettings:
             Either an access-token dict ``{"access_token": ..., "expires_at": ..., "acquired_at": ...}``
             or a legacy service-account dict.
         """
+        from amapy_core.api.settings_api import SettingsAPI
+
         creds = self.active_project_credentials
         # Legacy service-account JSON — no expiry concept, return as-is
         if not creds or "access_token" not in creds:
