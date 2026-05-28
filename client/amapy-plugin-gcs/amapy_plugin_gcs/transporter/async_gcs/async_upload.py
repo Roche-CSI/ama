@@ -1,6 +1,4 @@
 import asyncio
-import io
-import json
 import os
 
 import aiohttp
@@ -45,8 +43,7 @@ async def __async_upload_resources(credentials: dict, resources: list[GcsUploadR
     timeout = aiohttp.ClientTimeout(total=session_timeout)
     async with aiohttp.ClientSession(connector=aiohttp.TCPConnector(ssl=False),
                                      timeout=timeout) as session:
-        async_client = AsyncStorage(session=session,
-                                    service_file=io.StringIO(json.dumps(credentials)))
+        async_client = AsyncStorage(session=session, credentials=credentials)
         # deactivate ssl verification, throws error in some macs otherwise
         result = []
         await asyncio.gather(*[__async_upload_resource(async_client=async_client,
