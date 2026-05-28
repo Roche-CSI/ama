@@ -5,7 +5,7 @@ from google.oauth2.credentials import Credentials
 class GcsClient:
 
     @classmethod
-    def get_client(cls, credentials: dict):
+    def from_credentials(cls, credentials: dict) -> Client:
         """Returns a client for interacting with GCS based on the credentials."""
         if credentials.get("access_token"):
             return Client(

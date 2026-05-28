@@ -8,7 +8,7 @@ class GcsStorageMixin:
 
     @property
     def gcs_client(self):
-        return GcsClient.get_client(self.credentials)
+        return GcsClient.from_credentials(self.credentials)
 
     def fetch_blob_data(self, url: BlobStoreURL):
         return self.fetch_data_from_bucket(bucket_name=url.bucket,
