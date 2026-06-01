@@ -317,10 +317,6 @@ class AppSettings:
                                           "user": None,
                                           "default_project": None
                                       })
-        # delete credential files
-        credential_files = utils.list_files(root_dir=self.settings_dir, pattern="credential_*.json")
-        for file in credential_files:
-            os.unlink(file)
 
     @property
     def projects(self) -> dict:
