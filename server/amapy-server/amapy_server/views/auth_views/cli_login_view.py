@@ -43,11 +43,10 @@ def response_login():
 @view.route('/login', methods=['POST'])
 def login():
     data = json.loads(request.data.decode("utf-8"))  # ascii doesn't work for readme
-    # return login_response(client_id=data.get("client_id"), token=data.get("id_token"))
-    if data.get("token"):  # token login
-        login_info = get_token_login_info(data)
-    elif data.get("response"):  # email/response login
+    if data.get("response"):  # email/response login
         login_info = get_response_login_info(data)
+    elif data.get("token"):  # token login
+        login_info = get_token_login_info(data)
     else:
         login_info = {
             "error": {
@@ -87,13 +86,22 @@ def get_response_login_info(data: dict) -> dict:
                 "value": f"user with {user_info.get('email')} doesn't exist"
             }
         }
-
     # the user is a valid user
     return auth_utils.get_user_login_info(user)
 
 
 def get_token_login_info(data: dict) -> dict:
     """Validate login token and return the login info for response."""
+    user = models.user.User.get_if_exists(models.user.User.token == data.get("token"))
+    if not user:
+        return {
+            "error": {
+                "type": "invalid user",
+                "value": "user with the token doesn't exist"
+            }
+        }
+    # the user is a valid user
+    return auth_utils.get_user_login_info(user)
 
 
 @view.route('/token_login', methods=['POST'])
