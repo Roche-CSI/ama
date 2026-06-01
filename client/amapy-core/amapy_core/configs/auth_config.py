@@ -60,7 +60,7 @@ class AuthConfig:
         return self.routes["auth_url"]
 
     @property
-    def email_login_route(self):
+    def login_route(self):
         return self.routes["login"]
 
     @property
