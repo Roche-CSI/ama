@@ -107,7 +107,7 @@ def get_token_login_info(data: dict) -> dict:
 @view.route('/token_login', methods=['POST'])
 def token_login():
     data: dict = json.loads(request.data.decode("utf-8"))  # ascii doesn't work for readme
-    login_info: dict = auth_utils.get_login_info(token=data.get("token"), credentials=False)
+    login_info: dict = auth_utils.get_login_info(token=data.get("token"), credentials=True)
     return Response(
         response=json.dumps(login_info),
         status=200,
