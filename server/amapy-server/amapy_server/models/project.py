@@ -35,6 +35,26 @@ class Project(ReadWriteModel):
     def yaml_fields(cls):
         raise NotImplementedError()
 
+    def storage_token(self, server=False):
+        """Exchange the service account credentials for a short-lived GCP access token.
+
+        Parameters
+        ----------
+        server : bool, optional
+            If True, use server credentials; otherwise use user credentials (default).
+
+        Returns
+        -------
+        dict
+            A dictionary with keys:
+            - ``access_token``: the OAuth2 bearer token string
+            - ``acquired_at``: UTC timestamp (float) when the token was acquired
+            - ``expires_at``: UTC timestamp (float) when the token expires (~1 hour)
+        """
+        from amapy_server.gcp.async_gcp import get_aio_token
+        credentials = self.credentials_server if server else self.credentials_user
+        return get_aio_token(credentials)
+
     @contextlib.contextmanager
     def storage(self, server=True):
         # set credentials
@@ -55,26 +75,6 @@ class Project(ReadWriteModel):
             transporter: Transporter = storage.get_transporter()
             transporter.write_to_bucket(data=[project_yaml])
             return self.yaml_url
-
-    def storage_token(self, server=False):
-        """Exchange the service account credentials for a short-lived GCP access token.
-
-        Parameters
-        ----------
-        server : bool, optional
-            If True, use server credentials; otherwise use user credentials (default).
-
-        Returns
-        -------
-        dict
-            A dictionary with keys:
-            - ``access_token``: the OAuth2 bearer token string
-            - ``acquired_at``: UTC timestamp (float) when the token was acquired
-            - ``expires_at``: UTC timestamp (float) when the token expires (~1 hour)
-        """
-        from amapy_server.gcp.async_gcp import get_aio_token
-        credentials = self.credentials_server if server else self.credentials_user
-        return get_aio_token(credentials)
 
     def to_dict(self, recurse=False, backrefs=False, fields=None):
         if fields and "storage_token" in fields:
