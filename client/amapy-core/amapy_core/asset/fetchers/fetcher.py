@@ -49,7 +49,7 @@ class Fetcher(LoggingMixin):
             self.user_log.message("all files available, skipping download")
         return storage, targets
 
-    def perform_download(self, targets: list[TransportResource], storage: AssetStorage, progress: str = None):
+    def perform_download(self, targets: [TransportResource], storage: AssetStorage, progress: str = None):
         ts = time()
         pbar = Progress.progress_bar(total=len(targets), desc=progress) if progress else None
         transporter = storage.get_transporter()
@@ -86,7 +86,7 @@ class Fetcher(LoggingMixin):
             self.user_log.error(f"checksum validation failed for {len(unverified)} files")
             self.user_log.message("\n".join(map(lambda x: f"{x.dst}-{x.src_hash}", unverified)))
 
-    def update_hashlist(self, resources: list[TransportResource]):
+    def update_hashlist(self, resources: [TransportResource]):
         if not resources:
             return
         hashes = {self.hash_store_key(path=res.dst): Content.serialize_hash(*res.src_hash) for res in resources}
@@ -97,7 +97,7 @@ class Fetcher(LoggingMixin):
 
     def url_to_resource(self, storage: AssetStorage,
                         src_url: StorageURL,
-                        blobs: list[StorageData],
+                        blobs: [StorageData],
                         dir_dst: str,
                         force=False) -> list:
         """Creates list of transport resources based on the source url and destination directory"""

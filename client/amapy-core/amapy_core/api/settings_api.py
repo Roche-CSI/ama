@@ -6,7 +6,7 @@ import shutil
 
 from amapy_core.configs import Configs
 from amapy_core.configs.app_settings import AppSettings, UserSettings
-from amapy_core.server import AuthServer, AssetServer
+from amapy_core.server import AuthServer
 from amapy_core.server import base_server
 from amapy_core.store.asset_store import AssetStore
 from amapy_utils.common import user_commands, exceptions
@@ -168,7 +168,7 @@ class SettingsAPI(LoggingMixin):
         self.print_user_configs(show_help=False)
         self.user_log.message(user_commands.UserCommands().reset_user_configs())
 
-    def reset_user_configs(self, keys: list[str]):
+    def reset_user_configs(self, keys: [str]):
         if not keys:
             e = exceptions.AssetException(msg="missing config keys, you must pass the key you want to reset")
             e.logs.add(user_commands.UserCommands().reset_user_configs())
@@ -196,9 +196,8 @@ class SettingsAPI(LoggingMixin):
         user = res.get("user") if res else None
         if user and user.get("id"):
             # save to settings
+            self.settings.default_project = res.get("default_project", None)
             self.settings.user = res.get("user")
-            self.settings.default_project = res.get("default_project")
-            self.settings.set_active_project_credentials(res.get("default_token"))
             self.settings.set_roles(res.get("roles"), append=False)
 
             # print success message
@@ -212,6 +211,7 @@ class SettingsAPI(LoggingMixin):
                 cfg = self.settings.shared().user_configs
                 cfg.update({"dashboard_url": dashboard_url})
                 cfg.save()
+
                 self.user_log.message(f"Dashboard url is set to: {dashboard_url}")
 
             if self.settings.active_project:
@@ -409,32 +409,18 @@ class SettingsAPI(LoggingMixin):
             self.user_log.success("Success")
             self.user_log.info(f"removed asset-store and all its contents from: {self.settings.assets_home}")
 
-    def get_project_credentials(self, project_id: str):
-        """Retrieves the project credentials from the server."""
-        with self.user_settings():
-            return AssetServer().get_project_credentials(project_id)
-
     def set_active_project(self, project_name: str, persist=True):
         """Sets the active project by its name.
 
         From the CLI persist is always True, from the API it's False by default.
         """
-        if project_name == self.settings.active_project_data.get("name"):
-            self.user_log.info(f"{project_name}: already set as active")
-            self.print_all_projects(show_help=False)
-            return True
-
         for project in self.settings.projects.values():
             if project.get("name") == project_name:
                 self.settings.set_active_project(project.get("id"), persist)
-                # fetch the project credentials from server and apply them
-                project_credentials = self.get_project_credentials(project.get("id"))
-                self.settings.set_active_project_credentials(project_credentials, persist)
                 self.user_log.success("Success")
                 self.user_log.info(f"active project: {project_name}")
                 self.print_all_projects(show_help=False)
                 return True
-
         raise exceptions.AssetException(f"project: {project_name} not found")
 
     def print_project_list_table(self, projects=[], jsonize=False):

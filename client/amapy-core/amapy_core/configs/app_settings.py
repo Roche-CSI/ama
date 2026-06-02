@@ -4,7 +4,6 @@ import contextlib
 import copy
 import os
 import re
-import time
 from importlib.metadata import version, PackageNotFoundError
 
 from amapy_core.configs.configs import Configs
@@ -160,37 +159,6 @@ class AppSettings:
         # clean up
         self.unset_project_environment()
 
-    def get_valid_storage_token(self, project_id: str) -> dict:
-        """Return valid storage credentials, refreshing from server if the token is expired.
-
-        If the stored credentials are a legacy service account JSON (no ``access_token`` key),
-        they are returned unchanged for backward compatibility.
-
-        Parameters
-        ----------
-        project_id : str
-            The project whose token should be validated / refreshed.
-
-        Returns
-        -------
-        dict
-            Either an access-token dict ``{"access_token": ..., "expires_at": ..., "acquired_at": ...}``
-            or a legacy service-account dict.
-        """
-        from amapy_core.api.settings_api import SettingsAPI
-
-        creds = self.active_project_credentials
-        # Legacy service-account JSON — no expiry concept, return as-is
-        if not creds or "access_token" not in creds:
-            return creds
-
-        expires_at = creds.get("expires_at", 0)
-        # Refresh if expired or within a 5-minute (300 s) safety buffer
-        if time.time() >= expires_at - 300:
-            creds = SettingsAPI().get_project_credentials(project_id=project_id)
-            self.set_active_project_credentials(creds)
-        return creds
-
     def set_project_environment(self, project_id):
         # keep a copy of the previous environment
         self._prev_environs = getattr(self, "_prev_environs", [])
@@ -203,12 +171,14 @@ class AppSettings:
 
         project = self.projects.get(project_id)
         os.environ["ASSET_PROJECT_ID"] = project_id
+        # todo: move to tokens instead of service_account.json
+        # allow for user override i.e. to tackle issues such as not having access to genia bucket
+        # todo: discuss and resolve
 
-        # get valid (possibly refreshed) credentials before setting them
-        valid_creds = self.get_valid_storage_token(project_id)
-        # set the credentials of the active project
-        StorageCredentials.shared().set_credentials(cred=valid_creds)
-        StorageCredentials.shared().set_content_credentials(cred=valid_creds)
+        # set the credentials from the project
+        credentials_project = project.get("credentials_user")
+        StorageCredentials.shared().set_credentials(cred=credentials_project)
+        StorageCredentials.shared().set_content_credentials(cred=credentials_project)
 
         # user provides an overriding credentials
         user_credentials = os.environ.get("ASSET_CREDENTIALS")
@@ -240,12 +210,14 @@ class AppSettings:
             os.environ.update(self._prev_environs.pop())
 
     def set_plugin_env(self):
-        """Sets the necessary environment variables for the plugins to work."""
+        """sets the necessary environment variables for the plugins to work
+        """
         if not os.getenv("ASSET_SERVER_URL", None):
             os.environ["ASSET_SERVER_URL"] = Configs.shared().server.server_url
 
     def unset_plugin_env(self):
-        """Unsets the necessary environment variables for the plugins."""
+        """unsets the necessary environment variables for the plugins
+        """
         os.environ.pop("ASSET_SERVER_URL", None)
 
     def storage_url(self, staging=False):
@@ -260,7 +232,8 @@ class AppSettings:
         try:
             return self._default_project
         except AttributeError:
-            self._default_project = self.data.get("default_project")
+            # default to machine user id
+            self._default_project = self.data.get("default_project")  # or get_user_id()
             return self._default_project
 
     @default_project.setter
@@ -269,15 +242,13 @@ class AppSettings:
         self.data = utils.update_dict(self.data, {"default_project": self._default_project})
 
     def set_roles(self, roles: list, append: bool = True):
-        """Translates roles into project and access type and saves to settings db.
-
+        """translates roles into project and access type
+        and saves to settings db
         Parameters
         ----------
-        roles: list
-            A list of role dictionaries, each containing role permissions (can_edit, can_read,
-            can_delete, can_admin_project) and an associated project dict with project metadata.
+        roles
         append: bool
-            if true, then we add to existing roles else, we replace any existing roles data
+                if true, then we add to existing roles else, we replace any existing roles data
         Returns
         -------
         """
@@ -295,28 +266,33 @@ class AppSettings:
             projects[project_id] = project
 
         if not append:
-            # do a cleanup of previous roles
+            # do a clean-up of previous roles
             self.projects = None
         self.projects = projects
 
-        if not self.projects:
-            raise exceptions.InvalidProjectError("No projects found in roles")
-
-        # set default project as active if exists
-        if self.default_project and self.default_project in projects:
-            self.set_active_project(self.default_project)
+        # if there is one project, then we set it as active
+        project_ids = list(self.projects.keys())
+        if len(project_ids) == 1:
+            self.set_active_project(project_ids[0])
         else:
-            self.set_active_project(next(iter(self.projects)))
+            # exclude default project
+            if self.default_project:
+                project_ids.remove(self.default_project)
+            self.set_active_project(project_ids[0])
 
     def clear_user_data(self):
         self.data = utils.update_dict(self.data,
                                       {
                                           "projects": None,
+                                          "auth": None,
                                           "active_project": None,
-                                          "active_project_credentials": None,
                                           "user": None,
                                           "default_project": None
                                       })
+        # delete credential files
+        credential_files = utils.list_files(root_dir=self.settings_dir, pattern="credential_*.json")
+        for file in credential_files:
+            os.unlink(file)
 
     @property
     def projects(self) -> dict:
@@ -346,21 +322,6 @@ class AppSettings:
     @property
     def active_project_data(self) -> dict:
         return self.projects.get(self.active_project)
-
-    @property
-    def active_project_credentials(self) -> dict:
-        try:
-            return self._active_project_credentials
-        except AttributeError:
-            self._active_project_credentials = self.data.get("active_project_credentials") or {}
-            return self._active_project_credentials
-
-    def set_active_project_credentials(self, x: dict, persist=True):
-        self._active_project_credentials = x
-        self.set_data(
-            utils.update_dict(self.data, {"active_project_credentials": self._active_project_credentials}),
-            persist
-        )
 
     @property
     def user_configs(self) -> UserSettings:
