@@ -160,35 +160,16 @@ class AppSettings:
         # clean up
         self.unset_project_environment()
 
-    def get_valid_storage_token(self, project_id: str) -> dict:
-        """Return valid storage credentials, refreshing from server if the token is expired.
-
-        If the stored credentials are a legacy service account JSON (no ``access_token`` key),
-        they are returned unchanged for backward compatibility.
-
-        Parameters
-        ----------
-        project_id : str
-            The project whose token should be validated / refreshed.
-
-        Returns
-        -------
-        dict
-            Either an access-token dict ``{"access_token": ..., "expires_at": ..., "acquired_at": ...}``
-            or a legacy service-account dict.
-        """
+    def valid_project_token(self, project_id: str) -> dict:
+        """Validate the project token, refreshing from server if expired."""
         from amapy_core.server import AssetServer
 
-        creds = self.active_project_credentials
-        # Legacy service-account JSON — no expiry concept, return as-is
-        if not creds or "access_token" not in creds:
-            return creds
-
-        # Refresh if expired or within 5 mins (300s) safety buffer
-        if time.time() >= creds.get("expires_at", 0) - 300:
-            creds = AssetServer().get_project_token(project_id)
-            self.set_active_project_credentials(creds)
-        return creds
+        token = self.active_project_credentials
+        # refresh if expired or within 5 mins (300s) safety buffer
+        if time.time() >= token.get("expires_at", 0) - 300:
+            token = AssetServer().get_project_token(project_id)
+            self.set_active_project_credentials(token)
+        return token
 
     def set_project_environment(self, project_id):
         # keep a copy of the previous environment
@@ -204,7 +185,7 @@ class AppSettings:
         os.environ["ASSET_PROJECT_ID"] = project_id
 
         # get valid (possibly refreshed) credentials before setting them
-        valid_creds = self.get_valid_storage_token(project_id)
+        valid_creds = self.valid_project_token(project_id)
         # set the credentials of the active project
         StorageCredentials.shared().set_credentials(cred=valid_creds)
         StorageCredentials.shared().set_content_credentials(cred=valid_creds)
