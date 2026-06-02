@@ -184,11 +184,11 @@ class AppSettings:
         project = self.projects.get(project_id)
         os.environ["ASSET_PROJECT_ID"] = project_id
 
-        # get valid (possibly refreshed) credentials before setting them
-        valid_creds = self.valid_project_token(project_id)
+        # validate project token before setting them
+        project_token = self.valid_project_token(project_id)
         # set the credentials of the active project
-        StorageCredentials.shared().set_credentials(cred=valid_creds)
-        StorageCredentials.shared().set_content_credentials(cred=valid_creds)
+        StorageCredentials.shared().set_credentials(project_token)
+        StorageCredentials.shared().set_content_credentials(project_token)
 
         # user provides an overriding credentials
         user_credentials = os.environ.get("ASSET_CREDENTIALS")
