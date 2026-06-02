@@ -9,6 +9,7 @@ from amapy_pluggy.storage.storage_credentials import StorageCredentials
 from amapy_pluggy.storage.storage_factory import StorageFactory
 from amapy_pluggy.storage.transporter import Transporter
 from amapy_server.configs import Configs
+from amapy_server.gcp.async_gcp import get_aio_token
 from amapy_utils.utils.in_memory_file import InMemoryFile
 from .base.read_write import ReadWriteModel
 
@@ -51,7 +52,6 @@ class Project(ReadWriteModel):
             - ``acquired_at``: UTC timestamp (float) when the token was acquired
             - ``expires_at``: UTC timestamp (float) when the token expires (~1 hour)
         """
-        from amapy_server.gcp.async_gcp import get_aio_token
         credentials = self.credentials_server if server else self.credentials_user
         return get_aio_token(credentials)
 
