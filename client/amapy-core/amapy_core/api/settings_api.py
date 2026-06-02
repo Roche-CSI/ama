@@ -199,7 +199,7 @@ class SettingsAPI(LoggingMixin):
             self.settings.user = res.get("user")
             self.settings.set_roles(res.get("roles"), append=False)
             self.settings.default_project = res.get("default_project")
-            self.settings.set_active_project_credentials(res.get("default_token"))
+            self.settings.default_project_token = res.get("default_token")
 
             # print success message
             message = colored_string("Success\n", LogColors.SUCCESS)
@@ -410,8 +410,8 @@ class SettingsAPI(LoggingMixin):
             self.user_log.success("Success")
             self.user_log.info(f"removed asset-store and all its contents from: {self.settings.assets_home}")
 
-    def get_project_credentials(self, project_id: str):
-        """Retrieves the project credentials from the server."""
+    def get_project_token(self, project_id: str):
+        """Retrieves the project token from the server."""
         with self.user_settings():
             return AssetServer().get_project_token(project_id)
 
@@ -429,8 +429,8 @@ class SettingsAPI(LoggingMixin):
             if project.get("name") == project_name:
                 self.settings.set_active_project(project.get("id"), persist)
                 # fetch the project credentials from server and apply them
-                project_credentials = self.get_project_credentials(project.get("id"))
-                self.settings.set_active_project_credentials(project_credentials, persist)
+                project_token = self.get_project_token(project.get("id"))
+                self.settings.set_active_project_token(project_token, persist)
                 self.user_log.success("Success")
                 self.user_log.info(f"active project: {project_name}")
                 self.print_all_projects(show_help=False)
