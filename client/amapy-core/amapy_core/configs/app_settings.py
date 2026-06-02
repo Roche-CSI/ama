@@ -4,6 +4,7 @@ import contextlib
 import copy
 import os
 import re
+import time
 from importlib.metadata import version, PackageNotFoundError
 
 from amapy_core.configs.configs import Configs
@@ -159,6 +160,37 @@ class AppSettings:
         # clean up
         self.unset_project_environment()
 
+    def get_valid_storage_token(self, project_id: str) -> dict:
+        """Return valid storage credentials, refreshing from server if the token is expired.
+
+        If the stored credentials are a legacy service account JSON (no ``access_token`` key),
+        they are returned unchanged for backward compatibility.
+
+        Parameters
+        ----------
+        project_id : str
+            The project whose token should be validated / refreshed.
+
+        Returns
+        -------
+        dict
+            Either an access-token dict ``{"access_token": ..., "expires_at": ..., "acquired_at": ...}``
+            or a legacy service-account dict.
+        """
+        from amapy_core.api.settings_api import SettingsAPI
+
+        creds = self.active_project_credentials
+        # Legacy service-account JSON — no expiry concept, return as-is
+        if not creds or "access_token" not in creds:
+            return creds
+
+        expires_at = creds.get("expires_at", 0)
+        # Refresh if expired or within a 5-minute (300 s) safety buffer
+        if time.time() >= expires_at - 300:
+            creds = SettingsAPI().get_project_credentials(project_id=project_id)
+            self.set_active_project_credentials(creds)
+        return creds
+
     def set_project_environment(self, project_id):
         # keep a copy of the previous environment
         self._prev_environs = getattr(self, "_prev_environs", [])
@@ -175,10 +207,11 @@ class AppSettings:
         # allow for user override i.e. to tackle issues such as not having access to genia bucket
         # todo: discuss and resolve
 
-        # set the credentials from the project
-        credentials_project = project.get("credentials_user")
-        StorageCredentials.shared().set_credentials(cred=credentials_project)
-        StorageCredentials.shared().set_content_credentials(cred=credentials_project)
+        # get valid (possibly refreshed) credentials before setting them
+        valid_creds = self.get_valid_storage_token(project_id)
+        # set the credentials of the active project
+        StorageCredentials.shared().set_credentials(cred=valid_creds)
+        StorageCredentials.shared().set_content_credentials(cred=valid_creds)
 
         # user provides an overriding credentials
         user_credentials = os.environ.get("ASSET_CREDENTIALS")
@@ -210,14 +243,12 @@ class AppSettings:
             os.environ.update(self._prev_environs.pop())
 
     def set_plugin_env(self):
-        """sets the necessary environment variables for the plugins to work
-        """
+        """Sets the necessary environment variables for the plugins to work."""
         if not os.getenv("ASSET_SERVER_URL", None):
             os.environ["ASSET_SERVER_URL"] = Configs.shared().server.server_url
 
     def unset_plugin_env(self):
-        """unsets the necessary environment variables for the plugins
-        """
+        """Unsets the necessary environment variables for the plugins."""
         os.environ.pop("ASSET_SERVER_URL", None)
 
     def storage_url(self, staging=False):
@@ -232,8 +263,7 @@ class AppSettings:
         try:
             return self._default_project
         except AttributeError:
-            # default to machine user id
-            self._default_project = self.data.get("default_project")  # or get_user_id()
+            self._default_project = self.data.get("default_project")
             return self._default_project
 
     @default_project.setter
