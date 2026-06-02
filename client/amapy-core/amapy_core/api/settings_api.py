@@ -413,7 +413,7 @@ class SettingsAPI(LoggingMixin):
     def get_project_credentials(self, project_id: str):
         """Retrieves the project credentials from the server."""
         with self.user_settings():
-            return AssetServer().get_project_credentials(project_id)
+            return AssetServer().get_project_token(project_id)
 
     def set_active_project(self, project_name: str, persist=True):
         """Sets the active project by its name.
