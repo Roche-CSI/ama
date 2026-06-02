@@ -164,11 +164,11 @@ class AppSettings:
         """Validate the project token, refreshing from server if expired."""
         from amapy_core.server import AssetServer
 
-        token = self.active_project_credentials
+        token = self.active_project_token
         # refresh if expired or within 5 mins (300s) safety buffer
-        if time.time() >= token.get("expires_at", 0) - 300:
+        if not token or time.time() >= token.get("expires_at", 0) - 300:
             token = AssetServer().get_project_token(project_id)
-            self.set_active_project_credentials(token)
+            self.set_active_project_token(token)
         return token
 
     def set_project_environment(self, project_id):
@@ -261,8 +261,7 @@ class AppSettings:
         Returns
         -------
         """
-        # the same project might exist in multiple roles, so here we aggregate
-        # all the roles for a project
+        # the same project might exist in multiple roles, so here we aggregate all the roles for a project
         projects = {}
         for role in roles:
             project: dict = role.get("project")
@@ -283,20 +282,22 @@ class AppSettings:
             raise exceptions.InvalidProjectError("No projects found in roles")
 
         # set default project as active if exists
-        if self.default_project and self.default_project in projects:
+        if self.default_project and self.default_project in self.projects:
             self.set_active_project(self.default_project)
+            self.set_active_project_token(self.default_project_token)
         else:
             self.set_active_project(next(iter(self.projects)))
 
     def clear_user_data(self):
-        self.data = utils.update_dict(self.data,
-                                      {
-                                          "projects": None,
-                                          "active_project": None,
-                                          "active_project_credentials": None,
-                                          "user": None,
-                                          "default_project": None
-                                      })
+        self.data = utils.update_dict(
+            self.data, {
+                "projects": None,
+                "active_project": None,
+                "active_project_token": None,
+                "user": None,
+                "default_project": None
+            }
+        )
 
     @property
     def projects(self) -> dict:
@@ -328,19 +329,16 @@ class AppSettings:
         return self.projects.get(self.active_project)
 
     @property
-    def active_project_credentials(self) -> dict:
+    def active_project_token(self) -> dict:
         try:
-            return self._active_project_credentials
+            return self._active_project_token
         except AttributeError:
-            self._active_project_credentials = self.data.get("active_project_credentials") or {}
-            return self._active_project_credentials
+            self._active_project_token = self.data.get("active_project_token") or {}
+            return self._active_project_token
 
-    def set_active_project_credentials(self, x: dict, persist=True):
-        self._active_project_credentials = x
-        self.set_data(
-            utils.update_dict(self.data, {"active_project_credentials": self._active_project_credentials}),
-            persist
-        )
+    def set_active_project_token(self, token: dict, persist=True):
+        self._active_project_token = token
+        self.set_data(utils.update_dict(self.data, {"active_project_token": self._active_project_token}), persist)
 
     @property
     def user_configs(self) -> UserSettings:
