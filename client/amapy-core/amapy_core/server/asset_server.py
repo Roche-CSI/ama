@@ -54,9 +54,6 @@ class AssetServer:
     def _find_ref_route(self):
         return os.path.join(self.url, self.configs.find_ref_route)
 
-    def _project_token_route(self):
-        return os.path.join(self.url, self.configs.project_token_route)
-
     def create_asset(self, **kwargs):
         return self.parse(self.post(url=self._asset_route(), data=kwargs))
 
@@ -126,11 +123,6 @@ class AssetServer:
 
     def update_asset_class(self, id, data: dict):
         self.parse(self.put(url=self._asset_class_route(id), data=data))
-
-    def get_project_credentials(self, project_id: str):
-        """Retrieves the project credentials from the server."""
-        url = self.add_params(self._project_token_route(), {"project_id": project_id})
-        return self.parse(self.get(url=url))
 
     def parse(self, res):
         try:
