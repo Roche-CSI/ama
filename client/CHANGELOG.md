@@ -9,20 +9,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- **GCS OAuth2 token support**: added `GcsClient` factory and `AsyncToken` wrapper so the GCS plugin can authenticate
+- **GCS token support**: added `GcsClient` factory and `AsyncToken` wrapper so the GCS plugin can authenticate
   with a pre-built GCP OAuth2 access token in addition to service account
   credentials ([#76](https://github.com/Roche-CSI/ama/pull/76))
+- **Project token route**: added `project_token_route` to retrieve short-lived project credentials from the
+  server while activating a project or refreshing the expired token ([#77](https://github.com/Roche-CSI/ama/pull/77))
 
 ### Changed
 
 - **Refactored GCS async storage initialisation**: simplified `AsyncStorage` and async operation classes to use the
   new `GcsClient`/`AsyncToken` abstractions, removing direct `io`/`json` handling and hardcoded service-account-only
   auth ([#76](https://github.com/Roche-CSI/ama/pull/76))
+- **Token-based storage credentials**: `AppSettings.set_project_environment` now calls `valid_project_token` and
+  passes the resulting token directly to `StorageCredentials`, replacing the previous
+  `credentials_user` / service-account JSON flow ([#77](https://github.com/Roche-CSI/ama/pull/77))
+- **Unified login route**: collapsed the separate `token_login` and `response_login` server routes into a single
+  `login` route; `AuthConfig` and `AuthServer` updated accordingly
+  (`email_login_route` → `login_route`) ([#77](https://github.com/Roche-CSI/ama/pull/77))
 - Bumped `amapy-plugin-gcs` version **1.1.0 → 1.1.1**
+- Bumped `amapy-core` version **1.1.0 → 1.1.1**
 
 ---
 
-## [1.1.0](https://pypi.org/project/amapy/1.1.0/) - 2025-04-29
+## [1.1.0](https://pypi.org/project/amapy/1.1.0/) - 2026-04-23
 
 ### Changed
 
