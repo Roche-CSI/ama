@@ -23,12 +23,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Token-based storage credentials**: `AppSettings.set_project_environment` now calls `valid_project_token` and
   passes the resulting token directly to `StorageCredentials`, replacing the previous
   `credentials_user` / service-account JSON flow ([#77](https://github.com/Roche-CSI/ama/pull/77))
-- **Unified login route**: collapsed the separate `token_login` and `response_login` server routes into a single
-  `login` route; `AuthConfig` and `AuthServer` updated accordingly
-  (`email_login_route` → `login_route`) ([#77](https://github.com/Roche-CSI/ama/pull/77))
+- **Unified login route**: use a unified single `login` route; `AuthConfig` and `AuthServer` updated accordingly ([#77](https://github.com/Roche-CSI/ama/pull/77))
 - Bumped `amapy-plugin-gcs` version **1.1.0 → 1.1.1**
 - Bumped `amapy-core` version **1.1.0 → 1.1.1**
 
+### Removed
+
+- removed `token_login` and `response_login` server routes from `AuthConfig` and `AuthServer`
+- removed the `credentials_user` section from each project within `globals.json`
 ---
 
 ## [1.1.0](https://pypi.org/project/amapy/1.1.0/) - 2026-04-23
