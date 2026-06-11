@@ -42,8 +42,6 @@ class AuthConfig:
             "auth": "auth/cli/google_auth",
             "auth_url": "auth/cli/google_auth_url",
             "login": "auth/cli/login",
-            "token_login": "auth/cli/token_login",
-            "response_login": "auth/cli/response_login",
             "signup": "auth/cli/signup"
         }
 
@@ -60,16 +58,8 @@ class AuthConfig:
         return self.routes["auth_url"]
 
     @property
-    def email_login_route(self):
+    def login_route(self):
         return self.routes["login"]
-
-    @property
-    def token_login_route(self):
-        return self.routes["token_login"]
-
-    @property
-    def response_login_route(self):
-        return self.routes["response_login"]
 
     @property
     def user_signup_route(self):
