@@ -28,6 +28,7 @@ def google_auth_url():
     return to_json(authorization_url)
 
 
+# TODO: Cleanup this route and related methods after clients are updated
 @view.route('/response_login', methods=['POST'])
 def response_login():
     data = json.loads(request.data.decode("utf-8"))  # ascii doesn't work for readme
@@ -38,8 +39,7 @@ def response_login():
     return login_response(client_id=client_id, token=flow.credentials.id_token)
 
 
-# This will be the default login route for client version >= 1.1.1
-# TODO: Cleanup other routes after all client are updated
+# This will be the default login route for amapy version >= 1.1.1
 @view.route('/login', methods=['POST'])
 def login():
     data = json.loads(request.data.decode("utf-8"))  # ascii doesn't work for readme
@@ -104,6 +104,7 @@ def get_token_login_info(data: dict) -> dict:
     return auth_utils.get_user_login_info(user)
 
 
+# TODO: Cleanup this route and related methods after clients are updated
 @view.route('/token_login', methods=['POST'])
 def token_login():
     data: dict = json.loads(request.data.decode("utf-8"))  # ascii doesn't work for readme
