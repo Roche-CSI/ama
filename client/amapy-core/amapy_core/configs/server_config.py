@@ -103,3 +103,7 @@ class ServerConfig:
     @property
     def issue_url(self):
         return os.path.join(self.server_url, "issue")
+
+    @property
+    def project_token_route(self):
+        return "project/token"

@@ -17,7 +17,12 @@ class Fetcher(LoggingMixin):
     def __init__(self, store):
         self.store = store
 
-    def download_dir(self, dir_url: str, dir_dst: str, pattern=None, progress: str = None, force=False):
+    def download_dir(self,
+                     dir_url: str,
+                     dir_dst: str,
+                     pattern: str = None,
+                     progress: str = None,
+                     force: bool = False):
         """downloads a directory from cloud bucket into target dir and maintains the
         relative paths of the directory contents
         """
@@ -29,7 +34,11 @@ class Fetcher(LoggingMixin):
             self.perform_download(targets=targets, storage=storage, progress=progress)
         return targets
 
-    def resources_in_dir(self, dir_url: str, dir_dst: str, pattern=None, force=False) -> tuple:
+    def resources_in_dir(self,
+                         dir_url: str,
+                         dir_dst: str,
+                         pattern: str = None,
+                         force: bool = False) -> tuple:
         if not dir_url.endswith("/"):
             dir_url += "/"
         if pattern:
@@ -49,7 +58,10 @@ class Fetcher(LoggingMixin):
             self.user_log.message("all files available, skipping download")
         return storage, targets
 
-    def perform_download(self, targets: [TransportResource], storage: AssetStorage, progress: str = None):
+    def perform_download(self,
+                         targets: list[TransportResource],
+                         storage: AssetStorage,
+                         progress: str = None):
         ts = time()
         pbar = Progress.progress_bar(total=len(targets), desc=progress) if progress else None
         transporter = storage.get_transporter()
@@ -86,7 +98,7 @@ class Fetcher(LoggingMixin):
             self.user_log.error(f"checksum validation failed for {len(unverified)} files")
             self.user_log.message("\n".join(map(lambda x: f"{x.dst}-{x.src_hash}", unverified)))
 
-    def update_hashlist(self, resources: [TransportResource]):
+    def update_hashlist(self, resources: list[TransportResource]):
         if not resources:
             return
         hashes = {self.hash_store_key(path=res.dst): Content.serialize_hash(*res.src_hash) for res in resources}
@@ -95,11 +107,12 @@ class Fetcher(LoggingMixin):
     def get_from_hash_list(self, path):
         return self.store.hashlist_db.file_hashes.get(self.hash_store_key(path=path))
 
-    def url_to_resource(self, storage: AssetStorage,
+    def url_to_resource(self,
+                        storage: AssetStorage,
                         src_url: StorageURL,
-                        blobs: [StorageData],
+                        blobs: list[StorageData],
                         dir_dst: str,
-                        force=False) -> list:
+                        force: bool = False) -> list:
         """Creates list of transport resources based on the source url and destination directory"""
 
         def dst_path(blob: StorageData, parent_url: StorageURL):
