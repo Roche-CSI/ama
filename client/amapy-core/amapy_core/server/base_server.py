@@ -6,6 +6,7 @@ import requests
 import urllib3
 
 from amapy_utils.common import exceptions
+from amapy_utils.utils import UserLog
 
 
 class BaseServer:
@@ -34,15 +35,14 @@ class BaseServer:
         return parse.urlunparse(parsed)
 
     def _check_response_warnings(self, response):
-        """Emit any HTTP Warning headers as Python warnings (RFC 7234).
+        """Emit any HTTP Warning headers via UserLog.
 
-        Using warnings.warn() integrates with Python's standard warning
-        system, allowing callers to filter or suppress them via
-        warnings.filterwarnings() as needed.
+        The Warning header may appear on any response (2xx, 3xx, etc.)
+        and is independent of the HTTP status code.
         """
         warning = response.headers.get("Warning")
         if warning:
-            warnings.warn(warning, UserWarning, stacklevel=3)
+            UserLog().alert(warning)
 
     def get(self, url: str):
         # Suppress only the urllib3 InsecureRequestWarning when SSL
