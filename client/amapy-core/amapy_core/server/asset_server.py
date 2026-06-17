@@ -1,4 +1,3 @@
-import json
 import os
 
 from amapy_core.configs import Configs, AppSettings
@@ -122,10 +121,3 @@ class AssetServer(BaseServer):
         """Retrieves the project token from the server."""
         url = self.add_params(self._project_token_route(), {"project_id": project_id})
         return self.parse(self.get(url=url))
-
-    def parse(self, res):
-        try:
-            return json.loads(res.content)
-        except json.decoder.JSONDecodeError as e:
-            raise exceptions.IncorrectServerResponseError(
-                msg=f"unable to parse server response: {res.content}") from e
