@@ -15,11 +15,16 @@ class BaseServer:
     def url(self):
         return self.configs.server_url
 
+    @property
+    def headers(self) -> dict | None:
+        """Request headers. Override in subclasses to add auth headers etc."""
+        return None
+
     def parse(self, res):
         return json.loads(res.content)
 
     def add_params(self, url, params: dict):
-        """adds query params to url"""
+        """Adds query params to url"""
         parsed = parse.urlparse(url)
         query = parsed.query
         url_dict = dict(parse.parse_qsl(query))
@@ -45,7 +50,9 @@ class BaseServer:
         if not self.configs.ssl_verify:
             warnings.filterwarnings("ignore", category=urllib3.exceptions.InsecureRequestWarning)
         try:
-            response = requests.get(url=url, verify=self.configs.ssl_verify)
+            response = requests.get(url=url,
+                                    headers=self.headers,
+                                    verify=self.configs.ssl_verify)
             response.raise_for_status()
             self._check_response_warnings(response)
             return response
@@ -58,7 +65,10 @@ class BaseServer:
         if not self.configs.ssl_verify:
             warnings.filterwarnings("ignore", category=urllib3.exceptions.InsecureRequestWarning)
         try:
-            response = requests.put(url=url, data=json.dumps(data), verify=self.configs.ssl_verify)
+            response = requests.put(url=url,
+                                    data=json.dumps(data),
+                                    headers=self.headers,
+                                    verify=self.configs.ssl_verify)
             response.raise_for_status()
             self._check_response_warnings(response)
             return response
@@ -71,7 +81,10 @@ class BaseServer:
         if not self.configs.ssl_verify:
             warnings.filterwarnings("ignore", category=urllib3.exceptions.InsecureRequestWarning)
         try:
-            response = requests.post(url=url, data=json.dumps(data), verify=self.configs.ssl_verify)
+            response = requests.post(url=url,
+                                     data=json.dumps(data),
+                                     headers=self.headers,
+                                     verify=self.configs.ssl_verify)
             response.raise_for_status()
             self._check_response_warnings(response)
             return response
