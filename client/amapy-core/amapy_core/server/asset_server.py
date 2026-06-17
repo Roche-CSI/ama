@@ -1,13 +1,9 @@
 import json
 import os
-import warnings
-
-import requests
 
 from amapy_core.configs import Configs, AppSettings
 from amapy_core.server.base_server import BaseServer
 from amapy_utils.common import exceptions
-from amapy_utils.utils import UserLog
 
 
 class AssetServer(BaseServer):
@@ -16,7 +12,7 @@ class AssetServer(BaseServer):
         self.configs = Configs.shared().server
 
     @property
-    def headers(self):
+    def headers(self) -> dict:
         bearer_token = AppSettings.shared().user.get("token")
         return {
             "Authorization": f"Bearer {bearer_token}",
@@ -133,57 +129,3 @@ class AssetServer(BaseServer):
         except json.decoder.JSONDecodeError as e:
             raise exceptions.IncorrectServerResponseError(
                 msg=f"unable to parse server response: {res.content}") from e
-
-    def get(self, url: str):
-        with warnings.catch_warnings(record=True) as _:
-            try:
-                response = requests.get(url=url,
-                                        headers=self.headers,
-                                        verify=self.configs.ssl_verify)
-                response.raise_for_status()
-                self.check_asset_warnings(response)
-                return response
-            except requests.exceptions.HTTPError as e:
-                raise exceptions.IncorrectServerResponseError(msg=f"invalid server response: {e}")
-            except Exception as e:
-                raise exceptions.ServerNotAvailableError(msg=f"unable to reach asset-server: {e}")
-
-    def put(self, url: str, data: dict):
-        with warnings.catch_warnings(record=True) as _:
-            try:
-                response = requests.put(url=url,
-                                        data=json.dumps(data),
-                                        headers=self.headers,
-                                        verify=self.configs.ssl_verify)
-                response.raise_for_status()
-                self.check_asset_warnings(response)
-                return response
-            except requests.exceptions.HTTPError as e:
-                raise exceptions.IncorrectServerResponseError(msg=f"invalid server response: {e}")
-            except Exception as e:
-                raise exceptions.ServerNotAvailableError(msg=f"unable to reach asset-server: {e}")
-
-    def post(self, url: str, data: dict):
-        with warnings.catch_warnings(record=True) as _:
-            try:
-                response = requests.post(url=url,
-                                         data=json.dumps(data),
-                                         headers=self.headers,
-                                         verify=self.configs.ssl_verify)
-                response.raise_for_status()
-                self.check_asset_warnings(response)
-                return response
-            except requests.exceptions.HTTPError as e:
-                raise exceptions.IncorrectServerResponseError(msg=f"invalid server response: {e}")
-            except Exception as e:
-                raise exceptions.ServerNotAvailableError(msg=f"unable to reach asset-server: {e}")
-
-    def check_asset_warnings(self, response):
-        """Check for warnings in the response and print them.
-
-        If the status code is less than 200, we have a warning.
-        The warning message is in the response header.
-        """
-        if response.status_code < 200:
-            # print the warning message is in the response header
-            UserLog().alert(response.headers.get("Warning", "Missing warning message from server"))
