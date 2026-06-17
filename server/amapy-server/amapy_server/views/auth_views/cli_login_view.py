@@ -28,6 +28,7 @@ def google_auth_url():
     return to_json(authorization_url)
 
 
+# TODO: Cleanup this route and related methods after clients are updated
 @view.route('/response_login', methods=['POST'])
 def response_login():
     data = json.loads(request.data.decode("utf-8"))  # ascii doesn't work for readme
@@ -38,12 +39,72 @@ def response_login():
     return login_response(client_id=client_id, token=flow.credentials.id_token)
 
 
+# This will be the default login route for amapy version >= 1.1.1
 @view.route('/login', methods=['POST'])
 def login():
     data = json.loads(request.data.decode("utf-8"))  # ascii doesn't work for readme
-    return login_response(client_id=data.get("client_id"), token=data.get("id_token"))
+    if data.get("response"):  # email/response login
+        login_info = get_response_login_info(data)
+    elif data.get("token"):  # token login
+        login_info = get_token_login_info(data)
+    else:
+        login_info = {
+            "error": {
+                "type": "invalid data",
+                "value": "invalid login data from client"
+            }
+        }
+
+    return Response(
+        response=json.dumps(login_info),
+        status=200,
+        mimetype='application/json'
+    )
 
 
+def get_response_login_info(data: dict) -> dict:
+    """Validate login response data and return the login info for response."""
+    flow, configs = auth_utils.get_flow(redirect_uri=data.get("redirect_uri"))
+    flow.fetch_token(authorization_response=data.get("response"))
+    client_id = configs.get("web").get("client_id")
+
+    user_info = auth_utils.verify_oauth2_token(client_id=client_id, token=flow.credentials.id_token)
+    if not auth_utils.validate_user_data(data=user_info):
+        return {
+            "error": {
+                "type": "invalid email",
+                "value": f"{user_info.get('email')} is not a valid email, "
+                         f"you must use a valid email to login"
+            }
+        }
+
+    user = models.user.User.get_if_exists(models.user.User.email == user_info.get("email"))
+    if not user:
+        return {
+            "error": {
+                "type": "invalid user",
+                "value": f"user with {user_info.get('email')} doesn't exist"
+            }
+        }
+    # the user is a valid user
+    return auth_utils.get_user_login_info(user)
+
+
+def get_token_login_info(data: dict) -> dict:
+    """Validate login token and return the login info for response."""
+    user = models.user.User.get_if_exists(models.user.User.token == data.get("token"))
+    if not user:
+        return {
+            "error": {
+                "type": "invalid user",
+                "value": "user with the token doesn't exist"
+            }
+        }
+    # the user is a valid user
+    return auth_utils.get_user_login_info(user)
+
+
+# TODO: Cleanup this route and related methods after clients are updated
 @view.route('/token_login', methods=['POST'])
 def token_login():
     data: dict = json.loads(request.data.decode("utf-8"))  # ascii doesn't work for readme

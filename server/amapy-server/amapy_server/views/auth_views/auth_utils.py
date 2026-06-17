@@ -211,3 +211,26 @@ def get_login_info(token: str, credentials: bool = True):
             "error": "invalid user"
         }
     return login_info
+
+
+def get_user_login_info(user: models.user.User) -> dict:
+    """Get the login info for a valid user.
+
+    Ensure the projects do not contain any credentials (set credentials=False in get_roles).
+    Only share the token for the default project.
+    """
+    default_project = models.AssetSettings.default_project()
+    dashboard_settings = models.AssetSettings.get_if_exists(models.AssetSettings.name == "dashboard_settings")
+    return {
+        "user": {
+            "id": str(user.id),
+            "username": str(user.username),
+            "email": str(user.email),
+            "token": user.token,
+        },
+        "roles": user.get_roles(credentials=False),
+        "default_project": str(default_project.id) if default_project else None,
+        "default_token": default_project.storage_token() if default_project else None,
+        "dashboard_url": models.AssetSettings.dashboard_url(),
+        "dashboard_settings": json.loads(dashboard_settings.value) if dashboard_settings else None
+    }
