@@ -3,6 +3,7 @@ import warnings
 from urllib import parse
 
 import requests
+import urllib3
 
 from amapy_utils.common import exceptions
 
@@ -27,35 +28,54 @@ class BaseServer:
         parsed = parsed._replace(query=url_new_query)
         return parse.urlunparse(parsed)
 
+    def _check_response_warnings(self, response):
+        """Emit any HTTP Warning headers as Python warnings (RFC 7234).
+
+        Using warnings.warn() integrates with Python's standard warning
+        system, allowing callers to filter or suppress them via
+        warnings.filterwarnings() as needed.
+        """
+        warning = response.headers.get("Warning")
+        if warning:
+            warnings.warn(warning, UserWarning, stacklevel=3)
+
     def get(self, url: str):
-        with warnings.catch_warnings(record=True) as _:
-            try:
-                response = requests.get(url=url, verify=self.configs.ssl_verify)
-                response.raise_for_status()
-                return response
-            except requests.exceptions.HTTPError as e:
-                raise exceptions.IncorrectServerResponseError(msg=f"invalid server response: {e}")
-            except Exception as e:
-                raise exceptions.ServerNotAvailableError(msg=f"unable to reach asset-server: {e}")
+        # Suppress only the urllib3 InsecureRequestWarning when SSL
+        # verification is disabled, rather than swallowing all warnings.
+        if not self.configs.ssl_verify:
+            warnings.filterwarnings("ignore", category=urllib3.exceptions.InsecureRequestWarning)
+        try:
+            response = requests.get(url=url, verify=self.configs.ssl_verify)
+            response.raise_for_status()
+            self._check_response_warnings(response)
+            return response
+        except requests.exceptions.HTTPError as e:
+            raise exceptions.IncorrectServerResponseError(msg=f"invalid server response: {e}")
+        except Exception as e:
+            raise exceptions.ServerNotAvailableError(msg=f"unable to reach asset-server: {e}")
 
     def put(self, url: str, data: dict):
-        with warnings.catch_warnings(record=True) as _:
-            try:
-                response = requests.put(url=url, data=json.dumps(data), verify=self.configs.ssl_verify)
-                response.raise_for_status()
-                return response
-            except requests.exceptions.HTTPError as e:
-                raise exceptions.IncorrectServerResponseError(msg=f"invalid server response: {e}")
-            except Exception as e:
-                raise exceptions.ServerNotAvailableError(msg=f"unable to reach asset-server: {e}")
+        if not self.configs.ssl_verify:
+            warnings.filterwarnings("ignore", category=urllib3.exceptions.InsecureRequestWarning)
+        try:
+            response = requests.put(url=url, data=json.dumps(data), verify=self.configs.ssl_verify)
+            response.raise_for_status()
+            self._check_response_warnings(response)
+            return response
+        except requests.exceptions.HTTPError as e:
+            raise exceptions.IncorrectServerResponseError(msg=f"invalid server response: {e}")
+        except Exception as e:
+            raise exceptions.ServerNotAvailableError(msg=f"unable to reach asset-server: {e}")
 
     def post(self, url: str, data: dict):
-        with warnings.catch_warnings(record=True) as _:
-            try:
-                response = requests.post(url=url, data=json.dumps(data), verify=self.configs.ssl_verify)
-                response.raise_for_status()
-                return response
-            except requests.exceptions.HTTPError as e:
-                raise exceptions.IncorrectServerResponseError(msg=f"invalid server response: {e}")
-            except Exception as e:
-                raise exceptions.ServerNotAvailableError(msg=f"unable to reach asset-server: {e}")
+        if not self.configs.ssl_verify:
+            warnings.filterwarnings("ignore", category=urllib3.exceptions.InsecureRequestWarning)
+        try:
+            response = requests.post(url=url, data=json.dumps(data), verify=self.configs.ssl_verify)
+            response.raise_for_status()
+            self._check_response_warnings(response)
+            return response
+        except requests.exceptions.HTTPError as e:
+            raise exceptions.IncorrectServerResponseError(msg=f"invalid server response: {e}")
+        except Exception as e:
+            raise exceptions.ServerNotAvailableError(msg=f"unable to reach asset-server: {e}")
