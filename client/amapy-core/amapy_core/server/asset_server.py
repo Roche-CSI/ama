@@ -1,24 +1,19 @@
 import json
 import os
 import warnings
-from urllib import parse
 
 import requests
 
 from amapy_core.configs import Configs, AppSettings
+from amapy_core.server.base_server import BaseServer
 from amapy_utils.common import exceptions
 from amapy_utils.utils import UserLog
 
 
-class AssetServer:
-    configs = None
+class AssetServer(BaseServer):
 
     def __init__(self):
         self.configs = Configs.shared().server
-
-    @property
-    def url(self):
-        return self.configs.server_url
 
     @property
     def headers(self):
@@ -138,16 +133,6 @@ class AssetServer:
         except json.decoder.JSONDecodeError as e:
             raise exceptions.IncorrectServerResponseError(
                 msg=f"unable to parse server response: {res.content}") from e
-
-    def add_params(self, url, params: dict):
-        """adds query params to url"""
-        parsed = parse.urlparse(url)
-        query = parsed.query
-        url_dict = dict(parse.parse_qsl(query))
-        url_dict.update(params)
-        url_new_query = parse.urlencode(url_dict, True)
-        parsed = parsed._replace(query=url_new_query)
-        return parse.urlunparse(parsed)
 
     def get(self, url: str):
         with warnings.catch_warnings(record=True) as _:
