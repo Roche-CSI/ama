@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **New route for token**: Generate temp token for projects and send them using `project/token`
+  route ([#75](https://github.com/Roche-CSI/ama/pull/75))
 - **Backfill asset by date**: configurable ordering for asset listings allows backfilled assets to be sorted by a
   logical `attributes.date` field. Falls back to `created_at` via
   `COALESCE((attributes->>'date')::date, created_at::date)` for assets without an explicit date
@@ -18,6 +20,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Use unified login route `/login` for both email and token based
+  login ([#75](https://github.com/Roche-CSI/ama/pull/75))
+- Only send default project token instead of all project credentials during login
 - Migrated all internal utility imports to `amapy_utils` equivalents (`FileUtils`, `BetterSet`, `string_to_timestamp`,
   `time_it`, `cast2list`, `convert_to_pst`, `LoggingMixin`) ([#73](https://github.com/Roche-CSI/ama/pull/73))
 - Upgraded Python requirement to **3.12** ([#72](https://github.com/Roche-CSI/ama/pull/72))
