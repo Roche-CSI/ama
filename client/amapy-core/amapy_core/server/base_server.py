@@ -1,5 +1,6 @@
 import json
 import warnings
+from typing import Literal
 from urllib import parse
 
 import requests
@@ -48,15 +49,23 @@ class BaseServer:
         if warning:
             UserLog().alert(warning)
 
-    def get(self, url: str):
+    def _request(self,
+                 method: Literal["GET", "PUT", "POST"],
+                 url: str,
+                 data: dict | None = None
+                 ) -> requests.Response:
         # Suppress only the urllib3 InsecureRequestWarning when SSL
         # verification is disabled, rather than swallowing all warnings.
         if not self.configs.ssl_verify:
-            warnings.filterwarnings("ignore", category=urllib3.exceptions.InsecureRequestWarning)
+            warnings.filterwarnings(action="ignore", category=urllib3.exceptions.InsecureRequestWarning)
         try:
-            response = requests.get(url=url,
-                                    headers=self.headers,
-                                    verify=self.configs.ssl_verify)
+            response = requests.request(
+                method,
+                url=url,
+                data=json.dumps(data) if data is not None else None,
+                headers=self.headers,
+                verify=self.configs.ssl_verify
+            )
             response.raise_for_status()
             self._check_response_warnings(response)
             return response
@@ -64,35 +73,12 @@ class BaseServer:
             raise exceptions.IncorrectServerResponseError(msg=f"invalid server response: {e}")
         except Exception as e:
             raise exceptions.ServerNotAvailableError(msg=f"unable to reach asset-server: {e}")
+
+    def get(self, url: str):
+        return self._request("GET", url)
 
     def put(self, url: str, data: dict):
-        if not self.configs.ssl_verify:
-            warnings.filterwarnings("ignore", category=urllib3.exceptions.InsecureRequestWarning)
-        try:
-            response = requests.put(url=url,
-                                    data=json.dumps(data),
-                                    headers=self.headers,
-                                    verify=self.configs.ssl_verify)
-            response.raise_for_status()
-            self._check_response_warnings(response)
-            return response
-        except requests.exceptions.HTTPError as e:
-            raise exceptions.IncorrectServerResponseError(msg=f"invalid server response: {e}")
-        except Exception as e:
-            raise exceptions.ServerNotAvailableError(msg=f"unable to reach asset-server: {e}")
+        return self._request("PUT", url, data)
 
     def post(self, url: str, data: dict):
-        if not self.configs.ssl_verify:
-            warnings.filterwarnings("ignore", category=urllib3.exceptions.InsecureRequestWarning)
-        try:
-            response = requests.post(url=url,
-                                     data=json.dumps(data),
-                                     headers=self.headers,
-                                     verify=self.configs.ssl_verify)
-            response.raise_for_status()
-            self._check_response_warnings(response)
-            return response
-        except requests.exceptions.HTTPError as e:
-            raise exceptions.IncorrectServerResponseError(msg=f"invalid server response: {e}")
-        except Exception as e:
-            raise exceptions.ServerNotAvailableError(msg=f"unable to reach asset-server: {e}")
+        return self._request("POST", url, data)
