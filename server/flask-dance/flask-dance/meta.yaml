@@ -1,0 +1,45 @@
+{% set version = "7.1.0" %}
+
+package:
+  name: flask-dance
+  version: {{ version }}
+
+source:
+  url: https://pypi.org/packages/source/f/flask-dance/flask_dance-{{ version }}.tar.gz
+  sha256: 6d0510e284f3d6ff05af918849791b17ef93a008628ec33f3a80578a44b51674
+
+build:
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 0
+
+requirements:
+  host:
+    - python >=3.6
+    - flit-core >=3.2,<4
+    - pip
+  run:
+    - python >=3.6
+    - requests >=2.0
+    - oauthlib >=3.2
+    - requests-oauthlib >=1.0.0
+    - flask >=2.0.3
+    - werkzeug
+    - urlobject
+
+test:
+  imports:
+    - flask_dance
+  commands:
+    - pip check
+  requires:
+    - pip
+    - python
+
+about:
+  home: https://pypi.org/project/Flask-Dance/
+  summary: Doing the OAuth dance with style using Flask, requests, and oauthlib
+  doc_url: https://flask-dance.readthedocs.io/
+  dev_url: https://github.com/singingwolfboy/flask-dance
+  license: MIT
+
