@@ -1,5 +1,5 @@
-from asset_client.contents.content_factory import ContentFactory
-from asset_client.contents.docker_content import DockerContent
+from amapy_server.asset_client.contents.content_factory import ContentFactory
+from amapy_server.asset_client.contents.docker_content import DockerContent
 
 DATA = {
     "id": "gcr:sha256$0000000000000000000000000000000000000000000000000000000000000000",

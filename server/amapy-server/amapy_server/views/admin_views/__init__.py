@@ -31,8 +31,7 @@ def register_blueprints(app):
     admin = flask_admin.Admin(app=app,
                               name="asset server",
                               index_view=AdminIndexView(),
-                              endpoint="admin",
-                              template_mode='bootstrap2'
+                              endpoint="admin"
                               )
     admin.add_link(MenuLink(name='Logout', category='', url="/admin/logout/"))
     admin.add_view(AssetClassAdmin())

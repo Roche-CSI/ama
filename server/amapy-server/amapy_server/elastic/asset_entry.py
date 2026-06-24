@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 import os
 from datetime import datetime
-from typing import List, Dict, Any, Optional
+from typing import Any
 
 from amapy_server.asset_client import versioning
 from amapy_server.configs.configs import Configs
@@ -17,8 +17,8 @@ class AssetEntry(ElasticMixin):
         self.id: str = None
         self.title: str = None
         self.description: str = None
-        self.tags: List[str] = []  # Initialize as an empty list
-        self.metadata: Dict[str, Any] = {}  # Initialize as an empty dictionary
+        self.tags: list[str] = []  # Initialize as an empty list
+        self.metadata: dict[str, Any] = {}  # Initialize as an empty dictionary
         self.class_name: str = None
         self.class_id: str = None
         self.class_title: str = None
@@ -26,8 +26,8 @@ class AssetEntry(ElasticMixin):
         self.project_name: str = None
         self.project_id: str = None
         self.project_title: str = None
-        self.root_version: Dict[str, Any] = {}
-        self.leaf_version: Dict[str, Any] = {}
+        self.root_version: dict[str, Any] = {}
+        self.leaf_version: dict[str, Any] = {}
         self.owner: str = None
         self.created_by: str = None
         self.created_at: float = None
@@ -55,7 +55,7 @@ class AssetEntry(ElasticMixin):
                project_title: str,
                project_status: int,
                es_score: float,
-               es_highlight: Dict):
+               es_highlight: dict):
 
         root_version = asset.root_version()
         leaf_version = asset.leaf_version()
@@ -64,9 +64,9 @@ class AssetEntry(ElasticMixin):
         instance.id: str = str(asset.id)
         instance.title: str = asset.title
         instance.description: str = asset.description
-        instance.tags: List[str] = asset.tags
-        instance.metadata: Dict[str, Any] = asset.metadata  # could be any level of nesting and contain any type of data
-        instance.tags: List[str] = asset.tags
+        instance.tags: list[str] = asset.tags
+        instance.metadata: dict[str, Any] = asset.metadata  # could be any level of nesting and contain any type of data
+        instance.tags: list[str] = asset.tags
         instance.class_name: str = class_name
         instance.class_title: str = class_title
         instance.class_id: str = class_id
@@ -74,8 +74,8 @@ class AssetEntry(ElasticMixin):
         instance.project_name: str = project_name
         instance.project_id: str = project_id
         instance.project_title = project_title
-        instance.root_version: Dict[str, Any] = instance._parse_version(root_version)
-        instance.leaf_version: Dict[str, Any] = instance._parse_version(leaf_version)
+        instance.root_version: dict[str, Any] = instance._parse_version(root_version)
+        instance.leaf_version: dict[str, Any] = instance._parse_version(leaf_version)
         instance.owner: str = asset.owner
         instance.created_by: str = asset.created_by
         instance.created_at: float = asset.created_at.timestamp()
@@ -123,7 +123,7 @@ class AssetEntry(ElasticMixin):
         """
         return datetime.fromtimestamp(timestamp).timestamp()
 
-    def _parse_version(self, version) -> Dict[str, Any]:
+    def _parse_version(self, version) -> dict[str, Any]:
         return {
             "id": version.id,
             "created_at": version.created_at.timestamp(),
@@ -132,12 +132,12 @@ class AssetEntry(ElasticMixin):
         }
 
     @classmethod
-    def _cast_to_asset_entry(cls, hit: Dict[str, Any]) -> AssetEntry:
+    def _cast_to_asset_entry(cls, hit: dict[str, Any]) -> AssetEntry:
         """
         Cast an Elasticsearch hit to an AssetEntry object.
 
         Args:
-            hit (Dict[str, Any]): The Elasticsearch hit dictionary.
+            hit (dict[str, Any]): The Elasticsearch hit dictionary.
 
         Returns:
             AssetEntry: An AssetEntry object created from the hit data.
@@ -182,7 +182,7 @@ class AssetEntry(ElasticMixin):
             raise ValueError("Invalid mode for asset index")
 
     @staticmethod
-    def index_map() -> Dict[str, Any]:
+    def index_map() -> dict[str, Any]:
 
         """bug encounterd for tags and fixes "basecalling" tag was not searchable
         The standard tokenizer first splits "basecalling" into a single token
@@ -419,7 +419,7 @@ class AssetEntry(ElasticMixin):
     @staticmethod
     def query_vector(model,
                      query_text: str,
-                     filters: Optional[Dict] = None,
+                     filters: dict | None = None,
                      vector_weight: float = 0.7) -> dict:
         """Enhanced hybrid search with metadata filtering support"""
         query_vector = model.encode(query_text)

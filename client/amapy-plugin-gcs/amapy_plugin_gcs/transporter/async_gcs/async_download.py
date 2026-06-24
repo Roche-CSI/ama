@@ -1,6 +1,4 @@
 import asyncio
-import io
-import json
 import logging
 import os
 
@@ -84,7 +82,7 @@ async def __async_download_resources(credentials: dict, resources: list[GcsDownl
     async with aiohttp.ClientSession(connector=aiohttp.TCPConnector(ssl=False),
                                      timeout=timeout) as session:
         result = []
-        async_client = AsyncStorage(session=session, service_file=io.StringIO(json.dumps(credentials)))
+        async_client = AsyncStorage(session=session, credentials=credentials)
         tasks = [__async_download_resource(async_client=async_client,
                                            resource=resource,
                                            file_timeout=file_timeout,

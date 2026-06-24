@@ -1,6 +1,4 @@
 import asyncio
-import io
-import json
 
 import aiohttp
 import backoff
@@ -30,8 +28,7 @@ async def __async_delete_urls(credentials: dict, urls: list[BlobStoreURL]):
 
     """
     async with aiohttp.ClientSession(connector=aiohttp.TCPConnector(ssl=False)) as session:
-        async_client = AsyncStorage(session=session,
-                                    service_file=io.StringIO(json.dumps(credentials)))
+        async_client = AsyncStorage(session=session, credentials=credentials)
         # deactivate ssl verification, throws error in some macs otherwise
         result = []
         await asyncio.gather(*[__async_delete_url(async_client=async_client,

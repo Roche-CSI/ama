@@ -1,5 +1,5 @@
 import json
-from typing import Any, Dict
+from typing import Any
 
 
 class DeepCompareDict(dict):
@@ -45,7 +45,7 @@ class DeepCompareDict(dict):
         # Handle basic types
         return val1 == val2
 
-    def get_updates(self, other: Dict[str, Any]) -> Dict[str, Any]:
+    def get_updates(self, other: dict[str, Any]) -> dict[str, Any]:
         """
         Compare this dictionary with another and return a dict of changed fields.
         Handles nested structures and lists with proper comparison.
@@ -84,7 +84,7 @@ class DeepCompareDict(dict):
 
         return all(self._is_equal(self.get(key), other.get(key)) for key in self)
 
-    def update_if_changed(self, other: Dict[str, Any]) -> bool:
+    def update_if_changed(self, other: dict[str, Any]) -> bool:
         """
         Update this dictionary with values from another dict, but only if they're different.
 

@@ -1,4 +1,4 @@
-from views.js_client_views.gcs_signed_url_view import signed_url_for_content
+from amapy_server.views.utils import signed_url_for_content
 
 
 def test_signed_url_for_content():

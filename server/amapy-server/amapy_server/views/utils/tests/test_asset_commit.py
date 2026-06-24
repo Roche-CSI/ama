@@ -3,26 +3,26 @@ from datetime import datetime
 
 from amapy_server import models
 from amapy_server.models.utils import delete_records, delete_records_with_ids
-from amapy_server.utils import time_it
-from amapy_server.utils.file_utils import FileUtils
 from amapy_server.views.utils.asset_commit import AssetCommit
 from amapy_server.views.utils.commit_data import CommitData
+from amapy_utils.utils.file_utils import FileUtils
+from amapy_utils.utils.utils import time_it
 
 
 def data():
     """need the test_app fixture for making db transactions"""
-    path = os.path.join(os.path.dirname(__file__), "from_client.json")
+    path = os.path.join(os.path.dirname(__file__), "asset_data.json")
     return FileUtils.read_json(path)
 
 
 def large_asset_data():
-    objects_data = FileUtils.read_json(os.path.join(os.path.dirname(__file__), "genia_data.json"))
+    objects_data = FileUtils.read_json(os.path.join(os.path.dirname(__file__), "objects_data.json"))
     asset_data = data()
     asset_data["objects"] = objects_data
     return asset_data
 
 
-def save_asset_data(data: dict, project_id: str, username: str) -> CommitData:
+def save_asset_data(data: dict, project_id: str, username: str) -> tuple[CommitData, list, dict]:
     class_data: dict = data.get("asset_class")
     class_data["project"] = project_id
     objects_data: list = data.get("objects")

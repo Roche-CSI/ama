@@ -18,11 +18,8 @@ class AuthServer(BaseServer):
     def _auth_url_route(self):
         return os.path.join(self.url, self.configs.auth_url_route)
 
-    def _response_login_route(self):
-        return os.path.join(self.url, self.configs.response_login_route)
-
-    def _token_login_route(self):
-        return os.path.join(self.url, self.configs.token_login_route)
+    def _login_route(self):
+        return os.path.join(self.url, self.configs.login_route)
 
     def _signup_route(self):
         return os.path.join(self.url, self.configs.user_signup_route)
@@ -31,10 +28,10 @@ class AuthServer(BaseServer):
         return self.parse(self.get(url=self._auth_url_route()))
 
     def login_with_response(self, data: dict) -> dict:
-        return self.parse(self.post(url=self._response_login_route(), data=data))
+        return self.parse(self.post(url=self._login_route(), data=data))
 
     def login_with_token(self, token: str) -> dict:
-        return self.parse(self.post(url=self._token_login_route(), data={"token": token}))
+        return self.parse(self.post(url=self._login_route(), data={"token": token}))
 
     def signup_user(self, username: str, email: str):
         return self.parse(self.post(url=self._signup_route(), data={"username": username, "email": email}))

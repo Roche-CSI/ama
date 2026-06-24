@@ -1,7 +1,7 @@
 import os
 
 from amapy_server.configs import Configs
-from amapy_server.utils.file_utils import FileUtils
+from amapy_utils.utils.file_utils import FileUtils
 from .base_asset import BaseAsset
 from .contents import ContentUploader
 

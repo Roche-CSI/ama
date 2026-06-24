@@ -1,14 +1,13 @@
 import logging
 import os
 import time
-from typing import List, Dict, Optional
 
 from elasticsearch import Elasticsearch
 from sentence_transformers import SentenceTransformer
 
 from amapy_server.configs.configs import ConfigModes
-from amapy_server.utils.file_utils import FileUtils
 from amapy_utils.common.singleton import Singleton
+from amapy_utils.utils.file_utils import FileUtils
 
 logger = logging.getLogger(__file__)
 
@@ -67,7 +66,7 @@ class ElasticVectorSearch(Singleton):
         else:
             print(f"Index already exists: {index_name}")
 
-    def index_document(self, index_name, document: Dict):
+    def index_document(self, index_name, document: dict):
         """Index a single document with vector embedding and prepared metadata"""
         try:
             # Index document
@@ -82,7 +81,7 @@ class ElasticVectorSearch(Singleton):
             print(f"Error indexing document {document.get('title', 'unknown')}: {str(e)}")
             raise
 
-    def update_document(self, index_name, document: Dict, upsert=False):
+    def update_document(self, index_name, document: dict, upsert=False):
         """Update a single document with vector embedding and prepared metadata
         If upsert is True, the document will be created if it does not exist
         """
@@ -108,7 +107,7 @@ class ElasticVectorSearch(Singleton):
             print(f"Error verifying document {doc_id}: {str(e)}")
             return False
 
-    def get_document(self, index_name, doc_id: str) -> Optional[Dict]:
+    def get_document(self, index_name, doc_id: str) -> dict | None:
         """Retrieve a document from the index"""
         try:
             return self.es.get(index=index_name, id=doc_id)
@@ -121,7 +120,7 @@ class ElasticVectorSearch(Singleton):
                       query_vector: dict,
                       k: int = 5,
                       min_score: float = 0.1,
-                      offset: int = 0) -> List[Dict]:
+                      offset: int = 0) -> list[dict]:
 
         """offset = 0 and k = 10-> Results 0-9"""
 

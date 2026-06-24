@@ -1,4 +1,4 @@
-from amapy_server.utils.logging import LoggingMixin
+from amapy_utils.utils.log_utils import LoggingMixin
 from .configs import Configs
 
 

@@ -13,7 +13,7 @@ from amapy_plugin_gcs.transporter.gcs_transport_resource import GcsDownloadResou
 
 
 class MockAsyncStorage:
-    def __init__(self, session, service_file):
+    def __init__(self, session, credentials):
         root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", ".."))
         self.mock_bucket = os.path.join(root_dir, "test_data", "mock_bucket")
         self.mounts = [Mount(bucket_name="test_bucket", directory=self.mock_bucket, readable=True, writable=True)]

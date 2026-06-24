@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from amapy_server.utils.logging import LoggingMixin
+from amapy_utils.utils.log_utils import LoggingMixin
 from .serializable import Serializable
 
 
@@ -16,7 +16,7 @@ class AssetClass(LoggingMixin, Serializable):
         self.project = project
         self.asset = asset
 
-    def de_serialize(self, asset, data: dict) -> AssetClass:
+    def de_serialize(self, asset, data: dict):
         if not data:
             return None
         self.auto_save = False

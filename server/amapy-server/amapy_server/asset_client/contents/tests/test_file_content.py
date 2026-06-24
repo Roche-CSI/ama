@@ -1,4 +1,4 @@
-from asset_client.contents.file_content import FileContent
+from amapy_server.asset_client.contents.file_content import FileContent
 
 DATA = {
     "id": "gs:md5$placeholder_id_002==",
