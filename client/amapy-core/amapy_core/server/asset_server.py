@@ -115,9 +115,10 @@ class AssetServer(BaseServer):
         return data[0] if isinstance(data, list) else data
 
     def update_asset_class(self, id, data: dict):
-        self.parse(self.put(url=self._asset_class_route(id), data=data))
+        return self.parse(self.put(url=self._asset_class_route(id), data=data))
 
     def get_project_token(self, project_id: str):
         """Retrieves the project token from the server."""
-        url = self.add_params(self._project_token_route(), {"project_id": project_id})
+        url = self.add_params(url=self._project_token_route(),
+                              params={"project_id": project_id})
         return self.parse(self.get(url=url))
