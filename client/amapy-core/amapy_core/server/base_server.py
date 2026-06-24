@@ -27,10 +27,11 @@ class BaseServer:
             return json.loads(res.content)
         except json.decoder.JSONDecodeError as e:
             raise exceptions.IncorrectServerResponseError(
-                msg=f"unable to parse server response: {res.content}") from e
+                msg=f"unable to parse server response: {res.content}"
+            ) from e
 
     def add_params(self, url, params: dict):
-        """Adds query params to url"""
+        """Adds query params to url."""
         parsed = parse.urlparse(url)
         query = parsed.query
         url_dict = dict(parse.parse_qsl(query))
