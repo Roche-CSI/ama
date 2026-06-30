@@ -5,7 +5,6 @@ import copy
 import os
 import re
 import time
-from importlib.metadata import version, PackageNotFoundError
 
 from amapy_core.configs.configs import Configs
 from amapy_core.configs.user_settings import UserSettings
@@ -14,6 +13,8 @@ from amapy_pluggy.storage.storage_factory import StorageFactory
 from amapy_utils.common import exceptions
 from amapy_utils.utils import utils
 from amapy_utils.utils.file_utils import FileUtils
+
+AMA_PACKAGE_NAME = "amapy"
 
 SETTINGS_DIR = ".asset-manager"  # asset manager metadata
 SETTINGS_FILE = "globals.json"  # i.e. user, project etc
@@ -58,14 +59,9 @@ class AppSettings:
 
         Needed by server to validate breaking changes for new releases.
         """
-        package_name = "amapy"
-        try:
-            package_version = version(package_name)
-        except PackageNotFoundError as e:
-            raise exceptions.AssetException(f"cli version not found: {e}")
-
+        package_version = utils.get_package_version(AMA_PACKAGE_NAME)
         version_number = self.extract_version(package_version)
-        return f"{package_name}-{version_number}"
+        return f"{AMA_PACKAGE_NAME}-{version_number}"
 
     def extract_version(self, string):
         # Get rid of .dev from the version string
