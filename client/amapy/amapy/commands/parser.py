@@ -67,9 +67,6 @@ class CommandParser(LoggingMixin):
         sub_parsers.required = True
         self.sub_parsers = sub_parsers
 
-    def add_option(self, option):
-        option.add_to_parser(self.parser)
-
     def add_version(self, version: str):
         self.parser.add_argument("-v", "--version", action="version", version=version)
 
