@@ -12,16 +12,28 @@ class CliOption:
     positional: bool = False
     is_boolean: bool = False
     bool_action: str = "store_true"
+    action: str = None
+    version: str = None
 
     def __post_init__(self):
         self.default = self.default or []
-        if not self.positional and not self.is_boolean:
+        if not self.action and not self.positional and not self.is_boolean:
             if not self.short_name and not self.full_name:
                 raise Exception("short_name / full_name required")
 
     def add_to_parser(self, parser):
         """adds itself to sub_parser"""
-        if self.positional:
+        if self.action:
+            args = []
+            if self.short_name:
+                args.append(f"-{self.short_name}")
+            if self.full_name:
+                args.append(f"--{self.full_name}")
+            kwargs = {"action": self.action, "help": self.help_msg}
+            if self.version:
+                kwargs["version"] = self.version
+            parser.add_argument(*args, **kwargs)
+        elif self.positional:
             parser.add_argument(dest=self.dest,
                                 help=self.help_msg,
                                 nargs=self.n_args,
