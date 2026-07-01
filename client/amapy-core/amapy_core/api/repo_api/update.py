@@ -1,6 +1,5 @@
 import os
 
-from amapy_pluggy.storage.storage_credentials import StorageCredentials
 from amapy_utils.common import exceptions
 from amapy_utils.common.user_commands import UserCommands
 from amapy_utils.utils import LogColors
@@ -19,31 +18,6 @@ class UpdateAPI(RepoAPI):
 
     def update_asset(self, prompt_user: bool):
         self._update(objects=self.asset.objects, prompt_user=prompt_user)
-
-    def update_proxy_objects(self, prompt_user: bool):
-        """Re-checks all proxy objects against their remote source URLs and updates any that have changed.
-
-        Parameters
-        ----------
-        prompt_user : bool
-            Whether to prompt the user for confirmation.
-        """
-        proxy_objects = self.asset.objects.filter(lambda obj: obj.content.is_proxy)
-        if not proxy_objects:
-            self.user_log.message("no proxy objects found in this asset")
-            return
-
-        # collect unique source URLs from all proxy objects
-        src_urls = list({obj.content.meta["src"] for obj in proxy_objects})
-
-        StorageCredentials.shared().use_content_credentials = True
-        try:
-            AddAPI(repo=self.repo).add_files(targets=src_urls,
-                                             prompt_user=prompt_user,
-                                             proxy=True,
-                                             mode="update")
-        finally:
-            StorageCredentials.shared().use_content_credentials = False
 
     def update_objects(self, targets: [str], prompt_user: bool):
         """updates un-staged changes to an object
