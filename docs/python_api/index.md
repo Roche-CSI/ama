@@ -156,7 +156,9 @@ artifact.add_remote(targets=["gs://bucket-name/file-path.txt"])
 # this will add all the files maintaining the directory structure
 artifact.add_remote(targets=["gs://bucket-name/dir-path/"])
 
-# if there are multiple folders in remote bucket, e.g. `gs://bucket-name/dir-path`, `gs://bucket-name/dir-path-123`, `gs://bucket-name/dir-path-5678`
+# if there are multiple directories in remote bucket with same prefix,
+# e.g. `gs://bucket-name/dir-path`, `gs://bucket-name/dir-path-123`, `gs://bucket-name/dir-path-5678`
+# you can add them all with just the prefix url
 artifact.add_remote(targets=["gs://bucket-name/dir-path"])
 
 # to add remote files not accessible by the project credentials use separate credentials
