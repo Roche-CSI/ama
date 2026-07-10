@@ -4,8 +4,8 @@
 
 ### Installing AMA
 
-- In python 3.10 environment:
-  - `pip install amapy`
+- In python 3.12 environment:
+    - `pip install amapy`
 
 ### How to start using after installation
 
@@ -122,8 +122,8 @@ define the following
 
 #### How to work with projects
 
-We have created the `project_placeholder_01` project as a default workspace for all users to try out asset-manager. Once your
-team creates their own project you can get access to it by using the following commands:
+We have created the `project_placeholder_01` project as a default workspace for all users to try out asset-manager.
+Once your team creates their own project you can get access to it by using the following commands:
 
 - `ama project list`: to list all projects that you have access to
 - `ama project activate <project_name>`: to activate a project and start working on it
