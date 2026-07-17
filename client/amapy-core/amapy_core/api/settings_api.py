@@ -5,7 +5,7 @@ import os
 import shutil
 
 from amapy_core.configs import Configs
-from amapy_core.configs.app_settings import AppSettings, UserSettings
+from amapy_core.configs.app_settings import AppSettings
 from amapy_core.server import AuthServer, AssetServer
 from amapy_core.server import base_server
 from amapy_core.store.asset_store import AssetStore
@@ -145,7 +145,7 @@ class SettingsAPI(LoggingMixin):
             self.user_log.message(user_commands.UserCommands().set_user_configs())
             self.user_log.message(user_commands.UserCommands().reset_user_configs())
 
-    def set_user_configs(self, kwargs: dict):
+    def set_user_configs(self, kwargs: dict, persist: bool = True):
         if not kwargs:
             e = exceptions.AssetException(msg="missing config options, you must pass the option you want to set")
             e.logs.add(user_commands.UserCommands().set_user_configs())
@@ -157,12 +157,10 @@ class SettingsAPI(LoggingMixin):
         if "server_url" in kwargs and self.settings.user:
             raise exceptions.AssetException(msg="cannot set the 'server_url' while logged in, please logout first")
 
-        try:
-            cfg: UserSettings = self.settings.shared().user_configs
-            cfg.update(kwargs)
-            cfg.save()
-        except exceptions.AssetException:
-            raise
+        user_cfgs = self.settings.shared().user_configs
+        user_cfgs.update(kwargs)
+        if persist:
+            user_cfgs.save()
 
         self.user_log.success(f"success: updated user-configs with {json.dumps(kwargs)}")
         self.print_user_configs(show_help=False)
@@ -174,10 +172,10 @@ class SettingsAPI(LoggingMixin):
             e.logs.add(user_commands.UserCommands().reset_user_configs())
             raise e
 
-        user_cfgs: UserSettings = self.settings.shared().user_configs
+        user_cfgs = self.settings.shared().user_configs
         for key in keys:
             try:
-                user_cfgs.reset(key=key)
+                user_cfgs.reset(key)
             except exceptions.AssetException as e:
                 e.logs.add(user_commands.UserCommands().configs_info())
                 e.logs.add(user_commands.UserCommands().set_user_configs())
@@ -415,7 +413,7 @@ class SettingsAPI(LoggingMixin):
         with self.user_settings():
             return AssetServer().get_project_token(project_id)
 
-    def set_active_project(self, project_name: str, persist=True):
+    def set_active_project(self, project_name: str, persist: bool = True):
         """Sets the active project by its name.
 
         From the CLI persist is always True, from the API it's False by default.
