@@ -9,6 +9,7 @@ import os
 import resource
 import shutil
 import subprocess
+import tempfile
 import zipfile
 from json.decoder import JSONDecodeError
 from pathlib import Path
@@ -220,7 +221,25 @@ class FileUtils(LoggingMixin):
     def write_json(data: dict, abs_path: str, sort_keys: bool = True):
         os.makedirs(os.path.dirname(abs_path), exist_ok=True)
         with open(abs_path, 'w') as json_file:
-            json_file.write(json.dumps(data or "", indent=4, sort_keys=sort_keys))
+            json.dump(data or {}, json_file, indent=4, sort_keys=sort_keys)
+
+    @staticmethod
+    def safe_write_json(data: dict, abs_path: str, sort_keys: bool = True):
+        """Write data using a temp file to prevent partial writes.
+
+        Writing directly on the target file using open() would immediately truncate it to 0 bytes,
+        leaving a window for another process to read an empty file before writing completes.
+
+        Using a temp file to write, and replace the target with that fully-written temp file
+        ensures that readers always see either the old file or the new complete file,
+        never a partially written one.
+        """
+        dir_name = os.path.dirname(abs_path)
+        os.makedirs(dir_name, exist_ok=True)
+        with tempfile.NamedTemporaryFile('w', dir=dir_name, delete=False) as tf:
+            json.dump(data or {}, tf, indent=4, sort_keys=sort_keys)
+            temp_name = tf.name
+        os.replace(temp_name, abs_path)
 
     @staticmethod
     def read_json_zip_dir(dir):
