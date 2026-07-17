@@ -42,6 +42,7 @@ class Config(object):
         else:
             logger.warning("Update is temporary and will not persist across sessions. "
                            "To make it permanent, set persist=True.")
+
         return self._api.set_user_configs({key: value}, persist=persist)
 
     def reset(self, *keys):
