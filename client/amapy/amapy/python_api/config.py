@@ -34,11 +34,12 @@ class Config(object):
         value : Any
             The value for the configuration option.
         persist : bool, optional
-            Set to True to update the config file, otherwise just update the data.
+            Setting it to False will just update the data without modifying the file.
         """
         if persist:
             logger.warning("The settings file will be modified. This can cause issues if you have multiple "
-                           "instances of AMA running on your machine or running AMA with multi-processing.")
+                           "instances of AMA running on your machine or running AMA with multi-processing. "
+                           "To just update the data, set persist=False.")
         else:
             logger.warning("Update is temporary and will not persist across sessions. "
                            "To make it permanent, set persist=True.")
