@@ -103,13 +103,13 @@ class AppSettings:
     @data.setter
     def data(self, x):
         self._data = x
-        FileUtils.write_json(data=self._data, abs_path=self.settings_file)
+        FileUtils.safe_write_json(data=self._data, abs_path=self.settings_file)
 
     def set_data(self, x, persist=True):
         self._data = x
         if persist:
             # update the settings file
-            FileUtils.write_json(data=self._data, abs_path=self.settings_file)
+            FileUtils.safe_write_json(data=self._data, abs_path=self.settings_file)
 
     @property
     def assets_home(self) -> str:
