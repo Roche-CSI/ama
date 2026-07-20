@@ -24,7 +24,7 @@ class Config(object):
         """
         return self._api.print_user_configs(jsonize=True)
 
-    def set(self, key: str, value: Any, persist: bool = False):
+    def set(self, key: str, value: Any, persist: bool = True):
         """Sets custom configuration options.
 
         Parameters
