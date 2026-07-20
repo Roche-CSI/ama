@@ -159,8 +159,7 @@ class SettingsAPI(LoggingMixin):
 
         user_cfgs = self.settings.shared().user_configs
         user_cfgs.update(kwargs)
-        if persist:
-            user_cfgs.save()
+        user_cfgs.save(persist)
 
         self.user_log.success(f"success: updated user-configs with {json.dumps(kwargs)}")
         self.print_user_configs(show_help=False)
