@@ -90,7 +90,8 @@ class GcsStorage(AssetStorage, GcsStorageMixin):
 
     def filter_duplicate_blobs(self,
                                src_blobs: list[StorageData],
-                               dst_blobs: list[StorageData]) -> tuple[list, list]:
+                               dst_blobs: list[StorageData]
+                               ) -> tuple[list, list]:
         """Filters the source blobs to determine which blobs are new and which need to be replaced in the destination.
 
         If a blob in `src_blobs` has the same path_in_asset as a blob in `dst_blobs`, it compares their hashes.
@@ -131,11 +132,14 @@ class GcsStorage(AssetStorage, GcsStorageMixin):
         return new_blobs, replace_blobs
 
     # used in asset-server
-    def signed_url_for_blob(self, blob_url: str):
+    def signed_url_for_blob(self, blob_url: str, http_method="GET"):
         gcs_url = BlobStoreURL(url=blob_url)
-        return generate_signed_url(service_account_json=self.credentials,
-                                   bucket_name=gcs_url.bucket,
-                                   object_name=gcs_url.path)
+        return generate_signed_url(
+            bucket_name=gcs_url.bucket,
+            object_name=gcs_url.path,
+            service_account_json=self.credentials,
+            http_method=http_method
+        )
 
     # used in asset-server
     def get_bucket_cors(self, bucket_url: str):
@@ -143,11 +147,13 @@ class GcsStorage(AssetStorage, GcsStorageMixin):
         return get_bucket_cors(credentials=self.credentials, bucket_name=url.bucket)
 
     # used in asset-server
-    def set_bucket_cors(self, bucket_url: str, origin_url):
+    def set_bucket_cors(self, bucket_url: str, origin_url: str):
         url = BlobStoreURL(url=bucket_url)
-        return update_cors_configuration(credentials=self.credentials,
-                                         bucket_name=url.bucket,
-                                         origin_url=origin_url)
+        return update_cors_configuration(
+            credentials=self.credentials,
+            bucket_name=url.bucket,
+            origin_url=origin_url
+        )
 
 
 class GcsStoragePlugin:
