@@ -137,7 +137,7 @@ class AssetStorage(Singleton, LoggingMixin):
 
     # used in asset-server
     @abc.abstractmethod
-    def signed_url_for_blob(self, blob_url: str):
+    def signed_url_for_blob(self, blob_url: str, http_method: str = "GET"):
         raise NotImplementedError
 
     # used in asset-server
