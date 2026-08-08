@@ -132,7 +132,7 @@ class GcsStorage(AssetStorage, GcsStorageMixin):
         return new_blobs, replace_blobs
 
     # used in asset-server
-    def signed_url_for_blob(self, blob_url: str, http_method="GET"):
+    def signed_url_for_blob(self, blob_url: str, http_method: str = "GET"):
         gcs_url = BlobStoreURL(url=blob_url)
         return generate_signed_url(
             bucket_name=gcs_url.bucket,

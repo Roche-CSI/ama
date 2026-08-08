@@ -9,7 +9,7 @@ def get_bucket_cors(credentials: dict, bucket_name: str):
     return bucket.cors
 
 
-def update_cors_configuration(credentials: dict, bucket_name, origin_url: str):
+def update_cors_configuration(credentials: dict, bucket_name: str, origin_url: str):
     """Set a bucket's CORS policies configuration.
     cors = [
         {
