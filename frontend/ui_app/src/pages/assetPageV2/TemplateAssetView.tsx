@@ -8,6 +8,7 @@ import { StoreNames, useStore } from "../../stores";
 import { toTitleCase, useQuery, isEmptyObject } from "../../utils/utils";
 import { AssetVersion } from "../../servers/asset_server/assetVersion";
 import { useLoadingState } from "../../components/commonHooks";
+import { DataState } from "../../components/commonHooks/useLoadingState";
 import { ParsedObject } from "../../components/objectBrowser/ObjectBrowser";
 import { milliSecondsAgo } from "../../utils/dateUtils";
 import { DownloadWithProgress } from "../../components/progressBars";
@@ -108,13 +109,12 @@ const TemplateAssetView: React.FC<Props> = ({ templateName, asset, switchCompone
 	}
 
 	const getObjects = (version: AssetVersion | null) => {
+		startFetchingState()
 		if (asset.all_objects && !isEmptyObject(asset.all_objects)) {
-			startFetchingState()
 			getVersion(version, completeFetchingState);
 			return;
 		}
 		// fetch objects and then version
-		startFetchingState()
 		AssetObject.get(AssetObject.URL(), {
 			user: userStore.get("user").username,
 			asset_id: asset.id
@@ -253,6 +253,12 @@ const TemplateAssetView: React.FC<Props> = ({ templateName, asset, switchCompone
 					<div className="max-w-8xl mx-auto">
 						<NavBar />
 						<TemplateComponent />
+						{loadingState.data_state === DataState.fetching &&
+							<div className="mt-36">
+								{fetchingLoader()}
+							</div>
+						}
+						{fetchingError()}
 					</div>
 				</div>
 			</div>

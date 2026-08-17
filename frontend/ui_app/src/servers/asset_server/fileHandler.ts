@@ -44,14 +44,14 @@ export default class FileHandler {
                 //JSON.parse(responseString);
             }
             case FileType.IMAGE: {
-                //https://stackoverflow.com/questions/50248329/fetch-image-from-api
+                // Return the Blob directly for caching on the client side
                 return new Promise((resolve, reject) => {
                     if (blob) {
-                        resolve(URL.createObjectURL(blob))
-                    }else {
-                        reject("error blob is null")
+                        resolve(blob);
+                    } else {
+                        reject("error blob is null");
                     }
-                })
+                });
             }
 
             default: {

@@ -1,3 +1,16 @@
+// Generic retry helper
+async function withRetry<T>(fn: () => Promise<T>, retries = 3, delay = 500): Promise<T> {
+    let lastError;
+    for (let i = 0; i < retries; i++) {
+        try {
+            return await fn();
+        } catch (err) {
+            lastError = err;
+            if (i < retries - 1) await new Promise(res => setTimeout(res, delay));
+        }
+    }
+    throw lastError;
+}
 // import {URL, URLSearchParams} from "url";
 
 export enum RestMethods {
@@ -24,7 +37,7 @@ export function fetchGet(url: string, params?: {}): Promise<any> {
         fetchURL.search = new URLSearchParams(params).toString();
     }
     // let fetchURL = url;
-    return new Promise((resolve, reject) => {
+    return withRetry(() => new Promise((resolve, reject) => {
         fetch(fetchURL.toString(), {credentials: 'include', cache: 'no-store'})
             .then(res => {
                 if (!res.ok) {
@@ -37,13 +50,12 @@ export function fetchGet(url: string, params?: {}): Promise<any> {
                 console.log("fetch error:", err);
                 reject(err)
         });
-    });
-
+    }));
 }
 
 export function fetchPost(url: string, data: {}, files: RestFileData[] = []): Promise<any> {
     console.log("fetch post:", data);
-    return new Promise((resolve, reject) => {
+    return withRetry(() => new Promise((resolve, reject) => {
         fetch(url, {
             method: "post",
             credentials: 'include',
@@ -67,7 +79,7 @@ export function fetchPost(url: string, data: {}, files: RestFileData[] = []): Pr
             }
             reject(error)
         });
-    });
+    }));
 }
 
 /**
@@ -87,7 +99,7 @@ function prepareFormData(data: {}, files: RestFileData[] = []) {
 
 
 export function fetchPut(url: string, data: {}): Promise<any> {
-    return new Promise((resolve, reject) => {
+    return withRetry(() => new Promise((resolve, reject) => {
         fetch(url, {
             method: "put",
             credentials: 'include',
@@ -105,7 +117,7 @@ export function fetchPut(url: string, data: {}): Promise<any> {
                 res.json().then(data => resolve(data))
             }
         }).catch(err => reject(err));
-    });
+    }));
 }
 
 export function fetchDelete(url: string, params?: {}): Promise<any> {
@@ -113,7 +125,7 @@ export function fetchDelete(url: string, params?: {}): Promise<any> {
     if (params) {
         fetchURL.search = new URLSearchParams(params).toString();
     }
-    return new Promise((resolve, reject) => {
+    return withRetry(() => new Promise((resolve, reject) => {
         fetch(fetchURL.toString(), {
             method: "delete",
             credentials: 'include',
@@ -125,7 +137,7 @@ export function fetchDelete(url: string, params?: {}): Promise<any> {
                 res.json().then(data => resolve(data))
             }
         }).catch(err => reject(err));
-    });
+    }));
 }
 
 export async function fetchWithProgress(url: string, method: RestMethods, progress: Function, params?: any): Promise<any> {

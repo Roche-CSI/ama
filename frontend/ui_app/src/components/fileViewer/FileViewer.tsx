@@ -98,6 +98,7 @@ class FileViewer extends React.Component<FileViewerProps, FileViewerState> {
                                     format: this.props.contentType,
                                     fileName: this.props.fileName,
                                     showProgress: false,
+                                    isProxy: isProxy,
                                     error: this.props.error || (isProxy && "Proxy file is not supported.")
                                 });
                             // this.validateContent(existing.content, this.state.format)
@@ -108,6 +109,7 @@ class FileViewer extends React.Component<FileViewerProps, FileViewerState> {
                                 url: isProxy? null: this.props.url,
                                 format: this.props.contentType,
                                 fileName: this.props.fileName,
+                                isProxy: isProxy,
                                 error: this.props.error || (isProxy && "Proxy file is not supported.")
                             });
                         }
@@ -122,11 +124,11 @@ class FileViewer extends React.Component<FileViewerProps, FileViewerState> {
             downLoadBlobToDisk(data, this.props.fileName)
             return
         }
-        this.setState({ content: data.toString(), showProgress: false }, () => {
+        this.setState({ content: data, showProgress: false }, () => {
             this.validateContent(data, this.state.format);
             
             const contentId: string = this.props.objectData?.content?.id;
-            if (contentId && this.state.format !== FileType.IMAGE) {
+            if (contentId) {
                 this.store?.set(contentId, { content: data, timestamp: new Date().getTime() });
             }
         });
@@ -191,7 +193,7 @@ class FileViewer extends React.Component<FileViewerProps, FileViewerState> {
         return (
             <div>
                 {
-                    this.state.url ?
+                    !this.state.isProxy ?
                         <div>
                             {
                                 this.state.showProgress &&
@@ -213,7 +215,11 @@ class FileViewer extends React.Component<FileViewerProps, FileViewerState> {
     renderContent(content: any, format: string) {
         switch (format) {
             case FileType.IMAGE: {
-                return <div className={styles.imageViewer}><img src={content} alt={''}/></div>
+                let imageUrl = content;
+                if (content instanceof Blob) {
+                    imageUrl = URL.createObjectURL(content);
+                }
+                return <div className={styles.imageViewer}><img src={imageUrl} alt={''}/></div>
             }
             case FileType.YAML: {
                 const fileName: string = this.state.fileName || this.props.fileName;
@@ -230,7 +236,14 @@ class FileViewer extends React.Component<FileViewerProps, FileViewerState> {
             case FileType.CSV: {
                 return (
                     <div className={`${styles.fileViewer} ${styles.csv}`}>
-                        <CsvRenderer content={content} />
+                        {this.props.objectData?.content?.size > 1000000 ? // show content only for > 1MB
+                            <CodeEditor language={this.state.format}
+                            value={this.formatContent(content, this.state.format)}
+                            readonly={true}
+                            setLineNumber={this.setLineNumber} />
+                        :
+                            <CsvRenderer content={content} />
+                        }
                     </div>
                 )
             }

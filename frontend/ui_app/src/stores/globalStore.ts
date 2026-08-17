@@ -28,15 +28,15 @@ export enum StoreNames {
     pipelineUrlsStore = "pipelineUrls",
 }
 
-const PERSIST_STORES = [ 
+const PERSIST_STORES: string[] = [ 
     StoreNames.signedURLStore.toString(),
     StoreNames.fileContentStore.toString(),
     StoreNames.favoriteClassStore.toString(),
 ]
 
-const LOCALSTORAGE_STORES = [
+const LOCALSTORAGE_STORES: string[] = [
 ]
- 
+
 export default class GlobalStore {
     private static instances: {[key: string]: GlobalStore} = {};
 
@@ -61,7 +61,7 @@ export default class GlobalStore {
                 let stored: any = localStorage.getItem(this.name)
                 this.data = stored ? JSON.parse(stored) : {};
                 this.last_update = new Date().getTime();
-            } else {
+            } else if (PERSIST_STORES.includes(this.name)) {
                 this.db = database;
             }
         }
@@ -91,7 +91,7 @@ export default class GlobalStore {
         if (this.persist) {
             if (LOCALSTORAGE_STORES.includes(this.name)) {
                 localStorage.setItem(this.name, JSON.stringify(this.data))
-            } else {
+            } else if (PERSIST_STORES.includes(this.name)) {
                 if (key) {
                     this.db.setItem(this.name, key, value)
                 } else {
@@ -120,7 +120,7 @@ export default class GlobalStore {
         if (this.persist) {
             if (LOCALSTORAGE_STORES.includes(this.name)) {
                 localStorage.setItem(this.name, JSON.stringify(this.data))
-            } else {
+            } else if (PERSIST_STORES.includes(this.name)) {
                 this.db.deleteItem(this.name, key)
             }
         }
@@ -131,7 +131,7 @@ export default class GlobalStore {
         if (this.persist) {
             if (LOCALSTORAGE_STORES.includes(this.name)) {
                 localStorage.setItem(this.name, JSON.stringify(this.data))
-            } else {
+            } else if (PERSIST_STORES.includes(this.name)) {
                 this.db.setBulkItem(this.name, this.data);
             }
         }

@@ -3,12 +3,11 @@ import {Asset, AssetObject} from "../../servers/asset_server";
 import {StoreNames, useStore} from "../../stores";
 import {FileViewer} from "../fileViewer";
 import FileDiffViewer from "../../components/fileViewer/FileDiffViewer";
-import {SpinIndicator} from "../spinIndicator";
+import Spinner from "../spinner/Spinner";
 import { ErrorBoundary } from "../errorBoundary";
 import { milliSecondsAgo} from "../../utils/dateUtils";
 import { normalizeQueryParam } from "../../utils/utils";
 import { diffItem, diffObject } from "../../servers/asset_server/assetVersion"
-import defaultStyles from "./browser.module.scss";
 
 interface BrowserProps {
     asset: Asset;
@@ -118,7 +117,6 @@ export default function ObjectBrowser(props: BrowserProps) {
     }, [props.path, fetchURL, props.view, props.asset, props.diffObject])
 
     const data: any = contentData as any;
-    const styles: any = props.className?? defaultStyles;
     const header: boolean = typeof props.header !== "undefined"? props.header: true;
 
     return (
@@ -147,8 +145,7 @@ export default function ObjectBrowser(props: BrowserProps) {
                     error={error}
                 />
                 }
-                {loading && <SpinIndicator message={"loading"}
-                                           className={styles.spinner} />}
+                {loading && <Spinner message={"loading"} />}
             </ErrorBoundary>
         </div>
     )

@@ -59,7 +59,6 @@ export default function LoginPage() {
 
     return (
         <div>
-            {loginError && renderError()}
             {loginActions(action)}
         </div>
     );
@@ -83,16 +82,5 @@ export default function LoginPage() {
                     navigate={navigate}
                 />;
         }
-    }
-
-    function renderError() {
-        return (
-            <Alert variant={"error"} title={"Oh snap! You got an error!"}
-                description={[
-                    loginError,
-                    "Also: Make sure you are connected to VPN"
-                ]}
-            />
-        );
     }
 }

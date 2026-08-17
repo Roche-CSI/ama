@@ -10,6 +10,7 @@ import Switcher from "../../components/assetHistory/Switcher.tsx";
 import { CLASS_TYPE } from "../../components/assetClassBrowser";
 import { useLoadingState } from "../../components/commonHooks";
 import { DataState } from "../../components/commonHooks/useLoadingState";
+import { Alert } from "../../components/errorBoundary";
 
 const DEFAULT_ROOT_VERSION: string = "root";
 const DEFAULT_BASE_VERSION: string = "0.0.0";
@@ -84,7 +85,7 @@ export const AssetPageV2: React.FC = () => {
 			if (Object.keys(userStore.get("projects")).includes(project_id as string)) {
 				userStore.set("active_project", project_id);
 			} else {
-				setError("Oops! You do not have access to the project where this asset is located");
+				setError("Oops! You do not have access to the project where this asset is located. Please contact the admin.");
 				return;
 			}
 		}
@@ -111,7 +112,7 @@ export const AssetPageV2: React.FC = () => {
 
 	const navigate = useNavigate();
 	// Store template value in state
-	
+
 	const SwitchComponent: React.FC<{ value: "dashboard" | "default", show?: boolean }> = ({ value, show }) => {
 		if (!show) return null;
 		return (
@@ -125,7 +126,7 @@ export const AssetPageV2: React.FC = () => {
 			</div>
 		);
 	};
-	
+
 	const switchAssetView = (view: string) => {
 		if (view === "default") {
 			const search = new URLSearchParams(location.search);
@@ -139,7 +140,7 @@ export const AssetPageV2: React.FC = () => {
 			navigate(`${location.pathname}?${search.toString()}`);
 		}
 	}
-	
+
 	console.log("queryTemplate:", queryTemplate);
 
 	return (
@@ -153,6 +154,10 @@ export const AssetPageV2: React.FC = () => {
 					</div>
 				}
 				{fetchingError()}
+				{error && <Alert variant="error"
+					title="Oh snap! You got an error!"
+					description={[error, "Make sure you are connected to VPN"]}
+				/>}
 				{
 					asset ? queryTemplate ?
 						<TemplateAssetView
