@@ -3,7 +3,7 @@ from __future__ import annotations
 import os
 
 from peewee import *
-from playhouse.postgres_ext import JSONField
+from amapy_server.models.utils.fields import JSONField
 
 from amapy_pluggy.storage import Transporter
 from amapy_pluggy.storage.storage_factory import StorageFactory

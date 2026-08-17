@@ -1,5 +1,5 @@
 from peewee import *
-from playhouse.postgres_ext import JSONField
+from amapy_server.models.utils.fields import JSONField
 
 from amapy_server.asset_client.exceptions import AssetException
 from amapy_server.models.base.read_write import ReadWriteModel

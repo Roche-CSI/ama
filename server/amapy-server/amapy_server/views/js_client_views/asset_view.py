@@ -1,5 +1,6 @@
 import json
 import logging
+import uuid
 
 from flask import Blueprint, Response, request, make_response, current_app
 
@@ -34,6 +35,7 @@ def list_assets():
 
 @asset_view.route('/<id>', methods=['GET'])
 def get_asset(id: str):
+    id=str(uuid.UUID(id))
     asset = Asset.get_if_exists(Asset.id == id)
     return Response(to_json(asset_data(asset)), mimetype="application/json", status=200)
 

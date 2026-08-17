@@ -1,5 +1,5 @@
 from peewee import *
-from playhouse.postgres_ext import JSONField
+from amapy_server.models.utils.fields import JSONField
 
 from .asset import Asset
 from .asset_version import AssetVersion

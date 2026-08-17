@@ -1,5 +1,5 @@
 from peewee import ForeignKeyField, BooleanField
-from playhouse.postgres_ext import JSONField
+from amapy_server.models.utils.fields import JSONField
 
 from .base.read_write import ReadWriteModel
 from .bucket import Bucket
