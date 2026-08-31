@@ -1,0 +1,42 @@
+{% set version = "2.16.1" %}
+
+package:
+  name: aiobotocore
+  version: {{ version }}
+
+source:
+  url: https://pypi.org/packages/source/a/aiobotocore/aiobotocore-{{ version }}.tar.gz
+  sha256: 0f94904c6a1d14d5aac0502fcc1d721b95ee60d46d8a0e546f6203de0410d522
+
+build:
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 0
+
+requirements:
+  host:
+    - python >=3.8
+    - setuptools >=68.2.0
+    - pip
+  run:
+    - python >=3.8
+    - botocore >=1.35.74,<1.35.89
+    - aiohttp >=3.9.2,<4.0.0
+    - wrapt >=1.10.10,<2.0.0
+    - aioitertools >=0.5.1,<1.0.0
+
+test:
+  imports:
+    - aiobotocore
+  commands:
+    - pip check
+  requires:
+    - pip
+    - python
+
+about:
+  home: https://pypi.org/project/aiobotocore/
+  summary: Async client for aws services using botocore and aiohttp
+  doc_url: https://aiobotocore.aio-libs.org
+  license: Apache-2.0
+

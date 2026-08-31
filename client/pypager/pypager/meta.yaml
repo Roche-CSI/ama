@@ -1,0 +1,46 @@
+{% set version = "3.0.1" %}
+
+package:
+  name: pypager
+  version: {{ version }}
+
+source:
+  url: https://pypi.org/packages/source/p/pypager/pypager-{{ version }}.tar.gz
+  sha256: 79c1fc8c4f2c9749dd58e5b29bfce48ca864a24898d1a1e0df1e7fe82d86ab44
+
+build:
+  entry_points:
+    - pypager = pypager.entry_points.run_pypager:run
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 0
+
+requirements:
+  host:
+    - python >=3.6
+    - pip
+    - prompt-toolkit >=3.0.0,<3.0.36
+    - pygments
+    - setuptools ==80.10.2
+    - wheel
+  run:
+    - python >=3.6
+    - prompt-toolkit >=3.0.0,<3.0.36
+    - pygments
+
+test:
+  imports:
+    - pypager
+  commands:
+    - pip check
+#    - pypager --help
+  requires:
+    - pip
+    - python
+
+about:
+  home: https://github.com/jonathanslenders/pypager
+  summary: Pure Python pager (like "more" and "less").
+  license: BSD-3-Clause
+  license_file: LICENSE
+
