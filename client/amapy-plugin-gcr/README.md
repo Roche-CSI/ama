@@ -19,7 +19,7 @@ pip install amapy-plugin-gcr
 
 ## Supported Python Versions
 
-Python == 3.10
+Python == 3.12
 
 ## License
 
