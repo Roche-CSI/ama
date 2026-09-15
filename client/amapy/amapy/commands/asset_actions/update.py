@@ -9,7 +9,9 @@ class UpdateAsset(CliAction):
     def run(self, args):
         api = AssetAPI(self.repo).update
         with api.environment():
-            if args.all:
+            if args.proxy:
+                api.update_proxy_objects(prompt_user=(not args.yes))
+            elif args.all:
                 api.update_asset(prompt_user=(not args.yes))
             else:
                 api.update_objects(args.target, prompt_user=(not args.yes))
@@ -30,6 +32,11 @@ class UpdateAsset(CliAction):
             CliOption(
                 dest="yes",
                 help_msg="if true, asset-manager won't prompt user to confirm",
+                is_boolean=True
+            ),
+            CliOption(
+                dest="proxy",
+                help_msg="re-check all proxy objects against their remote source URLs and update any that have changed",
                 is_boolean=True
             )
         ]
