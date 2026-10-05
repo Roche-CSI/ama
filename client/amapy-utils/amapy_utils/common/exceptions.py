@@ -5,8 +5,8 @@ from amapy_utils.utils.log_utils import LogData, colored_string, LogColors
 
 class AssetException(Exception):
     """Base class for all asset exceptions."""
-    msg: str = None
-    data: dict = None
+    msg: str | None = None
+    data: dict | None = None
     fatal: bool = True
 
     def __init__(self, msg=None, data=None, fatal=True, *args):
