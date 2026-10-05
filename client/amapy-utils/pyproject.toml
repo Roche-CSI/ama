@@ -1,10 +1,10 @@
 [build-system]
-requires = ["setuptools>=74.0.0,<75.0.0"]
+requires = ["setuptools>=80.9.0,<81.0.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "amapy-utils"
-version = "1.1.0.dev1"
+version = "1.2.0"
 description = "A utility package that provides common functionality shared across the ama ecosystem."
 readme = "README.md"
 authors = [
@@ -14,9 +14,12 @@ maintainers = [
     { name = "Swarup Mahanti", email = "swarup.mahanti@roche.com" }
 ]
 license = { text = "Copyright (c) 2024 Roche Diagnostics Computation Science & Informatics" }
-requires-python = ">=3.12,<3.13"  # "==3.12.*"
+requires-python = ">=3.14,<3.15"
+classifiers = [
+    "Programming Language :: Python :: 3.14",
+]
 dependencies = [
-    "aiofiles==24.1.*",
+    "aiofiles==25.1.*",
     "colorama==0.4.*",
     "crcmod==1.*",
     "psutil==5.9.*",
