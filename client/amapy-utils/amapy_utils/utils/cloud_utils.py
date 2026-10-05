@@ -3,22 +3,11 @@ import socket
 import subprocess
 
 import requests
-import speedtest
 
 from amapy_utils.common import exceptions
 from amapy_utils.utils import utils
 
 logger = logging.getLogger(__name__)
-
-
-def get_upload_speed():
-    """returns upload speed in bytes, we use this to dynamically adjust the http request timeout"""
-    return speedtest.Speedtest().upload() / 8.0  # speedtest output is bits
-
-
-def get_download_speed():
-    """returns the download speed in bytes"""
-    return speedtest.Speedtest().download() / 8.0  # speedtest output is bits
 
 
 def parse_gcp_url(url: str):
