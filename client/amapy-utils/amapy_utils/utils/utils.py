@@ -225,8 +225,8 @@ def first_matching_dir(root_dir: str, pattern: str):
 
 
 def list_files(root_dir,
-               pattern: str = None,
-               ignore: str = None,
+               pattern: str | None = None,
+               ignore: str | None = None,
                recurse: bool = True) -> list:
     """lists all files (absolute paths) recursively in the directory
     Parameters:
@@ -246,8 +246,8 @@ def list_files(root_dir,
 
 
 def __list_recursive(root_dir,
-                     pattern: str = None,
-                     ignore: str = None) -> list:
+                     pattern: str | None = None,
+                     ignore: str | None = None) -> list:
     """
     Searches directory recursively and lists all files
     imp: not using glob here because of potential hidden directories
@@ -288,8 +288,8 @@ def get_ignore_names(ignores, paths):
 
 
 def __list_non_recursive(root_dir,
-                         pattern: str = None,
-                         ignore: str = None) -> list:
+                         pattern: str | None = None,
+                         ignore: str | None = None) -> list:
     parsed = []
     files = os.listdir(root_dir)
     file_names = fnmatch.filter(files, pattern) if pattern else files
