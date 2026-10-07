@@ -1,10 +1,10 @@
+import colorama
 import logging
 import math
 import os
+import pydoc
 import re
 import textwrap
-
-import colorama
 import tqdm
 from tabulate import tabulate
 
