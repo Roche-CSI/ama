@@ -1,3 +1,7 @@
+from importlib.metadata import version, PackageNotFoundError
+from os.path import expanduser
+from zoneinfo import ZoneInfo
+
 import collections.abc
 import contextlib
 import datetime
@@ -9,12 +13,8 @@ import re
 from collections.abc import Callable, Iterable
 from contextlib import contextmanager
 from functools import wraps
-from importlib.metadata import version, PackageNotFoundError
 from itertools import islice
-from os.path import expanduser
 from time import time
-
-from pytz import utc, timezone
 
 from amapy_utils.common import DEBUG, PROFILE, PRINT_ARGS
 from amapy_utils.utils.log_utils import UserLog
