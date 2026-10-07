@@ -68,15 +68,15 @@ def batch(iterable, batch_size: int = 1):
         yield iterable[ndx: min(ndx + batch_size, iterable_size)]
 
 
-def time_now():
-    return datetime.datetime.now(tz=utc).replace(microsecond=0)
+def time_now() -> datetime.datetime:
+    return datetime.datetime.now(datetime.UTC).replace(microsecond=0)
 
 
-def convert_to_pst(ts: datetime):
-    return ts.astimezone(timezone(TIME_ZONE)).strftime(DATE_FORMAT)
+def convert_to_pst(dt: datetime.datetime) -> str:
+    return dt.astimezone(ZoneInfo(TIME_ZONE)).strftime(DATE_FORMAT)
 
 
-def date_to_string(dt: datetime.datetime):
+def date_to_string(dt: datetime.datetime) -> str:
     return dt.strftime(DATE_FORMAT)
 
 
