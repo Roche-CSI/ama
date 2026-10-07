@@ -61,7 +61,7 @@ def _user_log_content(msg, paged=False):
     if DISABLE_USER_LOG_PRINTING:
         return
     elif paged:
-        Pager().paged_print(msg)
+        pydoc.pager(msg)
     else:
         print(msg)
 
@@ -74,7 +74,7 @@ def _user_log_title(title):
 class UserLog:
 
     @property
-    def colors(self) -> LogColors:
+    def colors(self) -> type[LogColors]:
         return LogColors
 
     def indented_message(self, body, color=None, title=None):
