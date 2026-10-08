@@ -1,7 +1,6 @@
 import os.path
-from datetime import datetime
 
-from pytz import timezone
+from datetime import UTC, datetime
 
 from amapy_utils.utils.utils import contains_special_chars, is_integer, convert_to_pst, date_to_string, time_now, \
     string_to_timestamp, relative_path, remove_prefix, remove_suffix, list_files, find_pattern
@@ -19,9 +18,27 @@ def test_is_integer():
 
 
 def test_convert_to_pst():
-    utc_time = datetime(2020, 1, 1, 12, 0, tzinfo=timezone('UTC'))
+    utc_time = datetime(2020, 1, 1, 12, 0, tzinfo=UTC)
     pst_time = "2020/01/01 04-00-00 -0800"
     assert convert_to_pst(utc_time) == pst_time
+
+
+def test_convert_to_pst_daylight_saving():
+    utc_time = datetime(2020, 7, 1, 12, 0, tzinfo=UTC)
+    assert convert_to_pst(utc_time) == "2020/07/01 05-00-00 -0700"
+
+
+def test_convert_to_pst_daylight_saving_transition():
+    before = datetime(2020, 11, 1, 8, 30, tzinfo=UTC)
+    after = datetime(2020, 11, 1, 9, 30, tzinfo=UTC)
+    assert convert_to_pst(before) == "2020/11/01 01-30-00 -0700"
+    assert convert_to_pst(after) == "2020/11/01 01-30-00 -0800"
+
+
+def test_time_now():
+    now = time_now()
+    assert now.tzinfo is UTC
+    assert now.microsecond == 0
 
 
 def test_date_to_string():
