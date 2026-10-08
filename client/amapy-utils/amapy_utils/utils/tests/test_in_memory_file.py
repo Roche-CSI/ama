@@ -1,6 +1,5 @@
 import json
 import os
-
 from ruamel.yaml import YAML
 
 from amapy_utils.utils.file_utils import FileUtils

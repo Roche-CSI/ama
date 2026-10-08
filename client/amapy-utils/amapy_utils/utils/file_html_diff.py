@@ -1,5 +1,6 @@
-import difflib
 from pathlib import Path
+
+import difflib
 
 
 class FileHtmlDiff(difflib.HtmlDiff):

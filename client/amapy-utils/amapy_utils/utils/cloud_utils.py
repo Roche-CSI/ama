@@ -1,8 +1,7 @@
 import logging
+import requests
 import socket
 import subprocess
-
-import requests
 
 from amapy_utils.common import exceptions
 from amapy_utils.utils import utils

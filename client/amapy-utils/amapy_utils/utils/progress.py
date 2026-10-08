@@ -1,5 +1,4 @@
 import sys
-
 from tqdm import tqdm, utils
 
 from amapy_utils.utils.log_utils import LoggingMixin, LogColors, colored_string
