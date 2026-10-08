@@ -43,7 +43,7 @@ class MimeTypes:
 class FileUtils(LoggingMixin):
 
     @staticmethod
-    def mime_type(src) -> str:
+    def mime_type(src):
         """Detect the mimetype of a file given its path."""
         mime, _ = mimetypes.guess_type(src)
         return mime
