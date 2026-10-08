@@ -402,7 +402,7 @@ class FileUtils(LoggingMixin):
         shutil.copy2(src=src, dst=dst)
 
     @staticmethod
-    def copy_dir(src: str, dst: str, ignore_list: list = None, exist_ok: bool = False):
+    def copy_dir(src: str, dst: str, ignore_list: list[str] | None = None, exist_ok: bool = False):
         if ignore_list:
             shutil.copytree(src=src, dst=dst,
                             ignore=lambda dir, files: set(ignore_list),
@@ -459,7 +459,7 @@ class FileUtils(LoggingMixin):
             ))
 
     @staticmethod
-    def load_html_template(html_path: str, css_path: str = None, js_path: str = None):
+    def load_html_template(html_path: str, css_path: str | None = None, js_path: str | None = None):
         html = Path(html_path).read_text()
         if css_path:
             css = Path(css_path).read_text()
