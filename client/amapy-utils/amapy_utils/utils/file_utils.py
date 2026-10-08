@@ -34,34 +34,13 @@ class NoAliasDumper(yaml.SafeDumper):
         return True
 
 
-"""extra mimetypes not yet added to mimetypes library"""
-EXTRA_MIMES = {
-    'application/x-yaml': ['.yaml', '.yml'],
-    'application/x-hdf5': ['.h5']
-}
-
-
 class FileUtils(LoggingMixin):
 
     @staticmethod
     def mime_type(src) -> str:
-        """detect the mimetype of a file given its path"""
+        """Detect the mimetype of a file given its path."""
         mime, _ = mimetypes.guess_type(src)
-        # mimetypes doesn't work for yaml since
-        # yaml is not yet in the IANA registry, so we need to manually plug it
-        if not mime:
-            mime = FileUtils._extra_mime(src)
         return mime
-
-    @staticmethod
-    def _extra_mime(path):
-        """find mimetypes for files that are not yet defined in the mimetypes lib"""
-        filename, extension = os.path.splitext(path)
-        for mime in EXTRA_MIMES:
-            exts = EXTRA_MIMES[mime]
-            if extension in exts:
-                return mime
-        return None
 
     @staticmethod
     def read_file_mime_type(path: str, mime_type):
