@@ -24,8 +24,8 @@ def test_mime_type():
         "data.json": "application/json",
         "readme.txt": "text/plain",
         "data.h5": "application/x-hdf5",
-        "data.yaml": "application/x-yaml",
-        "data.yml": "application/x-yaml",
+        "data.yaml": "application/yaml",
+        "data.yml": "application/yaml",
         "readme.md": "text/markdown",
         "photo.jpg": "image/jpeg",
     }
