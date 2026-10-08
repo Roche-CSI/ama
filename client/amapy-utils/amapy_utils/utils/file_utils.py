@@ -34,6 +34,12 @@ class NoAliasDumper(yaml.SafeDumper):
         return True
 
 
+class MimeTypes:
+    JSON = "application/json"
+    TEXT = "text/plain"
+    YAML = "application/yaml"
+
+
 class FileUtils(LoggingMixin):
 
     @staticmethod
@@ -44,11 +50,11 @@ class FileUtils(LoggingMixin):
 
     @staticmethod
     def read_file_mime_type(path: str, mime_type):
-        if mime_type == 'application/json':
+        if mime_type == MimeTypes.JSON:
             return FileUtils.read_json(path)
-        elif mime_type in ('application/yaml', 'application/x-yaml'):
+        elif mime_type == MimeTypes.YAML:
             return FileUtils.read_yaml(path)
-        elif mime_type == 'text/plain':
+        elif mime_type == MimeTypes.TEXT:
             return FileUtils.read_text(path)
         else:
             raise Exception(f"unsupported mime type {mime_type}")
