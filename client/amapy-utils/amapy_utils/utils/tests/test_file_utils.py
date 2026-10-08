@@ -1,7 +1,6 @@
 import json
 import os
 import tempfile
-
 import yaml
 
 from amapy_utils.utils import list_files
@@ -102,11 +101,10 @@ def test_bytes_hash(test_data):
 
 
 def test_read_json(test_data):
-    path = os.path.join(test_data, "write.json")
+    path = os.path.join(test_data, "jsons/web_app.json")
     data = FileUtils.read_json(path)
     assert isinstance(data, dict)
-    assert "name" in data
-    assert data["name"] == "asset-manager"
+    assert "web-app" in data
 
 
 def test_write_json():
@@ -193,7 +191,7 @@ def test_diff_file():
 
 
 def test_hard_link_file(test_data):
-    src = os.path.join(test_data, "write.json")
+    src = os.path.join(test_data, "jsons/web_app.json")
     tmp = tempfile.mkdtemp()
     dst = os.path.join(tmp, "linked.json")
     FileUtils.hard_link_file(src=src, dst=dst)
@@ -202,7 +200,7 @@ def test_hard_link_file(test_data):
 
 
 def test_sym_link_file(test_data):
-    src = os.path.join(test_data, "write.json")
+    src = os.path.join(test_data, "jsons/web_app.json")
     tmp = tempfile.mkdtemp()
     dst = os.path.join(tmp, "symlinked.json")
     FileUtils.sym_link_file(src=src, dst=dst)
