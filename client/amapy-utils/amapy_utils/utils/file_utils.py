@@ -307,7 +307,7 @@ class FileUtils(LoggingMixin):
             if b64:
                 return FileUtils.hex_to_base64(md5_hex=hash_crc32c.digest())
             # return the hex string
-            return hash_crc32c.hexdigest()
+            return hash_crc32c.digest().hex().upper()
         except IsADirectoryError as e:
             LoggingMixin.user_log.error(f"error hashing file {f_name}: {e}")
 
@@ -339,7 +339,7 @@ class FileUtils(LoggingMixin):
             # convert to base64
             return FileUtils.hex_to_base64(md5_hex=hash_crc32c.digest())
         # return the hex string
-        return hash_crc32c.hexdigest()
+        return hash_crc32c.digest().hex().upper()
 
     @staticmethod
     def hex_to_base64(md5_hex: bytes | str):
