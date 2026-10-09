@@ -1,7 +1,9 @@
 import colorama
 
-from amapy_utils.utils.log_utils import LogData, colored_string, colorize, UserLog, LogColors, \
-    kilo_byte, comma_formatted
+from amapy_utils.utils import log_utils
+from amapy_utils.utils.log_utils import (
+    LogData, colored_string, colorize, UserLog, LogColors, kilo_byte, comma_formatted,
+)
 
 
 def test_log_data_add():
@@ -30,6 +32,9 @@ def test_colorize_with_style():
     style = "bold"
     expected_result = f"{colorama.Style.BRIGHT}{color}{message}{colorama.Style.RESET_ALL}"
     assert colorize(message, color=color, style=style) == expected_result
+    assert colorize(message, color=color, style="dim").startswith(colorama.Style.DIM)
+    assert colorize(message, color=color, style="unknown").startswith(color)
+    assert colorize(message) == message
 
 
 def test_bulletize():
@@ -68,3 +73,41 @@ def test_comma_formatted():
     assert comma_formatted(0) == "0"
     # Test negative number
     assert comma_formatted(-1000) == "-1,000"
+
+
+def test_user_log_messages(capsys):
+    log = UserLog()
+    assert log.colors is LogColors
+    assert log.colorize("colored", LogColors.INFO).endswith(colorama.Fore.RESET)
+
+    log.indented_message("body")
+    assert "body" in capsys.readouterr().out
+    log.indented_message("body", title="Title")
+    output = capsys.readouterr().out
+    assert "Title" in output
+    assert "body" in output
+
+    log.error("error")
+    log.info("info")
+    log.alert("alert")
+    log.success("success")
+    output = capsys.readouterr().out
+    for message in ("error", "info", "alert", "success"):
+        assert message in output
+
+
+def test_logging_helpers():
+    assert log_utils.format_link("https://example.com").startswith("<")
+    assert log_utils.format_link("https://example.com").endswith(">")
+    assert log_utils.bold_string("bold").endswith(log_utils.END)
+    assert log_utils.asset_logo() == colored_string(
+        "🅰🆂🆂🅴🆃-🅼🅰🅽🅰🅶🅴🆁", color=colorama.Fore.LIGHTYELLOW_EX
+    )
+    title = log_utils._user_log_title("Title")
+    assert "Title" in title
+    assert title.endswith(colorama.Fore.RESET)
+    assert log_utils._visual_width("\033[31mred\033[0m") == 3
+    assert log_utils._visual_center("x", 4) == " x  "
+    boxed = log_utils._boxed_message("x")
+    assert boxed.startswith("+")
+    assert "\n" in boxed
