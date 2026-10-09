@@ -28,6 +28,8 @@ from .stat_utils import stat2dict
 from .utils import list_files, remove_suffix
 from .utils import make_dirs, batch
 
+FILE_READ_CHUNK_SIZE = 4096
+
 
 class NoAliasDumper(yaml.SafeDumper):
     def ignore_aliases(self, data):
@@ -287,7 +289,7 @@ class FileUtils(LoggingMixin):
         hash_md5 = hashlib.md5()
         try:
             with open(f_name, "rb") as f:
-                for chunk in iter(lambda: f.read(4096), b""):
+                for chunk in iter(lambda: f.read(FILE_READ_CHUNK_SIZE), b""):
                     hash_md5.update(chunk)
             # return base64.b64encode(hash_md5.digest()).decode('ascii')
             if b64:
@@ -302,7 +304,7 @@ class FileUtils(LoggingMixin):
         hash_crc32c = google_crc32c.Checksum()
         try:
             with open(f_name, "rb") as f:
-                for chunk in iter(lambda: f.read(4096), b""):
+                for chunk in iter(lambda: f.read(FILE_READ_CHUNK_SIZE), b""):
                     hash_crc32c.update(chunk)
             if b64:
                 return FileUtils.hex_to_base64(md5_hex=hash_crc32c.digest())
@@ -314,11 +316,10 @@ class FileUtils(LoggingMixin):
     @staticmethod
     def bytes_md5(file_bytes, b64=True):
         hash_md5 = hashlib.md5()
-        chunk_size = 4096
         start = 0
         while start < len(file_bytes):
-            chunk = file_bytes[start:start + chunk_size]
-            start += chunk_size
+            chunk = file_bytes[start:start + FILE_READ_CHUNK_SIZE]
+            start += FILE_READ_CHUNK_SIZE
             hash_md5.update(chunk)
         if b64:
             # convert to base64
@@ -329,11 +330,10 @@ class FileUtils(LoggingMixin):
     @staticmethod
     def bytes_crc32c(file_bytes, b64=True):
         hash_crc32c = google_crc32c.Checksum()
-        chunk_size = 4096
         start = 0
         while start < len(file_bytes):
-            chunk = file_bytes[start:start + chunk_size]
-            start += chunk_size
+            chunk = file_bytes[start:start + FILE_READ_CHUNK_SIZE]
+            start += FILE_READ_CHUNK_SIZE
             hash_crc32c.update(chunk)
         if b64:
             # convert to base64
