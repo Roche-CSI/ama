@@ -123,7 +123,7 @@ class FileUtils(LoggingMixin):
             except ValueError as e:
                 # linux will raise error if you are not superuser
                 # we need to work with the limit set by os
-                LoggingMixin.user_log.error(f"error:{e}. setting max concurrent files limit")
+                LoggingMixin.user_log.error(f"error setting max concurrent files limit: {e}")
                 os.environ["ASSET_MAX_CONCURRENT_FILES"] = str(limit - 20)  # keep some buffer
 
     @staticmethod
@@ -144,7 +144,7 @@ class FileUtils(LoggingMixin):
                 stream.close()
                 return serialized
         except NotADirectoryError as e:
-            print(e)
+            LoggingMixin.user_log.error(f"error writing yaml file: {e}")
 
     @staticmethod
     def read_file(filepath: str, compressed: bool = False):
