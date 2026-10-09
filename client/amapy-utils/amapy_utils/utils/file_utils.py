@@ -299,13 +299,12 @@ class FileUtils(LoggingMixin):
 
     @staticmethod
     def file_crc32c(f_name, b64=True):
-        hash_crc32c = crcmod.predefined.Crc('crc-32c')
+        hash_crc32c = google_crc32c.Checksum()
         try:
             with open(f_name, "rb") as f:
                 for chunk in iter(lambda: f.read(4096), b""):
                     hash_crc32c.update(chunk)
             if b64:
-                # return base64.b64encode(hash_crc32c.digest()).decode('ascii')
                 return FileUtils.hex_to_base64(md5_hex=hash_crc32c.digest())
             # return the hex string
             return hash_crc32c.hexdigest()
@@ -329,8 +328,7 @@ class FileUtils(LoggingMixin):
 
     @staticmethod
     def bytes_crc32c(file_bytes, b64=True):
-        hash_crc32c = crcmod.predefined.Crc('crc-32c')
-        # hash_crc32c.update(file_bytes)
+        hash_crc32c = google_crc32c.Checksum()
         chunk_size = 4096
         start = 0
         while start < len(file_bytes):
