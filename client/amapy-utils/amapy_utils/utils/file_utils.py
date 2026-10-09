@@ -254,8 +254,8 @@ class FileUtils(LoggingMixin):
         return result
 
     @staticmethod
-    def file_hash(abs_path: str, hash_type="md5", b64=True) -> tuple:
-        """"""
+    def file_hash(abs_path: str, hash_type: str = "md5", b64: bool = True) -> tuple:
+        """Generates the hash for the specified hash type."""
         if hash_type == "md5":
             return "md5", FileUtils.file_md5(abs_path, b64=b64)
         elif hash_type == "crc32c":
@@ -264,8 +264,8 @@ class FileUtils(LoggingMixin):
             raise AssetException(msg=f"unsupported hash type: {hash_type}")
 
     @staticmethod
-    def bytes_hash(file_bytes: bytes, hash_type="md5", b64=True) -> tuple:
-        """"""
+    def bytes_hash(file_bytes: bytes, hash_type: str = "md5", b64: bool = True) -> tuple:
+        """Generates the hash for the specified hash type."""
         if hash_type == "md5":
             return "md5", FileUtils.bytes_md5(file_bytes, b64=b64)
         elif hash_type == "crc32c":
