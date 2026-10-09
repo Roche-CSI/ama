@@ -57,24 +57,50 @@ def test_get_mount(project_root):
 
 
 def test_file_hash(test_data):
-    expected = [
-        {"path": "yamls/model.yml",
-         "hashes": {'md5': 'l6BTlxCz4Y2ZfKapM248BQ==', 'crc32c': 'MF40IQ=='}},
-        {"path": "yamls/invoice.yaml",
-         "hashes": {'md5': 'XBo9UIOoHdGK4GLx+piBiA==', 'crc32c': 'Z/KSgw=='}},
-        {"path": "imgs/photo-1513938709626-033611b8cc03.jpg",
-         "hashes": {'md5': 'vlyBXBn3+A99jGAicoEw3g==', 'crc32c': 'yPffHw=='}},
-        {"path": "imgs/photo-1541698444083-023c97d3f4b6.jpg",
-         "hashes": {'md5': 'jeujRNnpO16Vq5kZzKPtwA==', 'crc32c': 'aT02+w=='}},
-    ]
+    expected = {
+        "yamls/model.yml": {
+            "md5": {
+                True: "l6BTlxCz4Y2ZfKapM248BQ==",
+                False: "97a0539710b3e18d997ca6a9336e3c05",
+            },
+            "crc32c": {True: "MF40IQ==", False: "305E3421"},
+        },
+        "yamls/invoice.yaml": {
+            "md5": {
+                True: "XBo9UIOoHdGK4GLx+piBiA==",
+                False: "5c1a3d5083a81dd18ae062f1fa988188",
+            },
+            "crc32c": {True: "Z/KSgw==", False: "67F29283"},
+        },
+        "imgs/photo-1513938709626-033611b8cc03.jpg": {
+            "md5": {
+                True: "vlyBXBn3+A99jGAicoEw3g==",
+                False: "be5c815c19f7f80f7d8c6022728130de",
+            },
+            "crc32c": {True: "yPffHw==", False: "C8F7DF1F"},
+        },
+        "imgs/photo-1541698444083-023c97d3f4b6.jpg": {
+            "md5": {
+                True: "jeujRNnpO16Vq5kZzKPtwA==",
+                False: "8deba344d9e93b5e95ab9919cca3edc0",
+            },
+            "crc32c": {True: "aT02+w==", False: "693D36FB"},
+        },
+    }
 
-    for file in expected:
-        file_path = os.path.join(test_data, file["path"])
-        md5_hash = FileUtils.file_hash(abs_path=file_path, hash_type="md5")
-        assert md5_hash[1] == file["hashes"]["md5"]
+    for relative_path, hashes in expected.items():
+        file_path = os.path.join(test_data, relative_path)
+        md5_hash = FileUtils.file_hash(abs_path=file_path, hash_type="md5", b64=True)
+        assert md5_hash[1] == hashes["md5"][True]
 
-        crc32c_hash = FileUtils.file_hash(abs_path=file_path, hash_type="crc32c")
-        assert crc32c_hash[1] == file["hashes"]["crc32c"]
+        md5_hash = FileUtils.file_hash(abs_path=file_path, hash_type="md5", b64=False)
+        assert md5_hash[1] == hashes["md5"][False]
+
+        crc32c_hash = FileUtils.file_hash(abs_path=file_path, hash_type="crc32c", b64=True)
+        assert crc32c_hash[1] == hashes["crc32c"][True]
+
+        crc32c_hash = FileUtils.file_hash(abs_path=file_path, hash_type="crc32c", b64=False)
+        assert crc32c_hash[1] == hashes["crc32c"][False]
 
 
 def test_bytes_hash(test_data):
