@@ -275,13 +275,14 @@ class FileUtils(LoggingMixin):
 
     @staticmethod
     def url_safe_md5(b64_md5: str):
-        """converts base64 encoded md5 to urlsafe"""
+        """Converts base64 encoded md5 to urlsafe."""
         return base64.urlsafe_b64encode(base64.b64decode(b64_md5)).decode("ascii")
 
     @staticmethod
     def file_md5(f_name, b64=True):
-        """calculates md5 hash and returns base64
-        important: gcloud uses base64 encoded hashes
+        """Calculates md5 hash and returns base64.
+
+        Important: gcloud uses base64 encoded hashes
         """
         hash_md5 = hashlib.md5()
         try:
