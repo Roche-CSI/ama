@@ -1,23 +1,23 @@
+from pathlib import Path
+
+import aiofiles
 import asyncio
 import base64
 import difflib
+import google_crc32c
 import hashlib
 import io
 import json
 import mimetypes
 import os
+import psutil
 import resource
 import shutil
 import subprocess
 import tempfile
+import yaml
 import zipfile
 from json.decoder import JSONDecodeError
-from pathlib import Path
-
-import aiofiles
-import crcmod
-import psutil
-import yaml
 from ruamel.yaml import YAML
 
 from amapy_utils.common.exceptions import AssetException
