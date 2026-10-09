@@ -79,7 +79,7 @@ class FileUtils(LoggingMixin):
                 stream.close()
                 return serialized
         except NotADirectoryError as e:
-            print(e)
+            LoggingMixin.user_log.error(f"error writing file {abs_path}: {e}")
 
     @staticmethod
     def read_yaml(abs_path):
@@ -163,7 +163,7 @@ class FileUtils(LoggingMixin):
             else:
                 return FileUtils._write_file_uncompressed(path=abs_path, content=content)
         except NotADirectoryError as e:
-            print(e)
+            LoggingMixin.user_log.error(f"error writing file {abs_path}: {e}")
 
     @staticmethod
     def write_zipfile(path: str, content: str, key=None):
@@ -295,7 +295,7 @@ class FileUtils(LoggingMixin):
             # return the hex string
             return hash_md5.hexdigest()
         except IsADirectoryError as e:
-            print(e)
+            LoggingMixin.user_log.error(f"error hashing file {f_name}: {e}")
 
     @staticmethod
     def file_crc32c(f_name, b64=True):
@@ -310,7 +310,7 @@ class FileUtils(LoggingMixin):
             # return the hex string
             return hash_crc32c.hexdigest()
         except IsADirectoryError as e:
-            print(e)
+            LoggingMixin.user_log.error(f"error hashing file {f_name}: {e}")
 
     @staticmethod
     def bytes_md5(file_bytes, b64=True):
