@@ -20,7 +20,7 @@ pip install amapy-utils
 
 ## Supported Python Versions
 
-Python == 3.12
+Python == 3.14
 
 ## License
 

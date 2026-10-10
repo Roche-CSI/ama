@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 import os.path
 
 PIPE = "│"
@@ -10,10 +8,10 @@ SPACE_PREFIX = "    "
 
 
 class TreeNode(object):
-    value: str = None
-    children: dict = None
+    value: str | None = None
+    children: dict[str | None, TreeNode]
 
-    def __init__(self, path: str = None):
+    def __init__(self, path: str | None = None):
         self.path = path
         self.children = {}
         if path:

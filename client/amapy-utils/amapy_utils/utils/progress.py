@@ -1,5 +1,4 @@
 import sys
-
 from tqdm import tqdm, utils
 
 from amapy_utils.utils.log_utils import LoggingMixin, LogColors, colored_string
@@ -52,7 +51,7 @@ class Progress(tqdm, LoggingMixin):
         kwargs['file'] = sys.stdout  # print to stdout
         super().__init__(**kwargs)
 
-    def close(self, message: str = "", force: bool = False, color: LogColors = None):
+    def close(self, message: str = "", force: bool = False, color: str | None = None):
         """Cleanup and (if leave=False) close the progressbar."""
         if self.disable and not force:
             return

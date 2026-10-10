@@ -1,23 +1,23 @@
+from pathlib import Path
+
+import aiofiles
 import asyncio
 import base64
 import difflib
+import google_crc32c
 import hashlib
 import io
 import json
 import mimetypes
 import os
+import psutil
 import resource
 import shutil
 import subprocess
 import tempfile
+import yaml
 import zipfile
 from json.decoder import JSONDecodeError
-from pathlib import Path
-
-import aiofiles
-import crcmod
-import psutil
-import yaml
 from ruamel.yaml import YAML
 
 from amapy_utils.common.exceptions import AssetException
@@ -28,48 +28,35 @@ from .stat_utils import stat2dict
 from .utils import list_files, remove_suffix
 from .utils import make_dirs, batch
 
+FILE_READ_CHUNK_SIZE = 4096
+
 
 class NoAliasDumper(yaml.SafeDumper):
     def ignore_aliases(self, data):
         return True
 
 
-"""extra mimetypes not yet added to mimetypes library"""
-EXTRA_MIMES = {
-    'application/x-yaml': ['.yaml', '.yml'],
-    'application/x-hdf5': ['.h5']
-}
+class MimeTypes:
+    JSON = "application/json"
+    TEXT = "text/plain"
+    YAML = "application/yaml"
 
 
 class FileUtils(LoggingMixin):
 
     @staticmethod
-    def mime_type(src) -> str:
-        """detect the mimetype of a file given its path"""
+    def mime_type(src):
+        """Detect the mimetype of a file given its path."""
         mime, _ = mimetypes.guess_type(src)
-        # mimetypes doesn't work for yaml since
-        # yaml is not yet in the IANA registry, so we need to manually plug it
-        if not mime:
-            mime = FileUtils._extra_mime(src)
         return mime
 
     @staticmethod
-    def _extra_mime(path):
-        """find mimetypes for files that are not yet defined in the mimetypes lib"""
-        filename, extension = os.path.splitext(path)
-        for mime in EXTRA_MIMES:
-            exts = EXTRA_MIMES[mime]
-            if extension in exts:
-                return mime
-        return None
-
-    @staticmethod
     def read_file_mime_type(path: str, mime_type):
-        if mime_type == 'application/json':
+        if mime_type == MimeTypes.JSON:
             return FileUtils.read_json(path)
-        elif mime_type in ('application/yaml', 'application/x-yaml'):
+        elif mime_type == MimeTypes.YAML:
             return FileUtils.read_yaml(path)
-        elif mime_type == 'text/plain':
+        elif mime_type == MimeTypes.TEXT:
             return FileUtils.read_text(path)
         else:
             raise Exception(f"unsupported mime type {mime_type}")
@@ -94,7 +81,7 @@ class FileUtils(LoggingMixin):
                 stream.close()
                 return serialized
         except NotADirectoryError as e:
-            print(e)
+            LoggingMixin.user_log.error(f"error writing file {abs_path}: {e}")
 
     @staticmethod
     def read_yaml(abs_path):
@@ -138,7 +125,7 @@ class FileUtils(LoggingMixin):
             except ValueError as e:
                 # linux will raise error if you are not superuser
                 # we need to work with the limit set by os
-                LoggingMixin.user_log.error(f"error:{e}. setting max concurrent files limit")
+                LoggingMixin.user_log.error(f"error setting max concurrent files limit: {e}")
                 os.environ["ASSET_MAX_CONCURRENT_FILES"] = str(limit - 20)  # keep some buffer
 
     @staticmethod
@@ -159,7 +146,7 @@ class FileUtils(LoggingMixin):
                 stream.close()
                 return serialized
         except NotADirectoryError as e:
-            print(e)
+            LoggingMixin.user_log.error(f"error writing yaml file: {e}")
 
     @staticmethod
     def read_file(filepath: str, compressed: bool = False):
@@ -178,7 +165,7 @@ class FileUtils(LoggingMixin):
             else:
                 return FileUtils._write_file_uncompressed(path=abs_path, content=content)
         except NotADirectoryError as e:
-            print(e)
+            LoggingMixin.user_log.error(f"error writing file {abs_path}: {e}")
 
     @staticmethod
     def write_zipfile(path: str, content: str, key=None):
@@ -269,8 +256,8 @@ class FileUtils(LoggingMixin):
         return result
 
     @staticmethod
-    def file_hash(abs_path: str, hash_type="md5", b64=True) -> tuple:
-        """"""
+    def file_hash(abs_path: str, hash_type: str = "md5", b64: bool = True) -> tuple:
+        """Generates the hash for the specified hash type."""
         if hash_type == "md5":
             return "md5", FileUtils.file_md5(abs_path, b64=b64)
         elif hash_type == "crc32c":
@@ -279,8 +266,8 @@ class FileUtils(LoggingMixin):
             raise AssetException(msg=f"unsupported hash type: {hash_type}")
 
     @staticmethod
-    def bytes_hash(file_bytes: bytes, hash_type="md5", b64=True) -> tuple:
-        """"""
+    def bytes_hash(file_bytes: bytes, hash_type: str = "md5", b64: bool = True) -> tuple:
+        """Generates the hash for the specified hash type."""
         if hash_type == "md5":
             return "md5", FileUtils.bytes_md5(file_bytes, b64=b64)
         elif hash_type == "crc32c":
@@ -290,18 +277,19 @@ class FileUtils(LoggingMixin):
 
     @staticmethod
     def url_safe_md5(b64_md5: str):
-        """converts base64 encoded md5 to urlsafe"""
+        """Converts base64 encoded md5 to urlsafe."""
         return base64.urlsafe_b64encode(base64.b64decode(b64_md5)).decode("ascii")
 
     @staticmethod
     def file_md5(f_name, b64=True):
-        """calculates md5 hash and returns base64
-        important: gcloud uses base64 encoded hashes
+        """Calculates md5 hash and returns base64.
+
+        Important: gcloud uses base64 encoded hashes
         """
         hash_md5 = hashlib.md5()
         try:
             with open(f_name, "rb") as f:
-                for chunk in iter(lambda: f.read(4096), b""):
+                for chunk in iter(lambda: f.read(FILE_READ_CHUNK_SIZE), b""):
                     hash_md5.update(chunk)
             # return base64.b64encode(hash_md5.digest()).decode('ascii')
             if b64:
@@ -309,31 +297,29 @@ class FileUtils(LoggingMixin):
             # return the hex string
             return hash_md5.hexdigest()
         except IsADirectoryError as e:
-            print(e)
+            LoggingMixin.user_log.error(f"error hashing file {f_name}: {e}")
 
     @staticmethod
     def file_crc32c(f_name, b64=True):
-        hash_crc32c = crcmod.predefined.Crc('crc-32c')
+        hash_crc32c = google_crc32c.Checksum()
         try:
             with open(f_name, "rb") as f:
-                for chunk in iter(lambda: f.read(4096), b""):
+                for chunk in iter(lambda: f.read(FILE_READ_CHUNK_SIZE), b""):
                     hash_crc32c.update(chunk)
             if b64:
-                # return base64.b64encode(hash_crc32c.digest()).decode('ascii')
                 return FileUtils.hex_to_base64(md5_hex=hash_crc32c.digest())
             # return the hex string
-            return hash_crc32c.hexdigest()
+            return hash_crc32c.digest().hex().upper()
         except IsADirectoryError as e:
-            print(e)
+            LoggingMixin.user_log.error(f"error hashing file {f_name}: {e}")
 
     @staticmethod
     def bytes_md5(file_bytes, b64=True):
         hash_md5 = hashlib.md5()
-        chunk_size = 4096
         start = 0
         while start < len(file_bytes):
-            chunk = file_bytes[start:start + chunk_size]
-            start += chunk_size
+            chunk = file_bytes[start:start + FILE_READ_CHUNK_SIZE]
+            start += FILE_READ_CHUNK_SIZE
             hash_md5.update(chunk)
         if b64:
             # convert to base64
@@ -343,19 +329,17 @@ class FileUtils(LoggingMixin):
 
     @staticmethod
     def bytes_crc32c(file_bytes, b64=True):
-        hash_crc32c = crcmod.predefined.Crc('crc-32c')
-        # hash_crc32c.update(file_bytes)
-        chunk_size = 4096
+        hash_crc32c = google_crc32c.Checksum()
         start = 0
         while start < len(file_bytes):
-            chunk = file_bytes[start:start + chunk_size]
-            start += chunk_size
+            chunk = file_bytes[start:start + FILE_READ_CHUNK_SIZE]
+            start += FILE_READ_CHUNK_SIZE
             hash_crc32c.update(chunk)
         if b64:
             # convert to base64
             return FileUtils.hex_to_base64(md5_hex=hash_crc32c.digest())
         # return the hex string
-        return hash_crc32c.hexdigest()
+        return hash_crc32c.digest().hex().upper()
 
     @staticmethod
     def hex_to_base64(md5_hex: bytes | str):
@@ -417,7 +401,7 @@ class FileUtils(LoggingMixin):
         shutil.copy2(src=src, dst=dst)
 
     @staticmethod
-    def copy_dir(src: str, dst: str, ignore_list: list = None, exist_ok: bool = False):
+    def copy_dir(src: str, dst: str, ignore_list: list[str] | None = None, exist_ok: bool = False):
         if ignore_list:
             shutil.copytree(src=src, dst=dst,
                             ignore=lambda dir, files: set(ignore_list),
@@ -474,7 +458,7 @@ class FileUtils(LoggingMixin):
             ))
 
     @staticmethod
-    def load_html_template(html_path: str, css_path: str = None, js_path: str = None):
+    def load_html_template(html_path: str, css_path: str | None = None, js_path: str | None = None):
         html = Path(html_path).read_text()
         if css_path:
             css = Path(css_path).read_text()

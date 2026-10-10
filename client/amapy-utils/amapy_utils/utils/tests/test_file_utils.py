@@ -1,7 +1,6 @@
 import json
 import os
 import tempfile
-
 import yaml
 
 from amapy_utils.utils import list_files
@@ -24,8 +23,8 @@ def test_mime_type():
         "data.json": "application/json",
         "readme.txt": "text/plain",
         "data.h5": "application/x-hdf5",
-        "data.yaml": "application/x-yaml",
-        "data.yml": "application/x-yaml",
+        "data.yaml": "application/yaml",
+        "data.yml": "application/yaml",
         "readme.md": "text/markdown",
         "photo.jpg": "image/jpeg",
     }
@@ -58,55 +57,107 @@ def test_get_mount(project_root):
 
 
 def test_file_hash(test_data):
-    expected = [
-        {"path": "yamls/model.yml",
-         "hashes": {'md5': 'l6BTlxCz4Y2ZfKapM248BQ==', 'crc32c': 'MF40IQ=='}},
-        {"path": "yamls/invoice.yaml",
-         "hashes": {'md5': 'XBo9UIOoHdGK4GLx+piBiA==', 'crc32c': 'Z/KSgw=='}},
-        {"path": "imgs/photo-1513938709626-033611b8cc03.jpg",
-         "hashes": {'md5': 'vlyBXBn3+A99jGAicoEw3g==', 'crc32c': 'yPffHw=='}},
-        {"path": "imgs/photo-1541698444083-023c97d3f4b6.jpg",
-         "hashes": {'md5': 'jeujRNnpO16Vq5kZzKPtwA==', 'crc32c': 'aT02+w=='}},
-    ]
+    expected = {
+        "yamls/model.yml": {
+            "md5": {
+                True: "l6BTlxCz4Y2ZfKapM248BQ==",
+                False: "97a0539710b3e18d997ca6a9336e3c05",
+            },
+            "crc32c": {True: "MF40IQ==", False: "305E3421"},
+        },
+        "yamls/invoice.yaml": {
+            "md5": {
+                True: "XBo9UIOoHdGK4GLx+piBiA==",
+                False: "5c1a3d5083a81dd18ae062f1fa988188",
+            },
+            "crc32c": {True: "Z/KSgw==", False: "67F29283"},
+        },
+        "imgs/photo-1513938709626-033611b8cc03.jpg": {
+            "md5": {
+                True: "vlyBXBn3+A99jGAicoEw3g==",
+                False: "be5c815c19f7f80f7d8c6022728130de",
+            },
+            "crc32c": {True: "yPffHw==", False: "C8F7DF1F"},
+        },
+        "imgs/photo-1541698444083-023c97d3f4b6.jpg": {
+            "md5": {
+                True: "jeujRNnpO16Vq5kZzKPtwA==",
+                False: "8deba344d9e93b5e95ab9919cca3edc0",
+            },
+            "crc32c": {True: "aT02+w==", False: "693D36FB"},
+        },
+    }
 
-    for file in expected:
-        file_path = os.path.join(test_data, file["path"])
-        md5_hash = FileUtils.file_hash(abs_path=file_path, hash_type="md5")
-        assert md5_hash[1] == file["hashes"]["md5"]
+    for relative_path, hashes in expected.items():
+        file_path = os.path.join(test_data, relative_path)
+        md5_hash = FileUtils.file_hash(abs_path=file_path, hash_type="md5", b64=True)
+        assert md5_hash[1] == hashes["md5"][True]
 
-        crc32c_hash = FileUtils.file_hash(abs_path=file_path, hash_type="crc32c")
-        assert crc32c_hash[1] == file["hashes"]["crc32c"]
+        md5_hash = FileUtils.file_hash(abs_path=file_path, hash_type="md5", b64=False)
+        assert md5_hash[1] == hashes["md5"][False]
+
+        crc32c_hash = FileUtils.file_hash(abs_path=file_path, hash_type="crc32c", b64=True)
+        assert crc32c_hash[1] == hashes["crc32c"][True]
+
+        crc32c_hash = FileUtils.file_hash(abs_path=file_path, hash_type="crc32c", b64=False)
+        assert crc32c_hash[1] == hashes["crc32c"][False]
 
 
 def test_bytes_hash(test_data):
-    expected = [
-        {"path": "yamls/model.yml",
-         "hashes": {'md5': 'l6BTlxCz4Y2ZfKapM248BQ==', 'crc32c': 'MF40IQ=='}},
-        {"path": "yamls/invoice.yaml",
-         "hashes": {'md5': 'XBo9UIOoHdGK4GLx+piBiA==', 'crc32c': 'Z/KSgw=='}},
-        {"path": "imgs/photo-1513938709626-033611b8cc03.jpg",
-         "hashes": {'md5': 'vlyBXBn3+A99jGAicoEw3g==', 'crc32c': 'yPffHw=='}},
-        {"path": "imgs/photo-1541698444083-023c97d3f4b6.jpg",
-         "hashes": {'md5': 'jeujRNnpO16Vq5kZzKPtwA==', 'crc32c': 'aT02+w=='}},
-    ]
+    expected = {
+        "yamls/model.yml": {
+            "md5": {
+                True: "l6BTlxCz4Y2ZfKapM248BQ==",
+                False: "97a0539710b3e18d997ca6a9336e3c05"
+            },
+            "crc32c": {True: "MF40IQ==", False: "305E3421"}
+        },
+        "yamls/invoice.yaml": {
+            "md5": {
+                True: "XBo9UIOoHdGK4GLx+piBiA==",
+                False: "5c1a3d5083a81dd18ae062f1fa988188",
+            },
+            "crc32c": {True: "Z/KSgw==", False: "67F29283"},
+        },
+        "imgs/photo-1513938709626-033611b8cc03.jpg": {
+            "md5": {
+                True: "vlyBXBn3+A99jGAicoEw3g==",
+                False: "be5c815c19f7f80f7d8c6022728130de",
+            },
+            "crc32c": {True: "yPffHw==", False: "C8F7DF1F"},
+        },
+        "imgs/photo-1541698444083-023c97d3f4b6.jpg": {
+            "md5": {
+                True: "jeujRNnpO16Vq5kZzKPtwA==",
+                False: "8deba344d9e93b5e95ab9919cca3edc0",
+            },
+            "crc32c": {True: "aT02+w==", False: "693D36FB"},
+        },
+    }
 
-    for file in expected:
-        file_path = os.path.join(test_data, file["path"])
-        with open(file_path, 'rb') as f:
+    for relative_path, hashes in expected.items():
+        file_path = os.path.join(test_data, relative_path)
+        with open(file_path, "rb") as f:
             data = f.read()
-            md5_hash = FileUtils.bytes_hash(file_bytes=data, hash_type="md5")
-            assert md5_hash[1] == file["hashes"]["md5"]
+            # check md5 hash
+            md5_hash = FileUtils.bytes_hash(file_bytes=data, hash_type="md5", b64=True)
+            assert md5_hash[1] == hashes["md5"][True]
 
-            crc32c_hash = FileUtils.bytes_hash(file_bytes=data, hash_type="crc32c")
-            assert crc32c_hash[1] == file["hashes"]["crc32c"]
+            md5_hash = FileUtils.bytes_hash(file_bytes=data, hash_type="md5", b64=False)
+            assert md5_hash[1] == hashes["md5"][False]
+            # check crc32c hash
+            crc32c_hash = FileUtils.bytes_hash(file_bytes=data, hash_type="crc32c", b64=True)
+            assert crc32c_hash[1] == hashes["crc32c"][True]
+
+            crc32c_hash = FileUtils.bytes_hash(file_bytes=data, hash_type="crc32c", b64=False)
+            assert crc32c_hash[1] == hashes["crc32c"][False]
 
 
 def test_read_json(test_data):
-    path = os.path.join(test_data, "write.json")
+    path = os.path.join(test_data, "jsons/web_app.json")
     data = FileUtils.read_json(path)
     assert isinstance(data, dict)
-    assert "name" in data
-    assert data["name"] == "asset-manager"
+    assert "web-app" in data
 
 
 def test_write_json():
@@ -193,7 +244,7 @@ def test_diff_file():
 
 
 def test_hard_link_file(test_data):
-    src = os.path.join(test_data, "write.json")
+    src = os.path.join(test_data, "jsons/web_app.json")
     tmp = tempfile.mkdtemp()
     dst = os.path.join(tmp, "linked.json")
     FileUtils.hard_link_file(src=src, dst=dst)
@@ -202,7 +253,7 @@ def test_hard_link_file(test_data):
 
 
 def test_sym_link_file(test_data):
-    src = os.path.join(test_data, "write.json")
+    src = os.path.join(test_data, "jsons/web_app.json")
     tmp = tempfile.mkdtemp()
     dst = os.path.join(tmp, "symlinked.json")
     FileUtils.sym_link_file(src=src, dst=dst)

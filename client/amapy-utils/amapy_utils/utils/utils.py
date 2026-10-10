@@ -1,3 +1,7 @@
+from importlib.metadata import version, PackageNotFoundError
+from os.path import expanduser
+from zoneinfo import ZoneInfo
+
 import collections.abc
 import contextlib
 import datetime
@@ -9,12 +13,8 @@ import re
 from collections.abc import Callable, Iterable
 from contextlib import contextmanager
 from functools import wraps
-from importlib.metadata import version, PackageNotFoundError
 from itertools import islice
-from os.path import expanduser
 from time import time
-
-from pytz import utc, timezone
 
 from amapy_utils.common import DEBUG, PROFILE, PRINT_ARGS
 from amapy_utils.utils.log_utils import UserLog
@@ -68,15 +68,15 @@ def batch(iterable, batch_size: int = 1):
         yield iterable[ndx: min(ndx + batch_size, iterable_size)]
 
 
-def time_now():
-    return datetime.datetime.now(tz=utc).replace(microsecond=0)
+def time_now() -> datetime.datetime:
+    return datetime.datetime.now(datetime.UTC).replace(microsecond=0)
 
 
-def convert_to_pst(ts: datetime):
-    return ts.astimezone(timezone(TIME_ZONE)).strftime(DATE_FORMAT)
+def convert_to_pst(dt: datetime.datetime) -> str:
+    return dt.astimezone(ZoneInfo(TIME_ZONE)).strftime(DATE_FORMAT)
 
 
-def date_to_string(dt: datetime.datetime):
+def date_to_string(dt: datetime.datetime) -> str:
     return dt.strftime(DATE_FORMAT)
 
 
@@ -225,8 +225,8 @@ def first_matching_dir(root_dir: str, pattern: str):
 
 
 def list_files(root_dir,
-               pattern: str = None,
-               ignore: str = None,
+               pattern: str | None = None,
+               ignore: str | None = None,
                recurse: bool = True) -> list:
     """lists all files (absolute paths) recursively in the directory
     Parameters:
@@ -246,8 +246,8 @@ def list_files(root_dir,
 
 
 def __list_recursive(root_dir,
-                     pattern: str = None,
-                     ignore: str = None) -> list:
+                     pattern: str | None = None,
+                     ignore: str | None = None) -> list:
     """
     Searches directory recursively and lists all files
     imp: not using glob here because of potential hidden directories
@@ -288,8 +288,8 @@ def get_ignore_names(ignores, paths):
 
 
 def __list_non_recursive(root_dir,
-                         pattern: str = None,
-                         ignore: str = None) -> list:
+                         pattern: str | None = None,
+                         ignore: str | None = None) -> list:
     parsed = []
     files = os.listdir(root_dir)
     file_names = fnmatch.filter(files, pattern) if pattern else files
