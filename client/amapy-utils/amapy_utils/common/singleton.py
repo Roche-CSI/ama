@@ -10,7 +10,7 @@ class Singleton(metaclass=abc.ABCMeta):
     def shared(cls, **kwargs):
         if cls is Singleton:
             raise Exception("abstract class, you must inherit")
-        if not hasattr(cls, 'instance') or not getattr(cls, 'instance'):
+        if not hasattr(cls, "instance") or not getattr(cls, "instance"):
             instance = super(Singleton, cls).__new__(cls)
             instance.post_init(**kwargs)
             cls.instance = instance
@@ -31,4 +31,4 @@ class Singleton(metaclass=abc.ABCMeta):
         need a de_init so that we can test different inheritances of the singleton
         :return:
         """
-        setattr(cls, 'instance', None)
+        setattr(cls, "instance", None)
