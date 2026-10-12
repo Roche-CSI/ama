@@ -28,7 +28,7 @@ class StorageManager(Singleton):
                 else:
                     self._storage_providers[prefix] = storage
 
-    def get_storage(self, prefix: str, name: str = None):
+    def get_storage(self, prefix: str | None, name: str | None = None) -> type[AssetStorage] | None:
         if prefix:
             return self._storage_providers.get(prefix, None)
         if name:
@@ -37,5 +37,5 @@ class StorageManager(Singleton):
                     return storage
             return None
 
-    def get_providers(self):
+    def get_providers(self) -> dict[str, type[AssetStorage]]:
         return self._storage_providers

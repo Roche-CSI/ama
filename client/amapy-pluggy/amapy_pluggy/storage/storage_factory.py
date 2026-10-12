@@ -1,10 +1,10 @@
 import json
 import os
+from amapy_utils.common import exceptions
 
 from amapy_pluggy.plugin.storage_manager import StorageManager
 from amapy_pluggy.storage.asset_storage import AssetStorage
 from amapy_pluggy.storage.mount_config import MountConfig
-from amapy_utils.common import exceptions
 
 
 class StorageFactory:
