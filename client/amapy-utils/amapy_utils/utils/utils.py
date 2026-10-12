@@ -21,9 +21,9 @@ from amapy_utils.utils.log_utils import UserLog
 
 # can't use timezone name here because datetime.strptime doesn't support it on
 # linux (works on Mac though)
-# '%Y-%m-%dT%H-%M-%S %Z' doesn't work on Linux with python3.7 and 3.8
-DATE_FORMAT = '%Y/%m/%d %H-%M-%S %z'
-TIME_ZONE = 'US/Pacific'
+# "%Y-%m-%dT%H-%M-%S %Z" doesn't work on Linux with python3.7 and 3.8
+DATE_FORMAT = "%Y/%m/%d %H-%M-%S %z"
+TIME_ZONE = "US/Pacific"
 
 
 def get_package_version(package_name: str) -> str:
@@ -49,7 +49,7 @@ def contains_special_chars(string: str) -> bool:
     bool
         True if the string contains only allowed special chars, False otherwise.
     """
-    return bool(re.search(r'[^a-zA-Z0-9_.-]', string))
+    return bool(re.search(r"[^a-zA-Z0-9_.-]", string))
 
 
 def is_integer(n):
@@ -86,7 +86,7 @@ def string_to_timestamp(date_string):
     except ValueError as e:
         print(f"error converting date string:{e}")
         UserLog().error(f"{e}")
-        t = datetime.datetime.strptime(date_string, '%Y-%m-%dT%H-%M-%S-%Z')
+        t = datetime.datetime.strptime(date_string, "%Y-%m-%dT%H-%M-%S-%Z")
     return t.timestamp()
 
 
@@ -191,7 +191,7 @@ def files_at_location(src, ignore=None):
 def find_pattern(string: str):
     pattern = None
     if "*" in string or "?" in string or "[" in string:
-        wildcard_idx = lowest_positive([string.find('*'), string.find('?'), string.find("[")])
+        wildcard_idx = lowest_positive([string.find("*"), string.find("?"), string.find("[")])
         if wildcard_idx > -1:
             pattern = string[wildcard_idx:]
     return pattern
@@ -306,7 +306,7 @@ def rsetattr(obj, attr, val):
     """recursively sets values in nested attributes
     source: https://stackoverflow.com/questions/31174295/getattr-and-setattr-on-nested-subobjects-chained-properties
     """
-    pre, _, post = attr.rpartition('.')
+    pre, _, post = attr.rpartition(".")
     return setattr(rgetattr(obj, pre) if pre else obj, post, val)
 
 
@@ -318,7 +318,7 @@ def rgetattr(obj, attr, *args):
     def _getattr(obj, attr):
         return getattr(obj, attr, *args)
 
-    return functools.reduce(_getattr, [obj] + attr.split('.'))
+    return functools.reduce(_getattr, [obj] + attr.split("."))
 
 
 def args_choices(choices: dict[int | str, Iterable]) -> Callable:
@@ -350,7 +350,7 @@ def args_choices(choices: dict[int | str, Iterable]) -> Callable:
 
 
 def time_elapsed(message, ts, te):
-    print(f'{message} took: {te - ts:.2f} sec')
+    print(f"{message} took: {te - ts:.2f} sec")
 
 
 @contextlib.contextmanager
@@ -358,7 +358,7 @@ def time_it(desc: str):
     ts = time()
     yield
     te = time()
-    print(f'func: {desc} took: {te - ts:.2f} sec')
+    print(f"func: {desc} took: {te - ts:.2f} sec")
 
 
 def time_it_wrapper(f):
@@ -369,9 +369,9 @@ def time_it_wrapper(f):
             result = f(*args, **kw)
             te = time()
             if PRINT_ARGS:
-                print(f'func:{f.__name__} args:[{args}, {kw}] took: {te - ts:.2f} sec')
+                print(f"func:{f.__name__} args:[{args}, {kw}] took: {te - ts:.2f} sec")
             else:
-                print(f'func:{f.__name__} took: {te - ts:.2f} sec')
+                print(f"func:{f.__name__} took: {te - ts:.2f} sec")
         else:
             result = f(*args, **kw)
         return result
