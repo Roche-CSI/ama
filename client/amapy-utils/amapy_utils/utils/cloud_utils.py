@@ -111,8 +111,8 @@ def parse_gcr_sha_url(image_url, hash_url):
     for hash_name in image_data:
         if hash_name == hash_url:
             found = image_data.get(hash_name)
-            found['hash_type'], found['hash_value'] = hash_name.split(":")
-            found['name'] = url_data.get("name")
+            found["hash_type"], found["hash_value"] = hash_name.split(":")
+            found["name"] = url_data.get("name")
             return found
 
     return None
@@ -136,8 +136,8 @@ def parse_gcr_tag_url(gcr_url: str):
     for hash_name in image_data:
         data: dict = image_data.get(hash_name)
         if data and tag in data.get("tag"):
-            data['hash_type'], data['hash_value'] = hash_name.split(":")
-            data['name'] = url_data.get("name")
+            data["hash_type"], data["hash_value"] = hash_name.split(":")
+            data["name"] = url_data.get("name")
             return data
 
 

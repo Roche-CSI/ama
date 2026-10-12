@@ -26,14 +26,12 @@ def test_add_data():
     assert result == data
 
 
-def test_write_to_file(test_data):
+def test_write_to_file(tmp_path):
     data = {"name": "asset-manager"}
 
     def json_check():
         json_file = data_file(data=data, file_ext=".json")
-        dst = os.path.join(test_data, "write.json")
-        if os.path.exists(dst):
-            os.unlink(dst)
+        dst = os.path.join(tmp_path, "write.json")
         json_file.write(dst)
         assert os.path.exists(dst)
         contents = FileUtils.read_json(dst)
@@ -41,9 +39,7 @@ def test_write_to_file(test_data):
 
     def yaml_check():
         yaml_file = data_file(data=data, file_ext=".yaml")
-        dst = os.path.join(test_data, "write.yaml")
-        if os.path.exists(dst):
-            os.unlink(dst)
+        dst = os.path.join(tmp_path, "write.yaml")
         yaml_file.write(dst)
         assert os.path.exists(dst)
         contents = FileUtils.read_yaml(dst)
@@ -51,15 +47,17 @@ def test_write_to_file(test_data):
 
     def zip_check():
         yaml_file = data_file(data={"objects.yaml": data}, file_ext=".zip")
-        dst = os.path.join(test_data, "write.zip")
-        if os.path.exists(dst):
-            os.unlink(dst)
+        dst = os.path.join(tmp_path, "write.zip")
         yaml_file.write(dst)
         assert os.path.exists(dst)
         zip_content = FileUtils.read_zip_file(dst)
         result = YAML().load(zip_content["objects.yaml"])
         assert result == data
 
-    json_check()
-    yaml_check()
-    zip_check()
+    try:
+        json_check()
+        yaml_check()
+        zip_check()
+    finally:
+        for filename in ("write.json", "write.yaml", "write.zip"):
+            (tmp_path / filename).unlink(missing_ok=True)

@@ -9,8 +9,8 @@ import tqdm
 from tabulate import tabulate
 
 INDENT = 70
-BOLD = '\033[1m'
-END = '\033[0m'
+BOLD = "\033[1m"
+END = "\033[0m"
 
 DISABLE_USER_LOG_PRINTING = False
 
@@ -44,7 +44,7 @@ class LogData:
 
         result = ""
         for item in self.data:
-            msg = colored_string(string=item['message'], color=item['color']) if item['color'] else item['message']
+            msg = colored_string(string=item["message"], color=item["color"]) if item["color"] else item["message"]
             result += f"{msg}\n"
         return result
 
@@ -78,8 +78,8 @@ class UserLog:
     def indented_message(self, body, color=None, title=None):
         if title:
             prefix = "" + ":\t"
-            expanded_indent = textwrap.fill(prefix + '$', replace_whitespace=False)[:-1]
-            subsequent_indent = ' ' * len(expanded_indent)
+            expanded_indent = textwrap.fill(prefix + "$", replace_whitespace=False)[:-1]
+            subsequent_indent = " " * len(expanded_indent)
             wrapper = textwrap.TextWrapper(initial_indent=subsequent_indent, subsequent_indent=subsequent_indent)
             _user_log_content(_user_log_title(f"{title}\n") + wrapper.fill(colored_string(body, color)))
         else:
@@ -101,7 +101,7 @@ class UserLog:
     def ask_user(self, question: str, options: list, default: str, ask_confirmation=True):
         dont_ask = os.getenv("ASSET_DONT_ASK_USER") == "true" or not ask_confirmation
         if dont_ask:
-            opts = '\n'.join([f" - {opt}" for opt in options])
+            opts = "\n".join([f" - {opt}" for opt in options])
             msg = f"received DONT_ASK_USER=true \n" \
                   f"user_prompt: {question} options:\n{opts}\n default: {default}\n"
             msg += "using default value: {}".format(default)
@@ -144,7 +144,7 @@ class UserLog:
         return ",".join([f"{key}: {data[key]}" for key in data])
 
     def __bulleted_message(self, data: list):
-        return '\n'.join(['{} {}'.format("-", val) for i, val in (enumerate(data))])
+        return "\n".join(["{} {}".format("-", val) for i, val in (enumerate(data))])
 
     def boxed(self, message, border_color=None) -> None:
         _user_log_content(_boxed_message(message=message, border_color=border_color))
@@ -213,13 +213,13 @@ class TqdmLoggingHandler(logging.Handler):
 
 
 def get_logger(name):
-    log_format1 = '%(asctime)s,%(msecs)d %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s'
-    log_format2 = '%(levelname)-6s [%(name)-12s: %(lineno)d] %(message)s'
+    log_format1 = "%(asctime)s,%(msecs)d %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s"
+    log_format2 = "%(levelname)-6s [%(name)-12s: %(lineno)d] %(message)s"
     logging.basicConfig(level=logging.WARNING,
                         format=log_format2,
-                        datefmt='%m-%d %H:%M')
+                        datefmt="%m-%d %H:%M")
     # logging.basicConfig(format=log_format1,
-    #                     datefmt='%Y-%m-%d:%H:%M:%S',
+    #                     datefmt="%Y-%m-%d:%H:%M:%S",
     #                     level=logging.DEBUG)
     logger = logging.getLogger(name)
     logger.addHandler(TqdmLoggingHandler())

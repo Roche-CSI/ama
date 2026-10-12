@@ -44,7 +44,7 @@ class AssetException(Exception):
 
 class AssetObjectConflictException(AssetException):
     def __init__(self, b1, b2):
-        msg = f'Input type `{b1.unit}` provided by {b1.__name__} already registered by {b2.__name__}'
+        msg = f"Input type `{b1.unit}` provided by {b1.__name__} already registered by {b2.__name__}"
         super().__init__(msg=msg)
 
 

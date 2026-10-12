@@ -63,7 +63,7 @@ class FileUtils(LoggingMixin):
 
     @staticmethod
     def read_yaml_with_comments(abs_path: str):
-        with open(abs_path, 'r') as stream:
+        with open(abs_path, "r") as stream:
             yaml = YAML()
             data = yaml.load(stream=stream)
             stream.close()
@@ -73,7 +73,7 @@ class FileUtils(LoggingMixin):
     def write_yaml_with_comments(abs_path, data):
         os.makedirs(os.path.dirname(abs_path), exist_ok=True)
         try:
-            with open(abs_path, 'w') as stream:
+            with open(abs_path, "w") as stream:
                 # prevent sorting of keys
                 yml = YAML()
                 yml.indent(mapping=2, sequence=4, offset=2)
@@ -85,7 +85,7 @@ class FileUtils(LoggingMixin):
 
     @staticmethod
     def read_yaml(abs_path):
-        with open(abs_path, 'r') as stream:
+        with open(abs_path, "r") as stream:
             data = yaml.load(stream=stream, Loader=yaml.FullLoader)
             stream.close()
             return data
@@ -136,7 +136,7 @@ class FileUtils(LoggingMixin):
     def write_yaml(abs_path, data):
         os.makedirs(os.path.dirname(abs_path), exist_ok=True)
         try:
-            with open(abs_path, 'w') as stream:
+            with open(abs_path, "w") as stream:
                 # prevent sorting of keys
                 serialized = yaml.dump(data, stream,
                                        indent=4,
@@ -174,31 +174,31 @@ class FileUtils(LoggingMixin):
         buffer = io.BytesIO()
         filename = key or os.path.basename(remove_suffix(path, ".zip"))
         with zipfile.ZipFile(buffer, mode="w", compression=zipfile.ZIP_DEFLATED) as zf:
-            zf.writestr(filename, str.encode(content, 'utf-8'))
+            zf.writestr(filename, str.encode(content, "utf-8"))
         # https://stackoverflow.com/questions/18457678/python-write-in-memory-zip-to-file
         with open(path, "wb") as f:  # use `wb` mode
             f.write(buffer.getvalue())
 
     @staticmethod
     def _write_file_uncompressed(path: str, content: str):
-        with open(path, 'w') as file:
+        with open(path, "w") as file:
             # prevent sorting of keys
             file.write(content)
             file.close()
 
     @staticmethod
     def read_text(abs_path, lines: bool = False):
-        with open(abs_path, 'r') as fp:
+        with open(abs_path, "r") as fp:
             return fp.readlines() if lines else fp.read()
 
     @staticmethod
     def write_text(dst, content):
-        with open(dst, 'w+') as fp:
+        with open(dst, "w+") as fp:
             fp.write(content)
 
     @staticmethod
     def read_json(abs_path) -> dict:
-        with open(abs_path, 'r') as stream:
+        with open(abs_path, "r") as stream:
             try:
                 return json.load(stream) or {}
             except JSONDecodeError:
@@ -207,7 +207,7 @@ class FileUtils(LoggingMixin):
     @staticmethod
     def write_json(data: dict, abs_path: str, sort_keys: bool = True):
         os.makedirs(os.path.dirname(abs_path), exist_ok=True)
-        with open(abs_path, 'w') as json_file:
+        with open(abs_path, "w") as json_file:
             json.dump(data or {}, json_file, indent=4, sort_keys=sort_keys)
 
     @staticmethod
@@ -223,7 +223,7 @@ class FileUtils(LoggingMixin):
         """
         dir_name = os.path.dirname(abs_path)
         os.makedirs(dir_name, exist_ok=True)
-        with tempfile.NamedTemporaryFile('w', dir=dir_name, delete=False) as tf:
+        with tempfile.NamedTemporaryFile("w", dir=dir_name, delete=False) as tf:
             json.dump(data or {}, tf, indent=4, sort_keys=sort_keys)
             temp_name = tf.name
         os.replace(temp_name, abs_path)
@@ -291,7 +291,6 @@ class FileUtils(LoggingMixin):
             with open(f_name, "rb") as f:
                 for chunk in iter(lambda: f.read(FILE_READ_CHUNK_SIZE), b""):
                     hash_md5.update(chunk)
-            # return base64.b64encode(hash_md5.digest()).decode('ascii')
             if b64:
                 return FileUtils.hex_to_base64(md5_hex=hash_md5.digest())
             # return the hex string
@@ -348,15 +347,15 @@ class FileUtils(LoggingMixin):
         """
         if type(md5_hex) is str:
             md5_hex = md5_hex.encode("ascii")
-        return base64.b64encode(md5_hex).decode('ascii')
+        return base64.b64encode(md5_hex).decode("ascii")
 
     @staticmethod
     def string_md5(string: str, b64: bool = False):
-        hash_md5 = hashlib.md5(string.encode('ascii'))
+        hash_md5 = hashlib.md5(string.encode("ascii"))
         if not b64:
             return hash_md5.hexdigest()
         else:
-            return base64.b64encode(hash_md5.digest()).decode('ascii')
+            return base64.b64encode(hash_md5.digest()).decode("ascii")
 
     @staticmethod
     def file_stat(file_path: str):
@@ -367,7 +366,7 @@ class FileUtils(LoggingMixin):
         """Create an empty file at path"""
         make_dirs(file_path=path)
         if not os.path.exists(path):
-            with open(path, 'w') as fp:
+            with open(path, "w") as fp:
                 pass
 
     @staticmethod
@@ -433,7 +432,7 @@ class FileUtils(LoggingMixin):
                                          dst_text,
                                          fromfile=from_desc,
                                          tofile=to_desc,
-                                         lineterm=''):
+                                         lineterm=""):
             diffs += f"{line}\n"
         return diffs
 
@@ -447,15 +446,18 @@ class FileUtils(LoggingMixin):
         from_file_lines = Path(from_file).read_text().splitlines()
         second_file_lines = Path(to_file).read_text().splitlines()
         html_diff = FileHtmlDiff(html_template=html_template, css_file=css_path)
-        html_diff.set_description(title=desc.get("title"),
-                                  subtitle=desc.get('subtitle'))
+        html_diff.set_description(
+            title=desc.get("title"),
+            subtitle=desc.get("subtitle")
+        )
         Path(diff_file).write_text(
             html_diff.make_file(
                 from_file_lines,
                 second_file_lines,
                 fromdesc=desc.get("from_desc"),
                 todesc=desc.get("to_desc")
-            ))
+            )
+        )
 
     @staticmethod
     def load_html_template(html_path: str, css_path: str | None = None, js_path: str | None = None):
@@ -541,7 +543,7 @@ class FileUtils(LoggingMixin):
         """returns the file system type for a file"""
         root_type = ""
         for part in psutil.disk_partitions():
-            if part.mountpoint == '/':
+            if part.mountpoint == "/":
                 root_type = part.fstype
                 continue
             if path.startswith(part.mountpoint):
@@ -566,7 +568,7 @@ class FileUtils(LoggingMixin):
     # used in asset-server
     @staticmethod
     def write_binary(dst, content: bytes):
-        with open(dst, 'wb') as f:
+        with open(dst, "wb") as f:
             # write the contents of the BytesIO object to the file
             f.write(content)
 
@@ -595,12 +597,14 @@ class FileUtils(LoggingMixin):
     # used in asset-server
     @staticmethod
     def write_yaml_to_stream(data: dict, stream: io.StringIO):
-        yaml.dump(data,
-                  stream,
-                  indent=4,
-                  sort_keys=False,
-                  default_flow_style=False,
-                  Dumper=NoAliasDumper)
+        yaml.dump(
+            data,
+            stream,
+            indent=4,
+            sort_keys=False,
+            default_flow_style=False,
+            Dumper=NoAliasDumper
+        )
 
 
 async def _async_read_yaml(path, data):
