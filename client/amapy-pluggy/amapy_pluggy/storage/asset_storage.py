@@ -1,5 +1,7 @@
 import abc
 import os
+from amapy_utils.common import Singleton, exceptions
+from amapy_utils.utils.log_utils import LoggingMixin
 
 from amapy_pluggy.plugin.object_content import ObjectContent
 from amapy_pluggy.storage.blob import StorageData
@@ -7,13 +9,11 @@ from amapy_pluggy.storage.mount_config import MountConfig
 from amapy_pluggy.storage.storage_credentials import StorageCredentials
 from amapy_pluggy.storage.transporter import Transporter
 from amapy_pluggy.storage.urls import StorageURL
-from amapy_utils.common import Singleton, exceptions
-from amapy_utils.utils.log_utils import LoggingMixin
 
 
 class AssetStorage(Singleton, LoggingMixin):
     prefixes: list[str] = []  # list of prefixes
-    name: str = None
+    name: str | None = None
 
     def post_init(self):
         self.validate()
@@ -31,15 +31,15 @@ class AssetStorage(Singleton, LoggingMixin):
         return StorageCredentials.shared().credentials
 
     @property
-    def mount_config(self) -> MountConfig:
+    def mount_config(self) -> MountConfig | None:
         return getattr(self, "_mount_config", None)
 
     @mount_config.setter
-    def mount_config(self, value: str):
+    def mount_config(self, value: MountConfig | None) -> None:
         self._mount_config = value
 
     @abc.abstractmethod
-    def get_storage_url(self, url_string: str, ignore: str = None) -> StorageURL:
+    def get_storage_url(self, url_string: str, ignore: str | None = None) -> StorageURL:
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -62,7 +62,7 @@ class AssetStorage(Singleton, LoggingMixin):
         raise NotImplementedError
 
     @abc.abstractmethod
-    def list_blobs(self, url: StorageURL | str, ignore: str = None) -> list[StorageData]:
+    def list_blobs(self, url: StorageURL | str, ignore: str | None = None) -> list[StorageData]:
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -81,8 +81,8 @@ class AssetStorage(Singleton, LoggingMixin):
     def parse_blobs_from_url(self,
                              repo_dir: str,
                              url_string: str,
-                             ignore: str = None,
-                             dest_dir: str = None) -> list[tuple]:
+                             ignore: str | None = None,
+                             dest_dir: str | None = None) -> list[tuple[StorageData, str]]:
         """parse the source of content creation
 
         Parameters
