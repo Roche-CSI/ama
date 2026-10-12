@@ -1,13 +1,12 @@
 import json
-from unittest.mock import patch
-
 import pytest
+from amapy_utils.common import exceptions
+from unittest.mock import patch
 
 from amapy_pluggy.plugin.storage_manager import StorageManager
 from amapy_pluggy.storage.asset_storage import AssetStorage
 from amapy_pluggy.storage.mount_config import MountConfig
 from amapy_pluggy.storage.storage_factory import StorageFactory
-from amapy_utils.common import exceptions
 
 
 def test_storage_with_prefix():

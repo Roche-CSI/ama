@@ -1,7 +1,7 @@
 import pytest
+from amapy_utils.common.exceptions import AssetException
 
 from amapy_pluggy.storage.mount_config import MountConfig
-from amapy_utils.common.exceptions import AssetException
 
 
 @pytest.fixture
