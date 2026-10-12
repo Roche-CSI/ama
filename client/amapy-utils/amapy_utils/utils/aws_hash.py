@@ -7,14 +7,15 @@ from amapy_utils.utils.file_utils import FileUtils
 https://teppen.io/2018/10/23/aws_s3_verify_etags/
 """
 
-AWS_CLI_BOTO3_PART_SIZE = 8 * 1024 * 1024  # 8MB
-S3CMD_PART_SIZE = 15 * 1024 * 1024  # 15MB
+BYTES_PER_MB = 1024 * 1024
+AWS_CLI_BOTO3_PART_SIZE = 8 * BYTES_PER_MB  # 8MB
+S3CMD_PART_SIZE = 15 * BYTES_PER_MB  # 15MB
 
 
 def factor_of_1MB(filesize, num_parts):
     x = filesize / int(num_parts)
-    y = x % 1048576
-    return int(x + 1048576 - y)
+    y = x % BYTES_PER_MB
+    return int(x + BYTES_PER_MB - y)
 
 
 def calc_etag(input_file, part_size):
