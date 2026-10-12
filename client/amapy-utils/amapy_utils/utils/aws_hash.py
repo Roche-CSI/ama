@@ -102,7 +102,7 @@ def file_etag(filepath: str, part_size: int = 0) -> tuple:
         # If part size is 0 then calculate etag as single part
         return "etag", f'\"{FileUtils.file_md5(f_name=filepath, b64=False)}\"'
     # return the multipart ETag
-    return "etag", f'\"{FileUtils.file_md5(f_name=filepath, b64=False)}\"'
+    return "etag", f'\"{calc_etag(input_file=filepath, part_size=part_size)}\"'
 
 
 def bytes_etags(file_bytes: bytes, etag: str):
