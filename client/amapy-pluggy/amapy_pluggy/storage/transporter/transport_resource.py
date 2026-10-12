@@ -1,10 +1,8 @@
-from __future__ import annotations
-
 import os.path
-from collections.abc import Callable
 
 from amapy_utils.common import exceptions
 from amapy_utils.utils.file_utils import FileUtils
+from collections.abc import Callable
 
 
 class TransportResource:
@@ -12,8 +10,8 @@ class TransportResource:
     def __init__(self,
                  src: str,
                  dst: str,
-                 hash: tuple = None,
-                 callback: Callable = None,
+                 hash: tuple | None = None,
+                 callback: Callable[..., object] | None = None,
                  **kwargs):
         self.src = src
         self.dst = dst
