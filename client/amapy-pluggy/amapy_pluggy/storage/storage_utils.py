@@ -8,7 +8,7 @@ from amapy_utils.utils.in_memory_zip import InMemoryZip
 
 def filter_blobs(blobs: list,
                  name_key: str,
-                 pattern: str = None,
+                 pattern: str | None = None,
                  ignore: list[str] | None = None) -> list:
     """Filter the blobs based on the pattern and ignore.
 
@@ -30,13 +30,13 @@ def filter_blobs(blobs: list,
     return result
 
 
-def _is_matched(path, pattern=None):
+def _is_matched(path: str, pattern: str | None = None) -> bool:
     if not pattern:
         return True
     return fnmatch.fnmatch(path, pattern)
 
 
-def _is_ignored(path: str, ignores: list[str] | None = None):
+def _is_ignored(path: str, ignores: list[str] | None = None) -> bool:
     if not ignores:
         return False
     for ignore in ignores:
