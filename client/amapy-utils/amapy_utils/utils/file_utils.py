@@ -85,7 +85,7 @@ class FileUtils(LoggingMixin):
 
     @staticmethod
     def read_yaml(abs_path):
-        with open(abs_path, 'r') as stream:
+        with open(abs_path, "r") as stream:
             data = yaml.load(stream=stream, Loader=yaml.FullLoader)
             stream.close()
             return data
@@ -136,7 +136,7 @@ class FileUtils(LoggingMixin):
     def write_yaml(abs_path, data):
         os.makedirs(os.path.dirname(abs_path), exist_ok=True)
         try:
-            with open(abs_path, 'w') as stream:
+            with open(abs_path, "w") as stream:
                 # prevent sorting of keys
                 serialized = yaml.dump(data, stream,
                                        indent=4,
@@ -174,31 +174,31 @@ class FileUtils(LoggingMixin):
         buffer = io.BytesIO()
         filename = key or os.path.basename(remove_suffix(path, ".zip"))
         with zipfile.ZipFile(buffer, mode="w", compression=zipfile.ZIP_DEFLATED) as zf:
-            zf.writestr(filename, str.encode(content, 'utf-8'))
+            zf.writestr(filename, str.encode(content, "utf-8"))
         # https://stackoverflow.com/questions/18457678/python-write-in-memory-zip-to-file
         with open(path, "wb") as f:  # use `wb` mode
             f.write(buffer.getvalue())
 
     @staticmethod
     def _write_file_uncompressed(path: str, content: str):
-        with open(path, 'w') as file:
+        with open(path, "w") as file:
             # prevent sorting of keys
             file.write(content)
             file.close()
 
     @staticmethod
     def read_text(abs_path, lines: bool = False):
-        with open(abs_path, 'r') as fp:
+        with open(abs_path, "r") as fp:
             return fp.readlines() if lines else fp.read()
 
     @staticmethod
     def write_text(dst, content):
-        with open(dst, 'w+') as fp:
+        with open(dst, "w+") as fp:
             fp.write(content)
 
     @staticmethod
     def read_json(abs_path) -> dict:
-        with open(abs_path, 'r') as stream:
+        with open(abs_path, "r") as stream:
             try:
                 return json.load(stream) or {}
             except JSONDecodeError:
