@@ -1,11 +1,21 @@
+"""Calculate and compare MD5-based Amazon S3 ETags for files and byte strings.
+
+Single-part ETags use the content's MD5 digest. Multipart ETags combine the
+binary MD5 digests of each part, hash the result, and append the part count.
+Verification requires the original upload part size; when it is unknown,
+helpers try common AWS CLI/boto3 and s3cmd sizes and a size inferred from the
+object size and part count.
+
+These calculations apply to MD5-based ETags, not all S3 objects; encryption
+and other upload configurations can produce ETags that are not MD5-based.
+
+Algorithm reference: https://teppen.io/2018/10/23/aws_s3_verify_etags/
+"""
+
 import hashlib
 import os
 
 from amapy_utils.utils.file_utils import FileUtils
-
-"""
-https://teppen.io/2018/10/23/aws_s3_verify_etags/
-"""
 
 BYTES_PER_MB = 1024 * 1024
 AWS_CLI_BOTO3_PART_SIZE = 8 * BYTES_PER_MB  # 8MB
