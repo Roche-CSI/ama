@@ -43,7 +43,7 @@ class StorageData(LoggingMixin, metaclass=abc.ABCMeta):
         return hash(self.path_in_asset)
 
     def __repr__(self):
-        return '<{} {}>'.format(self.__class__.__name__, self.path_in_asset)
+        return f"<{self.__class__.__name__} {self.path_in_asset}>"
 
     def validation_attributes(self) -> list[str]:
         # note: even though hash is required, we are deferring hash validation

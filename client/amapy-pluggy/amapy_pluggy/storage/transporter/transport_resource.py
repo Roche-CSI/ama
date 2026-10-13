@@ -25,7 +25,7 @@ class TransportResource:
         return hash(self.src)
 
     def __repr__(self):
-        return '<{} {}>'.format(self.__class__.__name__, self.src)
+        return f"<{self.__class__.__name__} {self.src}>"
 
     @property
     def dst_hash(self):
