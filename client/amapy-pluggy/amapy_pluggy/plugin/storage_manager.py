@@ -7,7 +7,7 @@ from amapy_pluggy.storage.asset_storage import AssetStorage
 
 class AssetStorageConflictException(AssetException):
     def __init__(self, prefix: str, storage, prev_storage):
-        msg = f'Input type `{prefix}` provided by {storage.__name__} already registered by {prev_storage.__name__}'
+        msg = f"Input type `{prefix}` provided by {storage.__name__} already registered by {prev_storage.__name__}"
         super().__init__(self, msg)
 
 

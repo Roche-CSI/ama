@@ -102,7 +102,7 @@ class MockStorageManager(StorageManager):
 
 @pytest.fixture(scope="module")
 def mock_storage_manager():
-    with patch('amapy_pluggy.storage.storage_factory.StorageManager') as mock_manager:
+    with patch("amapy_pluggy.storage.storage_factory.StorageManager") as mock_manager:
         mock_manager.shared.return_value = MockStorageManager.shared()
         yield mock_manager
 

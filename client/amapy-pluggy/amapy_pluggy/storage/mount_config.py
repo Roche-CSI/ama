@@ -27,14 +27,14 @@ class MountConfig:
     def sanitize_path(path: str) -> str:
         """Remove any extra slashes from the path while preserving protocol identifiers."""
         # Preserve the protocol identifier if present
-        protocol_match = re.match(r'^(\w+:\/\/)', path)
-        protocol = protocol_match.group(1) if protocol_match else ''
+        protocol_match = re.match(r"^(\w+:\/\/)", path)
+        protocol = protocol_match.group(1) if protocol_match else ""
 
         # Remove the protocol for now
-        path_without_protocol = re.sub(r'^\w+:\/\/', '', path)
+        path_without_protocol = re.sub(r"^\w+:\/\/", "", path)
 
         # Replace multiple slashes with a single slash
-        sanitized_path = re.sub(r'\/+', '/', path_without_protocol)
+        sanitized_path = re.sub(r"\/+", "/", path_without_protocol)
 
         # Reattach the protocol
         return protocol + sanitized_path
