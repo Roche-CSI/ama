@@ -120,20 +120,32 @@ def user_home_dir():
     return os.path.expanduser("~")
 
 
-def update_dict(d, u) -> dict:
+def update_dict(target: dict | None, updates: collections.abc.Mapping) -> dict:
+    """Merge updates recursively into a target dictionary.
+
+    Nested mappings are merged; other values replace existing values.
+    Keys absent from updates are preserved.
+
+    Parameters
+    ----------
+    target : dict or None
+        Dictionary to update in place. If None or empty, a new dictionary
+        is used instead.
+    updates : collections.abc.Mapping
+        Keys and values to merge into the target.
+
+    Returns
+    -------
+    dict
+        The updated target, or a new dictionary if the target was None or empty.
     """
-    recursively updates d with u
-    :param d: dict to update
-    :param u: dict with new values
-    :return: updated dict
-    """
-    d = d or {}
-    for k, v in u.items():
-        if isinstance(v, collections.abc.Mapping):
-            d[k] = update_dict(d.get(k, type(v)()), v)
+    target = target or {}
+    for key, value in updates.items():
+        if isinstance(value, collections.abc.Mapping):
+            target[key] = update_dict(target.get(key, type(value)()), value)
         else:
-            d[k] = v
-    return d
+            target[key] = value
+    return target
 
 
 def env2bool(var, undefined=False) -> bool:
