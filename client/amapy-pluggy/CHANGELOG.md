@@ -16,7 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- **Dependencies**: upgraded `setuptools` to `>=80.9.0,<81.0.0`, `amapy-utils` to `1.2.*`, and `pluggy` to `1.6.*`
+- **Dependencies**: upgraded `pluggy` to `1.6.*`
 - **Type hints**: use explicit `| None` unions for nullable storage, blob, URL, and transporter fields and parameters;
   refine built-in generics for providers, source paths, and hashes, and specify callback signatures
 - **Import organization**: reorganized imports across plugin and storage modules and related tests
