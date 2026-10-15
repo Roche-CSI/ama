@@ -1,5 +1,4 @@
 from importlib.metadata import version, PackageNotFoundError
-from os.path import expanduser
 
 import collections.abc
 import contextlib
@@ -118,7 +117,7 @@ def make_dirs(file_path: str):
 
 def user_home_dir():
     """Returns user home directory."""
-    return expanduser("~")
+    return os.path.expanduser("~")
 
 
 def update_dict(d, u) -> dict:
