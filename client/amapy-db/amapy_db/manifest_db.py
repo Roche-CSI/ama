@@ -43,12 +43,12 @@ class ManifestDB(Database):
         """
         return self.data().get(key)
 
-    def remove_objects(self, ids: list) -> None:
+    def remove_objects(self, ids: list[str]) -> None:
         """Removes specified objects from the manifest database.
 
         Parameters
         ----------
-        ids : list
+        ids : list[str]
             A list of ids representing the objects to be removed.
 
         Returns

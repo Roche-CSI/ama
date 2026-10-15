@@ -18,12 +18,12 @@ class FileDB(Database):
         """Returns assets and their md5 hashes"""
         return self.retrieve("stats") or {}
 
-    def remove_stats(self, ids: list):
+    def remove_stats(self, ids: list[str]) -> None:
         """Deletes specific assets from the list
 
         Parameters
         ----------
-        ids : list
+        ids : list[str]
             url ids of asset objects
         """
         data = self.data()
@@ -38,7 +38,7 @@ class FileDB(Database):
         data["stats"] = stats
         self._write_to_file(data=data)
 
-    def data(self):
+    def data(self) -> dict:
         if not os.path.exists(self.path):
             # nothing stored yet
             return {"stats": {}}
