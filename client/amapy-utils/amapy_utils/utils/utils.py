@@ -1,10 +1,7 @@
 from importlib.metadata import version, PackageNotFoundError
-from os.path import expanduser
-from zoneinfo import ZoneInfo
 
 import collections.abc
 import contextlib
-import datetime
 import fnmatch
 import functools
 import os
@@ -12,8 +9,10 @@ import pwd
 import re
 from collections.abc import Callable, Iterable
 from contextlib import contextmanager
+from datetime import UTC, datetime
 from functools import wraps
 from itertools import islice
+from pytz import timezone
 from time import time
 
 from amapy_utils.common import DEBUG, PROFILE, PRINT_ARGS
@@ -23,7 +22,6 @@ from amapy_utils.utils.log_utils import UserLog
 # linux (works on Mac though)
 # "%Y-%m-%dT%H-%M-%S %Z" doesn't work on Linux with python3.7 and 3.8
 DATE_FORMAT = "%Y/%m/%d %H-%M-%S %z"
-TIME_ZONE = "US/Pacific"
 
 
 def get_package_version(package_name: str) -> str:
@@ -62,36 +60,40 @@ def is_integer(n):
 
 
 def batch(iterable, batch_size: int = 1):
+    """Yields batches from iterable."""
     iterable_size = len(iterable)
     batch_size = max(batch_size, 1)
     for ndx in range(0, iterable_size, batch_size):
         yield iterable[ndx: min(ndx + batch_size, iterable_size)]
 
 
-def time_now() -> datetime.datetime:
-    return datetime.datetime.now(datetime.UTC).replace(microsecond=0)
+def time_now() -> datetime:
+    """Returns current time in UTC."""
+    return datetime.now(UTC).replace(microsecond=0)
 
 
-def convert_to_pst(dt: datetime.datetime) -> str:
-    return dt.astimezone(ZoneInfo(TIME_ZONE)).strftime(DATE_FORMAT)
+def convert_to_pst(dt: datetime) -> str:
+    """Returns datetime in PST."""
+    return dt.astimezone(timezone("US/Pacific")).strftime(DATE_FORMAT)
 
 
-def date_to_string(dt: datetime.datetime) -> str:
+def date_to_string(dt: datetime) -> str:
+    """Returns datetime as a formatted string."""
     return dt.strftime(DATE_FORMAT)
 
 
 def string_to_timestamp(date_string):
+    """Converts a formatted date string to a timestamp."""
     try:
-        t = datetime.datetime.strptime(date_string, DATE_FORMAT)
+        t = datetime.strptime(date_string, DATE_FORMAT)
     except ValueError as e:
-        print(f"error converting date string:{e}")
-        UserLog().error(f"{e}")
-        t = datetime.datetime.strptime(date_string, "%Y-%m-%dT%H-%M-%S-%Z")
+        UserLog().error(f"error converting date string: {e}")
+        t = datetime.strptime(date_string, "%Y-%m-%dT%H-%M-%S-%Z")
     return t.timestamp()
 
 
 def chunks(data, SIZE=10000):
-    """splits dictionary into chunks"""
+    """Splits dictionary into chunks."""
     it = iter(data)
     for i in range(0, len(data), SIZE):
         yield {k: data[k] for k in islice(it, SIZE)}
@@ -104,32 +106,45 @@ def get_user_id():
 
 def get_time_stamp():
     """Returns current time with time zone"""
-    return datetime.datetime.now(datetime.timezone.utc).astimezone().isoformat()
+    return datetime.now(UTC).astimezone().isoformat()
 
 
 def make_dirs(file_path: str):
-    """creates intermediate directories for the filepath"""
+    """Creates intermediate directories for the filepath"""
     os.makedirs(os.path.dirname(os.path.abspath(file_path)), exist_ok=True)
 
 
 def user_home_dir():
-    return expanduser("~")
+    """Returns user home directory."""
+    return os.path.expanduser("~")
 
 
-def update_dict(d, u) -> dict:
+def update_dict(target: dict | None, updates: collections.abc.Mapping) -> dict:
+    """Merge updates recursively into a target dictionary.
+
+    Nested mappings are merged; other values replace existing values.
+    Keys absent from updates are preserved.
+
+    Parameters
+    ----------
+    target : dict or None
+        Dictionary to update in place. If None or empty, a new dictionary
+        is used instead.
+    updates : collections.abc.Mapping
+        Keys and values to merge into the target.
+
+    Returns
+    -------
+    dict
+        The updated target, or a new dictionary if the target was None or empty.
     """
-    recursively updates d with u
-    :param d: dict to update
-    :param u: dict with new values
-    :return: updated dict
-    """
-    d = d or {}
-    for k, v in u.items():
-        if isinstance(v, collections.abc.Mapping):
-            d[k] = update_dict(d.get(k, type(v)()), v)
+    target = target or {}
+    for key, value in updates.items():
+        if isinstance(value, collections.abc.Mapping):
+            target[key] = update_dict(target.get(key, type(value)()), value)
         else:
-            d[k] = v
-    return d
+            target[key] = value
+    return target
 
 
 def env2bool(var, undefined=False) -> bool:
@@ -152,13 +167,14 @@ def cast2list(item: Iterable[str] | str | None) -> list[str]:
 
 
 def relative_path(path, start=os.curdir) -> str:
-    """returns relative path of file"""
+    """Returns relative path of the file."""
     path = os.fspath(path)
     start = os.path.abspath(os.fspath(start))
     return os.path.relpath(path, start)
 
 
 def remove_prefix(string: str, prefix: str) -> str:
+    """Removes prefix from a string."""
     if string.startswith(prefix):
         return string[len(prefix):]
     else:
@@ -166,6 +182,7 @@ def remove_prefix(string: str, prefix: str) -> str:
 
 
 def remove_suffix(string: str, suffix: str) -> str:
+    """Removes suffix from a string."""
     if suffix and string.endswith(suffix):
         return string[:-len(suffix)]
     else:
@@ -228,16 +245,24 @@ def list_files(root_dir,
                pattern: str | None = None,
                ignore: str | None = None,
                recurse: bool = True) -> list:
-    """lists all files (absolute paths) recursively in the directory
-    Parameters:
-        root_dir:   str
-                    directory in which to list the files
-        pattern:    str
-                    optional, if passed lists files matching pattern
-        ignore:     bool
-                    optional, if passed, files matching pattern are ignored
-        recurse:    bool
-                    optional, default is to search recursively
+    """Lists all files (absolute paths) recursively in the directory.
+
+    Parameters
+    ----------
+    root_dir : str
+        The directory in which to list files.
+    pattern : str or None, optional
+        Wildcard pattern to match against file paths.
+    ignore : str or None, optional
+        Wildcard pattern for file paths to exclude. When recursing, multiple
+        patterns can be separated by commas.
+    recurse : bool, optional
+        Whether to search subdirectories. Defaults to True.
+
+    Returns
+    -------
+    list
+        Paths matching the requested filters.
     """
     if recurse:
         return __list_recursive(root_dir=root_dir, pattern=pattern, ignore=ignore)
@@ -248,18 +273,9 @@ def list_files(root_dir,
 def __list_recursive(root_dir,
                      pattern: str | None = None,
                      ignore: str | None = None) -> list:
-    """
-    Searches directory recursively and lists all files
-    imp: not using glob here because of potential hidden directories
-    Parameters
-    ----------
-    root_dir
-    pattern
-    ignore
+    """Searches directory recursively and lists all files.
 
-    Returns
-    -------
-
+    Note: not using glob here because of potential hidden directories
     """
     parsed = []
     pattern = os.path.join(root_dir, pattern) if pattern else None
@@ -303,16 +319,20 @@ def __list_non_recursive(root_dir,
 
 
 def rsetattr(obj, attr, val):
-    """recursively sets values in nested attributes
-    source: https://stackoverflow.com/questions/31174295/getattr-and-setattr-on-nested-subobjects-chained-properties
+    """Recursively sets values in nested attributes.
+
+    source:
+    https://stackoverflow.com/questions/31174295/getattr-and-setattr-on-nested-subobjects-chained-properties
     """
     pre, _, post = attr.rpartition(".")
     return setattr(rgetattr(obj, pre) if pre else obj, post, val)
 
 
 def rgetattr(obj, attr, *args):
-    """recursively gets values from nested attributes
-    source: https://stackoverflow.com/questions/31174295/getattr-and-setattr-on-nested-subobjects-chained-properties
+    """Recursively gets values from nested attributes.
+
+    source:
+    https://stackoverflow.com/questions/31174295/getattr-and-setattr-on-nested-subobjects-chained-properties
     """
 
     def _getattr(obj, attr):
@@ -322,11 +342,20 @@ def rgetattr(obj, attr, *args):
 
 
 def args_choices(choices: dict[int | str, Iterable]) -> Callable:
-    """decorator factory: force arguments of a func limited inside the given choices
+    """Create a decorator that restricts argument values to allowed choices.
 
-    :param choices: a dict which describes the choices of arguments
-        the key of the dict must be either the index of options or the key(str) of kwargs
-        the value of the dict must be an iterable."""
+    Parameters
+    ----------
+    choices : dict[int or str, Iterable]
+        Mapping of zero-based positional argument indices or parameter names
+        to iterables of allowed values.
+
+    Returns
+    -------
+    Callable
+        A decorator that validates explicitly supplied arguments before calling
+        the wrapped function. Omitted arguments are not validated.
+    """
     err_fmt = "value of '{}' is not a valid choice in {}"
 
     def decorator(func):
@@ -350,7 +379,7 @@ def args_choices(choices: dict[int | str, Iterable]) -> Callable:
 
 
 def time_elapsed(message, ts, te):
-    print(f"{message} took: {te - ts:.2f} sec")
+    UserLog().info(f"{message} took: {te - ts:.2f} sec")
 
 
 @contextlib.contextmanager
@@ -358,7 +387,7 @@ def time_it(desc: str):
     ts = time()
     yield
     te = time()
-    print(f"func: {desc} took: {te - ts:.2f} sec")
+    UserLog().info(f"func: {desc} took: {te - ts:.2f} sec")
 
 
 def time_it_wrapper(f):
@@ -369,9 +398,9 @@ def time_it_wrapper(f):
             result = f(*args, **kw)
             te = time()
             if PRINT_ARGS:
-                print(f"func:{f.__name__} args:[{args}, {kw}] took: {te - ts:.2f} sec")
+                UserLog().info(f"func:{f.__name__} args:[{args}, {kw}] took: {te - ts:.2f} sec")
             else:
-                print(f"func:{f.__name__} took: {te - ts:.2f} sec")
+                UserLog().info(f"func:{f.__name__} took: {te - ts:.2f} sec")
         else:
             result = f(*args, **kw)
         return result

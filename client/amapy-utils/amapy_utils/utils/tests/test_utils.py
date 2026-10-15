@@ -1,6 +1,7 @@
 import os.path
 
 from datetime import UTC, datetime
+from unittest.mock import patch
 
 from amapy_utils.utils import utils
 
@@ -170,6 +171,7 @@ def test_get_ignore_names():
     }
 
 
-def test_time_elapsed(capsys):
-    utils.time_elapsed("work", 1, 2.25)
-    assert capsys.readouterr().out == "work took: 1.25 sec\n"
+def test_time_elapsed():
+    with patch.object(utils.UserLog, "info") as log_info:
+        utils.time_elapsed("work", 1, 2.25)
+    log_info.assert_called_once_with("work took: 1.25 sec")
