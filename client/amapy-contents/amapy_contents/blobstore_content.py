@@ -1,24 +1,22 @@
-from __future__ import annotations
-
 import os
-
 from amapy_pluggy.storage.blob import StorageData
 from amapy_utils.common import exceptions
 from amapy_utils.utils.file_utils import FileUtils
-from .posix_content import Content
+
+from .content import Content
 
 
 class BlobStoreContent(Content):
 
     @classmethod
-    def compute_hash(cls, src: str):
+    def compute_hash(cls, src: str) -> tuple[str, str]:
         abs_path = os.path.abspath(src)
         if os.path.exists(abs_path) and os.path.isfile(abs_path):
             return FileUtils.file_hash(abs_path)
         else:
             raise exceptions.InvalidObjectSourceError(f"file not found:{src}")
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs) -> None:
         super().__init__(**self.validate_kwargs(kwargs))
 
     @classmethod
@@ -37,16 +35,16 @@ class BlobStoreContent(Content):
                                 storage_name=storage_name)
 
     @property
-    def source_url(self):
+    def source_url(self) -> str | None:
         return self.meta.get("src")
 
     @property
-    def can_download(self):
+    def can_download(self) -> bool:
         return True
         # return not self.is_proxy
 
     @property
-    def can_upload(self):
+    def can_upload(self) -> bool:
         return False
 
     @classmethod
