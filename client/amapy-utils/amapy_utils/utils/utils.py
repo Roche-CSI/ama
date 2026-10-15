@@ -23,7 +23,6 @@ from amapy_utils.utils.log_utils import UserLog
 # linux (works on Mac though)
 # "%Y-%m-%dT%H-%M-%S %Z" doesn't work on Linux with python3.7 and 3.8
 DATE_FORMAT = "%Y/%m/%d %H-%M-%S %z"
-TIME_ZONE = "US/Pacific"
 
 
 def get_package_version(package_name: str) -> str:
@@ -62,6 +61,7 @@ def is_integer(n):
 
 
 def batch(iterable, batch_size: int = 1):
+    """Yields batches from iterable."""
     iterable_size = len(iterable)
     batch_size = max(batch_size, 1)
     for ndx in range(0, iterable_size, batch_size):
@@ -69,18 +69,22 @@ def batch(iterable, batch_size: int = 1):
 
 
 def time_now() -> datetime:
+    """Returns current time in UTC."""
     return datetime.now(UTC).replace(microsecond=0)
 
 
 def convert_to_pst(dt: datetime) -> str:
-    return dt.astimezone(timezone(TIME_ZONE)).strftime(DATE_FORMAT)
+    """Returns datetime in PST."""
+    return dt.astimezone(timezone("US/Pacific")).strftime(DATE_FORMAT)
 
 
 def date_to_string(dt: datetime) -> str:
+    """Returns datetime as a formatted string."""
     return dt.strftime(DATE_FORMAT)
 
 
 def string_to_timestamp(date_string):
+    """Converts a formatted date string to a timestamp."""
     try:
         t = datetime.strptime(date_string, DATE_FORMAT)
     except ValueError as e:
@@ -108,11 +112,12 @@ def get_time_stamp():
 
 
 def make_dirs(file_path: str):
-    """creates intermediate directories for the filepath"""
+    """Creates intermediate directories for the filepath"""
     os.makedirs(os.path.dirname(os.path.abspath(file_path)), exist_ok=True)
 
 
 def user_home_dir():
+    """Returns user home directory."""
     return expanduser("~")
 
 
