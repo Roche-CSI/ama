@@ -1,10 +1,10 @@
 import json
 import os
+from amapy_utils.common import exceptions
 
 from amapy_pluggy.plugin.storage_manager import StorageManager
 from amapy_pluggy.storage.asset_storage import AssetStorage
 from amapy_pluggy.storage.mount_config import MountConfig
-from amapy_utils.common import exceptions
 
 
 class StorageFactory:
@@ -20,7 +20,7 @@ class StorageFactory:
 
     @classmethod
     def _add_storage(cls, prefix: str):
-        klass: type[AssetStorage] = StorageManager.shared().get_storage(prefix=prefix)
+        klass = StorageManager.shared().get_storage(prefix=prefix)
         if not klass:
             raise exceptions.InvalidStorageBackendError(msg=f"{prefix} backend is not installed")
         storage = klass.shared()
@@ -47,14 +47,14 @@ class StorageFactory:
         return cls.default_storage()
 
     @classmethod
-    def mount_configs(cls):
+    def mount_configs(cls) -> list[MountConfig] | None:
         cfgs = os.getenv("ASSET_BUCKET_MT_CONFIG")
         if cfgs:
             return [MountConfig(url=url, mount=mount) for url, mount in json.loads(cfgs).items()]
         return None
 
     @classmethod
-    def mount_config_for_url(cls, src_url: str):
+    def mount_config_for_url(cls, src_url: str) -> MountConfig | None:
         mounts = cls.mount_configs()
         if mounts:
             for mount in mounts:
@@ -66,10 +66,10 @@ class StorageFactory:
     @classmethod
     def parse_sources(cls,
                       repo_dir: str,
-                      targets: list,
+                      targets: list[str],
                       proxy: bool = False,
-                      dest_dir: str = None,
-                      ignore: str = None) -> dict:
+                      dest_dir: str | None = None,
+                      ignore: str | None = None) -> dict:
         """
         parses the targets which includes
          - collecting all files if the target is a directory
@@ -118,7 +118,7 @@ class StorageFactory:
             if storage_klass.name == name:
                 return storage_klass
         # check in storage factory
-        klass: type[AssetStorage] = StorageManager.shared().get_storage(prefix=None, name=name)
+        klass = StorageManager.shared().get_storage(prefix=None, name=name)
         if klass:
             return cls._add_storage(prefix=klass.prefixes[0])
         else:

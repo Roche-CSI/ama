@@ -1,21 +1,20 @@
 import abc
-from collections.abc import Callable
-
 from amapy_utils.utils.log_utils import LoggingMixin
+from collections.abc import Callable
 
 PATH_SEPARATOR = "/"
 
 
 class StorageURL(LoggingMixin, metaclass=abc.ABCMeta):
-    host: str = None
-    url: str = None
-    ignore: str = None
+    host: str | None = None
+    url: str | None = None
+    ignore: str | None = None
     # we need the dir_name to calculate the relative path for objects
     # every subclass must provide this value
-    dir_name: str = None
-    callback: Callable = None
+    dir_name: str | None = None
+    callback: Callable[..., object] | None = None
 
-    def __init__(self, url: str, ignore: str = None, callback: Callable = None):
+    def __init__(self, url: str, ignore: str | None = None, callback: Callable[..., object] | None = None):
         self.url = url
         self.ignore = ignore
         self.callback = callback

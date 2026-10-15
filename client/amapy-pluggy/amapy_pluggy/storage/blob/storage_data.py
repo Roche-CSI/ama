@@ -1,12 +1,10 @@
-from __future__ import annotations
-
 import abc
 import os
+from amapy_utils.common import exceptions
+from amapy_utils.utils.log_utils import LoggingMixin
 from typing import Any
 
 from amapy_pluggy.storage.urls import StorageURL
-from amapy_utils.common import exceptions
-from amapy_utils.utils.log_utils import LoggingMixin
 
 PATH_SEPARATOR = "/"
 
@@ -15,10 +13,10 @@ class StorageData(LoggingMixin, metaclass=abc.ABCMeta):
     url: str
     host: str
     name: str
-    size: int = None
-    content_type: str = None
-    hashes: dict = None
-    path_in_asset: str = None  # relative path of the data with respect to the query url
+    size: int | None = None
+    content_type: str | None = None
+    hashes: dict[str, str] | None = None
+    path_in_asset: str | None = None  # relative path of the data with respect to the query url
 
     def __init__(self, data: Any, url_object: StorageURL):
         """Initializes a standardized blob objects from data.
@@ -45,9 +43,9 @@ class StorageData(LoggingMixin, metaclass=abc.ABCMeta):
         return hash(self.path_in_asset)
 
     def __repr__(self):
-        return '<{} {}>'.format(self.__class__.__name__, self.path_in_asset)
+        return f"<{self.__class__.__name__} {self.path_in_asset}>"
 
-    def validation_attributes(self) -> list:
+    def validation_attributes(self) -> list[str]:
         # note: even though hash is required, we are deferring hash validation
         # to the time of usage instead of time of instantiation
         # refer: self.get_hash for more details
@@ -77,7 +75,7 @@ class StorageData(LoggingMixin, metaclass=abc.ABCMeta):
         """
         raise NotImplementedError
 
-    def get_hash(self) -> tuple:
+    def get_hash(self) -> tuple[str, str]:
         """returns the hash for the blob object
 
         Returns
@@ -96,7 +94,7 @@ class StorageData(LoggingMixin, metaclass=abc.ABCMeta):
             raise exceptions.InvalidObjectSourceError("hash_type and hash_value are both required")
         return self.validate_hash(hashes={hash_type: hash_value})
 
-    def validate_hash(self, hashes: dict) -> tuple:
+    def validate_hash(self, hashes: dict[str, str]) -> tuple[str, str]:
         """validates the blob's hash
 
         Parameters
@@ -109,7 +107,7 @@ class StorageData(LoggingMixin, metaclass=abc.ABCMeta):
         tuple:
             (hash_type, hash_value) - validated
         """
-        hash_prefs: list = self.get_hash_preferences()
+        hash_prefs: list[str] = self.get_hash_preferences()
         # order the hashes based on preferences
         ordered_hashes = []
         for hash_type in hash_prefs:
@@ -121,7 +119,7 @@ class StorageData(LoggingMixin, metaclass=abc.ABCMeta):
         # return the more preferred item
         return ordered_hashes[0]
 
-    def compute_hash(self) -> tuple:
+    def compute_hash(self) -> tuple[str, str]:
         """calculate and return hash
         subclass to implement
 
@@ -133,7 +131,7 @@ class StorageData(LoggingMixin, metaclass=abc.ABCMeta):
         """
         raise NotImplementedError
 
-    def get_hash_preferences(self) -> list:
+    def get_hash_preferences(self) -> list[str]:
         # order of preferences for hash_type, subclass can override
         return ["md5", "crc32", "crc32c", "sha256", "sha1"]
 

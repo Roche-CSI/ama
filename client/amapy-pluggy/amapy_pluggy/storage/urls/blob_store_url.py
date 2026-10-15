@@ -1,17 +1,17 @@
 import os
-
 from amapy_utils.utils import utils
+
 from .storage_url import StorageURL, PATH_SEPARATOR
 
 HOST_SEPARATOR = "://"
 
 
 class BlobStoreURL(StorageURL):
-    host: str = None
-    bucket: str = None
-    path: str = None  # path to search for in bucket
-    dir_name: str = None  # we need the dir_name to calculate the relative path for objects
-    pattern: str = None  # for selecting a subset of files
+    host: str | None = None
+    bucket: str | None = None
+    path: str | None = None  # path to search for in bucket
+    dir_name: str | None = None  # we need the dir_name to calculate the relative path for objects
+    pattern: str | None = None  # for selecting a subset of files
 
     def parse_url(self, url: str) -> None:
         """parses a blob's url into:

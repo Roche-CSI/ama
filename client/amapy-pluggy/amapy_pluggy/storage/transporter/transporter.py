@@ -2,8 +2,8 @@ import abc
 import json
 import os
 import tempfile
-
 from amapy_utils.common import exceptions, Singleton
+
 from .transport_resource import TransportResource
 
 DEFAULT_TIMEOUT = 86400  # in seconds i.e. 24 hours (60 * 60 * 24)
@@ -11,12 +11,12 @@ DEFAULT_BATCH_SIZE = 400  # max 400 concurrent requests
 
 
 class Transporter(Singleton):
-    credentials: dict = None
-    prefixes: list = None  # storage system prefixes
+    credentials: dict | None = None
+    prefixes: list[str] | None = None  # storage system prefixes
 
     @classmethod
-    def shared(cls, credentials: dict = None,
-               prefixes: list = None,
+    def shared(cls, credentials: dict | None = None,
+               prefixes: list[str] | None = None,
                validate: bool = True):
         # TODO: set validate to True while using in asset-server
         kwargs = {"credentials": credentials, "prefixes": prefixes}

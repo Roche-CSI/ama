@@ -1,12 +1,13 @@
-from amapy_pluggy.plugin.plugin_manager import PluginManager
-from amapy_pluggy.storage.asset_storage import AssetStorage
 from amapy_utils.common.exceptions import AssetException
 from amapy_utils.common.singleton import Singleton
+
+from amapy_pluggy.plugin.plugin_manager import PluginManager
+from amapy_pluggy.storage.asset_storage import AssetStorage
 
 
 class AssetStorageConflictException(AssetException):
     def __init__(self, prefix: str, storage, prev_storage):
-        msg = f'Input type `{prefix}` provided by {storage.__name__} already registered by {prev_storage.__name__}'
+        msg = f"Input type `{prefix}` provided by {storage.__name__} already registered by {prev_storage.__name__}"
         super().__init__(self, msg)
 
 
@@ -28,7 +29,7 @@ class StorageManager(Singleton):
                 else:
                     self._storage_providers[prefix] = storage
 
-    def get_storage(self, prefix: str, name: str = None):
+    def get_storage(self, prefix: str | None, name: str | None = None) -> type[AssetStorage] | None:
         if prefix:
             return self._storage_providers.get(prefix, None)
         if name:
@@ -37,5 +38,5 @@ class StorageManager(Singleton):
                     return storage
             return None
 
-    def get_providers(self):
+    def get_providers(self) -> dict[str, type[AssetStorage]]:
         return self._storage_providers
