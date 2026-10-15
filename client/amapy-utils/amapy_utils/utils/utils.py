@@ -1,6 +1,5 @@
 from importlib.metadata import version, PackageNotFoundError
 from os.path import expanduser
-from zoneinfo import ZoneInfo
 
 import collections.abc
 import contextlib
@@ -14,6 +13,7 @@ from collections.abc import Callable, Iterable
 from contextlib import contextmanager
 from functools import wraps
 from itertools import islice
+from pytz import timezone
 from time import time
 
 from amapy_utils.common import DEBUG, PROFILE, PRINT_ARGS
@@ -73,7 +73,7 @@ def time_now() -> datetime.datetime:
 
 
 def convert_to_pst(dt: datetime.datetime) -> str:
-    return dt.astimezone(ZoneInfo(TIME_ZONE)).strftime(DATE_FORMAT)
+    return dt.astimezone(timezone(TIME_ZONE)).strftime(DATE_FORMAT)
 
 
 def date_to_string(dt: datetime.datetime) -> str:
