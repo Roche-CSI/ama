@@ -87,8 +87,7 @@ def string_to_timestamp(date_string):
     try:
         t = datetime.strptime(date_string, DATE_FORMAT)
     except ValueError as e:
-        print(f"error converting date string:{e}")
-        UserLog().error(f"{e}")
+        UserLog().error(f"error converting date string: {e}")
         t = datetime.strptime(date_string, "%Y-%m-%dT%H-%M-%S-%Z")
     return t.timestamp()
 
@@ -380,7 +379,7 @@ def args_choices(choices: dict[int | str, Iterable]) -> Callable:
 
 
 def time_elapsed(message, ts, te):
-    print(f"{message} took: {te - ts:.2f} sec")
+    UserLog().info(f"{message} took: {te - ts:.2f} sec")
 
 
 @contextlib.contextmanager
@@ -388,7 +387,7 @@ def time_it(desc: str):
     ts = time()
     yield
     te = time()
-    print(f"func: {desc} took: {te - ts:.2f} sec")
+    UserLog().info(f"func: {desc} took: {te - ts:.2f} sec")
 
 
 def time_it_wrapper(f):
@@ -399,9 +398,9 @@ def time_it_wrapper(f):
             result = f(*args, **kw)
             te = time()
             if PRINT_ARGS:
-                print(f"func:{f.__name__} args:[{args}, {kw}] took: {te - ts:.2f} sec")
+                UserLog().info(f"func:{f.__name__} args:[{args}, {kw}] took: {te - ts:.2f} sec")
             else:
-                print(f"func:{f.__name__} took: {te - ts:.2f} sec")
+                UserLog().info(f"func:{f.__name__} took: {te - ts:.2f} sec")
         else:
             result = f(*args, **kw)
         return result
