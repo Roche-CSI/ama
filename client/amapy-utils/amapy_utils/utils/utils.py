@@ -168,13 +168,14 @@ def cast2list(item: Iterable[str] | str | None) -> list[str]:
 
 
 def relative_path(path, start=os.curdir) -> str:
-    """returns relative path of file"""
+    """Returns relative path of the file."""
     path = os.fspath(path)
     start = os.path.abspath(os.fspath(start))
     return os.path.relpath(path, start)
 
 
 def remove_prefix(string: str, prefix: str) -> str:
+    """Removes prefix from a string."""
     if string.startswith(prefix):
         return string[len(prefix):]
     else:
@@ -182,6 +183,7 @@ def remove_prefix(string: str, prefix: str) -> str:
 
 
 def remove_suffix(string: str, suffix: str) -> str:
+    """Removes suffix from a string."""
     if suffix and string.endswith(suffix):
         return string[:-len(suffix)]
     else:
@@ -341,11 +343,20 @@ def rgetattr(obj, attr, *args):
 
 
 def args_choices(choices: dict[int | str, Iterable]) -> Callable:
-    """decorator factory: force arguments of a func limited inside the given choices
+    """Create a decorator that restricts argument values to allowed choices.
 
-    :param choices: a dict which describes the choices of arguments
-        the key of the dict must be either the index of options or the key(str) of kwargs
-        the value of the dict must be an iterable."""
+    Parameters
+    ----------
+    choices : dict[int or str, Iterable]
+        Mapping of zero-based positional argument indices or parameter names
+        to iterables of allowed values.
+
+    Returns
+    -------
+    Callable
+        A decorator that validates explicitly supplied arguments before calling
+        the wrapped function. Omitted arguments are not validated.
+    """
     err_fmt = "value of '{}' is not a valid choice in {}"
 
     def decorator(func):
