@@ -94,7 +94,7 @@ def string_to_timestamp(date_string):
 
 
 def chunks(data, SIZE=10000):
-    """splits dictionary into chunks"""
+    """Splits dictionary into chunks."""
     it = iter(data)
     for i in range(0, len(data), SIZE):
         yield {k: data[k] for k in islice(it, SIZE)}
@@ -244,16 +244,24 @@ def list_files(root_dir,
                pattern: str | None = None,
                ignore: str | None = None,
                recurse: bool = True) -> list:
-    """lists all files (absolute paths) recursively in the directory
-    Parameters:
-        root_dir:   str
-                    directory in which to list the files
-        pattern:    str
-                    optional, if passed lists files matching pattern
-        ignore:     bool
-                    optional, if passed, files matching pattern are ignored
-        recurse:    bool
-                    optional, default is to search recursively
+    """Lists all files (absolute paths) recursively in the directory.
+
+    Parameters
+    ----------
+    root_dir : str
+        The directory in which to list files.
+    pattern : str or None, optional
+        Wildcard pattern to match against file paths.
+    ignore : str or None, optional
+        Wildcard pattern for file paths to exclude. When recursing, multiple
+        patterns can be separated by commas.
+    recurse : bool, optional
+        Whether to search subdirectories. Defaults to True.
+
+    Returns
+    -------
+    list
+        Paths matching the requested filters.
     """
     if recurse:
         return __list_recursive(root_dir=root_dir, pattern=pattern, ignore=ignore)
@@ -264,18 +272,9 @@ def list_files(root_dir,
 def __list_recursive(root_dir,
                      pattern: str | None = None,
                      ignore: str | None = None) -> list:
-    """
-    Searches directory recursively and lists all files
-    imp: not using glob here because of potential hidden directories
-    Parameters
-    ----------
-    root_dir
-    pattern
-    ignore
+    """Searches directory recursively and lists all files.
 
-    Returns
-    -------
-
+    Note: not using glob here because of potential hidden directories
     """
     parsed = []
     pattern = os.path.join(root_dir, pattern) if pattern else None
@@ -319,16 +318,20 @@ def __list_non_recursive(root_dir,
 
 
 def rsetattr(obj, attr, val):
-    """recursively sets values in nested attributes
-    source: https://stackoverflow.com/questions/31174295/getattr-and-setattr-on-nested-subobjects-chained-properties
+    """Recursively sets values in nested attributes.
+
+    source:
+    https://stackoverflow.com/questions/31174295/getattr-and-setattr-on-nested-subobjects-chained-properties
     """
     pre, _, post = attr.rpartition(".")
     return setattr(rgetattr(obj, pre) if pre else obj, post, val)
 
 
 def rgetattr(obj, attr, *args):
-    """recursively gets values from nested attributes
-    source: https://stackoverflow.com/questions/31174295/getattr-and-setattr-on-nested-subobjects-chained-properties
+    """Recursively gets values from nested attributes.
+
+    source:
+    https://stackoverflow.com/questions/31174295/getattr-and-setattr-on-nested-subobjects-chained-properties
     """
 
     def _getattr(obj, attr):
