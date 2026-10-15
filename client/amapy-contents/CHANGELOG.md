@@ -16,7 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- **Dependencies**: upgraded `aiohttp` to `3.13.*`; depends on `amapy-db`, `amapy-pluggy` and `amapy-utils` `1.2.*`
+- **Dependencies**: depends on `amapy-db`, `amapy-pluggy` and `amapy-utils` `1.2.*`
 - **Type hints**: use explicit `| None` unions for nullable content, stat and uploader fields and parameters; refine
   built-in generics (`list[str]`, `tuple[str, str]`, `Callable[...]`) and add return annotations
 - **Import organization**: `ContentSet` imports `ContentFactory` at module level instead of inside a method;
@@ -29,3 +29,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Removed the `TYPE_CHECKING`-only `google.cloud.storage.blob.Blob` import and its `isinstance` check in `src_type`,
   which raised `NameError` at runtime for non-string, non-dict sources
 - Removed redundant `object` base class and `super(Class, self)` call in `FileStat` / `ContentStat`
+- Removed the unused `DockerContent.download` stub and the `aiohttp` and `backoff` dependencies that only it needed;
+  `backoff` relies on `asyncio.iscoroutinefunction`, which is removed in Python 3.16

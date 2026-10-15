@@ -1,5 +1,3 @@
-import aiohttp
-import backoff
 from amapy_pluggy.storage.blob import StorageData
 from amapy_utils.common import exceptions
 from amapy_utils.utils import cloud_utils
@@ -46,13 +44,6 @@ class DockerContent(Content):
         if not image_data:
             raise exceptions.InvalidObjectSourceError(msg=f"invalid source: {src} not found")
         return image_data.get("hash_type"), image_data.get("hash_value")
-
-    @backoff.on_exception(backoff.expo, aiohttp.ClientError, max_tries=5)
-    async def download(self, store, aio_client, timeout, callback=None):
-        """download from remote to asset store"""
-        # todo: wire with docker api
-        if callback:
-            callback()
 
     @property
     def can_download(self) -> bool:
