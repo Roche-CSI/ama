@@ -1,13 +1,12 @@
-from __future__ import annotations
-
 import abc
 import os
-
 from amapy_db import FileDB
 from amapy_pluggy.storage.blob import StorageData
 from amapy_utils.common import exceptions
 from amapy_utils.utils.file_utils import FileUtils
 from amapy_utils.utils.log_utils import LoggingMixin
+from collections.abc import Callable
+
 from .content_stat import ContentStat
 from .content_state import ContentState
 
@@ -27,24 +26,24 @@ class StorageSystems:
 
 class Content(LoggingMixin):
     states = ContentState
-    id: str = None
-    hash: str = None
-    mime_type: str = None
-    created_by: str = None
-    created_at: str = None
-    size: int = None
-    meta: dict = None
+    id: str | None = None
+    hash: str | None = None
+    mime_type: str | None = None
+    created_by: str | None = None
+    created_at: str | None = None
+    size: int | None = None
+    meta: dict | None = None
     # non serialized fields
-    linked_objects: set = None
+    linked_objects: set | None = None
 
     def __init__(self,
-                 id=None,
-                 mime=None,
-                 size=None,
-                 meta=None,
-                 created_by=None,
-                 created_at=None,
-                 **kwargs):
+                 id: str | None = None,
+                 mime: str | None = None,
+                 size: int | None = None,
+                 meta: dict | None = None,
+                 created_by: str | None = None,
+                 created_at: str | None = None,
+                 **kwargs) -> None:
         """
         Parameters
         ----------
@@ -87,12 +86,12 @@ class Content(LoggingMixin):
 
     @property
     @abc.abstractmethod
-    def can_download(self):
+    def can_download(self) -> bool:
         raise NotImplementedError
 
     @property
     @abc.abstractmethod
-    def can_upload(self):
+    def can_upload(self) -> bool:
         raise NotImplementedError
 
     @property
@@ -115,7 +114,7 @@ class Content(LoggingMixin):
         return {field: getattr(self, field) for field in self.__class__.serialize_fields() if hasattr(self, field)}
 
     @classmethod
-    def serialize_fields(cls):
+    def serialize_fields(cls) -> list[str]:
         return [
             "id",
             "mime_type",
@@ -139,7 +138,7 @@ class Content(LoggingMixin):
             self.clear_from_cache()
 
     @classmethod
-    def compute_id(cls, hash: str, meta: dict = None, storage_name: str = None):
+    def compute_id(cls, hash: str, meta: dict | None = None, storage_name: str | None = None) -> str:
         if cls.is_proxy_content(meta=meta):
             if not meta.get("src"):
                 raise exceptions.InvalidObjectSourceError()
@@ -187,12 +186,12 @@ class Content(LoggingMixin):
         return self.__class__.parse_hash(self.hash)[1]
 
     @classmethod
-    def parse_id(cls, id: str) -> list:
+    def parse_id(cls, id: str) -> list[str]:
         """returns a tuple of storage_id and hash"""
         return id.split(ID_SEP)
 
     @classmethod
-    def parse_hash(cls, hash) -> list:
+    def parse_hash(cls, hash: str) -> list[str]:
         """returns a tuple of hash_type and hash_value"""
         return hash.split(HASH_SEP)
 
@@ -214,7 +213,7 @@ class Content(LoggingMixin):
         """returns the staging url for the asset"""
         return os.path.join(self.asset.contents.staging_url, self.file_id)
 
-    def exists(self, path=None) -> bool:
+    def exists(self, path: str | None = None) -> bool:
         """checks if the content exists locally
 
         Parameters
@@ -240,7 +239,7 @@ class Content(LoggingMixin):
         return HASH_SEP.join([hash_type, hash_value])
 
     @classmethod
-    def deserialize_hash(cls, hash) -> tuple:
+    def deserialize_hash(cls, hash: str) -> list[str]:
         """Deserializes hash
 
         Parameters
@@ -264,11 +263,11 @@ class Content(LoggingMixin):
         # required to make hashable
         return not self.__eq__(other)
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         # required to make hashable
         return hash(self.id)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return self.id
 
     @property
@@ -282,12 +281,12 @@ class Content(LoggingMixin):
         if not self.exists():
             FileUtils.copy_file(src=src, dst=self.cache_path)
 
-    def clear_from_cache(self, path=None):
+    def clear_from_cache(self, path: str | None = None) -> None:
         path = path or self.cache_path
         if os.path.exists(path):
             os.remove(path)
 
-    def add_to_store(self, stat: ContentStat = None, save: bool = False):
+    def add_to_store(self, stat: ContentStat | None = None, save: bool = False) -> None:
         """adds the content to asset-store, it serves two primary objectives
         - content stat: to check if a content was modified after being added, user manually tampers data
         - ref counting: in asset-store prune we need to removed all unused content, so need to maintain a ref count
@@ -322,7 +321,7 @@ class Content(LoggingMixin):
         if save:
             self.asset.states_db.add_content_states(**{self.id: self._state})
 
-    def get_content_stat(self) -> ContentStat:
+    def get_content_stat(self) -> ContentStat | None:
         try:
             return self._content_stat
         except AttributeError:
@@ -330,7 +329,7 @@ class Content(LoggingMixin):
             self._content_stat = ContentStat.de_serialize(stored) if stored else None
             return self._content_stat
 
-    def set_content_stat(self, x: ContentStat, save=False):
+    def set_content_stat(self, x: ContentStat | None, save: bool = False) -> None:
         self._content_stat = x
         if save:
             serialized = x.serialize() if x else None
@@ -342,7 +341,7 @@ class Content(LoggingMixin):
             raise exceptions.InvalidStorageBackendError()
         return os.environ["ASSET_PROJECT_STORAGE_ID"]
 
-    def compute_stat(self, path=None) -> ContentStat:
+    def compute_stat(self, path: str | None = None) -> ContentStat | None:
         """Calculates content stat like size etc.
         we need this for validating file integrity
         """
@@ -353,7 +352,7 @@ class Content(LoggingMixin):
         stat = ContentStat(id=self.file_id, src=path)
         return stat
 
-    def validate_checksum(self, content_path, callback=None):
+    def validate_checksum(self, content_path: str, callback: Callable[[], None] | None = None) -> None:
         stats = self.compute_stat(content_path)
         if stats.size != self.size:
             self.log.error("error in downloading file")
