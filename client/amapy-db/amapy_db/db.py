@@ -13,10 +13,10 @@ class Database(LoggingMixin):
     Singleton, so make sure all DBs inherit directly from this class only
     Subclasses also behave as singletons
     """
-    path = None
-    backup_path = None  # in case we want to cache the database
-    _persisted_data = {}
-    _instances = {}
+    path: str | None = None
+    backup_path: str | None = None  # in case we want to cache the database
+    _persisted_data: dict = {}
+    _instances: dict[str, Database] = {}
 
     def __new__(cls, *args, **kwargs):
         path = kwargs.get('path') or args[0]  # there can be only one instance per path
@@ -30,7 +30,7 @@ class Database(LoggingMixin):
             raise Exception("Instance already exists with same path but different class type")
         return cls._instances[path]
 
-    def __init__(self, path, backup_path: str = None):
+    def __init__(self, path: str | None, backup_path: str | None = None) -> None:
         if path:
             FileUtils.create_file_if_not_exists(path)
         self.path = path
@@ -46,22 +46,22 @@ class Database(LoggingMixin):
                     except OSError as e:
                         self.user_log.alert(f"Backup not enabled because of OSError: {e}")
 
-    def copy_to(self, db):
+    def copy_to(self, db: Database) -> None:
         db.update(**self.data())
 
-    def update(self, **kwargs):
+    def update(self, **kwargs) -> dict:
         data = self.data() or {}
         data = utils.update_dict(data, kwargs)
         self._write_to_file(data=data)
         return data
 
-    def _write_to_file(self, data):
+    def _write_to_file(self, data: dict) -> None:
         """Stores the dictionary in a json file, overwrites existing data"""
         self._persisted_data = data
         self.__class__.write(data=self._persisted_data, path=self.path)
 
     @classmethod
-    def write(cls, data, path):
+    def write(cls, data: dict, path: str) -> None:
         if DB_FILE == "yaml":
             FileUtils.write_yaml(abs_path=path, data=data)
         elif DB_FILE == "json":
@@ -69,13 +69,13 @@ class Database(LoggingMixin):
         else:
             raise Exception("Unsupported DB format")
 
-    def _read_from_file(self):
+    def _read_from_file(self) -> dict:
         """returns data from yaml file"""
         self._persisted_data = self._persisted_data or self.__class__.read(self.path)
         return self._persisted_data
 
     @classmethod
-    def read(cls, path):
+    def read(cls, path: str | None) -> dict:
         if not path or not os.path.exists(path):
             # nothing stored yet
             return {}
@@ -86,7 +86,7 @@ class Database(LoggingMixin):
         else:
             raise Exception("Unsupported DB format")
 
-    def retrieve(self, key: str | list):
+    def retrieve(self, key: str | list[str]) -> object:
         """Retrieves specific values for specific keys from the json file.
            If keys are not found, the default value of None is returned.
         """
@@ -101,5 +101,5 @@ class Database(LoggingMixin):
         else:
             return None
 
-    def data(self):
+    def data(self) -> dict:
         return self._read_from_file()

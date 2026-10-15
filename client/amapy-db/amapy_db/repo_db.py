@@ -11,16 +11,16 @@ class RepoDB(Database):
         """Adds to existing list of objects"""
         self.update(**kwargs)
 
-    def get(self, key) -> dict:
+    def get(self, key: str) -> object:
         """Returns objects from yaml file"""
         return self.retrieve(key=key)
 
-    def remove(self, keys: list):
+    def remove(self, keys: list[str]) -> None:
         """Deletes specific assets from the list
 
         Parameters
         ----------
-        keys : list
+        keys : list[str]
             asset ids
         """
         data = self.data()
@@ -32,6 +32,6 @@ class RepoDB(Database):
                 self.user_log.info(f"asset not added yet, ignoring remove for:{id}")
         self._write_to_file(data)
 
-    def clear(self):
+    def clear(self) -> None:
         """Clears all assets"""
         self._write_to_file(data={})

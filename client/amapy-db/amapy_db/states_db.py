@@ -10,7 +10,7 @@ class StatesDB(Database):
 
     type = "asset-states"
 
-    def set_asset_state(self, state):
+    def set_asset_state(self, state) -> None:
         self.update(**{"asset_state": state})
 
     def get_asset_state(self):
@@ -19,7 +19,7 @@ class StatesDB(Database):
     def get_ref_states(self):
         return self.retrieve("ref_states") or {}
 
-    def set_commit_message(self, x):
+    def set_commit_message(self, x) -> None:
         self.update(**{"commit_message": x})
 
     def get_commit_message(self):
@@ -55,7 +55,7 @@ class StatesDB(Database):
     def add_content_states(self, **kwargs):
         self.update(**{"content_states": kwargs})
 
-    def remove_content_states(self, ids: list):
+    def remove_content_states(self, ids: list[str]) -> None:
         data = self.data()
         states = data.get("content_states", {})
         for id in ids:
@@ -68,12 +68,12 @@ class StatesDB(Database):
         data["content_states"] = states
         self._write_to_file(data=data)
 
-    def remove_object_states(self, ids: list):
+    def remove_object_states(self, ids: list[str]) -> None:
         """Deletes specific assets from the list
 
         Parameters
         ----------
-        ids : list
+        ids : list[str]
             url ids of asset objects
         """
         data = self.data()
@@ -88,12 +88,12 @@ class StatesDB(Database):
         data["object_states"] = states
         self._write_to_file(data=data)
 
-    def remove_ref_states(self, keys: list):
+    def remove_ref_states(self, keys: list[str]) -> None:
         """Deletes specific assets_refs from the list
 
         Parameters
         ----------
-        keys : list
+        keys : list[str]
             asset ids
         """
         data = self.data()
@@ -104,7 +104,7 @@ class StatesDB(Database):
         data["ref_states"] = states
         self._write_to_file(data=data)
 
-    def data(self):
+    def data(self) -> dict:
         if not os.path.exists(self.path):
             # nothing stored yet
             return {"object_states": {}, "asset_state": None}
