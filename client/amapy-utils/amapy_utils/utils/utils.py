@@ -3,7 +3,6 @@ from os.path import expanduser
 
 import collections.abc
 import contextlib
-import datetime
 import fnmatch
 import functools
 import os
@@ -11,6 +10,7 @@ import pwd
 import re
 from collections.abc import Callable, Iterable
 from contextlib import contextmanager
+from datetime import UTC, datetime
 from functools import wraps
 from itertools import islice
 from pytz import timezone
@@ -68,25 +68,25 @@ def batch(iterable, batch_size: int = 1):
         yield iterable[ndx: min(ndx + batch_size, iterable_size)]
 
 
-def time_now() -> datetime.datetime:
-    return datetime.datetime.now(datetime.UTC).replace(microsecond=0)
+def time_now() -> datetime:
+    return datetime.now(UTC).replace(microsecond=0)
 
 
-def convert_to_pst(dt: datetime.datetime) -> str:
+def convert_to_pst(dt: datetime) -> str:
     return dt.astimezone(timezone(TIME_ZONE)).strftime(DATE_FORMAT)
 
 
-def date_to_string(dt: datetime.datetime) -> str:
+def date_to_string(dt: datetime) -> str:
     return dt.strftime(DATE_FORMAT)
 
 
 def string_to_timestamp(date_string):
     try:
-        t = datetime.datetime.strptime(date_string, DATE_FORMAT)
+        t = datetime.strptime(date_string, DATE_FORMAT)
     except ValueError as e:
         print(f"error converting date string:{e}")
         UserLog().error(f"{e}")
-        t = datetime.datetime.strptime(date_string, "%Y-%m-%dT%H-%M-%S-%Z")
+        t = datetime.strptime(date_string, "%Y-%m-%dT%H-%M-%S-%Z")
     return t.timestamp()
 
 
@@ -104,7 +104,7 @@ def get_user_id():
 
 def get_time_stamp():
     """Returns current time with time zone"""
-    return datetime.datetime.now(datetime.timezone.utc).astimezone().isoformat()
+    return datetime.now(UTC).astimezone().isoformat()
 
 
 def make_dirs(file_path: str):

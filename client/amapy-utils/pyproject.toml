@@ -29,7 +29,6 @@ dependencies = [
     "ruamel.yaml==0.18.*",
     "tabulate==0.10.*",
     "tqdm==4.67.*",
-    "tzdata==2025.*" # only needed for Windows
 ]
 
 [tool.setuptools.packages.find]
