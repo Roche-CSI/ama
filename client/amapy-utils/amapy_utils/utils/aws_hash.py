@@ -1,39 +1,50 @@
+"""Calculate and compare MD5-based Amazon S3 ETags for files and byte strings.
+
+Single-part ETags use the content's MD5 digest. Multipart ETags combine the
+binary MD5 digests of each part, hash the result, and append the part count.
+Verification requires the original upload part size; when it is unknown,
+helpers try common AWS CLI/boto3 and s3cmd sizes and a size inferred from the
+object size and part count.
+
+These calculations apply to MD5-based ETags, not all S3 objects; encryption
+and other upload configurations can produce ETags that are not MD5-based.
+
+Algorithm reference: https://teppen.io/2018/10/23/aws_s3_verify_etags/
+"""
+
 import hashlib
 import os
 
 from amapy_utils.utils.file_utils import FileUtils
 
-"""
-https://teppen.io/2018/10/23/aws_s3_verify_etags/
-"""
-
-AWS_CLI_BOTO3_PART_SIZE = 8 * 1024 * 1024  # 8MB
-S3CMD_PART_SIZE = 15 * 1024 * 1024  # 15MB
+BYTES_PER_MB = 1024 * 1024
+AWS_CLI_BOTO3_PART_SIZE = 8 * BYTES_PER_MB  # 8MB
+S3CMD_PART_SIZE = 15 * BYTES_PER_MB  # 15MB
 
 
 def factor_of_1MB(filesize, num_parts):
     x = filesize / int(num_parts)
-    y = x % 1048576
-    return int(x + 1048576 - y)
+    y = x % BYTES_PER_MB
+    return int(x + BYTES_PER_MB - y)
 
 
 def calc_etag(input_file, part_size):
     md5, num_parts = calc_md5(input_file, part_size)
-    return md5 + '-' + str(num_parts)
+    return md5 + "-" + str(num_parts)
 
 
 def calc_bytes_etag(file_bytes, part_size):
     md5, num_parts = calc_bytes_md5(file_bytes, part_size)
-    return md5 + '-' + str(num_parts)
+    return md5 + "-" + str(num_parts)
 
 
 def calc_md5(input_file, part_size) -> tuple:
     md5_digests = []
-    with open(input_file, 'rb') as f:
-        for chunk in iter(lambda: f.read(part_size), b''):
+    with open(input_file, "rb") as f:
+        for chunk in iter(lambda: f.read(part_size), b""):
             md5_digests.append(hashlib.md5(chunk).digest())
     # return the md5 hash of all the md5 md5_digests and the number of parts
-    return hashlib.md5(b''.join(md5_digests)).hexdigest(), len(md5_digests)
+    return hashlib.md5(b"".join(md5_digests)).hexdigest(), len(md5_digests)
 
 
 def calc_bytes_md5(file_bytes, part_size) -> tuple:
@@ -44,7 +55,7 @@ def calc_bytes_md5(file_bytes, part_size) -> tuple:
         start += part_size
         md5_digests.append(hashlib.md5(chunk).digest())
     # return the md5 hash of all the md5 md5_digests and the number of parts
-    return hashlib.md5(b''.join(md5_digests)).hexdigest(), len(md5_digests)
+    return hashlib.md5(b"".join(md5_digests)).hexdigest(), len(md5_digests)
 
 
 def possible_part_sizes(file_size, num_parts):
@@ -67,7 +78,7 @@ def calculate_etag(filepath: str):
 def file_etags(filepath: str, etag: str):
     etag = etag[1:-1]  # remove extra quotes
     filesize = os.path.getsize(filepath)
-    num_parts = int(etag.split('-')[1])
+    num_parts = int(etag.split("-")[1])
 
     part_sizes = [  # default part sizes
         AWS_CLI_BOTO3_PART_SIZE,  # aws_cli/boto3
@@ -100,15 +111,15 @@ def file_etag(filepath: str, part_size: int = 0) -> tuple:
     """
     if part_size == 0:
         # If part size is 0 then calculate etag as single part
-        return 'etag', f'\"{FileUtils.file_md5(f_name=filepath, b64=False)}\"'
+        return "etag", f'\"{FileUtils.file_md5(f_name=filepath, b64=False)}\"'
     # return the multipart ETag
-    return 'etag', f'\"{calc_etag(input_file=filepath, part_size=part_size)}\"'
+    return "etag", f'\"{calc_etag(input_file=filepath, part_size=part_size)}\"'
 
 
 def bytes_etags(file_bytes: bytes, etag: str):
     etag = etag[1:-1]  # remove extra quotes
     filesize = len(file_bytes)
-    num_parts = int(etag.split('-')[1])
+    num_parts = int(etag.split("-")[1])
 
     part_sizes = [  # default part sizes
         AWS_CLI_BOTO3_PART_SIZE,  # aws_cli/boto3

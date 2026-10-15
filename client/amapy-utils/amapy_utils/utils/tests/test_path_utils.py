@@ -25,3 +25,18 @@ def test_remove_directory():
         assert os.path.exists(tmp_dir_path), "Temporary directory should exist before removal."
         PathUtils.remove(tmp_dir_path)
         assert not os.path.exists(tmp_dir_path), "Temporary directory should be removed."
+
+
+def test_path_link_type(tmp_path):
+    source = tmp_path / "source.txt"
+    source.write_text("content")
+    hardlink = tmp_path / "hardlink.txt"
+    os.link(source, hardlink)
+    symlink = tmp_path / "symlink.txt"
+    symlink.symlink_to(source)
+    copy = tmp_path / "copy.txt"
+    copy.write_text("content")
+
+    assert PathUtils.path_link_type(symlink) == "symlink"
+    assert PathUtils.path_link_type(hardlink) == "hardlink"
+    assert PathUtils.path_link_type(copy) == "copy"

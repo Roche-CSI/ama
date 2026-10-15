@@ -98,8 +98,8 @@ ASSET_JOIN = {"cmd": "asset join <server_url>", "desc": "to setup the server url
 def formatted(command: dict, color):
     return COMMAND_TEMPLATE.format(
         start="(",
-        cmd=colored_string(command.get('cmd'), color=color),
-        desc=command.get('desc'),
+        cmd=colored_string(command.get("cmd"), color=color),
+        desc=command.get("desc"),
         end=")",
     )
 

@@ -5,8 +5,8 @@ from amapy_utils.utils.log_utils import LogData, colored_string, LogColors
 
 class AssetException(Exception):
     """Base class for all asset exceptions."""
-    msg: str = None
-    data: dict = None
+    msg: str | None = None
+    data: dict | None = None
     fatal: bool = True
 
     def __init__(self, msg=None, data=None, fatal=True, *args):
@@ -44,7 +44,7 @@ class AssetException(Exception):
 
 class AssetObjectConflictException(AssetException):
     def __init__(self, b1, b2):
-        msg = f'Input type `{b1.unit}` provided by {b1.__name__} already registered by {b2.__name__}'
+        msg = f"Input type `{b1.unit}` provided by {b1.__name__} already registered by {b2.__name__}"
         super().__init__(msg=msg)
 
 

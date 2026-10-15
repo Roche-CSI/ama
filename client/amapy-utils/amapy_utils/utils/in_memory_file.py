@@ -34,7 +34,7 @@ class InMemoryFile:
             FileUtils.write_text(dst=path, content=self.file.getvalue())
 
 
-def serialize_for_file(file_ext: str, filedata, io_stream: io.StringIO = None):
+def serialize_for_file(file_ext: str, filedata, io_stream: io.StringIO | None = None):
     if file_ext in [".yaml", ".yml"]:
         if io_stream:
             FileUtils.write_yaml_to_stream(data=filedata, stream=io_stream)

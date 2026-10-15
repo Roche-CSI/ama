@@ -1,24 +1,12 @@
 import logging
+import requests
 import socket
 import subprocess
-
-import requests
-import speedtest
 
 from amapy_utils.common import exceptions
 from amapy_utils.utils import utils
 
 logger = logging.getLogger(__name__)
-
-
-def get_upload_speed():
-    """returns upload speed in bytes, we use this to dynamically adjust the http request timeout"""
-    return speedtest.Speedtest().upload() / 8.0  # speedtest output is bits
-
-
-def get_download_speed():
-    """returns the download speed in bytes"""
-    return speedtest.Speedtest().download() / 8.0  # speedtest output is bits
 
 
 def parse_gcp_url(url: str):
@@ -123,8 +111,8 @@ def parse_gcr_sha_url(image_url, hash_url):
     for hash_name in image_data:
         if hash_name == hash_url:
             found = image_data.get(hash_name)
-            found['hash_type'], found['hash_value'] = hash_name.split(":")
-            found['name'] = url_data.get("name")
+            found["hash_type"], found["hash_value"] = hash_name.split(":")
+            found["name"] = url_data.get("name")
             return found
 
     return None
@@ -148,8 +136,8 @@ def parse_gcr_tag_url(gcr_url: str):
     for hash_name in image_data:
         data: dict = image_data.get(hash_name)
         if data and tag in data.get("tag"):
-            data['hash_type'], data['hash_value'] = hash_name.split(":")
-            data['name'] = url_data.get("name")
+            data["hash_type"], data["hash_value"] = hash_name.split(":")
+            data["name"] = url_data.get("name")
             return data
 
 
