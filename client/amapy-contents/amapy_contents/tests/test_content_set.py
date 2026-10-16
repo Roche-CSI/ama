@@ -1,6 +1,5 @@
-from unittest.mock import MagicMock, patch
-
 import pytest
+from unittest.mock import MagicMock, patch
 
 from amapy_contents.content import Content
 from amapy_contents.content_set import ContentSet

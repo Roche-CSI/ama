@@ -1,10 +1,10 @@
 import os.path
-from unittest.mock import MagicMock, patch
 
 import pytest
+from amapy_pluggy.storage import StorageData
+from unittest.mock import MagicMock, patch
 
 from amapy_contents import BlobStoreContent
-from amapy_pluggy.storage import StorageData
 
 
 @pytest.fixture

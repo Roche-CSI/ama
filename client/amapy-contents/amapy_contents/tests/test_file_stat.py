@@ -1,5 +1,4 @@
 import os
-
 import pytest
 
 from amapy_contents.file_stat import FileStat
