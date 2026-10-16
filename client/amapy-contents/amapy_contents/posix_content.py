@@ -1,18 +1,16 @@
-from __future__ import annotations
-
 import os
-
 from amapy_pluggy.storage.blob import StorageData
 from amapy_utils.common import exceptions
 from amapy_utils.utils.file_utils import FileUtils
+
 from .content import Content
 from .content_stat import ContentStat
 
 
 class PosixContent(Content):
-    file_stat: ContentStat = None
+    file_stat: ContentStat | None = None
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs) -> None:
         """
         Parameters
         ----------
@@ -40,7 +38,7 @@ class PosixContent(Content):
                             storage_name=storage_name)
 
     @classmethod
-    def _validate_path(cls, src):
+    def _validate_path(cls, src: str) -> None:
         """Validates path exists, raises exception
 
         Parameters
@@ -55,11 +53,11 @@ class PosixContent(Content):
             raise exceptions.InvalidObjectSourceError(msg=f"\nfile not found: {os.path.relpath(src, os.getcwd())}")
 
     @property
-    def can_download(self):
+    def can_download(self) -> bool:
         return True
 
     @property
-    def can_upload(self):
+    def can_upload(self) -> bool:
         return True
 
     @classmethod
@@ -67,7 +65,7 @@ class PosixContent(Content):
         return super(PosixContent, cls).de_serialize(asset, data)
 
     @classmethod
-    def compute_hash(cls, src=None) -> tuple:
+    def compute_hash(cls, src: str | None = None) -> tuple[str, str]:
         """
         Parameters
         ----------

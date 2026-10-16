@@ -1,11 +1,10 @@
 import os
-from unittest.mock import MagicMock, patch
-
 import pytest
-
-from amapy_contents.posix_content import PosixContent
 from amapy_pluggy.storage.blob import StorageData
 from amapy_utils.common import exceptions
+from unittest.mock import MagicMock, patch
+
+from amapy_contents.posix_content import PosixContent
 
 
 @pytest.fixture

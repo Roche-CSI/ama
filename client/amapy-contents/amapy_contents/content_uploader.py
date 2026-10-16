@@ -1,16 +1,16 @@
 import os
-
 from amapy_pluggy.storage.storage_factory import StorageFactory, AssetStorage
 from amapy_utils.utils.log_utils import LoggingMixin
 from amapy_utils.utils.progress import Progress
+
 from .content import Content
 from .content_set import ContentSet
 
 
 class ContentUploader(LoggingMixin):
-    contents: ContentSet = None
+    contents: ContentSet | None = None
 
-    def __init__(self, contents):
+    def __init__(self, contents: ContentSet) -> None:
         self.contents = contents
 
     def upload_to_remote(self) -> list[Content]:
@@ -64,7 +64,7 @@ class ContentUploader(LoggingMixin):
 
         return local_content
 
-    def _not_uploaded(self, targets: list[Content], storage: AssetStorage) -> list:
+    def _not_uploaded(self, targets: list[Content], storage: AssetStorage) -> list[Content]:
         """Checks if the contents exist either in staging or remote area
 
         - some objects may have been deleted in previous version and re-added in a later version

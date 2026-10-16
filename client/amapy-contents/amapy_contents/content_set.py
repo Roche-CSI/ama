@@ -1,9 +1,10 @@
 import os
-from collections.abc import Iterable, Callable
-
 from amapy_utils.common import BetterSet
 from amapy_utils.utils import utils
+from collections.abc import Iterable, Callable
+
 from .content import Content
+from .content_factory import ContentFactory
 
 
 class ContentSet(BetterSet):
@@ -33,7 +34,7 @@ class ContentSet(BetterSet):
             data_size += item.size
         return data_size
 
-    def filter(self, predicate: Callable = None) -> list[Content]:
+    def filter(self, predicate: Callable[[Content], bool] | None = None) -> list[Content]:
         """Returns a dict of assets stored in asset-manifest
 
         Parameters:
@@ -58,14 +59,13 @@ class ContentSet(BetterSet):
         self.add(content)
         return content
 
-    def save(self):
+    def save(self) -> None:
         self.update_states()
         self.update_file_stats()
         self.asset.states_db.update(**{"content_states": self.get_states()})
         self.asset.content_stats_db.update(**{"stats": self.get_file_stats()})
 
     def de_serialize(self, **kwargs):
-        from amapy_contents.content_factory import ContentFactory
         content = ContentFactory().de_serialize(**kwargs)
         if content in self:
             content = self.get(content)  # get the stored content
@@ -85,7 +85,7 @@ class ContentSet(BetterSet):
         if save:
             self.asset.states_db.update(**{"content_states": self._states})
 
-    def update_states(self, contents: Iterable[Content] = None, save=False):
+    def update_states(self, contents: Iterable[Content] | None = None, save: bool = False) -> None:
         contents = contents or self
         updates = {content.id: content.get_state() for content in contents}
         self.set_states(utils.update_dict(self.get_states(), updates), save)
@@ -102,7 +102,7 @@ class ContentSet(BetterSet):
         if save:
             self.asset.content_stats_db.update(**{"stats": self._file_stats})
 
-    def update_file_stats(self, contents: Iterable[Content] = None, save=False):
+    def update_file_stats(self, contents: Iterable[Content] | None = None, save: bool = False) -> None:
         contents = contents or self
         updates = {content.file_id: content.get_content_stat() for content in contents}
         for key, val in updates.items():
@@ -114,7 +114,7 @@ class ContentSet(BetterSet):
         }
         self.set_file_stats(file_stats, save=save)
 
-    def exists(self):
+    def exists(self) -> bool:
         for content in self:
             if not content.exists():
                 return False

@@ -1,33 +1,31 @@
-from __future__ import annotations
-
 import os
 
 
-class FileStat(object):
+class FileStat:
     # file id
-    id = None
+    id: str | None = None
     # file data modification time
-    content_time: float = None
+    content_time: float | None = None
     # content modification time
-    metadata_time: float = None
+    metadata_time: float | None = None
     # number of hardlinks
-    num_links: int = None
+    num_links: int | None = None
     # file size
-    size: int = None
+    size: int | None = None
     # inode
-    inode: int = None
+    inode: int | None = None
 
-    def __init__(self, id=None, src=None):
+    def __init__(self, id: str | None = None, src: str | None = None) -> None:
         self.id = id
         if src:
             self.translate(stat=os.stat(src))
 
-    def translate(self, stat: os.stat_result):
+    def translate(self, stat: os.stat_result) -> None:
         mappings = self.__class__.mapped_fields()
         for field in mappings:
             setattr(self, mappings.get(field), getattr(stat, field))
 
-    def serialize(self):
+    def serialize(self) -> dict:
         data = {key: getattr(self, key) for key in self.__class__.serialize_fields()}
         return data
 
@@ -40,7 +38,7 @@ class FileStat(object):
         return stat
 
     @classmethod
-    def serialize_fields(cls):
+    def serialize_fields(cls) -> list[str]:
         return [
             "id",  # file id
             "content_time",  # last content modification time
@@ -51,7 +49,7 @@ class FileStat(object):
         ]
 
     @classmethod
-    def mapped_fields(cls):
+    def mapped_fields(cls) -> dict[str, str]:
         """ Note:
         st_ctime      Time when file status was last changed (inode data modification). Changed by the chmod(2),
                       chown(2), link(2), mknod(2), rename(2), unlink(2), utimes(2) and write(2)
@@ -75,5 +73,5 @@ class FileStat(object):
             "st_size": "size",  # file size
         }
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return self.id

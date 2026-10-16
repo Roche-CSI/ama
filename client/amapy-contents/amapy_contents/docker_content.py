@@ -1,18 +1,14 @@
-from __future__ import annotations
-
-import aiohttp
-import backoff
-
 from amapy_pluggy.storage.blob import StorageData
 from amapy_utils.common import exceptions
 from amapy_utils.utils import cloud_utils
+
 from .content import Content
 
 
 class DockerContent(Content):
     """Class to Manage Storage of docker contents"""
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs) -> None:
         """
         Parameters
         ----------
@@ -38,42 +34,35 @@ class DockerContent(Content):
                                    "proxy": True},  # Docker contents are always proxied
                              storage_name=storage_name)
 
-    def exists(self, path=None):
+    def exists(self, path: str | None = None) -> bool:
         # todo: interface with docker api to check if the image exists locally
         return False
 
     @classmethod
-    def compute_hash(cls, src: str):
+    def compute_hash(cls, src: str) -> tuple[str | None, str | None]:
         image_data: dict = cloud_utils.get_gcr_image_data(src)
         if not image_data:
             raise exceptions.InvalidObjectSourceError(msg=f"invalid source: {src} not found")
         return image_data.get("hash_type"), image_data.get("hash_value")
 
-    @backoff.on_exception(backoff.expo, aiohttp.ClientError, max_tries=5)
-    async def download(self, store, aio_client, timeout, callback=None):
-        """download from remote to asset store"""
-        # todo: wire with docker api
-        if callback:
-            callback()
-
     @property
-    def can_download(self):
+    def can_download(self) -> bool:
         return False
 
     @property
-    def can_upload(self):
+    def can_upload(self) -> bool:
         return False
 
     @property
-    def remote_url(self):
+    def remote_url(self) -> str | None:
         return self.meta.get("src")
 
     @property
-    def staging_url(self):
+    def staging_url(self) -> None:
         return None
 
     @property
-    def cache_path(self):
+    def cache_path(self) -> None:
         return None
 
     def add_ref(self, **kwargs):

@@ -1,16 +1,12 @@
-from typing import TYPE_CHECKING
-
 from amapy_pluggy.storage.storage_factory import StorageFactory, AssetStorage
 from amapy_utils.utils import cast2list
+
 from .blobstore_content import BlobStoreContent
 from .content import Content
 from .db_content import DbContent
 from .docker_content import DockerContent
 from .posix_content import PosixContent
 from .url_content import UrlContent
-
-if TYPE_CHECKING:
-    from google.cloud.storage.blob import Blob
 
 OBJECT_CONTENTS = {
     "file": PosixContent,
@@ -100,14 +96,12 @@ class ContentFactory:
         return groups
 
 
-def src_type(src):
+def src_type(src: str | dict | None) -> str:
     if isinstance(src, str):
         for k, v in SOURCES.items():
             for pattern in v:
                 if src.startswith(pattern):
                     return k
-    elif isinstance(src, Blob):
-        return "gcs"
     elif isinstance(src, dict):
         src = src.get("src") or "gcr"
         for k, v in SOURCES.items():

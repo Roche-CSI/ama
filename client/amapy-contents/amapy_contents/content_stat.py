@@ -1,25 +1,23 @@
-from __future__ import annotations
-
 from .file_stat import FileStat
 
 
 class ContentStat(FileStat):
-    refs: list = []  # number of object references
-    hash: str = None
+    refs: list[str] = []  # number of object references
+    hash: str | None = None
 
-    def __init__(self, id=None, src=None):
-        super(ContentStat, self).__init__(id, src)
+    def __init__(self, id: str | None = None, src: str | None = None) -> None:
+        super().__init__(id, src)
         self.refs = []
 
-    def add_ref(self, ref):
+    def add_ref(self, ref: str) -> None:
         if ref not in self.refs:
             self.refs.append(ref)
 
-    def remove_ref(self, ref):
+    def remove_ref(self, ref: str) -> None:
         if ref in self.refs:
             self.refs.remove(ref)
 
-    def serialize(self):
+    def serialize(self) -> dict:
         data = {key: getattr(self, key) for key in self.__class__.serialize_fields()}
         return data
 
@@ -34,7 +32,7 @@ class ContentStat(FileStat):
         return ref
 
     @classmethod
-    def serialize_fields(cls):
+    def serialize_fields(cls) -> list[str]:
         return [
             "id",  # file id
             "content_time",  # last content modification time
@@ -46,5 +44,5 @@ class ContentStat(FileStat):
             "hash"
         ]
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return self.id
