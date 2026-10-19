@@ -22,22 +22,28 @@ class CliOption:
     def add_to_parser(self, parser):
         """adds itself to sub_parser"""
         if self.positional:
-            parser.add_argument(dest=self.dest,
-                                help=self.help_msg,
-                                nargs=self.n_args,
-                                default=self.default)
+            parser.add_argument(
+                dest=self.dest,
+                help=self.help_msg,
+                nargs=self.n_args,
+                default=self.default
+            )
         elif self.is_boolean:
-            parser.add_argument(f"--{self.dest}",
-                                help=self.help_msg,
-                                action=self.bool_action)
+            parser.add_argument(
+                f"--{self.dest}",
+                help=self.help_msg,
+                action=self.bool_action
+            )
         else:
             args = []
             if self.short_name:
                 args.append(f"-{self.short_name}")
             if self.full_name:
                 args.append(f"--{self.full_name}")
-            parser.add_argument(*args,
-                                dest=self.dest,
-                                help=self.help_msg,
-                                nargs=self.n_args,
-                                default=self.default)
+            parser.add_argument(
+                *args,
+                dest=self.dest,
+                help=self.help_msg,
+                nargs=self.n_args,
+                default=self.default
+            )

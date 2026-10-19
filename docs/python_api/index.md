@@ -9,7 +9,6 @@ This assumes that you have already installed and configured asset-manager, pleas
 to install `amapy`.
 </div>
 
-
 #### How to authenticate asset-manager for use
 
 ```python
@@ -153,13 +152,18 @@ artifact: Artifact = asset.init(class_name=class_name, path=local_path, add_file
 # this will add file or directory from a gs or s3 bucket to the asset
 artifact.add_remote(targets=["gs://bucket-name/file-path.txt"])
 
-# to add all files in a remote directory use the directory url
+# to add all files in a remote directory use the directory url ending with a forward slash (/)
 # this will add all the files maintaining the directory structure
+artifact.add_remote(targets=["gs://bucket-name/dir-path/"])
+
+# if there are multiple directories in remote bucket with same prefix,
+# e.g. `gs://bucket-name/dir-path`, `gs://bucket-name/dir-path-123`, `gs://bucket-name/dir-path-5678`
+# you can add them all with just the prefix url
 artifact.add_remote(targets=["gs://bucket-name/dir-path"])
 
-# to add remote files not accessible by the project credentials use credentials
+# to add remote files not accessible by the project credentials use separate credentials
 # give the path to the credentials file to access the remote files
-artifact.add_remote(targets=["gs://bucket-name/dir-path"], credentials="path/to/credentials.json")
+artifact.add_remote(targets=["gs://bucket-name/file-path.txt"], credentials="path/to/credentials.json")
 ```
 
 #### How to update contents of an asset

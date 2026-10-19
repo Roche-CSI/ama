@@ -8,14 +8,14 @@ asset-projects to get started. We will try to explain them as we go along. So le
 
 ### Setting up the environment
 
-- In python 3.10 environment:
-  - `pip install amapy`
+- In python 3.12 environment:
+    - `pip install amapy`
 
 ### Signing up / logging in
 
 - We will be using the `ama auth` sub-command for signing / logging purposes.
-- If you are a new user, you need to sign up for amapy. Use the following command with your organization's `username` and
-  `email address` to sign up:
+- If you are a new user, you need to sign up for amapy. Use the following command with your organization's `username`
+  and `email address` to sign up:
 - `ama auth signup -u <username> -e <email_address>`
 - If you are an existing user, you can just log in using the following command:
 - `ama auth login` : using google authentication

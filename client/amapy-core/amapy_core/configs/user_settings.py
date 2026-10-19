@@ -143,5 +143,6 @@ class UserSettings:
                 }
         return data
 
-    def save(self):
-        self.app_settings.data = update_dict(self.app_settings.data, {"user_configs": self.serialize()})
+    def save(self, persist: bool = True):
+        updated_data = update_dict(self.app_settings.data, {"user_configs": self.serialize()})
+        self.app_settings.set_data(updated_data, persist=persist)

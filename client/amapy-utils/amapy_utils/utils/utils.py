@@ -9,6 +9,7 @@ import re
 from collections.abc import Callable, Iterable
 from contextlib import contextmanager
 from functools import wraps
+from importlib.metadata import version, PackageNotFoundError
 from itertools import islice
 from os.path import expanduser
 from time import time
@@ -23,6 +24,14 @@ from amapy_utils.utils.log_utils import UserLog
 # '%Y-%m-%dT%H-%M-%S %Z' doesn't work on Linux with python3.7 and 3.8
 DATE_FORMAT = '%Y/%m/%d %H-%M-%S %z'
 TIME_ZONE = 'US/Pacific'
+
+
+def get_package_version(package_name: str) -> str:
+    """Get the version of the specified package."""
+    try:
+        return version(package_name)
+    except PackageNotFoundError as e:
+        raise RuntimeError(f"Package version not found for: {package_name}") from e
 
 
 def contains_special_chars(string: str) -> bool:

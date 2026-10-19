@@ -15,26 +15,29 @@ class AuthServer(BaseServer):
     def __init__(self):
         self.configs = Configs.shared().auth
 
+    @property
     def _auth_url_route(self):
         return os.path.join(self.url, self.configs.auth_url_route)
 
+    @property
     def _login_route(self):
         return os.path.join(self.url, self.configs.login_route)
 
+    @property
     def _signup_route(self):
         return os.path.join(self.url, self.configs.user_signup_route)
 
     def get_auth_url(self):
-        return self.parse(self.get(url=self._auth_url_route()))
+        return self.parse(self.get(url=self._auth_url_route))
 
     def login_with_response(self, data: dict) -> dict:
-        return self.parse(self.post(url=self._login_route(), data=data))
+        return self.parse(self.post(url=self._login_route, data=data))
 
     def login_with_token(self, token: str) -> dict:
-        return self.parse(self.post(url=self._login_route(), data={"token": token}))
+        return self.parse(self.post(url=self._login_route, data={"token": token}))
 
     def signup_user(self, username: str, email: str):
-        return self.parse(self.post(url=self._signup_route(), data={"username": username, "email": email}))
+        return self.parse(self.post(url=self._signup_route, data={"username": username, "email": email}))
 
     def google_oauth(self):
         """Authenticate the user bases on authorization response.
