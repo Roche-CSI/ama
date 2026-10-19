@@ -194,9 +194,9 @@ class SettingsAPI(LoggingMixin):
         if user and user.get("id"):
             # save to settings
             self.settings.user = res.get("user")
-            self.settings.set_roles(res.get("roles"), append=False)
             self.settings.default_project = res.get("default_project")
             self.settings.default_project_token = res.get("default_token")
+            self.settings.set_roles(res.get("roles"), append=False)
 
             # print success message
             message = colored_string("Success\n", LogColors.SUCCESS)
