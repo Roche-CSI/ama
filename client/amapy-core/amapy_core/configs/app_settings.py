@@ -6,13 +6,14 @@ import os
 import re
 import time
 
-from amapy_core.configs.configs import Configs
-from amapy_core.configs.user_settings import UserSettings
 from amapy_pluggy.storage.storage_credentials import StorageCredentials
 from amapy_pluggy.storage.storage_factory import StorageFactory
 from amapy_utils.common import exceptions
 from amapy_utils.utils import utils
 from amapy_utils.utils.file_utils import FileUtils
+
+from amapy_core.configs.configs import Configs
+from amapy_core.configs.user_settings import UserSettings
 
 AMA_PACKAGE_NAME = "amapy"
 
@@ -180,11 +181,11 @@ class AppSettings:
         project = self.projects.get(project_id)
         os.environ["ASSET_PROJECT_ID"] = project_id
 
-        # validate project token before setting them
-        project_token = self.valid_project_token(project_id)
+        # validate project credentials before setting them
+        project_credentials = self.valid_project_token(project_id)
         # set the credentials of the active project
-        StorageCredentials.shared().set_credentials(project_token)
-        StorageCredentials.shared().set_content_credentials(project_token)
+        StorageCredentials.shared().set_credentials(project_credentials)
+        StorageCredentials.shared().set_content_credentials(project_credentials)
 
         # user provides an overriding credentials
         user_credentials = os.environ.get("ASSET_CREDENTIALS")
