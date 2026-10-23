@@ -1,8 +1,9 @@
 import os
 
-from amapy_core.configs.config_modes import ConfigModes
 from amapy_utils.common import exceptions
 from amapy_utils.common.user_commands import UserCommands
+
+from amapy_core.configs.config_modes import ConfigModes
 
 DEV_URL = {
     "host": "http://localhost:5000",
@@ -107,3 +108,7 @@ class ServerConfig:
     @property
     def project_token_route(self):
         return "project/token"
+
+    @property
+    def project_credentials_route(self):
+        return "project/credentials"

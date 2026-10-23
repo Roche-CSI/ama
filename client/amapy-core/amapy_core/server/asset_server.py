@@ -1,8 +1,9 @@
 import os
 
+from amapy_utils.common import exceptions
+
 from amapy_core.configs import Configs, AppSettings
 from amapy_core.server.base_server import BaseServer
-from amapy_utils.common import exceptions
 
 
 class AssetServer(BaseServer):
@@ -47,11 +48,14 @@ class AssetServer(BaseServer):
     def _project_token_route(self):
         return os.path.join(self.url, self.configs.project_token_route)
 
+    def _project_credentials_route(self):
+        return os.path.join(self.url, self.configs.project_credentials_route)
+
     def create_asset(self, **kwargs):
         return self.parse(self.post(url=self._asset_route(), data=kwargs))
 
     def find_asset(self, **kwargs):
-        url = self.add_params(self._asset_route(), {**kwargs, "name": True})
+        url = self.add_params(url=self._asset_route(), params={**kwargs, "name": True})
         return self.parse(self.get(url=url))
 
     def create_asset_class(self, **kwargs) -> dict:
@@ -120,5 +124,11 @@ class AssetServer(BaseServer):
     def get_project_token(self, project_id: str):
         """Retrieves the project token from the server."""
         url = self.add_params(url=self._project_token_route(),
+                              params={"project_id": project_id})
+        return self.parse(self.get(url=url))
+
+    def get_project_credentials(self, project_id: str):
+        """Retrieves the project credentials from the server."""
+        url = self.add_params(url=self._project_credentials_route(),
                               params={"project_id": project_id})
         return self.parse(self.get(url=url))
